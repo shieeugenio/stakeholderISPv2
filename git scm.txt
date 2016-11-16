@@ -1,0 +1,5 @@
+git config --global user.email "EMAIL mo"
+git init .
+ls -ah
+git remote add origin "link ng github"
+git pull origin master
