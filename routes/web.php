@@ -18,19 +18,15 @@ Route::get('/', function () {
    
 });
 
-Route::get('advisorycouncil', function () {
-    return view('welcome');
-});
-
-Route::get('advisorycouncil/adviser', function () {
+Route::get('adviser', function () {
     return view('module.adviser');
 });
 
-Route::get('advisorycouncil/maintenance', function () {
+Route::get('maintenance', function () {
     return view('module.maintenance');
 });
 
-Route::get('advisorycouncil/maintenance/accategory', function () {
+Route::get('maintenance/accategory', function () {
     return view('maintenancetable.accateg_table');
 });
 

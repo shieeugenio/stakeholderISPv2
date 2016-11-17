@@ -20179,6 +20179,7 @@ Floated Menu / Item
   border-radius: 0em;
   box-shadow: none !important;
   border: none;
+  padding-top: 2%;
   background: none transparent;
   /*border-bottom: 1px solid #D4D4D5;*/
 }
