@@ -1,0 +1,102 @@
+.mainbody, .advcon {
+	height: 100%;
+	width: 100%;
+
+}
+
+.banner {
+	background-color: #ede8e6;
+	width: 100%;
+	height: 16%;
+}
+
+.logocon {
+	background-color: #565656;
+	width: 100%;
+	height: 90%;
+	color: #e9e2df;
+	margin-left: 70%;
+
+}
+
+.acname {
+	width: 55%;
+	height: 90%;
+	margin-left: 7%;
+
+}
+
+.ui.grid {
+	height: 100%;
+}
+
+.ucon {
+	margin-top: 1%;
+	margin-left: 55%;
+
+
+}
+
+span {
+	font-family: "Franklin Gothic Book";
+	font-weight: bold;
+}
+
+.rightrow {
+	height: 48px;
+}
+
+.colcon {
+	float:right;
+}
+
+.mlink {
+	color: #565656;
+	font-weight: bold;
+}
+.mlink:hover {
+	color: #00253a;
+	text-decoration: underline;
+
+}
+
+.content1 {
+	width: 100%;
+	height: 90%;
+	min-height: 90%;
+}
+
+.footer {
+	background-color: #62503d;
+	width: 100%;
+	height: 30%;
+	color: #e9e2df;
+
+}
+
+.menu {
+	font-family: "Franklin Gothic Book";
+}
+
+.moveright {
+	margin-left: 73%;
+}
+
+.topmargin {
+	margin-top: 5%;
+}
+
+.btncon {
+	width: 100%;
+	height: 13%;
+}
+
+.advcardcon {
+	width:100%;
+	height: 90%;
+}
+
+hr {
+	width: 95%;
+	border-top: 1px solid #ede8e6;
+}
