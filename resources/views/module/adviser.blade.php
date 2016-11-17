@@ -7,11 +7,11 @@
 			<div class = "ui grid">
 				<div class = "row">
 					<div class = "five wide column moveright">
-						<div class = "ui floating icon button tiny" title = "add">
+						<div class = "ui icon addbtn button tiny" title = "add">
 							<i class="plus icon topmargin"></i>
 							
 						</div>
-						<div class="ui floating icon dropdown button tiny topmargin" title = "filter list">
+						<div class="ui icon addbtn dropdown button  tiny topmargin" title = "filter list">
 							<i class="filter icon"></i>
 							<div class="menu">
 						    	<div class="item">
