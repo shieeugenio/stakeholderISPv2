@@ -11,11 +11,53 @@
 |
 */
 
+//SHIELA
 Route::get('/', function () {
     return view("welcome");
 
    
 });
+
+Route::get('advisorycouncil', function () {
+    return view('welcome');
+});
+
+Route::get('advisorycouncil/adviser', function () {
+    return view('module.adviser');
+});
+
+
+Route::get('advisorycouncil/maintenance', function () {
+    return view('module.maintenance');
+});
+
+Route::get('advisorycouncil/maintenancetable/accategory', function () {
+    return view('maintenancetable.accateg_table');
+});
+
+
+///editmaintenance UI [cja]
+Route::get('advisorycouncil/maintenancetable/acsector', function () {
+    return view('maintenancetable.acsector_table');
+});
+Route::get('advisorycouncil/maintenancetable/acsubcat', function () {
+    return view('maintenancetable.acsubcat_table');
+});
+Route::get('advisorycouncil/maintenancetable/advisoryposition', function () {
+    return view('maintenancetable.advisoryposition_table');
+});
+Route::get('advisorycouncil/maintenancetable/policeposition', function () {
+    return view('maintenancetable.policeposition_table');
+});
+
+Route::get('advisorycouncil/maintenancetable/policeoffice', function () {
+    return view('maintenancetable.policeoffice_table');
+});
+
+Route::get('advisorycouncil/maintenancetable/policeoffice2', function () {
+    return view('maintenancetable.policeoffice2_table');
+});
+
 
 //routes for category
 Route::get('cat','ACCategoryController@index');
@@ -34,7 +76,14 @@ Route::post("Maintenance/{id}/editCommit", "ACCategoryController@update");
 
 //routes for subcategory
 Route::get('subcategory','ACSubcategoryController@index');
+Route::get('subform', 'ACSubcategoryController@addView');
+Route::post('addcommit', 'ACSubcategoryController@confirm');
+Route::get('Maintenance/{id}/subedit','ACSubcategoryController@edit');
+Route::post("Maintenance/{id}/subeditCommit", "ACSubcategoryController@update");
+
 //end of subcategory
+
+//AC SECTOR - @tineamps
 Route::resource('maintenance/acsectorform','acsectorController@index_acsectors');
 Route::resource('maintenance/insert_acsectors','acsectorController@insert_acsectors');
 Route::resource('maintenance/edit_acsectors','acsectorController@edit_acsectors');
@@ -50,6 +99,7 @@ Route::resource('maintenance/acpositionupdate' , 'ACPositionController@acpositio
 Route::post('/buttonsPoliceOffice', 'PoliceOfficesController@confirmOffice');
 Route::post('maintenance/{id}/editpolice', 'PoliceOfficesController@edit');
 
+
 Route::get('/maintenance/{id}/editpoliceview', 'PoliceOfficesController@find');
 Route::get('policeOffice', 'PoliceOfficesController@manageoffice');
 
@@ -60,3 +110,10 @@ Route::post('maintenance/{id}/editsubpolice', 'PoliceOfficeTwoController@edit');
 
 Route::get('secondpolice', 'PoliceOfficeTwoController@manageofficetwo');
 Route::get('maintenance/{id}/subpoliceview', 'PoliceOfficeTwoController@find');
+
+//This is for Police  Maintenance -- Ore wa Resutaa da :D
+Route::resource('maintenance/policeposition', 'PolicePositionController@index_policeposition');
+Route::resource('maintenance/policepositioninsert' , 'PolicePositionController@policepositioninsert');
+Route::resource('maintenance/policepositionedit', 'PolicePositionController@policepositionedit');
+Route::resource('maintenance/policepositionupdate' , 'PolicePositionController@policepositionupdate');
+
