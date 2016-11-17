@@ -12,7 +12,7 @@ class ACSubcategory extends Model
 
     public function category()
     {
-    	return $this->hasOne('App\Models\ACCategory', 'ID', 'categoryId');
+    	return $this->belongsTo('App\Models\ACCategory', 'categoryId', 'ID');
     }
 
     public function advisorycouncil()
