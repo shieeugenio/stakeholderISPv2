@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return echo ("Hello Laravel & Git!");
+    return view("welcome");
 });
