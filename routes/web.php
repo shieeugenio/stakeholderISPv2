@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view ("welcome");
 });
 
-
+//AC SECTOR - @tineamps
 Route::resource('maintenance/acsectorform','acsectorController@index_acsectors');
 Route::resource('maintenance/insert_acsectors','acsectorController@insert_acsectors');
 Route::resource('maintenance/edit_acsectors','acsectorController@edit_acsectors');

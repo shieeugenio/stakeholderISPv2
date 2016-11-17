@@ -12,7 +12,8 @@ class acsectorController extends Controller
 {
    
     public function index_acsectors(){
-    	return view('maintenance.acsectorform');
+
+      return view('maintenance.acsectorform');
     }
 
     public function insert_acsectors(Request $request){
@@ -25,9 +26,8 @@ class acsectorController extends Controller
             	$lastId = $acsec->ID;
                 $params = array($lastId);            
                 
-                $stmt = DB::select('SELECT * FROM ACSectors
-                     WHERE ID = ?', $params); 
-              
+            //$stmt = DB::select('SELECT * FROM ACSectors WHERE ID = ?', $params); 
+             $stmt = DB::table('ACSectors')->where('ID')->value('?',$params); 
     		return view('maintenance.acsectorview')->with('stmt', $stmt);
 
     	       }
