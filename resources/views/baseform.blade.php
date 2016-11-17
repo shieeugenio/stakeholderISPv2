@@ -31,14 +31,20 @@
 		<div class = "mainbody">
 			<header class = "banner">
 				<div class = "ui relaxed grid">
-					<div class = "two wide column">
+					<div class = "six wide column">
 							<div class = "logocon">
 								<image class = "logoicon" src="{{URL::asset('images/Philippine-National-Police.png')}}"/>
 							
 							</div>
+
+							<image class = "acname" src="{{URL::asset('objects/Logo/ACName.png')}}"/>
+							<div class = "logocon2">
+								<image class = "logoicon" src="{{URL::asset('images/pp_logoforae.png')}}"/>
+								
+							</div>
 					</div>
 
-					<div class = "two wide column">
+					<!--<div class = "two wide column">
 						<image class = "acname" src="{{URL::asset('objects/Logo/ACName.png')}}"/>
 							
 					</div>
@@ -48,7 +54,7 @@
 							<image class = "logoicon" src="{{URL::asset('images/pp_logoforae.png')}}"/>
 							
 						</div>
-					</div>
+					</div>-->
 					<div class = "ten wide column">
 							<div class = "ui two row grid colcon">
 								<div class = "row rightrow">

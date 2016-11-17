@@ -11,27 +11,38 @@
 }
 
 .logocon {
-	background-color: #565656;
-	width: 67%;
+	/*background-color: #565656;*/
+	width: 15%;
 	height: 100%;
 	color: #e9e2df;
-	margin-left: 70%;
+	margin-left: 10%;
+	margin-top: 1%;
+	float:left;
+
+}
+
+.logocon2 {
+	/*background-color: #565656;*/
+	width: 17%;
+	height: 100%;
+	color: #e9e2df;
+	margin-left: 2%;
+	margin-top: 1%;
+	float:left;
 
 }
 
 .logoicon {
-	width: 90%;
-	height: 93%;
-	margin-top: 2%;
-	margin-left: 5%;
-
+	width: 100%;
+	height: 100%;
 }
 
 .acname {
-	width: 150%;
+	width: 45%;
 	height: 100%;
-	margin-left: 28%;
 	margin-top: 1%;
+	margin-left: 3%;
+	float:left;
 
 }
 
