@@ -13,9 +13,9 @@
 		@foreach ($positions as $positions)
 			<div>
 			@unless (empty('positions'))
-				<li>{{ $positions->acpositionname}} 
-				<input type="submit" name="editposition" value="Edit"/>
-				<input type="submit" name="deleteposition" value="Delete"/>
+				<li style="color:red; font-weight: bold;">{{ $positions->acpositionname}} 
+				<input type="submit" name="editacposition" value="Edit"/>
+				<input type="submit" name="deleteacposition" value="Delete"/>
 				</li>
 				
 			@endunless

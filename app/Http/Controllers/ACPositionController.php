@@ -37,9 +37,10 @@ class ACPositionController extends Controller
     	return view('maintenance.advisorypositionview')->with('sql',$sql);
     }
 
-    public function acpositionedit(Request $request)
-    {
-        return view('maintenance.advisorypositionview');
+    public function acpositionedit(AdvisoryPositions $acposition)
+    {   
+        
+        return view('maintenance.advisorypositionedit', compact('acposition'));
     }
 
     public function acpositionupdate(Request $request)
