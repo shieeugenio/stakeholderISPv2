@@ -27,3 +27,9 @@ Route::resource('maintenance/acpositioninsert' , 'ACPositionController@acpositio
 Route::resource('maintenance/acpositionedit', 'ACPositionController@acpositionedit');
 Route::resource('maintenance/acpositionupdate' , 'ACPositionController@acpositionupdate');
 
+//This is for Police  Maintenance -- Ore wa Resutaa da :D
+Route::resource('maintenance/policeposition', 'PolicePositionController@index_policeposition');
+Route::resource('maintenance/policepositioninsert' , 'PolicePositionController@policepositioninsert');
+Route::resource('maintenance/policepositionedit', 'PolicePositionController@policepositionedit');
+Route::resource('maintenance/policepositionupdate' , 'PolicePositionController@policepositionupdate');
+

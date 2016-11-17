@@ -29,22 +29,61 @@ class ACPositionController extends Controller
     		$positionname ->acpositionname=$request->acpositionname;
     		$positionname->save();
 
+            $lastid = $positionname->ID;
+            $param = array($lastid);
+            $sql = DB::table('AdvisoryPositions')
+                    ->select('ID')
+                    ->where('ID','=',$lastid)->get();
+            $positions = DB::table('AdvisoryPositions')->get();
+            return view('maintenance/advisorypositionview')
+                ->with('sql',$sql)
+                ->with('positions', $positions);
     	}
-
-        $lastid = $positionname->ID;
-        $param = array($lastid);
-        $sql = DB::select('select * from "AdvisoryPositions" where ID = ?', $param);
-    	return view('maintenance.advisorypositionview')->with('sql',$sql);
+        else if(isset($_POST['cancel'])){
+            return redirect('maintenance/advisoryposition');
+        }
     }
 
-    public function acpositionedit(AdvisoryPositions $acposition)
+    public function acpositionedit(Request $request)
     {   
-        
-        return view('maintenance.advisorypositionedit', compact('acposition'));
+        if(isset($_POST['editacposition'])){
+
+        $acpositionid = $request->acpositionid;
+        $sql = DB::table('AdvisoryPositions')->where('ID','=', $acpositionid)->get();
+        $positions = DB::table('AdvisoryPositions')->get();
+        return view('maintenance.advisorypositionedit')
+                ->with('sql', $sql)
+                ->with('positions', $positions);
+        }
+        else if(isset($_POST['deleteacposition']))
+        {
+            return redirect('maintenance/advisoryposition');
+        }
+       
     }
 
     public function acpositionupdate(Request $request)
     {
-        return view('maintenance.advisorypositionupview');
+        if(isset($_POST['btn_updateacposition'])){
+            $positionID = $request->acpositionsid;
+            $positionName = $request->setpositionname;
+            $stmt = DB::table('AdvisoryPositions')->where('ID','=',$positionID)->update(['acpositionname'=>$positionName]);
+
+            if($stmt){
+                
+                $params = array($positionID);
+                $stmt = DB::table('AdvisoryPositions')->where('ID','=',$positionID)->get();
+                 $positions = DB::table('AdvisoryPositions')->get();
+                return view('maintenance.advisorypositionview')->with('stmt',$stmt)->with('positions',$positions);
+              }
+            else{
+                return "Error";
+                }
+        }
+
+        else if(isset($_POST['cancel']))
+        {
+            return redirect('maintenance/advisoryposition');
+        }     
     }
 }

@@ -2,15 +2,16 @@
 
 @section('content')
 
-		<form method="POST" action="acpositioninsert">
+		<form method="POST" action="policepositioninsert">
 		<input type="hidden" name="_token" id="csrf-token" value="{{Session::token()}}">
 		ID:<input type="text" id="ID" value="" disabled/>
-		Advisory Position:<input type="text" name="acpositionname" value=""/>
+		Police Position:<input type="text" name="positionname" value=""/>
 		<input type="submit" name="storeposition"/>
 		<input type="submit" name="cancel" value="Cancel"/>
 		</form>
 
 		<div>Position</div>
+
 		<table border="1">
 					<thead>
 						<tr><div><th>Position Name</th></div>
@@ -20,22 +21,23 @@
 					</tbody>
 						@foreach ($positions as $positions)		
 						<tr>
-							<form method="POST" action="acpositionedit">
+							<form method="POST" action="policepositionedit">
 							<input type="hidden" name="_token" id="csrf-token" value="{{Session::token()}}">
 							
 							<td> 
-							<label style="color:red; font-weight: bold;;">{{ $positions->acpositionname}}</label> 
-							<input type="hidden" name="acpositionid" value="{{$positions->ID}}"/>
-							</td>
 
+							<label style="color:red; font-weight: bold;;">{{ $positions->positionname}}</label> 
+							<input type="hidden" name="policepositionid" value="{{$positions->ID}}"/>
+							</td>
 							<td>
-							<input type="submit" name="editacposition" value="Edit"/>
-							<input type="submit" name="deleteacposition" value="Delete" onclick="alert('No Deleteion of Item')"/>
+							<input type="submit" name="editpoliceposition" value="Edit"/>
+							<input type="submit" name="deletepoliceposition" value="Delete" onclick="alert('No Deleteion of Item')"/>
+							
 							</td>
-
 							</form>
 						</tr>
 						@endforeach
 					</tbody>
 				</table>
+		
 @stop
