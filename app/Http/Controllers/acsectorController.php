@@ -24,7 +24,7 @@ class acsectorController extends Controller
             	$acsec->save();
             	$lastId = $acsec->ID;
 
-              $sector = DB::table('ACSectors')->get();
+             $sector = DB::table('ACSectors')->get();
              $stmt = DB::table('ACSectors')->where('ID', '=', $lastId)->get(); 
     	     	return view('maintenance.acsectorview')->with('stmt', $stmt)->with('sector',$sector);
 
@@ -52,7 +52,7 @@ class acsectorController extends Controller
         }
          
     	
-    }//UPDATE EDIT_SECTORS
+    }//UPDATE EDIT_SECTORS 
 
     public function update_acsectors(Request $request){
 

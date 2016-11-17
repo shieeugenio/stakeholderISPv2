@@ -28,7 +28,7 @@ i.icon {
   display: inline-block;
   opacity: 1;
   margin: 0em 0.25rem 0em 0em;
-  width: 1.18em;
+  width: 0.5em;
   height: 1em;
   font-family: 'Icons';
   font-style: normal;
@@ -404,7 +404,7 @@ i.small.icons {
 }
 i.icon,
 i.icons {
-  font-size: 1em;
+  font-size: 0.8em;
 }
 i.large.icon,
 i.large.icons {
