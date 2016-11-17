@@ -46,4 +46,17 @@ Route::resource('maintenance/acpositioninsert' , 'ACPositionController@acpositio
 Route::resource('maintenance/acpositionedit', 'ACPositionController@acpositionedit');
 Route::resource('maintenance/acpositionupdate' , 'ACPositionController@acpositionupdate');
 
+//Police Office
+Route::post('/buttonsPoliceOffice', 'PoliceOfficesController@confirmOffice');
+Route::post('maintenance/{id}/editpolice', 'PoliceOfficesController@edit');
 
+Route::get('/maintenance/{id}/editpoliceview', 'PoliceOfficesController@find');
+Route::get('policeOffice', 'PoliceOfficesController@manageoffice');
+
+
+//Police Office Second
+Route::post('/confirmpolice', 'PoliceOfficeTwoController@confirm');
+Route::post('maintenance/{id}/editsubpolice', 'PoliceOfficeTwoController@edit');
+
+Route::get('secondpolice', 'PoliceOfficeTwoController@manageofficetwo');
+Route::get('maintenance/{id}/subpoliceview', 'PoliceOfficeTwoController@find');
