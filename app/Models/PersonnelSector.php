@@ -12,11 +12,11 @@ class PersonnelSector extends Model
 
     public function acsector()
     {
-    	return $this->hasOne('App\Models\ACSectors', 'ID', 'ac_sector_id');
+    	return $this->belongsTo('App\Models\ACSectors', 'ac_sector_id', 'ID');
     }
 
     public function advisorycouncil()
     {
-    	return $this->hasOne('App\Models\AdvisoryCouncil', 'advisory_position_id', 'ID');
+    	return $this->belongsTo('App\Models\AdvisoryCouncil', 'advisory_council_id', 'ID');
     }
 }
