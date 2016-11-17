@@ -18,8 +18,6 @@ Route::get('/', function () {
 });
 
 
-
-
 //routes for category
 Route::get('cat','ACCategoryController@index');
 Route::get('CatForm', 'ACCategoryController@addView');
