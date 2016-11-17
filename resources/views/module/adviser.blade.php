@@ -7,25 +7,46 @@
 			<div class = "ui grid">
 				<div class = "row">
 					<div class = "five wide column moveright">
-						<div class = "ui floating icon button tiny" title = "add advisor">
+						<div class = "ui floating icon button tiny" title = "add">
 							<i class="plus icon topmargin"></i>
 							
 						</div>
 						<div class="ui floating icon dropdown button tiny topmargin" title = "filter list">
 							<i class="filter icon"></i>
 							<div class="menu">
+						    	<div class="item">
+							    	All
+							    </div>
+							    <div class="item">
+							    	Name
+							    </div>
+							    <div class = "divider"></div>
 						    	<div class="header">
-						      		Filter List
+						      		Categories
 						    	</div>
-						    <div class="item">
-						    	Advisory Council (AC)
-						    </div>
-						    <div class="item">
-						     	PSMU
-						    </div>
-						    <div class="item">
-						    	Technical Worker Group (TWG)
-						    </div>
+						    	<div class = "divider"></div>
+							    <div class="item">
+							    	Advisory Council (AC)
+							    </div>
+							    <div class="item">
+							     	Police Strategry Management Unit (PSMU)
+							    </div>
+							    <div class="item">
+							    	Technical Worker Group (TWG)
+							    </div>
+							    <div class = "divider"></div>
+							    <div class="header">
+						      		Date Created
+						    	</div>
+						    	<div class = "divider"></div>
+						    	<div class="item">
+							     	Ascending
+							    </div>
+							    <div class="item">
+							    	Descending
+							    </div>
+
+
 						  </div>
 						</div>
 
@@ -43,24 +64,86 @@
 
 		<div class = "advcardcon">
 			<hr>
-			<div class = "ui grid">
-				<div class="ui link cards">
-					<!--<div class="card">
-				    	<div class="image">
-				      		<img src="{{URL::asset('objects/Logo/InitProfile.png')}}">
-				    	</div>
-				    	<div class="content">
-				    		<div class="header">Name</div>
 
-				    		<div class="description">
-						     	Other Details
-						    </div>
-				    	</div>
-					</div>-->
-		
+			<div class = "ui doubling grid cardlist">
+				<div class = "five wide column colheight">
+					<div class = "cardstyle">
+						<img class = "advphoto" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
+
+						<div class = "advdata">
+							<h4 class = "name">Eugenio, Shiela Mae F.</h4>
+							<p>Other data comes here</p>
+							
+						</div>
+					</div>
+
 				</div>
+				<div class = "five wide column colheight">
+					<div class = "cardstyle">
+						<img class = "advphoto" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
+
+						<div class = "advdata">
+							<h4 class = "name">Eugenio, Shiela Mae F.</h4>
+							<p>Other data comes here</p>
+							
+						</div>
+					</div>
+
+				</div>
+				<div class = "five wide column colheight">
+					<div class = "cardstyle">
+						<img class = "advphoto" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
+
+						<div class = "advdata">
+							<h4 class = "name">Eugenio, Shiela Mae F.</h4>
+							<p>Other data comes here</p>
+							
+						</div>
+					</div>
+
+				</div>
+				<div class = "five wide column colheight">
+					<div class = "cardstyle">
+						<img class = "advphoto" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
+
+						<div class = "advdata">
+							<h4 class = "name">Eugenio, Shiela Mae F.</h4>
+							<p>Other data comes here</p>
+							
+						</div>
+					</div>
+
+				</div>
+				<div class = "five wide column colheight">
+					<div class = "cardstyle">
+						<img class = "advphoto" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
+
+						<div class = "advdata">
+							<h4 class = "name">Eugenio, Shiela Mae F.</h4>
+							<p>Other data comes here</p>
+							
+						</div>
+					</div>
+
+				</div>
+				<div class = "five wide column colheight">
+					<div class = "cardstyle">
+						<img class = "advphoto" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
+
+						<div class = "advdata">
+							<h4 class = "name">Eugenio, Shiela Mae F.</h4>
+							<p>Other data comes here</p>
+							
+						</div>
+					</div>
+
+				</div>
+
 				
 			</div>
+			
+				
+
 			
 		</div>
 		
