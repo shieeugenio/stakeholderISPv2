@@ -36,7 +36,7 @@ Route::get('advisorycouncil/maintenancetable/accategory', function () {
 });
 
 
-///editmaintenance UI [snjdksf]
+///editmaintenance UI [cja]
 Route::get('advisorycouncil/maintenancetable/acsector', function () {
     return view('maintenancetable.acsector_table');
 });
