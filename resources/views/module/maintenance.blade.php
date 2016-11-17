@@ -11,10 +11,10 @@
 					</div>
 					<div class="item">
 		    			<div class="menu">
-		    				<a class="item" id = "m1" href = "{{url('advisorycouncil/maintenance/accategory')}}">Advisory Council Category</a>
-		    				<a class="item" id = "m2">Advisory Council Sub-category</a>
-		    				<a class="item" id = "m3">Advisory Council Position</a>
-		    				<a class="item" id = "m4">Advisory Council Sector</a>
+		    				<a class="item" id = "m1" href = "{{url('advisorycouncil/maintenancetable/accategory')}}">Advisory Council Category</a>
+		    				<a class="item" id = "m2" href = "{{url('advisorycouncil/maintenancetable/acsubcat')}}">Advisory Council Sub-category</a>
+		    				<a class="item" id = "m3" href = "{{url('advisorycouncil/maintenancetable/advisoryposition')}}">Advisory Council Position</a>
+		    				<a class="item" id = "m4" href = "{{url('advisorycouncil/maintenancetable/acsector')}}">Advisory Council Sector</a>
 
 
 		    			</div>
@@ -27,7 +27,7 @@
 		    			<div class="menu">
 		    				<a class="item" id = "m5">Level 1 Office</a>
 		    				<a class="item" id = "m6">Level 2 Office</a>
-		    				<a class="item" id = "m7">PNP Position</a>
+		    				<a class="item" id = "m7" href = "{{url('advisorycouncil/maintenancetable/policeposition')}}">PNP Position</a>
 
 
 		    			</div>

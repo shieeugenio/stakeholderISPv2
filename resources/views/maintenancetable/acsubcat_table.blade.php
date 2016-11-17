@@ -16,8 +16,9 @@
 						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
 						    <thead>
 						    	<tr>
-						            <th><center>Category ID</center></th>
-						            <th><center>Category Name</center></th> 
+						    		<th><center>Subcategory</center></th>
+									<th><center>Category</center></th>
+										            
 						        </tr>	
 						    </thead>
 						                   
@@ -25,6 +26,7 @@
 						    	<tr>
 						    		<td></td>
 						    		<td></td>
+						    		
 						    	</tr>
 
 
@@ -49,7 +51,7 @@
 						<div class = "labelpane">
 									
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Category ID
+								<label class = "formlabel">Sub Category
 									<span class = "asterisk">*</span>
 
 								</label>
@@ -57,19 +59,14 @@
 							</div>
 
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Category Name</label>
+								<label class = "formlabel">Category</label>
 										
 							</div>
-									
+
+																
 								
 						</div>
 
-						<div class = "fieldpane">
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input formfield">
-								  <input type="text" placeholder="ID">
-								</div>
-							</div>
 						<div class = "fieldpane">
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
@@ -78,7 +75,18 @@
 							</div>
 
 							<div class = "twelve wide column bspacing2">
-								<center><button type="submit" value="submit" name="submit" class="ui tiny button savebtnstyle">
+								<select class="browser-default">
+								  <option value="- Select Category -" >- Select Category -</option>
+								  <option value="volvo">Fuss</option>
+								  <option value="saab">Deym</option>
+								  
+								</select>
+							</div>
+							
+
+							<div class = "twelve wide column bspacing2">
+								<center><button class="ui tiny button savebtnstyle" type="submit" name="submit" value="add">
+								
 
 									Save
 								</button>
@@ -102,7 +110,7 @@
 	</div>
 
 	<script type="text/javascript">
-		$('#m1').attr('class', 'item active');
+		$('#m2').attr('class', 'item active');
 
 	</script>
 

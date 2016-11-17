@@ -29,10 +29,24 @@ Route::get('advisorycouncil/maintenance', function () {
     return view('module.maintenance');
 });
 
-Route::get('advisorycouncil/maintenance/accategory', function () {
+Route::get('advisorycouncil/maintenancetable/accategory', function () {
     return view('maintenancetable.accateg_table');
 });
 
+
+///editmaintenance UI [snjdksf]
+Route::get('advisorycouncil/maintenancetable/acsector', function () {
+    return view('maintenancetable.acsector_table');
+});
+Route::get('advisorycouncil/maintenancetable/acsubcat', function () {
+    return view('maintenancetable.acsubcat_table');
+});
+Route::get('advisorycouncil/maintenancetable/advisoryposition', function () {
+    return view('maintenancetable.advisoryposition_table');
+});
+Route::get('advisorycouncil/maintenancetable/policeposition', function () {
+    return view('maintenancetable.policeposition_table');
+});
 
 
 //routes for category

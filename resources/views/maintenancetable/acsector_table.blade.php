@@ -16,16 +16,16 @@
 						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
 						    <thead>
 						    	<tr>
-						            <th><center>Category ID</center></th>
-						            <th><center>Category Name</center></th> 
+						            <th><center>ID</center></th>
+						            <th><center>Sector Name</center></th> 
 						        </tr>	
 						    </thead>
 						                   
 						    <tbody>
 						    	<tr>
-						    		<td></td>
-						    		<td></td>
-						    	</tr>
+						    		<td><input name="acsectorID" type="number" readonly="true"></td>
+						    		<td><input name="acsectorName" type="text"></td>
+						    	</tr>                               
 
 
 						    </tbody>
@@ -47,45 +47,59 @@
 					<form>
 							
 						<div class = "labelpane">
-									
-							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Category ID
+
+						<div class = "twelve wide column bspacing">
+								<label class = "formlabel">ID
 									<span class = "asterisk">*</span>
 
 								</label>
 
 							</div>
-
-							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Category Name</label>
-										
-							</div>
 									
+							<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Sector Name
+									<span class = "asterisk">*</span>
+
+								</label>
+
+							</div>										
 								
 						</div>
 
 						<div class = "fieldpane">
-							<div class = "twelve wide column bspacing2">
+
+						<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
-								  <input type="text" placeholder="ID">
+								  <input name="acsectorID" type="number" readonly="true">
 								</div>
 							</div>
-						<div class = "fieldpane">
+
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
 								  <input type="text" placeholder="e.g Regional">
 								</div>
 							</div>
 
-							<div class = "twelve wide column bspacing2">
-								<center><button type="submit" value="submit" name="submit" class="ui tiny button savebtnstyle">
+												
 
+							<div class = "twelve wide column bspacing2">
+								<center>
+								<button class="ui tiny button savebtnstyle"
+								type="submit" 
+			     				name="btn_Save" 
+			     				value="SAVE" 
+	     				onclick="return confirm('This record will saved!');">
 									Save
 								</button>
-								<button class="ui tiny button">
+
+								<button class="ui tiny button" type="submit" 
+								value="DISCARD" 
+								name="btn_Discard" >
 									Cancel
 
-								</button></center>
+								</button>	
+				
+							</center>
 							</div>
 
 								
@@ -102,7 +116,7 @@
 	</div>
 
 	<script type="text/javascript">
-		$('#m1').attr('class', 'item active');
+		$('#m4').attr('class', 'item active');
 
 	</script>
 

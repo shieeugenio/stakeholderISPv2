@@ -16,14 +16,14 @@
 						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
 						    <thead>
 						    	<tr>
-						            <th><center>Category ID</center></th>
-						            <th><center>Category Name</center></th> 
+						            <th><center>ID</center></th>
+						            <th><center>Position Name</center></th> 
 						        </tr>	
 						    </thead>
 						                   
 						    <tbody>
 						    	<tr>
-						    		<td></td>
+						    		<td><input type="hidden" name="policepositionid" value=""/></td>
 						    		<td></td>
 						    	</tr>
 
@@ -49,7 +49,7 @@
 						<div class = "labelpane">
 									
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Category ID
+								<label class = "formlabel">ID
 									<span class = "asterisk">*</span>
 
 								</label>
@@ -57,7 +57,7 @@
 							</div>
 
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Category Name</label>
+								<label class = "formlabel">Police Position</label>
 										
 							</div>
 									
@@ -67,22 +67,21 @@
 						<div class = "fieldpane">
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
-								  <input type="text" placeholder="ID">
+								  <input type="text" id="ID" value="" disabled/>
 								</div>
 							</div>
-						<div class = "fieldpane">
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
-								  <input type="text" placeholder="e.g Regional">
+									<input type="text" name="positionname" value=""/>
 								</div>
 							</div>
 
 							<div class = "twelve wide column bspacing2">
-								<center><button type="submit" value="submit" name="submit" class="ui tiny button savebtnstyle">
+								<center><button  type="submit" name="storeposition" class="ui tiny button savebtnstyle">
 
 									Save
 								</button>
-								<button class="ui tiny button">
+								<button  type="submit" name="cancel" value="Cancel" class="ui tiny button">
 									Cancel
 
 								</button></center>
@@ -102,7 +101,7 @@
 	</div>
 
 	<script type="text/javascript">
-		$('#m1').attr('class', 'item active');
+		$('#m7').attr('class', 'item active');
 
 	</script>
 
