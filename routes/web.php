@@ -11,13 +11,26 @@
 |
 */
 
+//SHIELA
 Route::get('/', function () {
     return view("welcome");
 
    
 });
 
+Route::get('advisorycouncil', function () {
+    return view('welcome');
+});
 
+Route::resource('advisorycouncil/adviser', 'AdviserController@main');
+
+Route::get('advisorycouncil/maintenance', function () {
+    return view('module.maintenance');
+});
+
+Route::get('advisorycouncil/maintenance/accategory', function () {
+    return view('maintenancetable.accateg_table');
+});
 
 
 //routes for category

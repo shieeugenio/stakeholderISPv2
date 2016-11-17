@@ -12,12 +12,19 @@
 		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/semantic.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/stylev1.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/icon.css')}}">
-
-
 		<!-- JS -->
-		<script type="text/javascript" src="{{ URL::asset('js/jquery-1.10.2.min.js') }}"></script>
+		<script type="text/javascript" src="{{ URL::asset('js/jquery-1.12.3.js') }}"></script>
 		<script type="text/javascript" src="{{ URL::asset('js/semantic.js') }}"></script>
 		<script type="text/javascript" src="{{ URL::asset('js/initialization.js') }}"></script>
+
+		<!--Data Table plugins and design-->
+		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/datatable/dataTables.semanticui.min.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/datatable/responsive.semanticui.min.css')}}">
+
+		<script type="text/javascript" src="{{ URL::asset('js/datatable/jquery.dataTables.min.js') }}"></script>
+		<script type="text/javascript" src="{{ URL::asset('js/datatable/dataTables.semanticui.min.js') }}"></script>
+		<script type="text/javascript" src="{{ URL::asset('js/datatable/dataTables.responsive.min.js') }}"></script>
+		<script type="text/javascript" src="{{ URL::asset('js/datatable/responsive.semanticui.min.js') }}"></script>
 
 	</head>
 	<body onload = "init()">
