@@ -27,7 +27,28 @@ Route::get('maintenance', function () {
 });
 
 Route::get('maintenance/accategory', function () {
-    return view('maintenancetable.accateg_table');
+
+
+///editmaintenance UI [cja]
+Route::get('advisorycouncil/maintenancetable/acsector', function () {
+    return view('maintenancetable.acsector_table');
+});
+Route::get('advisorycouncil/maintenancetable/acsubcat', function () {
+    return view('maintenancetable.acsubcat_table');
+});
+Route::get('advisorycouncil/maintenancetable/advisoryposition', function () {
+    return view('maintenancetable.advisoryposition_table');
+});
+Route::get('advisorycouncil/maintenancetable/policeposition', function () {
+    return view('maintenancetable.policeposition_table');
+});
+
+Route::get('advisorycouncil/maintenancetable/policeoffice', function () {
+    return view('maintenancetable.policeoffice_table');
+});
+
+Route::get('advisorycouncil/maintenancetable/policeoffice2', function () {
+    return view('maintenancetable.policeoffice2_table');
 });
 
 
@@ -35,14 +56,8 @@ Route::get('maintenance/accategory', function () {
 Route::get('cat','ACCategoryController@index');
 Route::get('CatForm', 'ACCategoryController@addView');
 Route::post("/confirm", 'ACCategoryController@confirm');
-Route::post("/ACCategory", function()
-	{
-		return view("ACCategoryview");
-	}
-
-	);
-Route::get('Maintenance/{id}/edit','ACCategoryController@edit');
-Route::post("Maintenance/{id}/editCommit", "ACCategoryController@update");
+Route::get('Maintenance/edit','ACCategoryController@edit');
+Route::post("Maintenance/editCommit", "ACCategoryController@update");
 
 //end of category
 
