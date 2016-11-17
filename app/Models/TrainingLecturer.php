@@ -12,11 +12,11 @@ class TrainingLecturer extends Model
 
     public function lecturer()
     {
-    	return $this->hasOne('App\Models\Lecturers', 'ID', 'lecturer_id');
+    	return $this->belongsTo('App\Models\Lecturers', 'lecturer_id', 'ID');
     }
 
     public function trainings()
     {
-    	return $this->hasOne('App\Models\Trainings', 'ID', 'training_id');
+    	return $this->belongsTo('App\Models\Trainings', 'training_id', 'ID');
     }
 }
