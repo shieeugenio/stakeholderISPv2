@@ -12,6 +12,9 @@ class AdvisoryPositions extends Migration
         {
             $table->increments('ID');
             $table->string('acpositionname', 45);
+            $table->string('acpositioncode', 10);
+            $table->string('desc', 60)->nullable();
+            $table->softDeletes();
         });
     }
 

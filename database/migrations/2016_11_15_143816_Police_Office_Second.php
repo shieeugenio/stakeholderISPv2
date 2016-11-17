@@ -18,8 +18,12 @@ class PoliceOfficeSecond extends Migration
             $table->string('city', 45);
             $table->string('province', 45);
             $table->string('contactno', 45);
+            $table->string('policeofficecode2', 10);
+            $table->string('desc', 60)->nullable();
+            $table->softDeletes();
             $table->integer('police_office_id')->unsigned();
             $table->foreign('police_office_id')->references('ID')->on('PoliceOffices');
+
         });
     }
 

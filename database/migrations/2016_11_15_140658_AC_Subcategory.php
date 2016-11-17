@@ -12,6 +12,9 @@ class ACSubcategory extends Migration
         {
             $table->increments('ID');
             $table->string('subcategoryname', 45);
+            $table->string('acsubcategorycode', 10);
+            $table->string('desc', 60)->nullable();
+            $table->softDeletes();
             $table->integer('categoryId')->unsigned();
             $table->foreign('categoryId')->references('ID')->on('ACCategory');
         });
