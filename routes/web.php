@@ -22,7 +22,9 @@ Route::get('advisorycouncil', function () {
     return view('welcome');
 });
 
-Route::resource('advisorycouncil/adviser', 'AdviserController@main');
+Route::get('advisorycouncil/adviser', function () {
+    return view('module.adviser');
+});
 
 
 Route::get('advisorycouncil/maintenance', function () {

@@ -6,7 +6,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=yes">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<link rel="shortcut icon" type="image/png" href="{{ URL::asset('') }}"> <!--LOGO-->
+		<link rel="shortcut icon" type="image/png" href="{{URL::asset('images/Philippine-National-Police.png')}}"> <!--LOGO-->
 
 		<!-- CSS -->
 		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/semantic.css')}}">
@@ -30,20 +30,32 @@
 	<body onload = "init()">
 		<div class = "mainbody">
 			<header class = "banner">
-				<div class = "ui grid">
-					<div class = "row">
-						<div class = "one wide column">
+				<div class = "ui relaxed grid">
+					<div class = "six wide column">
 							<div class = "logocon">
-								<h1>AC</h1>
+								<image class = "logoicon" src="{{URL::asset('images/Philippine-National-Police.png')}}"/>
+							
+							</div>
+
+							<image class = "acname" src="{{URL::asset('objects/Logo/ACName.png')}}"/>
+							<div class = "logocon2">
+								<image class = "logoicon" src="{{URL::asset('images/pp_logoforae.png')}}"/>
 								
 							</div>
-						</div>
+					</div>
 
-						<div class = "four wide column">
-							<image class = "acname" src="{{URL::asset('objects/Logo/ACName.png')}}"/>
+					<!--<div class = "two wide column">
+						<image class = "acname" src="{{URL::asset('objects/Logo/ACName.png')}}"/>
+							
+					</div>
+
+					<div class = "two wide column">
+						<div class = "logocon">
+							<image class = "logoicon" src="{{URL::asset('images/pp_logoforae.png')}}"/>
 							
 						</div>
-						<div class = "eleven wide column">
+					</div>-->
+					<div class = "ten wide column">
 							<div class = "ui two row grid colcon">
 								<div class = "row rightrow">
 									<div class = "ucon">
@@ -71,12 +83,11 @@
 
 								
 							</div>
-							
-							
-							
-						</div>
+						
+						
 						
 					</div>
+						
 				
 					
 				</div>
