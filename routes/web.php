@@ -48,6 +48,14 @@ Route::get('advisorycouncil/maintenancetable/policeposition', function () {
     return view('maintenancetable.policeposition_table');
 });
 
+Route::get('advisorycouncil/maintenancetable/policeoffice', function () {
+    return view('maintenancetable.policeoffice_table');
+});
+
+Route::get('advisorycouncil/maintenancetable/policeoffice2', function () {
+    return view('maintenancetable.policeoffice2_table');
+});
+
 
 //routes for category
 Route::get('cat','ACCategoryController@index');

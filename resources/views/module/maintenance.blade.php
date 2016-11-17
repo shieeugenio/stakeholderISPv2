@@ -25,8 +25,8 @@
 
 		  			<div class = "item">
 		    			<div class="menu">
-		    				<a class="item" id = "m5">Level 1 Office</a>
-		    				<a class="item" id = "m6">Level 2 Office</a>
+		    				<a class="item" id = "m5" href = "{{url('advisorycouncil/maintenancetable/policeoffice')}}">Level 1 Office</a>
+		    				<a class="item" id = "m6" href = "{{url('advisorycouncil/maintenancetable/policeoffice2')}}" >Level 2 Office</a>
 		    				<a class="item" id = "m7" href = "{{url('advisorycouncil/maintenancetable/policeposition')}}">PNP Position</a>
 
 

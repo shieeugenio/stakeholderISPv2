@@ -58,7 +58,7 @@
 
 							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Police Position</label>
-										
+								<span class = "asterisk">*</span>		
 							</div>
 									
 								

@@ -16,13 +16,15 @@
 						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
 						    <thead>
 						    	<tr>
-						            <th><center>Category ID</center></th>
-						            <th><center>Category Name</center></th> 
+						            <th><center>Office Name</center></th>
+						            <th><center>Address</center></th> 
+						            <th><center>Contact Number</center></th> 
 						        </tr>	
 						    </thead>
 						                   
 						    <tbody>
 						    	<tr>
+						    		<td></td>
 						    		<td></td>
 						    		<td></td>
 						    	</tr>
@@ -49,32 +51,70 @@
 						<div class = "labelpane">
 									
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Category ID
+								<label class = "formlabel">Police Office Name
 									<span class = "asterisk">*</span>
-
 								</label>
-
 							</div>
 
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Category Name</label>
-								<span class = "asterisk">*</span>
-										
+								<label class = "formlabel">Sub Office Name
+									<span class = "asterisk">*</span>
+								</label>
 							</div>
-									
-								
-						</div>
+
+						<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Address</label>	
+								<span class = "asterisk">*</span>
+							</div>
+
+							
+
+							<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Contact Number</label>
+								<span class = "asterisk">*</span>
+							</div>
+						</div>	
 
 						<div class = "fieldpane">
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input formfield">
-								  <input type="text" placeholder="ID">
+
+						<div class = "twelve wide column bspacing2">
+							<select class="browser-default">
+								  <option value="- Select Category -" >- Select Category -</option>
+								  <option value="volvo">Fuss</option>
+								  <option value="saab">Deym</option>		
+							</select>
+						</div>
+
+						<div class = "twelve wide column bspacing2">
+									<div class="ui input formfield">
+									  <input type="text" placeholder="Sub Office Name">
+									</div>
 								</div>
-							</div>
-						<div class = "fieldpane">
+							
+							<div class = "twelve wide column bspacing2">
+									<div class="ui input formfield">
+									  <input type="text" placeholder="Street">
+									</div>
+								</div>
+							
+							<div class = "twelve wide column bspacing2">
+									<div class="ui input formfield">
+									  <input type="text" placeholder="Barangay">
+									</div>
+								</div>				
+
+						
+							<div class = "twelve wide column bspacing2">
+									<div class="ui input formfield">
+									  <input type="text" placeholder="City">
+									</div>
+								</div>
+							</div>		
+
+						
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
-								  <input type="text" placeholder="e.g Name">
+								  <input type='tel' value='' name='contact' required placeholder="+639..." pattern = '[0-9]+'/>
 								</div>
 							</div>
 
@@ -88,7 +128,7 @@
 
 								</button></center>
 							</div>
-
+						  </div>	
 								
 						</div>
 								
@@ -103,7 +143,7 @@
 	</div>
 
 	<script type="text/javascript">
-		$('#m1').attr('class', 'item active');
+		$('#m6').attr('class', 'item active');
 
 	</script>
 

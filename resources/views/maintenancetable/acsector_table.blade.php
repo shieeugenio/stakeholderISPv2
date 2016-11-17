@@ -76,7 +76,7 @@
 
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
-								  <input type="text" placeholder="e.g Regional">
+								  <input type="text" placeholder="e.g Name">
 								</div>
 							</div>
 
