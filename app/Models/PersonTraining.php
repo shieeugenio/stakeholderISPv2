@@ -12,11 +12,11 @@ class PersonTraining extends Model
 
     public function training()
     {
-    	return $this->hasOne('App\Models\Training', 'ID', 'training_id');
+    	return $this->belongsTo('App\Models\Training', 'training_id', 'ID');
     }
 
     public function adviser()
     {
-    	return $this->hasOne('App\Models\Advisers', 'ID', 'adviser_id');
+    	return $this->belongsTo('App\Models\Advisers', 'adviser_id', 'ID');
     }
 }

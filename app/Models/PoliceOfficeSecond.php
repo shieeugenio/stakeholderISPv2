@@ -17,6 +17,6 @@ class PoliceOfficeSecond extends Model
 
     public function policeoffice()
     {
-    	return $this->hasOne('App\Models\PoliceOffices', 'ID', 'police_office_id');
+    	return $this->belongsTo('App\Models\PoliceOffices', 'police_office_id', 'ID');
     }
 }
