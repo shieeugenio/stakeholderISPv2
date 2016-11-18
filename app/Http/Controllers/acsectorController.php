@@ -13,7 +13,7 @@ class acsectorController extends Controller
    
     public function index_acsectors(){
       $sector = DB::table('ACSectors')->get();
-      return view('maintenance.acsectorform', compact('sector'));
+      return view('maintenancetable.acsector_table')->with('sector', $sector);
     }
 
     public function insert_acsectors(Request $request){
@@ -21,16 +21,19 @@ class acsectorController extends Controller
     	if(isset($_POST['btn_Save'])){                  
             	$acsec = new ACSectors;
             	$acsec->sectorname = $request->acsectorName;
+              $acsec->desc = $request->Desc; 
             	$acsec->save();
             	$lastId = $acsec->ID;
 
              $sector = DB::table('ACSectors')->get();
              $stmt = DB::table('ACSectors')->where('ID', '=', $lastId)->get(); 
-    	     	return view('maintenance.acsectorview')->with('stmt', $stmt)->with('sector',$sector);
+    	     	return view('maintenancetable.acsector')
+              ->with('stmt', $stmt)
+              ->with('sector',$sector);
 
     	       }
     	    	if(isset($_POST['btn_Discard'])){
-    	                return redirect('maintenance/acsectorform');
+    	                return redirect('maintenancetable/acsector');
     	            }
        }//end of public function INSERT_SECTORS
       
@@ -43,11 +46,11 @@ class acsectorController extends Controller
     	
         $stmt = DB::table('ACSectors')->where('ID', '=', $acsecID)->get();
         $sector = DB::table('ACSectors')->get();
-         return view('maintenance.acsectoredit')->with('stmt', $stmt)->with('sector',$sector);
+         return view('maintenancetable.acsector')->with('stmt', $stmt)->with('sector',$sector);
         }
 
         else if(isset($_POST['btn_Discard'])){
-             return redirect('maintenance/acsectorform');
+             return redirect('maintenancetable/acsectorform');
 
         }
          

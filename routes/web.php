@@ -22,9 +22,10 @@ Route::get('maintenance', function () {
 
 
 ///editmaintenance UI [cja] 
-Route::get('maintenancetable/acsector', function () {
+Route::resource('maintenancetable/acsector','acsectorController@index_acsectors');
+/*Route::get('maintenancetable/acsector', function () {
     return view('maintenancetable.acsector_table');
-});
+});*/
 Route::get('maintenancetable/acsubcat', function () {
     return view('maintenancetable.acsubcat_table');
 });
