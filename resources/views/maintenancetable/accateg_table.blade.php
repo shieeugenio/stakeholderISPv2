@@ -28,16 +28,10 @@
 							    		<td><center>{{$citem->ID}}</center></td>
 							    		<td><center>{{$citem->categoryname}}</center></td>
 							    	</tr>
-
-
-
 						    	@endforeach
 
-
 						    </tbody>
-
-						</table>
-						
+						</table>						
 					</div>
 					
 				</div>
