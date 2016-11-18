@@ -16,17 +16,21 @@
 						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
 						    <thead>
 						    	<tr>
-						            <th><center>Category ID</center></th>
-						            <th><center>Category Name</center></th> 
+						            <th><center>Category Code</center></th>
+						            <th><center>Category Name</center></th>
+						            <th><center>Description</center></th>
+
 						        </tr>	
 						    </thead>
 						                   
 						    <tbody>
 
 						    	@foreach($category as $citem)
-						    		<tr onclick = "loaddata({{$citem->ID}})">
+						    		<tr onclick = "loaddata({{$citem->ID}})" id = "{{$citem->ID}}">
 							    		<td><center>{{$citem->ID}}</center></td>
 							    		<td><center>{{$citem->categoryname}}</center></td>
+							    		<td><center></center></td>
+
 							    	</tr>
 						    	@endforeach
 
@@ -57,8 +61,19 @@
 							</div>-->
 
 							<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Category Code</label>
+								<span class = "asterisk">*</span>
+										
+							</div>
+
+							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Category Name</label>
 								<span class = "asterisk">*</span>
+										
+							</div>
+
+							<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Description</label>
 										
 							</div>
 									
@@ -69,7 +84,19 @@
 						<div class = "fieldpane">
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
+								  <input type="text" name = "categcode" pattern = "^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}" placeholder="e.g AC" required>
+								</div>
+							</div>
+
+							<div class = "twelve wide column bspacing2">
+								<div class="ui input formfield">
 								  <input type="text" name = "categname" pattern = "^(?=.*(\d|\w))[A-Za-z0-9 ]{5,35}" placeholder="e.g Name" required>
+								</div>
+							</div>
+
+							<div class = "twelve wide column bspacing2">
+								<div class="field">
+									<textarea  name = "description" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
 								</div>
 							</div>
 
@@ -122,6 +149,8 @@
 		function loaddata(id) {
 
 			flag = 1;
+			$('#' + id).attr('class', 'activerow');
+			$('tr').not("id = '" + id + "'").removeAttr('class');
 
 			var data = {
 				'id' : id,
@@ -148,9 +177,12 @@
 		function addData() {
 			var data = {
 				'name' : document.getElementsByName("categname")[0].value,
+				'code' : document.getElementsByName("categcode")[0].value,
+				'desc' : document.getElementsByName("description")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'
 			};
+
 			$.ajax({
 				type: "POST",
 				url: "{{url('confirm')}}",
@@ -169,8 +201,12 @@
 			var data = {
 				'id' : document.getElementsByName('categid')[0].value,
 				'name' : document.getElementsByName("categname")[0].value,
+				'code' : document.getElementsByName("categcode")[0].value,
+				'desc' : document.getElementsByName("description")[0].value,
+				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'
 			};
+
 			$.ajax({
 				type: "POST",
 				url: "{{url('Maintenance/editCommit')}}",
