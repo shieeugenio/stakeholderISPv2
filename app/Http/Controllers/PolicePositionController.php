@@ -26,6 +26,8 @@ class PolicePositionController extends Controller
 
     		$positionname = new PolicePositions;
     		$positionname ->positionname=$request->positionname;
+            $positionname->policepositioncode=$request->policepositioncode;
+            $positionname->desc=$request->desc;
     		$positionname->save();
 
             $lastid = $positionname->ID;
@@ -63,7 +65,11 @@ class PolicePositionController extends Controller
         if(isset($_POST['btn_updateacposition'])){
             $positionID = $request->policepositionsid;
             $positionName = $request->setpositionname;
-            $stmt = DB::table('PolicePositions')->where('ID','=',$positionID)->update(['positionname'=>$positionName]);
+            $positioncode = $request->setpolicepositioncode;
+            $positiondesc = $request->setdesc;
+            $stmt = DB::table('PolicePositions')->where('ID','=',$positionID)->update(['positionname'=>$positionName,
+                                                                                        'policepositioncode'=>$positioncode,
+                                                                                        'desc'=>$positiondesc]);
 
             if($stmt){
                 $stmt = DB::table('PolicePositions')->where('ID','=',$positionID)->get();

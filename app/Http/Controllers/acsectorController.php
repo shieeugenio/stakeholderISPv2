@@ -20,7 +20,9 @@ class acsectorController extends Controller
 
     	if(isset($_POST['btn_Save'])){                  
             	$acsec = new ACSectors;
-            	$acsec->sectorname = $request->acsectorName;
+            	$acsec->sectorname = $request->acsectorName;   
+              $acsec->sectorcode = $request->sectorcode;
+              $acsec->desc = $request->desc;
             	$acsec->save();
             	$lastId = $acsec->ID;
 
@@ -59,13 +61,17 @@ class acsectorController extends Controller
     	  if(isset($_POST['btn_Save'])){
         $acsecID = $request->acsectorID;
         $sectorName = $request->acsectorName;
+        $sectorcode = $request->setsectorcode;
+        $sectordesc = $request->setdesc;
         
         $params = array($sectorName,$acsecID);
         
   // $stmt = DB::statement('update ACSectors set sectorname = ? where ID = ?', $params);
  // $stmt = DB::table('ACSectors')->where('ID', '=', $params)->update([])
 
-        $stmt = DB::table('ACSectors')->where('ID',$acsecID)->update(['sectorname'=>$sectorName]);
+        $stmt = DB::table('ACSectors')->where('ID',$acsecID)->update(['sectorname'=>$sectorName,
+                                                                      'sectorcode'=>$sectorcode,
+                                                                      'desc'=>$sectordesc]);
 
         if($stmt){
             
@@ -81,8 +87,8 @@ class acsectorController extends Controller
         }
 
         else if(isset($_POST['btn_Discard'])){
-
-              return view('maintenance.acsectorview');
+              $sector = DB::table('ACSectors')->get();
+              return view('maintenance.acsectorview')->with('sector',$sector);
            
         }
 
