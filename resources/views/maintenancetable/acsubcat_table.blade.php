@@ -75,7 +75,7 @@
 							</div>
 
 							<div class = "twelve wide column bspacing2">
-								<select class="browser-default">
+								<select class="ui selection dropdown selectstyle" id = "select">
 								  <option value="- Select Category -" >- Select Category -</option>
 								  <option value="volvo">Fuss</option>
 								  <option value="saab">Deym</option>

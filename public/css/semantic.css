@@ -28113,11 +28113,11 @@ body.dimmable > .dimmer {
   outline: 0;
   -webkit-transform: rotateZ(0deg);
   transform: rotateZ(0deg);
-  min-width: 14em;
-  min-height: 2.7142em;
+  min-width: 16.5em;
+  min-height: 1em;
   background: #FFFFFF;
   display: inline-block;
-  padding: 0.78571429em 2.6em 0.78571429em 1em;
+  padding: 0.4em 2.6em 0.4em 1em;
   color: rgba(0, 0, 0, 0.87);
   box-shadow: none;
   border: 1px solid rgba(34, 36, 38, 0.15);
