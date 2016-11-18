@@ -18,20 +18,19 @@
 						    	<tr>
 						            <th><center>ID</center></th>
 						            <th><center>Sector Name</center></th> 
+						            <th><center>Description</center></th> 
 						        </tr>	
 						    </thead>
 						                   
 						    <tbody>
-						    	<tr>
-						    		<td><input name="acsectorID" type="number" readonly="true"></td>
-						    		<td><input name="acsectorName" type="text"></td>
+						    @foreach ($sector as $sec) 
+						    		<td><input name="acsectorID" type="number" readonly="true" value="{{$sec->ID}}" ></td>
+						    		<td><input name="acsectorName" type="text" value="{{$sec->sectorname}}"></td>
+						    		<td><center>{{$sec->desc}}</center></td>
 						    	</tr>                               
-
-
+						   @endforeach 
 						    </tbody>
-
-						</table>
-						
+						</table>						
 					</div>
 					
 				</div>
@@ -44,43 +43,40 @@
 					</div>
 
 					
-					<form>
+					<form action="insert_acsectors" method="post" >
+					<input type="hidden" name="_token" id="csrf-token" value="{{Session::token()}}">
 							
 						<div class = "labelpane">
-
 						<div class = "twelve wide column bspacing">
-								<label class = "formlabel">ID
-									<span class = "asterisk">*</span>
-
-								</label>
-
-							</div>
-									
-							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Sector Name
 									<span class = "asterisk">*</span>
-
 								</label>
+						</div>
 
-							</div>										
+						<div class = "twelve wide column bspacing">
+							<label class = "formlabel">Description
+								<span class = "asterisk">*</span>
+							</label>
+						</div>
+													
 								
 						</div>
 
+						
 						<div class = "fieldpane">
+							<input name="acsectorID" type="hidden">					
 
-						<div class = "twelve wide column bspacing2">
+							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
-								  <input name="acsectorID" type="number" readonly="true">
+								  <input type="text" name="acsectorName"  placeholder="e.g Name">
 								</div>
 							</div>
 
 							<div class = "twelve wide column bspacing2">
-								<div class="ui input formfield">
-								  <input type="text" placeholder="e.g Name">
+								<div class="field">
+									<textarea  name = "Desc" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
 								</div>
-							</div>
-
-												
+							</div>												
 
 							<div class = "twelve wide column bspacing2">
 								<center>
@@ -88,7 +84,7 @@
 								type="submit" 
 			     				name="btn_Save" 
 			     				value="SAVE" 
-	     				onclick="return confirm('This record will saved!');">
+	     						onclick="return confirm('This record will saved!');">
 									Save
 								</button>
 
@@ -96,13 +92,9 @@
 								value="DISCARD" 
 								name="btn_Discard" >
 									Cancel
-
-								</button>	
-				
-							</center>
-							</div>
-
-								
+								</button>					
+								</center>
+							</div>								
 						</div>
 								
 					</form>

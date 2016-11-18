@@ -27,8 +27,8 @@
 		  			<div class = "item">
 		    			<div class="menu">
 
-		    				<a class="item" id = "m5" href = "{{url('maintenancetable/policeoffice')}}">Level 1 Office</a>
-		    				<a class="item" id = "m6" href = "{{url('maintenancetable/policeoffice2')}}" >Level 2 Office</a>
+		    				<a class="item" id = "m5" href = "{{url('maintenancetable/policeoffice')}}">Primary Unit/Office</a>
+		    				<a class="item" id = "m6" href = "{{url('maintenancetable/policeoffice2')}}" >Secondary Unit/Office</a>
 		    				<a class="item" id = "m7" href = "{{url('maintenancetable/policeposition')}}">PNP Position</a>
 
 		    			</div>
