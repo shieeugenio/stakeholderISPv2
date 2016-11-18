@@ -12,12 +12,6 @@
 */
 
 //SHIELA
-Route::get('/', function () {
-    return view("welcome");
-
-   
-});
-
 Route::get('adviser', function () {
     return view('module.adviser');
 });
@@ -26,33 +20,32 @@ Route::get('maintenance', function () {
     return view('module.maintenance');
 });
 
-Route::get('maintenance/accategory', function () {
-
 
 ///editmaintenance UI [cja]
-Route::get('advisorycouncil/maintenancetable/acsector', function () {
+Route::get('maintenancetable/acsector', function () {
     return view('maintenancetable.acsector_table');
 });
-Route::get('advisorycouncil/maintenancetable/acsubcat', function () {
+Route::get('maintenancetable/acsubcat', function () {
     return view('maintenancetable.acsubcat_table');
 });
-Route::get('advisorycouncil/maintenancetable/advisoryposition', function () {
+Route::get('maintenancetable/advisoryposition', function () {
     return view('maintenancetable.advisoryposition_table');
 });
-Route::get('advisorycouncil/maintenancetable/policeposition', function () {
+Route::get('maintenancetable/policeposition', function () {
     return view('maintenancetable.policeposition_table');
 });
 
-Route::get('advisorycouncil/maintenancetable/policeoffice', function () {
+Route::get('maintenancetable/policeoffice', function () {
     return view('maintenancetable.policeoffice_table');
 });
 
-Route::get('advisorycouncil/maintenancetable/policeoffice2', function () {
+Route::get('maintenancetable/policeoffice2', function () {
     return view('maintenancetable.policeoffice2_table');
 });
 
 
 //routes for category
+Route::get('maintenance/accategory', 'ACCategoryController@index');
 Route::get('cat','ACCategoryController@index');
 Route::get('CatForm', 'ACCategoryController@addView');
 Route::post("/confirm", 'ACCategoryController@confirm');

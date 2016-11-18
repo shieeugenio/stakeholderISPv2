@@ -742,8 +742,8 @@ input::selection {
 ---------------*/
 
 .ui.button:focus {
-  background-color: #CACBCD;
-  color: rgba(0, 0, 0, 0.8);
+  /*background-color: #CACBCD;*/
+  color: white;
   background-image: '' !important;
   box-shadow: '' !important;
 }

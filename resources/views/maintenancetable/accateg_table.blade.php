@@ -24,9 +24,9 @@
 						    <tbody>
 
 						    	@foreach($category as $citem)
-						    		<tr onclick = "loaddata(1, {{$citem->ID}})">
-							    		<td>{{$citem->ID}}</td>
-							    		<td>{{$citem->categoryname}}</td>
+						    		<tr onclick = "loaddata({{$citem->ID}})">
+							    		<td><center>{{$citem->ID}}</center></td>
+							    		<td><center>{{$citem->categoryname}}</center></td>
 							    	</tr>
 
 
@@ -50,7 +50,7 @@
 					</div>
 
 					
-					<form>
+					<form action = "javascript:controlaction()" method="POST">
 							
 						<div class = "labelpane">
 									
@@ -82,11 +82,11 @@
 							<div class = "twelve wide column bspacing2">
 								<center><button name="submit" 
 												class="ui tiny button savebtnstyle"
-												onclick = "if (confirm('Save Record?')) { }">
+												onclick = "return confirm('Save Record?')">
 
 									Save
 								</button>
-								<button class="ui tiny button" type = "res">
+								<button type = "reset" onclick = "resetflag()"class="ui tiny button">
 									Cancel
 
 								</button></center>
@@ -109,7 +109,25 @@
 		$('#m1').attr('class', 'item active');
 		var flag = 0;
 
-		function loaddata(action, id) {
+		function controlaction() {
+
+			if(flag == 1) {
+				editData();
+
+			} else if(flag == 0) {
+				addData();
+
+			}//if(flag == 1) {
+		}//function controlaction() {
+
+		function resetflag() {
+			flag = 0;
+
+		}//function resetflag() {
+
+		function loaddata(id) {
+
+			flag = 1;
 
 			var data = {
 				'id' : id,
@@ -135,7 +153,8 @@
 
 		function addData() {
 			var data = {
-				'name' : document.getElementsByName("categname")[0],
+				'name' : document.getElementsByName("categname")[0].value,
+				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'
 			};
 			$.ajax({
@@ -144,17 +163,18 @@
 				data: data,
 			   	dataType: "JSON",
 			   	success : function() {
+			   		flag = 0;
 
 
-			   	}//success : function() {
+			   	}
 			});
 
 		}//function addData(){
 
 		function editData() {
 			var data = {
-				'id' : document.getElementsByName('categid')[0];
-				'name' : document.getElementsByName("categname")[0],
+				'id' : document.getElementsByName('categid')[0].value,
+				'name' : document.getElementsByName("categname")[0].value,
 				'_token' : '{{ Session::token() }}'
 			};
 			$.ajax({
@@ -163,6 +183,7 @@
 				data: data,
 			   	dataType: "JSON",
 			   	success : function() {
+			   		flag = 1;
 
 
 			   	}//success : function() {
