@@ -23,7 +23,9 @@ class PoliceOfficesController extends Controller
 
     public function insert(Request $request){
     	$office = new App\Models\PoliceOffices;
+    	$office->policeofficecode = $request->input('code');
     	$office->officename = $request->input('name');
+    	$office->desc = $request->input('desc');
     	$office->police_address = $request->input('add');
     	$office->contactno = $request->input('contact');
 
@@ -41,7 +43,9 @@ class PoliceOfficesController extends Controller
     	if(isset($_POST['edit'])){
     		$id = App\Models\PoliceOffices::find($id);
     		// $office = new App\Models\PoliceOffices;
+    		$id->policeofficecode = $_POST['code'];
     		$id->officename = $_POST['name'];
+    		$id->desc = $_POST['desc'];
     		$id->police_address = $_POST['add'];
     		$id->contactno = $_POST['contact'];
 
