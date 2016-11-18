@@ -17,28 +17,28 @@ Route::get('adviser', function () {
 });
 
 Route::get('maintenance', function () {
-    return view('module.maintenance');
+    return redirect('maintenance/accategory');
 });
 
 
 ///editmaintenance UI [cja] 
-Route::resource('maintenancetable/acsector','acsectorController@index_acsectors');
+Route::resource('maintenance/acsector','acsectorController@index_acsectors');
 /*Route::get('maintenancetable/acsector', function () {
     return view('maintenancetable.acsector_table');
 });*/
-Route::get('maintenancetable/acsubcat', function () {
+Route::get('maintenance/acsubcat', function () {
     return view('maintenancetable.acsubcat_table');
 });
-Route::get('maintenancetable/advisoryposition', function () {
+Route::get('maintenance/advisoryposition', function () {
     return view('maintenancetable.advisoryposition_table');
 });
-Route::get('maintenancetable/policeposition', function () {
+Route::get('maintenance/policeposition', function () {
     return view('maintenancetable.policeposition_table');
 });
-Route::get('maintenancetable/policeoffice', function () {
+Route::get('maintenance/policeoffice', function () {
     return view('maintenancetable.policeoffice_table');
 });
-Route::get('maintenancetable/policeoffice2', function () {
+Route::get('maintenance/policeoffice2', function () {
     return view('maintenancetable.policeoffice2_table');
 });
 
