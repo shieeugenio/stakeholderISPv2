@@ -13,24 +13,28 @@ class acsectorController extends Controller
    
     public function index_acsectors(){
       $sector = DB::table('ACSectors')->get();
-      return view('maintenance.acsectorform', compact('sector'));
+      return view('maintenancetable.acsector_table')->with('sector', $sector);
     }
 
     public function insert_acsectors(Request $request){
 
     	if(isset($_POST['btn_Save'])){                  
             	$acsec = new ACSectors;
+
             	$acsec->sectorname = $request->acsectorName;
+              $acsec->desc = $request->Desc; 
             	$acsec->save();
             	$lastId = $acsec->ID;
 
              $sector = DB::table('ACSectors')->get();
              $stmt = DB::table('ACSectors')->where('ID', '=', $lastId)->get(); 
-    	     	return view('maintenance.acsectorview')->with('stmt', $stmt)->with('sector',$sector);
+    	     	return view('maintenancetable.acsector')
+              ->with('stmt', $stmt)
+              ->with('sector',$sector);
 
     	       }
     	    	if(isset($_POST['btn_Discard'])){
-    	                return redirect('maintenance/acsectorform');
+    	                return redirect('maintenancetable/acsector');
     	            }
        }//end of public function INSERT_SECTORS
       
@@ -43,11 +47,11 @@ class acsectorController extends Controller
     	
         $stmt = DB::table('ACSectors')->where('ID', '=', $acsecID)->get();
         $sector = DB::table('ACSectors')->get();
-         return view('maintenance.acsectoredit')->with('stmt', $stmt)->with('sector',$sector);
+         return view('maintenancetable.acsector')->with('stmt', $stmt)->with('sector',$sector);
         }
 
         else if(isset($_POST['btn_Discard'])){
-             return redirect('maintenance/acsectorform');
+             return redirect('maintenancetable/acsectorform');
 
         }
          
@@ -59,13 +63,17 @@ class acsectorController extends Controller
     	  if(isset($_POST['btn_Save'])){
         $acsecID = $request->acsectorID;
         $sectorName = $request->acsectorName;
+        $sectorcode = $request->setsectorcode;
+        $sectordesc = $request->setdesc;
         
         $params = array($sectorName,$acsecID);
         
   // $stmt = DB::statement('update ACSectors set sectorname = ? where ID = ?', $params);
  // $stmt = DB::table('ACSectors')->where('ID', '=', $params)->update([])
 
-        $stmt = DB::table('ACSectors')->where('ID',$acsecID)->update(['sectorname'=>$sectorName]);
+        $stmt = DB::table('ACSectors')->where('ID',$acsecID)->update(['sectorname'=>$sectorName,
+                                                                      'sectorcode'=>$sectorcode,
+                                                                      'desc'=>$sectordesc]);
 
         if($stmt){
             
@@ -81,8 +89,8 @@ class acsectorController extends Controller
         }
 
         else if(isset($_POST['btn_Discard'])){
-
-              return view('maintenance.acsectorview');
+              $sector = DB::table('ACSectors')->get();
+              return view('maintenance.acsectorview')->with('sector',$sector);
            
         }
 

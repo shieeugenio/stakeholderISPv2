@@ -26,7 +26,9 @@ class ACPositionController extends Controller
         {
 
     		$positionname = new AdvisoryPositions;
-    		$positionname ->acpositionname=$request->acpositionname;
+    		$positionname->acpositionname=$request->acpositionname;
+            $positionname->acpositioncode=$request->acpositioncode;
+            $positionname->desc=$request->desc;
     		$positionname->save();
 
             $lastid = $positionname->ID;
@@ -67,7 +69,12 @@ class ACPositionController extends Controller
         if(isset($_POST['btn_updateacposition'])){
             $positionID = $request->acpositionsid;
             $positionName = $request->setpositionname;
-            $stmt = DB::table('AdvisoryPositions')->where('ID','=',$positionID)->update(['acpositionname'=>$positionName]);
+            $positioncode = $request->setpositioncode;
+            $positiondesc = $request->setdesc;
+            $stmt = DB::table('AdvisoryPositions')->where('ID','=',$positionID)
+                                                  ->update(['acpositionname'=>$positionName,
+                                                            'acpositioncode'=>$positioncode,
+                                                            'desc'=>$positiondesc]);
 
             if($stmt){
                 
@@ -85,5 +92,33 @@ class ACPositionController extends Controller
         {
             return redirect('maintenance/advisoryposition');
         }     
+    }
+
+    public function acpositioncrud(Request $request)
+    {
+
+        $callId = $request->callId;
+
+        if(callId==1)
+        {
+            $positionname = new AdvisoryPositions;
+            $positionname->acpositionname=$request->acpame;
+            $positionname->acpositioncode=$request->acpcode;
+            $positionname->desc=$request->acpdesc;
+            $positionname->save();
+            echo "ADDED";
+        }
+
+        if(callId==2)
+        {
+            $id = $_POST['id'];
+
+        }
+
+        if(callId==3)
+        {
+
+        }
+
     }
 }

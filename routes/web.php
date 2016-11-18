@@ -21,10 +21,11 @@ Route::get('maintenance', function () {
 });
 
 
-///editmaintenance UI [cja]
-Route::get('maintenancetable/acsector', function () {
+///editmaintenance UI [cja] 
+Route::resource('maintenancetable/acsector','acsectorController@index_acsectors');
+/*Route::get('maintenancetable/acsector', function () {
     return view('maintenancetable.acsector_table');
-});
+});*/
 Route::get('maintenancetable/acsubcat', function () {
     return view('maintenancetable.acsubcat_table');
 });
@@ -34,11 +35,9 @@ Route::get('maintenancetable/advisoryposition', function () {
 Route::get('maintenancetable/policeposition', function () {
     return view('maintenancetable.policeposition_table');
 });
-
 Route::get('maintenancetable/policeoffice', function () {
     return view('maintenancetable.policeoffice_table');
 });
-
 Route::get('maintenancetable/policeoffice2', function () {
     return view('maintenancetable.policeoffice2_table');
 });
