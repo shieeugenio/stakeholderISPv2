@@ -12,10 +12,14 @@
 		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/semantic.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/stylev1.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/icon.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/notify.css')}}">
+
 		<!-- JS -->
-		<script type="text/javascript" src="{{ URL::asset('js/jquery-1.12.3.js') }}"></script>
+		<script type="text/javascript" src="{{ URL::asset('js/jquery-2.1.4.js') }}"></script>
 		<script type="text/javascript" src="{{ URL::asset('js/semantic.js') }}"></script>
 		<script type="text/javascript" src="{{ URL::asset('js/initialization.js') }}"></script>
+		<script type="text/javascript" src="{{ URL::asset('js/notify.js') }}"></script>
+
 
 		<!--Data Table plugins and design-->
 		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/datatable/dataTables.semanticui.min.css')}}">
