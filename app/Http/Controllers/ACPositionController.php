@@ -14,7 +14,7 @@ class ACPositionController extends Controller
 	public function index_acposition()
 	{
         $positions = DB::table('AdvisoryPositions')->get();
-		return view('maintenance.advisoryposition', compact('positions'));
+		return view('maintenancetable.advisoryposition_table', compact('positions'));
         //->with('sql', $sql);
 	}
 	
@@ -37,7 +37,7 @@ class ACPositionController extends Controller
                     ->select('ID')
                     ->where('ID','=',$lastid)->get();
             $positions = DB::table('AdvisoryPositions')->get();
-            return view('maintenance/advisorypositionview')
+            return view('maintenancetable/advisorypositionview')
                 ->with('sql',$sql)
                 ->with('positions', $positions);
     	}
@@ -99,23 +99,24 @@ class ACPositionController extends Controller
 
         $callId = $request->callId;
 
-        if(callId==1)
+        if($callId==1)
         {
             $positionname = new AdvisoryPositions;
             $positionname->acpositionname=$request->acpame;
             $positionname->acpositioncode=$request->acpcode;
             $positionname->desc=$request->acpdesc;
             $positionname->save();
-            echo "ADDED";
+
+            return "ADDED";
         }
 
-        if(callId==2)
+        if($callId==2)
         {
             $id = $_POST['id'];
 
         }
 
-        if(callId==3)
+        if($callId==3)
         {
 
         }

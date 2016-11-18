@@ -24,12 +24,13 @@
 						    </thead>
 						                   
 						    <tbody>
+						    	@foreach ( $positions as $position)
 						    	<tr onclick = "" id = "">
-							    	<td><center></center></td>
-							    	<td><center></center></td>
-							    	<td><center></center></td>
+							    	<td><center>{{$position->acpositionname}}</center></td>
+							    	<td><center>{{$position->acpositioncode}}</center></td>
+							    	<td><center>{{$position->desc}}</center></td>
 						    	</tr>
-
+						    	@endforeach
 						    </tbody>
 
 						</table>
@@ -120,7 +121,17 @@
 	<script type="text/javascript">
 		$('#m3').attr('class', 'item active');
 
+		$.ajax({
+			type: 'POST',
+			url: 'acpositioninsert',
+			data:'_token = <?php echo csrf_token() ?>',
 
+			success:function(data){
+
+			}
+
+
+		});//ajax
 	</script>
 
 @stop
