@@ -17,6 +17,9 @@ Route::get('/', function () {
    
 });
 
+
+
+
 //routes for category
 Route::get('cat','ACCategoryController@index');
 Route::get('CatForm', 'ACCategoryController@addView');
@@ -40,6 +43,8 @@ Route::get('Maintenance/{id}/subedit','ACSubcategoryController@edit');
 Route::post("Maintenance/{id}/subeditCommit", "ACSubcategoryController@update");
 
 //end of subcategory
+
+//AC SECTOR - @tineamps
 Route::resource('maintenance/acsectorform','acsectorController@index_acsectors');
 Route::resource('maintenance/insert_acsectors','acsectorController@insert_acsectors');
 Route::resource('maintenance/edit_acsectors','acsectorController@edit_acsectors');
@@ -51,4 +56,10 @@ Route::resource('maintenance/acpositioninsert' , 'ACPositionController@acpositio
 Route::resource('maintenance/acpositionedit', 'ACPositionController@acpositionedit');
 Route::resource('maintenance/acpositionupdate' , 'ACPositionController@acpositionupdate');
 
+
+//This is for Police  Maintenance -- Ore wa Resutaa da :D
+Route::resource('maintenance/policeposition', 'PolicePositionController@index_policeposition');
+Route::resource('maintenance/policepositioninsert' , 'PolicePositionController@policepositioninsert');
+Route::resource('maintenance/policepositionedit', 'PolicePositionController@policepositionedit');
+Route::resource('maintenance/policepositionupdate' , 'PolicePositionController@policepositionupdate');
 
