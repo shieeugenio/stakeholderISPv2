@@ -22,7 +22,7 @@ Route::get('maintenance', function () {
 
 
 ///editmaintenance UI [cja] 
-Route::resource('maintenancetable/acsector', function () {
+Route::get('maintenancetable/acsector', function () {
     return view('maintenancetable.acsector_table');
 });
 Route::get('maintenancetable/acsubcat', function () {
