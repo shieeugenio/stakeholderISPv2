@@ -14,4 +14,19 @@ class AdvisoryCouncil extends Model
     {
     	return $this->hasMany('App\Models\PersonnelSector', 'advisory_council_id');
     }
+
+    public function acsubcategory()
+    {
+    	return $this->belongsTo('App\Models\ACSubcategory', 'categoryId', 'ID');
+    }
+
+    public function advisoryposition()
+    {
+    	return $this->belongsTo('App\Models\AdvisoryPositions', 'advisory_position_id', 'ID');
+    }
+
+    public function advisers()
+    {
+    	return $this->belongsTo('App\Models\Advisers', 'ID', 'ID');
+    }
 }

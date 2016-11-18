@@ -12,16 +12,16 @@ class PoliceAdvisory extends Model
 
     public function adviser()
     {
-    	return $this->hasOne('App\Models\Advisers', 'ID', 'ID');
+    	return $this->belongsTo('App\Models\Advisers', 'ID', 'ID');
     }
 
     public function policeofficetwo()
     {
-    	return $this->hasOne('App\Models\PoliceOfficeSecond', 'ID', 'policeoffice_id');
+    	return $this->belongsTo('App\Models\PoliceOfficeSecond', 'policeoffice_id', 'ID');
     }
 
     public function policeposition()
     {
-    	return $this->hasOne('App\Models\PolicePositions', 'ID', 'police_position_id');
+    	return $this->belongsTo('App\Models\PolicePositions', 'police_position_id', 'ID');
     }
 }
