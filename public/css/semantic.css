@@ -16122,7 +16122,9 @@ ol.ui.horizontal.list li:before,
     Standard Inputs
 ---------------------*/
 
-.ui.form textarea,
+/*.ui.form textarea,*/
+
+
 .ui.form input:not([type]),
 .ui.form input[type="date"],
 .ui.form input[type="datetime-local"],
@@ -16162,7 +16164,7 @@ ol.ui.horizontal.list li:before,
   -webkit-appearance: none;
   tap-highlight-color: rgba(255, 255, 255, 0);
   line-height: 1.2142em;
-  padding: 0.67861429em 1em;
+  /*padding: 0.67861429em 1em;*/
   font-size: 1em;
   background: #FFFFFF;
   border: 1px solid rgba(34, 36, 38, 0.15);
@@ -16179,7 +16181,7 @@ ol.ui.horizontal.list li:before,
   margin: 0em;
   -webkit-appearance: none;
   tap-highlight-color: rgba(255, 255, 255, 0);
-  padding: 0.78571429em 1em;
+  /**padding: 0.78571429em 1em;**/
   background: #FFFFFF;
   border: 1px solid rgba(34, 36, 38, 0.15);
   outline: none;
@@ -28113,7 +28115,7 @@ body.dimmable > .dimmer {
   outline: 0;
   -webkit-transform: rotateZ(0deg);
   transform: rotateZ(0deg);
-  min-width: 16.5em;
+  min-width: 9em;
   min-height: 1em;
   background: #FFFFFF;
   display: inline-block;

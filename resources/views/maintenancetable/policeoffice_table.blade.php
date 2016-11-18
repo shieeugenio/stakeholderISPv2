@@ -5,7 +5,7 @@
 		<div class = "ui grid">
 			<div class = "ten wide column">
 				<div class = "tablepane">
-					<div class = "mtitle">Advisory Council Category
+					<div class = "mtitle">Primary Unit/Office
 						<!--<div class = "ui icon button addbtn" title = "add">
 							<i class="plus icon topmargin"></i>
 										
@@ -18,7 +18,7 @@
 						    	<tr>
 						            <th><center>Office Name</center></th>
 						            <th><center>Address</center></th> 
-						            <th><center>Contact Number</center></th> 
+						            <th><center>Contact No.</center></th> 
 						        </tr>	
 						    </thead>
 						                   
@@ -63,8 +63,8 @@
 							</div>
 
 
-							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Contact Number</label>
+							<div class = "twelve wide column bspacing3">
+								<label class = "formlabel">Contact No</label>
 								<span class = "asterisk">*</span>		
 							</div>
 									
@@ -73,7 +73,7 @@
 
 						<div class = "fieldpane">
 							<div class = "twelve wide column bspacing2">
-								<select class="browser-default">
+								<select class="ui selection dropdown selectstyle" id = "select">
 								  <option value="- Select Office NAME -" >- Select Office Name-</option>
 								  <option value="volvo">Fuss</option>
 								  <option value="saab">Deym</option>
@@ -83,7 +83,7 @@
 							
 							<div class = "twelve wide column bspacing2">
 								<div class="field">
-							<textarea rows="4" placeholder="Address"></textarea>
+									<textarea class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
 								</div>
 							</div>
 						
