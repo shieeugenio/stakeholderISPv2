@@ -9,6 +9,11 @@
 		<input type="hidden" name="catID" value="{{$category->ID}}">
 		<label>Category Name</label>
 		<input type="text" name="name" value="{{$category->categoryname}}">
+		<label for="cat_name">Category Code</label>
+		<input type="text" name="code" value="{{$category->accategorycode}}">
+		<br>
+		<label for="cat_name">Description</label>
+		<textarea name="desc">{{$category->desc}}</textarea>
 		<input type="submit" name="submit" value="UPDATE">
 	</form>
 

@@ -12,65 +12,45 @@
 */
 
 //SHIELA
-Route::get('/', function () {
-    return view("welcome");
-
-   
-});
-
-Route::get('advisorycouncil', function () {
-    return view('welcome');
-});
-
-Route::get('advisorycouncil/adviser', function () {
+Route::get('adviser', function () {
     return view('module.adviser');
 });
 
-
-Route::get('advisorycouncil/maintenance', function () {
+Route::get('maintenance', function () {
     return view('module.maintenance');
-});
-
-Route::get('advisorycouncil/maintenancetable/accategory', function () {
-    return view('maintenancetable.accateg_table');
 });
 
 
 ///editmaintenance UI [cja]
-Route::get('advisorycouncil/maintenancetable/acsector', function () {
+Route::get('maintenancetable/acsector', function () {
     return view('maintenancetable.acsector_table');
 });
-Route::get('advisorycouncil/maintenancetable/acsubcat', function () {
+Route::get('maintenancetable/acsubcat', function () {
     return view('maintenancetable.acsubcat_table');
 });
-Route::get('advisorycouncil/maintenancetable/advisoryposition', function () {
+Route::get('maintenancetable/advisoryposition', function () {
     return view('maintenancetable.advisoryposition_table');
 });
-Route::get('advisorycouncil/maintenancetable/policeposition', function () {
+Route::get('maintenancetable/policeposition', function () {
     return view('maintenancetable.policeposition_table');
 });
 
-Route::get('advisorycouncil/maintenancetable/policeoffice', function () {
+Route::get('maintenancetable/policeoffice', function () {
     return view('maintenancetable.policeoffice_table');
 });
 
-Route::get('advisorycouncil/maintenancetable/policeoffice2', function () {
+Route::get('maintenancetable/policeoffice2', function () {
     return view('maintenancetable.policeoffice2_table');
 });
 
 
 //routes for category
+Route::get('maintenance/accategory', 'ACCategoryController@index');
 Route::get('cat','ACCategoryController@index');
 Route::get('CatForm', 'ACCategoryController@addView');
 Route::post("/confirm", 'ACCategoryController@confirm');
-Route::post("/ACCategory", function()
-	{
-		return view("ACCategoryview");
-	}
-
-	);
-Route::get('Maintenance/{id}/edit','ACCategoryController@edit');
-Route::post("Maintenance/{id}/editCommit", "ACCategoryController@update");
+Route::get('Maintenance/edit','ACCategoryController@edit');
+Route::post("Maintenance/editCommit", "ACCategoryController@update");
 
 //end of category
 
@@ -116,4 +96,3 @@ Route::resource('maintenance/policeposition', 'PolicePositionController@index_po
 Route::resource('maintenance/policepositioninsert' , 'PolicePositionController@policepositioninsert');
 Route::resource('maintenance/policepositionedit', 'PolicePositionController@policepositionedit');
 Route::resource('maintenance/policepositionupdate' , 'PolicePositionController@policepositionupdate');
-

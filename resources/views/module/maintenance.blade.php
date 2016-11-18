@@ -11,10 +11,11 @@
 					</div>
 					<div class="item">
 		    			<div class="menu">
-		    				<a class="item" id = "m1" href = "{{url('advisorycouncil/maintenancetable/accategory')}}">Advisory Council Category</a>
-		    				<a class="item" id = "m2" href = "{{url('advisorycouncil/maintenancetable/acsubcat')}}">Advisory Council Sub-category</a>
-		    				<a class="item" id = "m3" href = "{{url('advisorycouncil/maintenancetable/advisoryposition')}}">Advisory Council Position</a>
-		    				<a class="item" id = "m4" href = "{{url('advisorycouncil/maintenancetable/acsector')}}">Advisory Council Sector</a>
+
+		    				<a class="item" id = "m1" href = "{{url('maintenance/accategory')}}">Advisory Council Category</a>
+		    				<a class="item" id = "m2" href = "{{url('maintenancetable/acsubcat')}}">Advisory Council Sub-category</a>
+		    				<a class="item" id = "m3" href = "{{url('maintenancetable/advisoryposition')}}">Advisory Council Position</a>
+		    				<a class="item" id = "m4" href = "{{url('maintenancetable/acsector')}}">Advisory Council Sector</a>
 
 
 		    			</div>
@@ -25,10 +26,10 @@
 
 		  			<div class = "item">
 		    			<div class="menu">
-		    				<a class="item" id = "m5" href = "{{url('advisorycouncil/maintenancetable/policeoffice')}}">Level 1 Office</a>
-		    				<a class="item" id = "m6" href = "{{url('advisorycouncil/maintenancetable/policeoffice2')}}" >Level 2 Office</a>
-		    				<a class="item" id = "m7" href = "{{url('advisorycouncil/maintenancetable/policeposition')}}">PNP Position</a>
 
+		    				<a class="item" id = "m5" href = "{{url('maintenancetable/policeoffice')}}">Level 1 Office</a>
+		    				<a class="item" id = "m6" href = "{{url('maintenancetable/policeoffice2')}}" >Level 2 Office</a>
+		    				<a class="item" id = "m7" href = "{{url('maintenancetable/policeposition')}}">PNP Position</a>
 
 		    			</div>
 		  				
