@@ -26,6 +26,8 @@ class PoliceOfficeTwoController extends Controller
 
     	$policeoffice->police_office_id = $request->input('office');
     	$policeoffice->officename = $request->input('name');
+    	$policeoffice->policeofficecode2 = $request->input('secondcode');
+    	$policeoffice->desc = $request->input('desc');
     	$policeoffice->street = $request->input('street');
     	$policeoffice->barangay = $request->input('barangay');
     	$policeoffice->city = $request->input('city');
@@ -51,6 +53,8 @@ class PoliceOfficeTwoController extends Controller
     		
     		$id->police_office_id = $_POST['office'];
   		  	$id->officename = $_POST['name'];
+  		  	$id->policeofficecode2 = $_POST['secondcode'];
+  		  	$id->desc = $_POST['desc'];
     		$id->street = $_POST['street'];
     		$id->barangay = $_POST['barangay'];
     		$id->city = $_POST['city'];

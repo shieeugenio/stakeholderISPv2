@@ -11,13 +11,20 @@
 		<select name="office">
 			@foreach($offices as $key => $res)
 				<option value="{{$res->ID}}">
-					{{$res->officename}}
+					Office Name: {{$res->officename}}
+					
 				</option>
 			@endforeach
 		</select>
-		
+
 		<label>Sub Office Name</label>
 		<input type="text" name="name">
+
+		<label>Sub Office Code</label>
+		<input type="text" name="secondcode">
+
+		<label>Description</label>
+		<input type="text" name="desc">
 
 		<label>Office Street</label>
 		<input type="text" name="street">
@@ -47,6 +54,12 @@
 						Sub Office Name
 					</th>
 					<th>
+						Sub Office Code
+					</th>
+					<th>
+						Description
+					</th>
+					<th>
 						street
 					</th>
 					<th>
@@ -68,6 +81,8 @@
 					<tr>
 						<td>{{$res->policeoffice->officename}}</td>
 						<td>{{$res->officename}}</td>
+						<td>{{$res->policeofficecode2}}</td>
+						<td>{{$res->desc}}</td>
 						<td>{{$res->street}}</td>
 						<td>{{$res->barangay}}</td>
 						<td>{{$res->city}}</td>

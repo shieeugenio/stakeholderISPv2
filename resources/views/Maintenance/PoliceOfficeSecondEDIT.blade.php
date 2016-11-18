@@ -19,6 +19,12 @@
 		<label>Sub Office Name</label>
 		<input type="text" name="name" value="{{$ids->officename}}">
 
+		<label>Sub Office Code</label>
+		<input type="text" name="secondcode" value="{{$ids->policeofficecode2}}">
+
+		<label>Description</label>
+		<input type="text" name="desc" value="{{$ids->desc}}}">
+
 		<label>Street</label>
 		<input type="text" name="street" value="{{$ids->street}}">
 
