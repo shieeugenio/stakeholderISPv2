@@ -93,4 +93,32 @@ class ACPositionController extends Controller
             return redirect('maintenance/advisoryposition');
         }     
     }
+
+    public function acpositioncrud(Request $request)
+    {
+
+        $callId = $request->callId;
+
+        if(callId==1)
+        {
+            $positionname = new AdvisoryPositions;
+            $positionname->acpositionname=$request->acpame;
+            $positionname->acpositioncode=$request->acpcode;
+            $positionname->desc=$request->acpdesc;
+            $positionname->save();
+            echo "ADDED";
+        }
+
+        if(callId==2)
+        {
+            $id = $_POST['id'];
+
+        }
+
+        if(callId==3)
+        {
+
+        }
+
+    }
 }

@@ -1,6 +1,7 @@
 @extends('module.maintenance')
 
 @section('mtablesection')
+	<script type="text/javascript" src="{{ URL::asset('/js/acposition.js') }}"></script>
 	<div class = "acccon">
 		<div class = "ui grid">
 			<div class = "ten wide column">
@@ -16,17 +17,18 @@
 						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
 						    <thead>
 						    	<tr>
-						            <th><center>ID</center></th>
-						            <th><center>Position Name</center></th> 
+						            <th><center>Position Name</center></th>
+						            <th><center>Position Code</center></th>
+						            <th><center>Description</center></th> 
 						        </tr>	
 						    </thead>
 						                   
 						    <tbody>
-						    	<tr>
-						    		<td><input type="hidden" name="acpositionid" value=""/></td>
-						    		<td></td>
+						    	<tr onclick = "" id = "">
+							    	<td><center></center></td>
+							    	<td><center></center></td>
+							    	<td><center></center></td>
 						    	</tr>
-
 
 						    </tbody>
 
@@ -47,46 +49,61 @@
 					<form>
 							
 						<div class = "labelpane">
-									
+
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">ID
-									<span class = "asterisk">*</span>
-
-								</label>
-
+								<label class = "formlabel">Position Code</label>
+								<span class = "asterisk">*</span>
+										
 							</div>
 
 							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Position Name</label>
-								<span class = "asterisk">*</span>		
+								<span class = "asterisk">*</span>
+										
 							</div>
-									
+
+							<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Description</label>
+										
+							</div>
 								
 						</div>
 
 						<div class = "fieldpane">
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input formfield">
-								  <input type="text" id="ID" value="" disabled/>
-								</div>
-							</div>
+								  <input type="hidden" id="ID" value=""/>
 							<div class = "fieldpane">
+							
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
-								  <input type="text" name="acpositionname" value=""/>
+								  <input type="text" name = "acpositioncode" pattern = "^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}" placeholder="e.g AC" required>
 								</div>
 							</div>
+
 							<div class = "twelve wide column bspacing2">
-								<center><button type="submit" name="storeposition" class="ui tiny button savebtnstyle">
+								<div class="ui input formfield">
+								  <input type="text" name = "acpositionname" pattern = "^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}" placeholder="e.g AC" required>
+								</div>
+							</div>
+
+							<div class = "twelve wide column bspacing2">
+								<div class="field">
+									<textarea  name = "description" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
+								</div>
+							</div>
+
+							<div class = "twelve wide column bspacing2">
+								<center><button name="submit" 
+												class="ui tiny button savebtnstyle"
+												value = 1;
+												onclick = "CRUD(0,this.value">
 
 									Save
 								</button>
-								<button type="submit" name="cancel" value="Cancel" class="ui tiny button">
+								<button type = "reset" onclick = "resetflag()"class="ui tiny button">
 									Cancel
 
 								</button></center>
 							</div>
-
 								
 						</div>
 								
@@ -102,6 +119,7 @@
 
 	<script type="text/javascript">
 		$('#m3').attr('class', 'item active');
+
 
 	</script>
 
