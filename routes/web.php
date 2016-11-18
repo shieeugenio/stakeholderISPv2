@@ -16,9 +16,14 @@ Route::get('/', function () {
 
    
 });
+Route::get('cat','ACCategoryController@index');
 
-Route::get('category', function () {
-	return view("ACCategory");
-});
+//Route::get("/category","ACCategoryController@index");
+Route::get('CatForm', 'ACCaqtegoryController@addView');
+Route::post("/confirm", 'ACCategoryController@confirm');
+Route::post("/ACCategory", function()
+	{
+		return view("ACCategoryview");
+	}
 
-Route::resource('category','ACCategoryController@insert');
+	);
