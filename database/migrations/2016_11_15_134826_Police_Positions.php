@@ -12,6 +12,9 @@ class PolicePositions extends Migration
         {
             $table->increments('ID');
             $table->string('positionname', 45);
+            $table->string('policepositioncode', 10);
+            $table->string('desc', 60)->nullable();
+            $table->softDeletes();
         });
     }
 

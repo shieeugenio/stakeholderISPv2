@@ -12,6 +12,9 @@ class ACCategory extends Migration
         {
             $table->increments('ID');
             $table->string('categoryname', 45);
+            $table->string('accategorycode', 10);
+            $table->string('desc', 60)->nullable();
+            $table->softDeletes();
         });
     }
 

@@ -14,6 +14,9 @@ class PoliceOffices extends Migration
             $table->string('officename', 45);
             $table->string('police_address', 100);
             $table->string('contactno', 45);
+            $table->string('policeofficecode', 10);
+            $table->string('desc', 60)->nullable();
+            $table->softDeletes();
         });
     }
     public function down()
