@@ -16,11 +16,10 @@ Route::get('/', function () {
 
    
 });
-<<<<<<< HEAD
-Route::get('cat','ACCategoryController@index');
 
-//Route::get("/category","ACCategoryController@index");
-Route::get('CatForm', 'ACCaqtegoryController@addView');
+//routes for category
+Route::get('cat','ACCategoryController@index');
+Route::get('CatForm', 'ACCategoryController@addView');
 Route::post("/confirm", 'ACCategoryController@confirm');
 Route::post("/ACCategory", function()
 	{
@@ -28,9 +27,14 @@ Route::post("/ACCategory", function()
 	}
 
 	);
-=======
+Route::get('Maintenance/{id}/edit','ACCategoryController@edit');
+Route::post("Maintenance/{id}/editCommit", "ACCategoryController@update");
 
+//end of category
 
+//routes for subcategory
+Route::get('subcategory','ACSubcategoryController@index');
+//end of subcategory
 Route::resource('maintenance/acsectorform','acsectorController@index_acsectors');
 Route::resource('maintenance/insert_acsectors','acsectorController@insert_acsectors');
 Route::resource('maintenance/edit_acsectors','acsectorController@edit_acsectors');
@@ -42,4 +46,4 @@ Route::resource('maintenance/acpositioninsert' , 'ACPositionController@acpositio
 Route::resource('maintenance/acpositionedit', 'ACPositionController@acpositionedit');
 Route::resource('maintenance/acpositionupdate' , 'ACPositionController@acpositionupdate');
 
->>>>>>> fb036c2e78ca23b8cb0ce57c35eaa2198d298127
+
