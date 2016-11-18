@@ -35,7 +35,8 @@ class ACCategoryController extends Controller
         }
     }
 
-    public function edit($id){
+    public function edit(Request $req){
+        $id = $req->id;
         $cat = ACCategory::find($id);
         return $cat;
     }

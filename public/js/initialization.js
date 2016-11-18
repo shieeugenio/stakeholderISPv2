@@ -7,4 +7,6 @@ function init() {
 	$(document).ready(function() {
 		$('#datatable').DataTable();
 	} );
+
+	
 }//function init() {

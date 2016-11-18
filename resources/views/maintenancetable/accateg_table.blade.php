@@ -27,9 +27,9 @@
 
 						    	@foreach($category as $citem)
 						    		<tr onclick = "loaddata({{$citem->ID}})" id = "{{$citem->ID}}">
-							    		<td><center>{{$citem->ID}}</center></td>
+							    		<td><center>{{$citem->accategorycode}}</center></td>
 							    		<td><center>{{$citem->categoryname}}</center></td>
-							    		<td><center></center></td>
+							    		<td><center>{{$citem->desc}}</center></td>
 
 							    	</tr>
 						    	@endforeach
@@ -48,7 +48,7 @@
 					</div>
 
 					
-					<form action = "javascript:controlaction()" method="POST">
+					<form class = "ui form" id = "form" action = "javascript:controlaction()">
 							
 						<div class = "labelpane">
 									
@@ -107,7 +107,7 @@
 
 									Save
 								</button>
-								<button type = "reset" onclick = "resetflag()"class="ui tiny button">
+								<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag()}"class="ui tiny button">
 									Cancel
 
 								</button></center>
@@ -127,10 +127,54 @@
 	</div>
 
 	<script type="text/javascript">
+
+		/**$('.ui.form')
+			.form({
+				fields: {
+					categcode : ['empty', 'regExp[/^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}$/]]'],
+					categname : ['empty', 'regExp[/^(?=.*(\d|\w))[A-Za-z0-9 ]{5,35}$/]]']
+			    }
+			  });
+
+		function validateFields() {
+			var code = document.getElementsByName('categcode')[0].value;
+			var name = document.getElementsByName('categname')[0].value;
+			var cpattern = new RegExp("^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}");
+			var npattern = new RegExp("^(?=.*(\d|\w))[A-Za-z0-9 ]{5,35}");
+
+			if(cpattern.test(code) ==  "true" && npattern.test(name) ==  "true") {
+				$("name = 'submit'").attr('class', 'ui tiny button savebtnstyle');
+				$("#ccode").attr('class','ui input formfield');
+				$("#cname").attr('class','ui input formfield');
+
+			} else {
+				if(cpattern.test(code) == "false") {
+					$("name = 'submit'").attr('class', 'ui tiny button savebtnstyle disabled');
+					$("#ccode").attr('class','ui input formfield error');
+
+
+				} else if(cpattern.test(code) ==  "true") {
+					$("#ccode").attr('class','ui input formfield');
+
+				}//if(cpattern.text(code) == "false") {
+
+				if(npattern.test(name) == "false") {
+					$("name = 'submit'").attr('class', 'ui tiny button savebtnstyle disabled');
+					$("#cname").attr('class','ui input formfield error');
+
+				} else if(npattern.test(name) == "true") {
+					$("#cname").attr('class','ui input formfield');
+
+				}//if(npattern.test(name) == "false") {
+
+			}//if(cpattern.text(code) ==  "true" && npattern.text(code) ==  "true") {
+		}//function validateFields() {**/
+
 		$('#m1').attr('class', 'item active');
 		var flag = 0;
 
 		function controlaction() {
+			console.log(flag);
 
 			if(flag == 1) {
 				editData();
@@ -150,7 +194,7 @@
 
 			flag = 1;
 			$('#' + id).attr('class', 'activerow');
-			$('tr').not("id = '" + id + "'").removeAttr('class');
+			$('tr').not("[id = '" + id + "']").removeAttr('class');
 
 			var data = {
 				'id' : id,
@@ -164,9 +208,12 @@
 			   	dataType: "JSON",
 			   	success : function(data) {
 
+			   		document.getElementsByName('categid')[0].value = data['ID'];
+			   		document.getElementsByName('categname')[0].value = data['categoryname'];
+			   		document.getElementsByName('categcode')[0].value = data['accategorycode'];
+			   		document.getElementsByName('description')[0].value = data['desc'];
 
 			   		console.log(data);
-
 
 			   	}//success : function() {
 			});
@@ -191,6 +238,13 @@
 			   	success : function() {
 			   		flag = 0;
 
+			   		$(document).ready(function(){
+						$("#toast").showToast({
+						    message: 'Saved!',
+						    timeout: 2500
+						});
+					});
+
 
 			   	}
 			});
@@ -199,7 +253,7 @@
 
 		function editData() {
 			var data = {
-				'id' : document.getElementsByName('categid')[0].value,
+				'catID' : document.getElementsByName('categid')[0].value,
 				'name' : document.getElementsByName("categname")[0].value,
 				'code' : document.getElementsByName("categcode")[0].value,
 				'desc' : document.getElementsByName("description")[0].value,
@@ -207,13 +261,15 @@
 				'_token' : '{{ Session::token() }}'
 			};
 
+			console.log(data)
+
 			$.ajax({
 				type: "POST",
 				url: "{{url('Maintenance/editCommit')}}",
 				data: data,
 			   	dataType: "JSON",
 			   	success : function() {
-			   		flag = 1;
+			   		flag = 0;
 
 
 			   	}//success : function() {

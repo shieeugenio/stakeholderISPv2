@@ -48,7 +48,7 @@ Route::get('maintenance/accategory', 'ACCategoryController@index');
 Route::get('cat','ACCategoryController@index');
 Route::get('CatForm', 'ACCategoryController@addView');
 Route::post("/confirm", 'ACCategoryController@confirm');
-Route::get('Maintenance/edit','ACCategoryController@edit');
+Route::resource('Maintenance/edit','ACCategoryController@edit');
 Route::post("Maintenance/editCommit", "ACCategoryController@update");
 
 //end of category
