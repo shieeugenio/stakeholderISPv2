@@ -26,6 +26,8 @@ class ACSubcategoryController extends Controller
             $cat = new ACSubcategory;
             $cat->categoryid = $req->category;
             $cat->subcategoryname = $req->subcat;
+            $cat->acsubcategorycode = $req->subcatcode;
+            $cat->desc = $req->desc;
             $cat->save();
              //Session::flash('mess', 'category successfully added to list!');
             return redirect("subcategory");
@@ -38,13 +40,16 @@ class ACSubcategoryController extends Controller
         return View ('Maintenance.acsubcategoryedit')->with('subcategory', $subcat)->with('cat',$cat);
     }
 
-    public function update($id){
+    public function update(Request $req){
         if (isset($_POST['submit'])) {
-            $cat = ACSubcategory::find($id);
-            $cat->subcategoryname = $_POST['name'];
-            $cat->categoryid = $_POST['catID'];
-            //echo  $_POST['catID'];
-
+            $cat = ACSubcategory::find($req->subcatID);
+            $cat->acsubcategorycode = $req->subcatcode;
+            $cat->subcategoryname = $req->name;
+            $cat->categoryid = $req->catID;
+            $cat->desc = $req->desc;
+            
+            echo  $req;
+            
             $cat->save();
             return redirect("subcategory");
 
