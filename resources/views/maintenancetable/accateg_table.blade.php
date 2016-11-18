@@ -26,7 +26,7 @@
 						    <tbody>
 
 						    	@foreach($category as $citem)
-						    		<tr onclick = "loaddata({{$citem->ID}})">
+						    		<tr onclick = "loaddata({{$citem->ID}})" id = "{{$citem->ID}}">
 							    		<td><center>{{$citem->ID}}</center></td>
 							    		<td><center>{{$citem->categoryname}}</center></td>
 							    		<td><center></center></td>
@@ -155,6 +155,8 @@
 		function loaddata(id) {
 
 			flag = 1;
+			$('#' + id).attr('class', 'activerow');
+			$('tr').not("id = '" + id + "'").removeAttr('class');
 
 			var data = {
 				'id' : id,
@@ -181,9 +183,12 @@
 		function addData() {
 			var data = {
 				'name' : document.getElementsByName("categname")[0].value,
+				'code' : document.getElementsByName("categcode")[0].value,
+				'desc' : document.getElementsByName("description")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'
 			};
+
 			$.ajax({
 				type: "POST",
 				url: "{{url('confirm')}}",
@@ -202,8 +207,12 @@
 			var data = {
 				'id' : document.getElementsByName('categid')[0].value,
 				'name' : document.getElementsByName("categname")[0].value,
+				'code' : document.getElementsByName("categcode")[0].value,
+				'desc' : document.getElementsByName("description")[0].value,
+				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'
 			};
+
 			$.ajax({
 				type: "POST",
 				url: "{{url('Maintenance/editCommit')}}",
