@@ -50,6 +50,9 @@
 						Police Office Name
 					</th>
 					<th>
+						Police Office Code
+					</th>
+					<th>
 						Sub Office Name
 					</th>
 					<th>
@@ -79,6 +82,7 @@
 					@foreach($suboffices as $key => $res)
 					<tr>
 						<td>{{$res->policeoffice->officename}}</td>
+						<td>{{$res->policeoffice->policeofficecode}}</td>
 						<td>{{$res->officename}}</td>
 						<td>{{$res->policeofficecode2}}</td>
 						<td>{{$res->desc}}</td>

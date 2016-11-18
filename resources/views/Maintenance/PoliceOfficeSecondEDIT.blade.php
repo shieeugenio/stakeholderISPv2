@@ -11,7 +11,7 @@
 		<select name="office">
 			@foreach($offices as $key => $res)
 				<option value="{{$res->ID}}">
-					{{$res->officename}}
+					{{$res->policeofficecode}}: {{$res->officename}}
 				</option>
 			@endforeach
 		</select>
