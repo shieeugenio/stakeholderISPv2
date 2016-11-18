@@ -11,13 +11,9 @@ use App\Http\Requests;
 class ACSubcategoryController extends Controller
 {
     public function index(){
-    	$sub = ACSubcategory::with('ACCategory')->get();
+    	$sub = ACSubcategory::with('category')->get();
     	$cat = ACCategory::all();
-
-
-    	return View ('Maintenance.ACSubcat-index')
-    	->with('category',$cat)
-    	->with('subcat', $sub);
+    	return View ('Maintenance.ACSubcat-index')->with('category',$cat)->with('subcat', $sub);
 
     }
 
@@ -28,24 +24,29 @@ class ACSubcategoryController extends Controller
     public function confirm(Request $req){
         if(isset($_POST['submit'])){
             $cat = new ACSubcategory;
-            $cat->categoryname = $req->name;
+            $cat->categoryid = $req->category;
+            $cat->subcategoryname = $req->subcat;
             $cat->save();
              //Session::flash('mess', 'category successfully added to list!');
-            return redirect("cat");
+            return redirect("subcategory");
         }
     }
 
     public function edit($id){
-        $cat = ACSubcategory::find($id);
-        return View ('Maintenance.ACCategoryedit')->with('category', $cat);
+        $subcat = ACSubcategory::find($id);
+        $cat = ACCategory::all();
+        return View ('Maintenance.acsubcategoryedit')->with('subcategory', $subcat)->with('cat',$cat);
     }
 
     public function update($id){
         if (isset($_POST['submit'])) {
             $cat = ACSubcategory::find($id);
-            $cat->categoryname = $_POST['name'];
+            $cat->subcategoryname = $_POST['name'];
+            $cat->categoryid = $_POST['catID'];
+            //echo  $_POST['catID'];
+
             $cat->save();
-            return redirect("cat");
+            return redirect("subcategory");
 
         }
     }

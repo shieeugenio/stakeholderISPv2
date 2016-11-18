@@ -34,6 +34,11 @@ Route::post("Maintenance/{id}/editCommit", "ACCategoryController@update");
 
 //routes for subcategory
 Route::get('subcategory','ACSubcategoryController@index');
+Route::get('subform', 'ACSubcategoryController@addView');
+Route::post('addcommit', 'ACSubcategoryController@confirm');
+Route::get('Maintenance/{id}/subedit','ACSubcategoryController@edit');
+Route::post("Maintenance/{id}/subeditCommit", "ACSubcategoryController@update");
+
 //end of subcategory
 Route::resource('maintenance/acsectorform','acsectorController@index_acsectors');
 Route::resource('maintenance/insert_acsectors','acsectorController@insert_acsectors');
