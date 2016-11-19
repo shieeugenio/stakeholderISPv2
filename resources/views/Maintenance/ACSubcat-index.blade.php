@@ -35,7 +35,7 @@
 						<td>{{$svalue->ID}}</td>
 						<td>{{$svalue->subcategoryname}}</td>
 						<td>{{$svalue->category->categoryname}}</td>
-						<td><a  href="{{ URL::to('Maintenance/' . $svalue->ID . '/subedit') }}">Edit</a></td>	
+						<td><a href="{{ URL::to('Maintenance/' . $svalue->ID . '/subedit') }}">Edit</a></td>	
 					</tr>
 				@endforeach
 			

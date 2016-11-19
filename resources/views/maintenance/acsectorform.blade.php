@@ -39,7 +39,7 @@
 
 							<td>
 							<input type="submit" name="btn_Edit" value="Edit"/>
-							<input type="submit" name="btn_Discard" value="Delete" onclick="alert('No Deleteion of Item')"/>
+							<input type="submit" name="btn_Discard" value="Cancel" onclick="alert('Cancel')"/>
 							</td>
 
 							</form>
