@@ -19,9 +19,10 @@
 			</select>
 			<input type="submit" name="submit" value="add">
 		</form>
-		<table>
+		<table border="5">
 			<thead>
 				<tr>
+					<th>ID</th>
 					<th>Subcategory</th>
 					<th>Category</th>
 					<th>Action</th>
@@ -31,6 +32,7 @@
 			
 				@foreach($subcat as $skey=>$svalue)
 					<tr>
+						<td>{{$svalue->ID}}</td>
 						<td>{{$svalue->subcategoryname}}</td>
 						<td>{{$svalue->category->categoryname}}</td>
 						<td><a  href="{{ URL::to('Maintenance/' . $svalue->ID . '/subedit') }}">Edit</a></td>	
