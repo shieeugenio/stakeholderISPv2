@@ -44,7 +44,14 @@ Route::get('maintenance/policeoffice2', function () {
 
 //Routes for ADVISORY POSITIONS - RESUTAA
 Route::resource('maintenancetable/advisoryposition_table', 'ACPositionController@index_acposition');
-Route::resource('maintenancetable/advisoryposition_table', 'ACPositionController@acpositioninsert')
+Route::get('acposition','ACPositionController@index_acposition');
+Route::resource('maintenancetable/acpositioncrud','ACPositionController@acpositioncrud');
+
+//Routes for ADVISORY POSITIONS - RESUTAA
+Route::resource('maintenancetable/policeposition_table', 'PolicePositionController@index_policeposition');
+Route::get('policeposition','PolicePositionController@index_policeposition');
+Route::resource('maintenancetable/policepositioncrud','PolicePositionController@policepositioncrud');
+
 
 
 
