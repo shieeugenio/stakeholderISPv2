@@ -25,7 +25,10 @@ class ACCategoryController extends Controller
     public function confirm(Request $req){
         if(isset($_POST['submit'])){
             $cat = new ACCategory;
+            $cat->accategorycode = $req->code;
             $cat->categoryname = $req->name;
+            $cat->desc = $req->desc;
+
             $cat->save();
              //Session::flash('mess', 'category successfully added to list!');
             return redirect("cat");
@@ -37,10 +40,12 @@ class ACCategoryController extends Controller
         return View ('Maintenance.ACCategoryedit')->with('category', $cat);
     }
 
-    public function update($id){
+    public function update(Request $req){
         if (isset($_POST['submit'])) {
-            $cat = ACCategory::find($id);
-            $cat->categoryname = $_POST['name'];
+            $cat = ACCategory::find($req->catID);
+            $cat->categoryname = $req->name;
+            $cat->accategorycode = $req->code;
+            $cat->desc = $req->desc;
             $cat->save();
             return redirect("cat");
 

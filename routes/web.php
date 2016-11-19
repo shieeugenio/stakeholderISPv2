@@ -116,4 +116,3 @@ Route::resource('maintenance/policeposition', 'PolicePositionController@index_po
 Route::resource('maintenance/policepositioninsert' , 'PolicePositionController@policepositioninsert');
 Route::resource('maintenance/policepositionedit', 'PolicePositionController@policepositionedit');
 Route::resource('maintenance/policepositionupdate' , 'PolicePositionController@policepositionupdate');
-
