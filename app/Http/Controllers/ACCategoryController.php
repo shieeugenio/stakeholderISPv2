@@ -14,7 +14,7 @@ class ACCategoryController extends Controller
     public function index(){
     	$cat = ACCategory::all();
 
-    	return View ('Maintenance.ACCat-index')->with('category',$cat);
+    	return View ('maintenancetable.accateg_table')->with('category',$cat);
 
     }
 
@@ -37,7 +37,7 @@ class ACCategoryController extends Controller
 
     public function edit($id){
         $cat = ACCategory::find($id);
-        return View ('Maintenance.ACCategoryedit')->with('category', $cat);
+        return $cat;
     }
 
     public function update(Request $req){

@@ -12,7 +12,7 @@
 
 .logocon {
 	/*background-color: #565656;*/
-	width: 15%;
+	width: 13%;
 	height: 100%;
 	color: #e9e2df;
 	margin-left: 10%;
@@ -299,4 +299,10 @@ form {
 .ui.tiny.button.savebtnstyle:active {
 	background-color: white;
 	color: #00253a;
+}
+
+tr:hover, .activerow {
+	color: #62503d;
+    background-color: #faefe3;
+    font-weight: bold;
 }
