@@ -13,7 +13,7 @@ class PolicePositionController extends Controller
     public function index_policeposition()
 	{
         $positions = DB::table('PolicePositions')->get();
-		return view('maintenance.policeposition', compact('positions'));
+		return view('maintenancetable/policeposition_table', compact('positions'));
         //->with('sql', $sql);
 	}
 	
@@ -26,6 +26,8 @@ class PolicePositionController extends Controller
 
     		$positionname = new PolicePositions;
     		$positionname ->positionname=$request->positionname;
+            $positionname->policepositioncode=$request->policepositioncode;
+            $positionname->desc=$request->desc;
     		$positionname->save();
 
             $lastid = $positionname->ID;
@@ -63,7 +65,11 @@ class PolicePositionController extends Controller
         if(isset($_POST['btn_updateacposition'])){
             $positionID = $request->policepositionsid;
             $positionName = $request->setpositionname;
-            $stmt = DB::table('PolicePositions')->where('ID','=',$positionID)->update(['positionname'=>$positionName]);
+            $positioncode = $request->setpolicepositioncode;
+            $positiondesc = $request->setdesc;
+            $stmt = DB::table('PolicePositions')->where('ID','=',$positionID)->update(['positionname'=>$positionName,
+                                                                                        'policepositioncode'=>$positioncode,
+                                                                                        'desc'=>$positiondesc]);
 
             if($stmt){
                 $stmt = DB::table('PolicePositions')->where('ID','=',$positionID)->get();
@@ -79,4 +85,40 @@ class PolicePositionController extends Controller
         {
             return redirect('maintenance/policeposition');
         }     
-    }}
+
+    }
+
+    public function policepositioncrud(Request $request)
+    {
+        $callId = $request->callId;
+
+        if($callId == 1)
+        {
+            $position = new PolicePositions;
+            $position->positionname=$request->ppname;
+            $position->policepositioncode=$request->ppcode;
+            $position->desc=$request->ppdesc;
+            $position->save();
+        }
+
+        if($callId == 2)
+        {
+            $id = $request->id;
+            $position = PolicePositions::find($id);
+
+            return $position;
+        }
+
+        if($callId == 3)
+        {
+            $id = $request->id;
+            $position=PolicePositions::find($id);
+            $position->positionname=$request->ppname;
+            $position->policepositioncode=$request->ppcode;
+            $position->desc=$request->ppdesc;
+            $position->save();   
+        }
+
+    }
+
+}

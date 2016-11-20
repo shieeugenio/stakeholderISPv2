@@ -8,5 +8,7 @@ function init() {
 		$('#datatable').DataTable();
 	} );
 
+	$('#select').dropdown();
+
 	
 }//function init() {

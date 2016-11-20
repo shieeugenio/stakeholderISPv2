@@ -17,34 +17,45 @@ Route::get('adviser', function () {
 });
 
 Route::get('maintenance', function () {
-    return view('module.maintenance');
+    return redirect('maintenance/accategory');
 });
 
 
 ///editmaintenance UI [cja] 
+
 Route::resource('maintenancetable/acsector','acsectorController@index_acsectors');
 Route::resource('maintenancetable/insert_acsectors','acsectorController@insert_acsectors');
 Route::resource('maintenancetable/edit_acsectors','acsectorController@edit_acsectors');
 Route::resource('maintenancetable/update_acsectors','acsectorController@update_acsectors');
-//Route::resource('maintenancetable/acsector','acsectorController@insert_acsectors');
-/*Route::get('maintenancetable/acsector', function () {
-    return view('maintenancetable.acsector_table');
-});*/
-Route::get('maintenancetable/acsubcat', function () {
+
+
+Route::get('maintenance/acsubcat', function () {
     return view('maintenancetable.acsubcat_table');
 });
-Route::get('maintenancetable/advisoryposition', function () {
+Route::get('maintenance/advisoryposition', function () {
     return view('maintenancetable.advisoryposition_table');
 });
-Route::get('maintenancetable/policeposition', function () {
+Route::get('maintenance/policeposition', function () {
     return view('maintenancetable.policeposition_table');
 });
-Route::get('maintenancetable/policeoffice', function () {
+Route::get('maintenance/policeoffice', function () {
     return view('maintenancetable.policeoffice_table');
 });
-Route::get('maintenancetable/policeoffice2', function () {
+Route::get('maintenance/policeoffice2', function () {
     return view('maintenancetable.policeoffice2_table');
 });
+
+//Routes for ADVISORY POSITIONS - RESUTAA
+Route::resource('maintenancetable/advisoryposition_table', 'ACPositionController@index_acposition');
+Route::get('acposition','ACPositionController@index_acposition');
+Route::resource('maintenancetable/acpositioncrud','ACPositionController@acpositioncrud');
+
+//Routes for ADVISORY POSITIONS - RESUTAA
+Route::resource('maintenancetable/policeposition_table', 'PolicePositionController@index_policeposition');
+Route::get('policeposition','PolicePositionController@index_policeposition');
+Route::resource('maintenancetable/policepositioncrud','PolicePositionController@policepositioncrud');
+
+
 
 
 //routes for category
