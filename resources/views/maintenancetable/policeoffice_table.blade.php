@@ -17,6 +17,8 @@
 						    <thead>
 						    	<tr>
 						            <th><center>Office Name</center></th>
+						            <th><center>Office Code</center></th>
+						            <th><center>Description</center></th>
 						            <th><center>Address</center></th> 
 						            <th><center>Contact No.</center></th> 
 						        </tr>	
@@ -24,6 +26,8 @@
 						                   
 						    <tbody>
 						    	<tr>
+						    		<td></td>
+						    		<td></td>
 						    		<td></td>
 						    		<td></td>
 						    		<td></td>
@@ -58,6 +62,19 @@
 							</div>
 
 							<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Office Code
+									<span class = "asterisk">*</span>
+								</label>
+
+							</div>
+
+							<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Description
+								</label>
+
+							</div>
+
+							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Address</label>
 								<span class = "asterisk">*</span>										
 							</div>
@@ -73,13 +90,23 @@
 
 						<div class = "fieldpane">
 							<div class = "twelve wide column bspacing2">
-								<select class="ui selection dropdown selectstyle" id = "select">
-								  <option value="- Select Office NAME -" >- Select Office Name-</option>
-								  <option value="volvo">Fuss</option>
-								  <option value="saab">Deym</option>
-								  
-								</select>
+								<div class = "twelve wide column bspacing2">
+								<div class="ui input formfield">
+									<input type="text" name="name" placeholder="Office Name">
 								</div>
+							</div>
+
+							<div class = "twelve wide column bspacing2">
+								<div class="ui input formfield">
+									<input type="text" name="code" placeholder="Office Code">
+								</div>
+							</div>
+
+							<div class = "twelve wide column bspacing2">
+								<div class="ui input formfield">
+									<input type="text" name="desc" placeholder="Description">
+								</div>
+							</div>
 							
 							<div class = "twelve wide column bspacing2">
 								<div class="field">
@@ -87,8 +114,6 @@
 								</div>
 							</div>
 						
-							
-							
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
 								  <input type='tel' value='' name='contact' required placeholder="+639..." pattern = '[0-9]+'/>
