@@ -90,7 +90,7 @@
 									Save
 								</button>
 
-								<button class="ui tiny button" type="submit" 
+								<button class="ui tiny button"  
 								type = "reset" onclick = "resetflag()" >
 									Cancel
 								</button>					
@@ -167,7 +167,7 @@ function CRUD(id, func){
 		dataype: "JSON",
 		success:function(data){
 			if(  func == 1 || func == 3){ 
-				alert("dsfds");
+				
 				document.getElementById('acsectorID').value = "";
 				document.getElementsByName('acsectorName')[0].value = "";
 				document.getElementsByName('Desc')[0].value = "";

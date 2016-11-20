@@ -23,13 +23,6 @@ Route::get('maintenance', function () {
 
 ///editmaintenance UI [cja] 
 
-Route::resource('maintenance/acsector','acsectorController@index_acsectors');
-Route::resource('maintenancetable/insert_acsectors','acsectorController@insert_acsectors');
-Route::resource('maintenancetable/edit_acsectors','acsectorController@edit_acsectors');
-Route::resource('maintenancetable/update_acsectors','acsectorController@update_acsectors');
-Route::resource('maintenancetable/acsectorCRUD','ACPositionController@acsectorCRUD');
-
-
 Route::get('maintenance/acsubcat', function () {
     return view('maintenancetable.acsubcat_table');
 });
@@ -83,6 +76,10 @@ Route::resource('maintenance/acsectorform','acsectorController@index_acsectors')
 Route::resource('maintenance/insert_acsectors','acsectorController@insert_acsectors');
 Route::resource('maintenance/edit_acsectors','acsectorController@edit_acsectors');
 Route::resource('maintenance/update_acsectors','acsectorController@update_acsectors');
+
+//AC SECTOR maintenance w/ui [amps]
+Route::resource('maintenance/acsector','acsectorController@index_acsectors');
+Route::resource('maintenancetable/acsectorCRUD','acsectorController@acsectorCRUD');
 
 //This is for Advisory Position Maintenance -- Ore wa Resutaa da :D
 Route::resource('maintenance/advisoryposition', 'ACPositionController@index_acposition');
