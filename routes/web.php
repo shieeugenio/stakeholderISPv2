@@ -23,6 +23,8 @@ Route::get('maintenance', function () {
 
 ///editmaintenance UI [cja] 
 Route::resource('maintenancetable/acsector','acsectorController@index_acsectors');
+//Route::resource('maintenancetable/acsector','acsectorController@insert_acsectors');
+
 /*Route::get('maintenancetable/acsector', function () {
     return view('maintenancetable.acsector_table');
 });*/

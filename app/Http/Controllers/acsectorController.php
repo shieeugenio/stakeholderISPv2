@@ -27,7 +27,7 @@ class acsectorController extends Controller
 
              $sector = DB::table('ACSectors')->get();
              $stmt = DB::table('ACSectors')->where('ID', '=', $lastId)->get(); 
-    	     	return view('maintenancetable.acsector')
+    	     	return view('maintenancetable.acsector_table')
               ->with('stmt', $stmt)
               ->with('sector',$sector);
 
@@ -46,11 +46,13 @@ class acsectorController extends Controller
     	
         $stmt = DB::table('ACSectors')->where('ID', '=', $acsecID)->get();
         $sector = DB::table('ACSectors')->get();
-         return view('maintenancetable.acsector')->with('stmt', $stmt)->with('sector',$sector);
+         return view('maintenancetable.acsector_tableedit')
+         ->with('stmt', $stmt)
+         ->with('sector',$sector);
         }
 
         else if(isset($_POST['btn_Discard'])){
-             return redirect('maintenancetable/acsectorform');
+             return redirect('maintenancetable/acsector');
 
         }
          
@@ -64,19 +66,14 @@ class acsectorController extends Controller
         $sectorName = $request->acsectorName;
         
         $params = array($sectorName,$acsecID);
-        
-  // $stmt = DB::statement('update ACSectors set sectorname = ? where ID = ?', $params);
- // $stmt = DB::table('ACSectors')->where('ID', '=', $params)->update([])
 
         $stmt = DB::table('ACSectors')->where('ID',$acsecID)->update(['sectorname'=>$sectorName]);
 
         if($stmt){
-            
-           // $params = array($acsecID);
-  // $stmt = DB::select('select * from ACSectors where ID = ?', $params);
+           
      $stmt = DB::table('ACSectors')->where('ID', '=', $acsecID)->get();        
       $sector = DB::table('ACSectors')->get();
-            return view('maintenance.acsectorview')->with('stmt',$stmt)->with('sector',$sector);
+            return view('maintenancetable.acsectorform')->with('stmt',$stmt)->with('sector',$sector);
           }
             else{
                 return "Error";
@@ -85,13 +82,37 @@ class acsectorController extends Controller
 
         else if(isset($_POST['btn_Discard'])){
 
-              return view('maintenance.acsectorview');
+              return view('maintenancetable.acsector');
            
         }
 
     	return view('maintenance.acsectorview');
     }//END OF UPDATE_SECTORS
 
+
+    public function ajax_editacsector(Request $request){
+       $ID = $request->acsectorID;
+        $session_acsector = $_SESSION['session_acsectorID'] = $ID;
+
+    }
+
+
+  public function ajax_session_acsector() {
+
+        $ID = $_SESSION['session_acsectorID'];
+        $params = array($ID);
+        $stmt = DB::table('ACSectors')->where('ID', '=', $params)->get(); 
+        if ($stmt) {
+            
+            return view('maintenancetable.acsector_tableview')->with('stmt', $stmt);
+        }
+
+        else
+        {
+            return "Error!";
+        }
+
+    }//End Of Ajax Row Clicked With Session
 
 
 }//ENDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 

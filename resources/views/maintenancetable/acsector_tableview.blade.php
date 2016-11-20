@@ -23,7 +23,7 @@
 						    </thead>
 						                   
 						    <tbody>
-						    @foreach ($sector as $sec) 
+						    @foreach ($stmt as $sec) 
 						    <form method="POST" action="edit_acsectors">
 							<input type="hidden" name="_token" id="csrf-token" value="{{Session::token()}}">
 							<input type="hidden" name="acsectorID" value="{{$sec->ID}}">
@@ -35,8 +35,7 @@
 						    			<CENTER>{{$sec->sectorname}}</CENTER>
 						    		</td>
 						    		<td id="{{$sec->desc}}" onclick="Row_Click(this.id);">
-						    			<center>{{$sec->desc}}</center>
-						    		</td>
+						    		<center>{{$sec->desc}}</center></td>
 						    	</tr>  
 						    </form>	                             
 						   @endforeach 
@@ -53,8 +52,8 @@
 						<i class="write square big icon"></i>
 					</div>
 
-					
-					<form action="insert_acsectors" method="post" >
+					@foreach($sector as $acsecID)
+					<form action="edit_acsectors" method="post" >
 					<input type="hidden" name="_token" id="csrf-token" value="{{Session::token()}}">
 							
 						<div class = "labelpane">
@@ -79,13 +78,13 @@
 
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
-								  <input type="text" name="acsectorName"  placeholder="e.g Name">
+								  <input type="text" name="acsectorName"  placeholder="e.g Name" value="{{$acsecID->sectorname}}">
 								</div>
 							</div>
 
 							<div class = "twelve wide column bspacing2">
 								<div class="field">
-									<textarea  name = "Desc" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
+									<textarea  name = "Desc" class = "areastyle" rows = "4" placeholder="Type here..." value="{{$acsecID->desc}}"></textarea>
 								</div>
 							</div>												
 
@@ -93,15 +92,13 @@
 								<center>
 								<button class="ui tiny button savebtnstyle"
 								type="submit" 
-			     				name="btn_Save" 
-			     				value="SAVE" 
+			     				name="btn_Edit" value="Edit" 
 	     						onclick="return confirm('This record will saved!');">
 									Save
 								</button>
 
 								<button class="ui tiny button" type="submit" 
-								value="DISCARD" 
-								name="btn_Discard" >
+								name="btn_Discard" value="Delete" onclick="alert('No Deleteion of Item')" >
 									Cancel
 								</button>					
 								</center>
@@ -109,6 +106,7 @@
 						</div>
 								
 					</form>
+					@endforeach
 					
 				</div>
 			</div>
