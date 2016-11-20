@@ -24,21 +24,12 @@
 						                   
 						    <tbody>
 						    @foreach ($sector as $sec) 
-						    <form method="POST" action="edit_acsectors">
-							<input type="hidden" name="_token" id="csrf-token" value="{{Session::token()}}">
-							<input type="hidden" name="acsectorID" value="{{$sec->ID}}">
-						    	<tr>
-						       		<td id="{{$sec->ID}}" onclick="Row_Click(this.id);">
-						       			<center>{{$sec->ID}}</center>
-						       		</td>
-						    		<td id="{{$sec->sectorname}}" onclick="Row_Click(this.id);">
-						    			<CENTER>{{$sec->sectorname}}</CENTER>
-						    		</td>
-						    		<td id="{{$sec->desc}}" onclick="Row_Click(this.id);">
-						    			<center>{{$sec->desc}}</center>
-						    		</td>
+						       	<tr onclick = "CRUD({{$sec->ID}},2)" id = "{{$sec->ID}}">
+						       		<td><center>{{$sec->ID}}</center></td>
+						    		<td><CENTER>{{$sec->sectorname}}</CENTER></td>
+						    		<td><center>{{$sec->desc}}</center></td>
 						    	</tr>  
-						    </form>	                             
+						                               
 						   @endforeach 
 						    </tbody>
 						</table>						
@@ -54,8 +45,8 @@
 					</div>
 
 					
-					<form action="insert_acsectors" method="post" >
-					<input type="hidden" name="_token" id="csrf-token" value="{{Session::token()}}">
+					<form action="javascript:CRUD(0,document.getElementById('dualbutton').value)">	
+					
 							
 						<div class = "labelpane">
 						<div class = "twelve wide column bspacing">
@@ -75,33 +66,32 @@
 
 						
 						<div class = "fieldpane">
-							<input name="acsectorID" type="hidden">					
+							<input name="acsectorID" id="acsectorID" type="hidden" value="">					
 
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
-								  <input type="text" name="acsectorName"  placeholder="e.g Name">
+								  <input type="text" name="acsectorName"  id="acsectorName" placeholder="e.g Sector Name" pattern = "^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}">
 								</div>
 							</div>
 
 							<div class = "twelve wide column bspacing2">
 								<div class="field">
-									<textarea  name = "Desc" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
+									<textarea id="Desc" name = "Desc" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
 								</div>
 							</div>												
 
 							<div class = "twelve wide column bspacing2">
 								<center>
 								<button class="ui tiny button savebtnstyle"
-								type="submit" 
-			     				name="btn_Save" 
-			     				value="SAVE" 
+								id="dualbutton"
+								name="submit" 
+								value = '1'; 
 	     						onclick="return confirm('This record will saved!');">
 									Save
 								</button>
 
 								<button class="ui tiny button" type="submit" 
-								value="DISCARD" 
-								name="btn_Discard" >
+								type = "reset" onclick = "resetflag()" >
 									Cancel
 								</button>					
 								</center>
@@ -118,12 +108,87 @@
 		
 	</div>
 
+
 	<script type="text/javascript">
 		$('#m4').attr('class', 'item active');
 
+	function resetflag(){
+
+	document.getElementById('dualbutton').value = 1;
+	document.getElementById('acsectorID')[0].value = "";
+	document.getElementsByName('acsectorName')[0].value = "";
+	document.getElementsByName('Desc')[0].value = "";
+	
+}
+
+function CRUD(id, func){
+
+	var data;
+
+	if(func == 1)
+	{
+		
+		data = {
+		'secname' : document.getElementsByName('acsectorName')[0].value,
+		'secdesc' : document.getElementsByName('Desc')[0].value,
+		'submit': document.getElementsByName("submit")[0].value,
+		'callId' : 1,
+		'_token' : '{{ Session::token() }}'
+		};
+	}//add
+
+	if(func == 2)
+	{
+		data = {
+		'id' : id,
+		'callId' : 2,
+		'_token' : '{{ Session::token() }}'};
+		document.getElementById('dualbutton').value = 3;
+	}//update
+
+	if(func == 3)
+	{
+		data = {
+		'id' : document.getElementById('acsectorID').value,
+		'secname' : document.getElementsByName('acsectorName')[0].value,
+		'secdesc' : document.getElementsByName('Desc')[0].value,
+		'submit': document.getElementsByName("submit")[0].value,
+		'callId' : 3,
+		'_token' : '{{ Session::token() }}'
+		};
+	}
+
+	
+	$.ajax({
+
+		type: "POST",
+		url: "{{url('maintenancetable/acsectorCRUD')}}",
+		data: data,
+		dataype: "JSON",
+		success:function(data){
+			if(  func == 1 || func == 3){ 
+				alert("dsfds");
+				document.getElementById('acsectorID').value = "";
+				document.getElementsByName('acsectorName')[0].value = "";
+				document.getElementsByName('Desc')[0].value = "";
+
+				window.location.href = "{{url('maintenance/acsector')}}";
+
+			}//if func
+			else {
+				document.getElementById('acsectorID').value = data['ID'];
+				document.getElementsByName('acsectorName')[0].value = data['sectorname'];
+				document.getElementsByName('Desc')[0].value = data['desc'];
+			}
+		} 
+
+	});
+			
+}	
+
 	</script>
 
-	<script>
+<!--	<script type="text/javascript">
 	function Row_Click(id) {
 
 			var ID = id;			
@@ -150,6 +215,7 @@
 
 		}//End Of Row
 
-	</script>
+	</script> -->
 
+	
 @stop

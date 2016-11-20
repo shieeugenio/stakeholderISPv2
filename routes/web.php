@@ -23,10 +23,11 @@ Route::get('maintenance', function () {
 
 ///editmaintenance UI [cja] 
 
-Route::resource('maintenancetable/acsector','acsectorController@index_acsectors');
+Route::resource('maintenance/acsector','acsectorController@index_acsectors');
 Route::resource('maintenancetable/insert_acsectors','acsectorController@insert_acsectors');
 Route::resource('maintenancetable/edit_acsectors','acsectorController@edit_acsectors');
 Route::resource('maintenancetable/update_acsectors','acsectorController@update_acsectors');
+Route::resource('maintenancetable/acsectorCRUD','ACPositionController@acsectorCRUD');
 
 
 Route::get('maintenance/acsubcat', function () {
