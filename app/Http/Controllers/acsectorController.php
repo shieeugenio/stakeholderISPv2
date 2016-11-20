@@ -73,7 +73,7 @@ class acsectorController extends Controller
            
      $stmt = DB::table('ACSectors')->where('ID', '=', $acsecID)->get();        
       $sector = DB::table('ACSectors')->get();
-            return view('maintenancetable.acsectorform')->with('stmt',$stmt)->with('sector',$sector);
+            return view('maintenancetable.acsector')->with('stmt',$stmt)->with('sector',$sector);
           }
             else{
                 return "Error";
@@ -86,7 +86,7 @@ class acsectorController extends Controller
            
         }
 
-    	return view('maintenance.acsectorview');
+    	return view('maintenancetable.acsector_tableview');
     }//END OF UPDATE_SECTORS
 
 
