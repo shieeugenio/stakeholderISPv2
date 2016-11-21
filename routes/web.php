@@ -88,20 +88,20 @@ Route::resource('maintenance/acpositionedit', 'ACPositionController@acpositioned
 Route::resource('maintenance/acpositionupdate' , 'ACPositionController@acpositionupdate');
 
 //Police Office
-Route::post('/buttonsPoliceOffice', 'PoliceOfficesController@confirmOffice');
-Route::post('maintenance/{id}/editpolice', 'PoliceOfficesController@edit');
+Route::post('/buttonsPoliceOffice', 'PoliceOfficesController@add');
+Route::post('maintenance/editpolice', 'PoliceOfficesController@edit');
 
 
-Route::get('/maintenance/{id}/editpoliceview', 'PoliceOfficesController@find');
-Route::get('policeOffice', 'PoliceOfficesController@manageoffice');
+Route::get('maintenance/editpoliceview', 'PoliceOfficesController@find');
+Route::get('maintenance/policeoffice', 'PoliceOfficesController@index');
 
 
 //Police Office Second
-Route::post('/confirmpolice', 'PoliceOfficeTwoController@confirm');
+Route::post('/confirmpolice', 'PoliceOfficeTwoController@add');
 Route::post('maintenance/{id}/editsubpolice', 'PoliceOfficeTwoController@edit');
 
-Route::get('secondpolice', 'PoliceOfficeTwoController@manageofficetwo');
-Route::get('maintenance/{id}/subpoliceview', 'PoliceOfficeTwoController@find');
+Route::get('maintenance/policeoffice2', 'PoliceOfficeTwoController@index');
+Route::get('maintenance/subpoliceview', 'PoliceOfficeTwoController@find');
 
 //This is for Police  Maintenance -- Ore wa Resutaa da :D
 Route::resource('maintenance/policeposition', 'PolicePositionController@index_policeposition');
