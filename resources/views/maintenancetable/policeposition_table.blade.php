@@ -129,6 +129,7 @@
 		function resetflag()
 		{
 			document.getElementById('dualbutton').value = 1;
+			document.getElementById('ID').value = "";
 			document.getElementsByName('positionname')[0].value = "";
 			document.getElementsByName('positioncode')[0].value = "";
 			document.getElementsByName('description')[0].value = "";
@@ -190,7 +191,7 @@
 					document.getElementsByName('positioncode')[0].value = "";
 					document.getElementsByName('description')[0].value = "";
 				
-					window.location.href = "{{url('maintenancetable/policeposition_table')}}";
+					window.location.href = "{{url('maintenance/policeposition')}}";
 				}
 
 				else
