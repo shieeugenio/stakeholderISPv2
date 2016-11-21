@@ -238,16 +238,22 @@
 
 		function addData() {
 			var data = {
-				'name' : document.getElementsByName("categname")[0].value,
-				'code' : document.getElementsByName("categcode")[0].value,
-				'desc' : document.getElementsByName("description")[0].value,
+				'name' : document.getElementsByName("name")[0].value,
+				'office' : document.getElementsByName("office")[0].value,
+				'code' : document.getElementsByName("code")[0].value,
+				'desc' : document.getElementsByName("desc")[0].value,
+				'street' : document.getElementsByName("street")[0].value,
+				'barangay' : document.getElementsByName("barangay")[0].value,
+				'city' : document.getElementsByName("city")[0].value,
+				'province' : document.getElementsByName("prov")[0].value,
+				'contact' : document.getElementsByName("contact")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'
 			};
 
 			$.ajax({
 				type: "POST",
-				url: "{{url('confirm')}}",
+				url: "{{url('confirmpolice')}}",
 				data: data,
 			   	dataType: "JSON",
 			   	success : function() {
@@ -268,10 +274,16 @@
 
 		function editData() {
 			var data = {
-				'catID' : document.getElementsByName('categid')[0].value,
-				'name' : document.getElementsByName("categname")[0].value,
-				'code' : document.getElementsByName("categcode")[0].value,
-				'desc' : document.getElementsByName("description")[0].value,
+				'subID' : document.getElementsByName('subid')[0].value,
+				'office' : document.getElementsByName("office")[0].value,
+				'name' : document.getElementsByName("name")[0].value,
+				'code' : document.getElementsByName("code")[0].value,
+				'desc' : document.getElementsByName("desc")[0].value,
+				'street' : document.getElementsByName("street")[0].value,
+				'barangay' : document.getElementsByName("barangay")[0].value,
+				'city' : document.getElementsByName("city")[0].value,
+				'province' : document.getElementsByName("prov")[0].value,
+				'contact' : document.getElementsByName("contact")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'
 			};
@@ -280,7 +292,7 @@
 
 			$.ajax({
 				type: "POST",
-				url: "{{url('Maintenance/editCommit')}}",
+				url: "{{url('maintenance/editsubpolice')}}",
 				data: data,
 			   	dataType: "JSON",
 			   	success : function() {

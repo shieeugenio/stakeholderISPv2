@@ -125,7 +125,7 @@ $('#m3').attr('class', 'item active');
 function resetflag(){
 
 	document.getElementById('dualbutton').value = 1;
-	document.getElementById('ID')[0].value = "";
+	document.getElementById('ID').value = "";
 	document.getElementsByName('acpositionname')[0].value = "";
 	document.getElementsByName('acpositioncode')[0].value = "";
 	document.getElementsByName('description')[0].value = "";
@@ -174,7 +174,7 @@ function CRUD(id, func){
 	$.ajax({
 
 		type: "POST",
-		url: "{{url('maintenancetable/acpositioncrud')}}",
+		url: "{{url('maintenance/acpositioncrud')}}",
 		data: data,
 		dataype: "JSON",
 		success:function(data){
@@ -184,7 +184,7 @@ function CRUD(id, func){
 				document.getElementsByName('acpositioncode')[0].value = "";
 				document.getElementsByName('description')[0].value = "";
 
-				window.location.href = "{{url('maintenancetable/advisoryposition_table')}}";
+				window.location.href = "{{url('maintenance/advisoryposition')}}";
 
 			}//if func
 			else {
