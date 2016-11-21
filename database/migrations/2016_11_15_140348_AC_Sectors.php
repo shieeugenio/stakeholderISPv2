@@ -11,8 +11,8 @@ class ACSectors extends Migration
         Schema::create('ACSectors', function(Blueprint $table)
         {
             $table->increments('ID');
-            $table->string('sectorname', 45);
-            $table->string('sectorcode', 10);
+            $table->string('sectorname', 45)->unique();
+            $table->string('sectorcode', 10)->unique()->nullable();
             $table->string('desc', 60)->nullable();
             $table->softDeletes();
         });

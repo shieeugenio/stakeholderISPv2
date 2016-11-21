@@ -55,36 +55,31 @@ Route::post("Maintenance/editCommit", "ACCategoryController@update");
 //end of category
 
 //routes for subcategory
-Route::get('subcategory','ACSubcategoryController@index');
+Route::get('maintenance/subcategory','ACSubcategoryController@index');
 Route::get('subform', 'ACSubcategoryController@addView');
 Route::post('addcommit', 'ACSubcategoryController@confirm');
-Route::get('Maintenance/{id}/subedit','ACSubcategoryController@edit');
+Route::get('maintenance/subedit','ACSubcategoryController@edit');
 Route::post("Maintenance/{id}/subeditCommit", "ACSubcategoryController@update");
 
 //end of subcategory
 
-//AC SECTOR - @tineamps
-Route::resource('maintenance/acsectorform','acsectorController@index_acsectors');
-Route::resource('maintenance/insert_acsectors','acsectorController@insert_acsectors');
-Route::resource('maintenance/edit_acsectors','acsectorController@edit_acsectors');
-Route::resource('maintenance/update_acsectors','acsectorController@update_acsectors');
 
 //AC SECTOR maintenance w/ui [amps]
-Route::resource('maintenance/acsector','acsectorController@index_acsectors');
+Route::get('maintenance/acsector','acsectorController@index_acsectors');
 Route::resource('maintenancetable/acsectorCRUD','acsectorController@acsectorCRUD');
 
 //Police Office
-Route::post('/buttonsPoliceOffice', 'PoliceOfficesController@confirmOffice');
-Route::post('maintenance/{id}/editpolice', 'PoliceOfficesController@edit');
+Route::post('/buttonsPoliceOffice', 'PoliceOfficesController@add');
+Route::post('maintenance/editpolice', 'PoliceOfficesController@edit');
 
 
-Route::get('/maintenance/{id}/editpoliceview', 'PoliceOfficesController@find');
-Route::get('policeOffice', 'PoliceOfficesController@manageoffice');
+Route::get('maintenance/editpoliceview', 'PoliceOfficesController@find');
+Route::get('maintenance/policeoffice', 'PoliceOfficesController@index');
 
 
 //Police Office Second
-Route::post('/confirmpolice', 'PoliceOfficeTwoController@confirm');
-Route::post('maintenance/{id}/editsubpolice', 'PoliceOfficeTwoController@edit');
+Route::post('/confirmpolice', 'PoliceOfficeTwoController@add');
+Route::post('maintenance/editsubpolice', 'PoliceOfficeTwoController@edit');
 
 Route::get('secondpolice', 'PoliceOfficeTwoController@manageofficetwo');
 Route::get('maintenance/{id}/subpoliceview', 'PoliceOfficeTwoController@find');

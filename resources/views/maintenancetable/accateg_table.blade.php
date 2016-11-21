@@ -238,12 +238,6 @@
 			   	success : function() {
 			   		flag = 0;
 
-			   		$(document).ready(function(){
-						$("#toast").showToast({
-						    message: 'Saved!',
-						    timeout: 2500
-						});
-					});
 
 
 			   	}

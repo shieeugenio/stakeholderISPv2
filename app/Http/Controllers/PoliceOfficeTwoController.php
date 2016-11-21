@@ -8,62 +8,59 @@ use App\Models;
 
 class PoliceOfficeTwoController extends Controller
 {
-    public function manageofficetwo(){
+    public function index(){
     	$suboffice = App\Models\PoliceOfficeSecond::with('policeoffice')->get();
     	$office = App\Models\PoliceOffices::all();
 
-    	return view('Maintenance.PoliceOfficeSecond')->with('offices', $office)->with('suboffices', $suboffice);
+    	return view('maintenancetable.policeoffice2_table')->with('offices', $office)->with('suboffices', $suboffice);
     }
 
-    public function confirm(Request $request){
-    	if(isset($_POST['addbtn'])){
-    		return $this->insert($request);
-    	}
+    public function add(Request $request){
+        if(isset($_POST['submit'])){
+            $policeoffice = new App\Models\PoliceOfficeSecond;
+
+    	    $policeoffice->police_office_id = $request->input('office');
+    	    $policeoffice->officename = $request->input('name');
+    	    $policeoffice->policeofficecode2 = $request->input('secondcode');
+    	    $policeoffice->desc = $request->input('desc');
+    	    $policeoffice->street = $request->input('street');
+    	    $policeoffice->barangay = $request->input('barangay');
+    	    $policeoffice->city = $request->input('city');
+    	    $policeoffice->province = $request->input('province');
+    	    $policeoffice->contactno = $request->input('contact');
+ 
+           	$policeoffice->save();
+
+    	    return redirect('maintenance/policeoffice2');
+        }
     }
 
-    public function insert(Request $request){
-    	$policeoffice = new App\Models\PoliceOfficeSecond;
-
-    	$policeoffice->police_office_id = $request->input('office');
-    	$policeoffice->officename = $request->input('name');
-    	$policeoffice->policeofficecode2 = $request->input('secondcode');
-    	$policeoffice->desc = $request->input('desc');
-    	$policeoffice->street = $request->input('street');
-    	$policeoffice->barangay = $request->input('barangay');
-    	$policeoffice->city = $request->input('city');
-    	$policeoffice->province = $request->input('province');
-    	$policeoffice->contactno = $request->input('contact');
-
-    	$policeoffice->save();
-
-    	return redirect('secondpolice');
-    }
-
-    public function find($id){
+    public function find(Request $request){
     	$office = App\Models\PoliceOffices::all();
-    	$id = App\Models\PoliceOfficeSecond::find($id);
-    	return view('Maintenance.PoliceOfficeSecondEDIT')->with('ids', $id)->with('offices', $office);
+        $police = $request->id;
+    	$id = App\Models\PoliceOfficeSecond::find($police);
+    	return $id;
     }
 
-    public function edit($id){
-    	if(isset($_POST['edit']))
+    public function edit(Request $request){
+    	if(isset($_POST['submit']))
     	{
 
-    		$id = App\Models\PoliceOfficeSecond::find($id);
+    		$id = App\Models\PoliceOfficeSecond::find($request->subID);
     		
-    		$id->police_office_id = $_POST['office'];
-  		  	$id->officename = $_POST['name'];
-  		  	$id->policeofficecode2 = $_POST['secondcode'];
-  		  	$id->desc = $_POST['desc'];
-    		$id->street = $_POST['street'];
-    		$id->barangay = $_POST['barangay'];
-    		$id->city = $_POST['city'];
-    		$id->province = $_POST['province'];
-    		$id->contactno = $_POST['contact'];
+    		$id->police_office_id = $request->office;
+  		  	$id->officename = $request->name;
+  		  	$id->policeofficecode2 = $request->secondcode;
+  		  	$id->desc = $request->desc;
+    		$id->street = $request->street;
+    		$id->barangay = $request->barangay;
+    		$id->city = $request->city;
+    		$id->province = $request->province;
+    		$id->contactno = $request->contact;
 
     		$id->save();
 
-    		return redirect('secondpolice');
+    		return redirect('maintenance/policeoffice2');
     	}
     }
 
