@@ -26,12 +26,6 @@ Route::get('maintenance', function () {
 Route::get('maintenance/acsubcat', function () {
     return view('maintenancetable.acsubcat_table');
 });
-Route::get('maintenance/advisoryposition', function () {
-    return view('maintenancetable.advisoryposition_table');
-});
-Route::get('maintenance/policeposition', function () {
-    return view('maintenancetable.policeposition_table');
-});
 Route::get('maintenance/policeoffice', function () {
     return view('maintenancetable.policeoffice_table');
 });
@@ -40,11 +34,11 @@ Route::get('maintenance/policeoffice2', function () {
 });
 
 //Routes for ADVISORY POSITIONS - RESUTAA
-Route::get('acposition','ACPositionController@index_acposition');
+Route::get('maintenance/advisoryposition','ACPositionController@index_acposition');
 Route::resource('maintenancetable/acpositioncrud','ACPositionController@acpositioncrud');
 
 //Routes for POLICE POSITIONS - RESUTAA
-Route::get('policeposition','PolicePositionController@index_policeposition');
+Route::get('maintenance/policeposition','PolicePositionController@index_policeposition');
 Route::resource('maintenancetable/policepositioncrud','PolicePositionController@policepositioncrud');
 
 
