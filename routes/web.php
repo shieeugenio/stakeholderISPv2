@@ -63,14 +63,9 @@ Route::post("Maintenance/{id}/subeditCommit", "ACSubcategoryController@update");
 
 //end of subcategory
 
-//AC SECTOR - @tineamps
-Route::resource('maintenance/acsectorform','acsectorController@index_acsectors');
-Route::resource('maintenance/insert_acsectors','acsectorController@insert_acsectors');
-Route::resource('maintenance/edit_acsectors','acsectorController@edit_acsectors');
-Route::resource('maintenance/update_acsectors','acsectorController@update_acsectors');
 
 //AC SECTOR maintenance w/ui [amps]
-Route::resource('maintenance/acsector','acsectorController@index_acsectors');
+Route::get('maintenance/acsector','acsectorController@index_acsectors');
 Route::resource('maintenancetable/acsectorCRUD','acsectorController@acsectorCRUD');
 
 //Police Office
@@ -86,7 +81,7 @@ Route::get('maintenance/policeoffice', 'PoliceOfficesController@index');
 Route::post('/confirmpolice', 'PoliceOfficeTwoController@add');
 Route::post('maintenance/{id}/editsubpolice', 'PoliceOfficeTwoController@edit');
 
-<<<<<<< HEAD
+
 Route::get('maintenance/policeoffice2', 'PoliceOfficeTwoController@index');
 Route::get('maintenance/subpoliceview', 'PoliceOfficeTwoController@find');
 
@@ -95,7 +90,7 @@ Route::resource('maintenance/policeposition', 'PolicePositionController@index_po
 Route::resource('maintenance/policepositioninsert' , 'PolicePositionController@policepositioninsert');
 Route::resource('maintenance/policepositionedit', 'PolicePositionController@policepositionedit');
 Route::resource('maintenance/policepositionupdate' , 'PolicePositionController@policepositionupdate');
-=======
+
 Route::get('secondpolice', 'PoliceOfficeTwoController@manageofficetwo');
 Route::get('maintenance/{id}/subpoliceview', 'PoliceOfficeTwoController@find');
->>>>>>> 0081cd24a268c5330ef680a11f418c117964b874
+
