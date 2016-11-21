@@ -174,7 +174,7 @@ function CRUD(id, func){
 	$.ajax({
 
 		type: "POST",
-		url: "{{url('maintenancetable/acpositioncrud')}}",
+		url: "{{url('maintenance/acpositioncrud')}}",
 		data: data,
 		dataype: "JSON",
 		success:function(data){

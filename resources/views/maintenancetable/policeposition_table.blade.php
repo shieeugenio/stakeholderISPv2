@@ -179,7 +179,7 @@
 		$.ajax({
 
 			type: "POST",
-			url : "{{url('maintenancetable/policepositioncrud')}}",
+			url : "{{url('maintenance/policepositioncrud')}}",
 			data: data,
 			datatype : "JSON",
 			success: function(data){
