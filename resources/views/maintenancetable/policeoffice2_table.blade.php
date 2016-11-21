@@ -16,8 +16,10 @@
 						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
 						    <thead>
 						    	<tr>
-						            <th><center>Secondary Office</center></th>
 						            <th><center>Primary Office</center></th>
+						            <th><center>Secondary Office</center></th>
+						            <th><center>Secondary OfficeCode</center></th>
+						            <th><center>Description</center></th>
 						            <th><center>Address</center></th> 
 						            <th><center>Contact No.</center></th> 
 						        </tr>	
@@ -25,6 +27,8 @@
 						                   
 						    <tbody>
 						    	<tr>
+						    		<td></td>
+						    		<td></td>
 						    		<td></td>
 						    		<td></td>
 						    		<td></td>
@@ -65,6 +69,18 @@
 							</div>
 
 							<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Secondary Office Code
+									<span class = "asterisk">*</span>
+								</label>
+							</div>
+
+							<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Description
+									<span class = "asterisk">*</span>
+								</label>
+							</div>
+
+							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Address</label>	
 								<span class = "asterisk">*</span>
 							</div>
@@ -81,7 +97,7 @@
 
 							<div class = "twelve wide column bspacing2">
 								<select class="ui selection dropdown selectstyle2" id = "select">
-									  <option value="- Select Category -" >- Select Category -</option>
+									  <option value="- Select Category -" >- Select Primary Office -</option>
 									  <option value="volvo">Fuss</option>
 									  <option value="saab">Deym</option>		
 								</select>
@@ -89,26 +105,38 @@
 
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
-									<input type="text" placeholder="Sub Office Name">
+									<input type="text" name="name" placeholder="Sub Office Name">
+								</div>
+							</div>
+
+							<div class = "twelve wide column bspacing2">
+								<div class="ui input formfield">
+									<input type="text" name="code" placeholder="Sub Office Code">
 								</div>
 							</div>
 							
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
-									<input type="text" placeholder="Street">
+									<input type="text" name="street" placeholder="Street">
 								</div>
 							</div>
 							
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
-									<input type="text" placeholder="Barangay">
+									<input type="text" name="barangay" placeholder="Barangay">
 								</div>
 							</div>				
 
 						
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
-									<input type="text" placeholder="City">
+									<input type="text" name="city" placeholder="City">
+								</div>
+							</div>
+
+							<div class = "twelve wide column bspacing2">
+								<div class="ui input formfield">
+									<input type="text" name="prov" placeholder="Province">
 								</div>
 							</div>		
 						
