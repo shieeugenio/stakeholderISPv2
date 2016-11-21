@@ -11,7 +11,7 @@ class AdvisoryCouncil extends Migration
         Schema::create('AdvisoryCouncil', function(Blueprint $table)
         {
             $table->primary('ID');
-            $table->string('officename', 45);
+            $table->string('officename', 45)->unique();
             $table->string('officeaddress', 45);
             $table->date('startdate');
             $table->date('enddate');

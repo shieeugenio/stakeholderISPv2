@@ -12,13 +12,13 @@ class PoliceOfficeSecond extends Migration
         Schema::create('PoliceOfficeSecond', function(Blueprint $table)
         {
             $table->increments('ID');
-            $table->string('officename', 45);
+            $table->string('officename', 45)->unique();
             $table->string('street', 45);
             $table->string('barangay', 45);
             $table->string('city', 45);
             $table->string('province', 45);
             $table->string('contactno', 45);
-            $table->string('policeofficecode2', 10);
+            $table->string('policeofficecode2', 10)->unique();
             $table->string('desc', 60)->nullable();
             $table->softDeletes();
             $table->integer('police_office_id')->unsigned();

@@ -84,9 +84,9 @@ Route::get('maintenance/policeoffice', 'PoliceOfficesController@index');
 
 //Police Office Second
 Route::post('/confirmpolice', 'PoliceOfficeTwoController@add');
-Route::post('maintenance/{id}/editsubpolice', 'PoliceOfficeTwoController@edit');
+Route::post('maintenance/editsubpolice', 'PoliceOfficeTwoController@edit');
 
-<<<<<<< HEAD
+
 Route::get('maintenance/policeoffice2', 'PoliceOfficeTwoController@index');
 Route::get('maintenance/subpoliceview', 'PoliceOfficeTwoController@find');
 
@@ -95,7 +95,7 @@ Route::resource('maintenance/policeposition', 'PolicePositionController@index_po
 Route::resource('maintenance/policepositioninsert' , 'PolicePositionController@policepositioninsert');
 Route::resource('maintenance/policepositionedit', 'PolicePositionController@policepositionedit');
 Route::resource('maintenance/policepositionupdate' , 'PolicePositionController@policepositionupdate');
-=======
+
 Route::get('secondpolice', 'PoliceOfficeTwoController@manageofficetwo');
 Route::get('maintenance/{id}/subpoliceview', 'PoliceOfficeTwoController@find');
->>>>>>> 0081cd24a268c5330ef680a11f418c117964b874
+
