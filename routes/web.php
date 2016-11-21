@@ -88,3 +88,7 @@ Route::post('maintenance/{id}/editsubpolice', 'PoliceOfficeTwoController@edit');
 
 Route::get('secondpolice', 'PoliceOfficeTwoController@manageofficetwo');
 Route::get('maintenance/{id}/subpoliceview', 'PoliceOfficeTwoController@find');
+
+
+//ADVISER LESTER
+Route::get('maintenance/advisersample', 'AdviserController@index');
