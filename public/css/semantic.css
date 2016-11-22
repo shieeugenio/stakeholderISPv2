@@ -16239,7 +16239,7 @@ ol.ui.horizontal.list li:before,
 /* Block */
 
 .ui.form .field > .selection.dropdown {
-  width: 100%;
+  width: 96%;
 }
 
 .ui.form .field > .selection.dropdown > .dropdown.icon {

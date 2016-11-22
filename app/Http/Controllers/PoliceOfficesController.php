@@ -31,8 +31,6 @@ class PoliceOfficesController extends Controller
     	    $office->contactno = $request->input('contact');
 
     	    $office->save();
-
-    	    return redirect('maintenance/policeoffice');
         }
     }
 
@@ -53,8 +51,6 @@ class PoliceOfficesController extends Controller
     		$id->contactno = $request->contact;
 
     		$id->save();
-
-    		return redirect('maintenance/policeoffice');	
     	}
     }
 }

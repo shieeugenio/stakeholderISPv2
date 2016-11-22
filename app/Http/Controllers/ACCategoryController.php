@@ -18,10 +18,6 @@ class ACCategoryController extends Controller
 
     }
 
-    public function addView(){
-    	return View ('Maintenance.ACCategory');
-    }
-
     public function confirm(Request $req){
         if(isset($_POST['submit'])){
             $cat = new ACCategory;
@@ -30,8 +26,7 @@ class ACCategoryController extends Controller
             $cat->desc = $req->desc;
 
             $cat->save();
-             //Session::flash('mess', 'category successfully added to list!');
-            return redirect("cat");
+            return "Saved!";
         }
     }
 
@@ -48,8 +43,6 @@ class ACCategoryController extends Controller
             $cat->accategorycode = $req->code;
             $cat->desc = $req->desc;
             $cat->save();
-            return redirect("cat");
-
         }
     }
 
