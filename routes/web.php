@@ -55,10 +55,10 @@ Route::post("Maintenance/editCommit", "ACCategoryController@update");
 //end of category
 
 //routes for subcategory
-Route::get('subcategory','ACSubcategoryController@index');
+Route::get('maintenance/subcategory','ACSubcategoryController@index');
 Route::get('subform', 'ACSubcategoryController@addView');
 Route::post('addcommit', 'ACSubcategoryController@confirm');
-Route::get('Maintenance/{id}/subedit','ACSubcategoryController@edit');
+Route::get('maintenance/subedit','ACSubcategoryController@edit');
 Route::post("Maintenance/{id}/subeditCommit", "ACSubcategoryController@update");
 
 //end of subcategory
@@ -86,16 +86,3 @@ Route::get('maintenance/policeoffice', 'PoliceOfficesController@index');
 Route::post('/confirmpolice', 'PoliceOfficeTwoController@add');
 Route::post('maintenance/{id}/editsubpolice', 'PoliceOfficeTwoController@edit');
 
-<<<<<<< HEAD
-Route::get('maintenance/policeoffice2', 'PoliceOfficeTwoController@index');
-Route::get('maintenance/subpoliceview', 'PoliceOfficeTwoController@find');
-
-//This is for Police  Maintenance -- Ore wa Resutaa da :D
-Route::resource('maintenance/policeposition', 'PolicePositionController@index_policeposition');
-Route::resource('maintenance/policepositioninsert' , 'PolicePositionController@policepositioninsert');
-Route::resource('maintenance/policepositionedit', 'PolicePositionController@policepositionedit');
-Route::resource('maintenance/policepositionupdate' , 'PolicePositionController@policepositionupdate');
-=======
-Route::get('secondpolice', 'PoliceOfficeTwoController@manageofficetwo');
-Route::get('maintenance/{id}/subpoliceview', 'PoliceOfficeTwoController@find');
->>>>>>> 0081cd24a268c5330ef680a11f418c117964b874
