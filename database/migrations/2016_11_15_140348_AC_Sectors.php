@@ -12,7 +12,7 @@ class ACSectors extends Migration
         {
             $table->increments('ID');
             $table->string('sectorname', 45)->unique();
-            $table->string('sectorcode', 10)->unique();
+            $table->string('sectorcode', 10)->unique()->nullable();
             $table->string('desc', 60)->nullable();
             $table->softDeletes();
         });
