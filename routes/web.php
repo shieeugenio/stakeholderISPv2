@@ -63,14 +63,9 @@ Route::post("Maintenance/{id}/subeditCommit", "ACSubcategoryController@update");
 
 //end of subcategory
 
-//AC SECTOR - @tineamps
-Route::resource('maintenance/acsectorform','acsectorController@index_acsectors');
-Route::resource('maintenance/insert_acsectors','acsectorController@insert_acsectors');
-Route::resource('maintenance/edit_acsectors','acsectorController@edit_acsectors');
-Route::resource('maintenance/update_acsectors','acsectorController@update_acsectors');
 
 //AC SECTOR maintenance w/ui [amps]
-Route::resource('maintenance/acsector','acsectorController@index_acsectors');
+Route::get('maintenance/acsector','acsectorController@index_acsectors');
 Route::resource('maintenancetable/acsectorCRUD','acsectorController@acsectorCRUD');
 
 //Police Office
@@ -84,5 +79,5 @@ Route::get('maintenance/policeoffice', 'PoliceOfficesController@index');
 
 //Police Office Second
 Route::post('/confirmpolice', 'PoliceOfficeTwoController@add');
-Route::post('maintenance/{id}/editsubpolice', 'PoliceOfficeTwoController@edit');
+Route::post('maintenance/editsubpolice', 'PoliceOfficeTwoController@edit');
 

@@ -22,7 +22,7 @@ class Advisers extends Migration
             $table->date('birthdate');
             $table->tinyInteger('category');
             $table->tinyInteger('occupationstat');
-            $table->string('imagepath');
+            $table->text('imagepath');
         });
 }
 

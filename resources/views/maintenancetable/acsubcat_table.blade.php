@@ -172,7 +172,7 @@
 				data: data,
 			   	dataType: "JSON",
 			   	success : function(data) {
-			   		alert('no');
+			   		
 			   		document.getElementsByName('subid')[0].value = data['ID'];
 			   		document.getElementsByName('sub_name')[0].value = data['subcategoryname'];
 			   		document.getElementsByName('sub_code')[0].value = data['acsubcategorycode'];
@@ -204,8 +204,6 @@
 			   	dataType: "JSON",
 			   	success : function() {
 			   		flag = 0;
-			   		alert('lol');
-			   		window.location.href = "{{ URL::to('maintenance/subcategory') }}";
 
 
 

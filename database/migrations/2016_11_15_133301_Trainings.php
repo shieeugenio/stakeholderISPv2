@@ -11,7 +11,7 @@ class Trainings extends Migration
         Schema::create('Trainings', function(Blueprint $table)
         {
             $table->increments('ID');
-            $table->string('trainingname', 100);
+            $table->string('trainingname', 100)->unique();
             $table->date('startdate');
             $table->date('enddate');
             $table->string('location', 100);

@@ -11,8 +11,8 @@ class AdvisoryPositions extends Migration
         Schema::create('AdvisoryPositions', function(Blueprint $table)
         {
             $table->increments('ID');
-            $table->string('acpositionname', 45);
-            $table->string('acpositioncode', 10);
+            $table->string('acpositionname', 45)->unique();
+            $table->string('acpositioncode', 10)->unique();
             $table->string('desc', 60)->nullable();
             $table->softDeletes();
         });

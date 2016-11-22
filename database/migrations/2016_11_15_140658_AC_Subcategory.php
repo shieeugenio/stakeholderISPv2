@@ -11,8 +11,8 @@ class ACSubcategory extends Migration
         Schema::create('ACSubcategory', function(Blueprint $table)
         {
             $table->increments('ID');
-            $table->string('subcategoryname', 45);
-            $table->string('acsubcategorycode', 10);
+            $table->string('subcategoryname', 45)->unique();
+            $table->string('acsubcategorycode', 10)->unique();
             $table->string('desc', 60)->nullable();
             $table->softDeletes();
             $table->integer('categoryId')->unsigned();

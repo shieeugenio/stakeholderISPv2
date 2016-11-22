@@ -11,8 +11,8 @@ class PolicePositions extends Migration
         Schema::create('PolicePositions', function(Blueprint $table)
         {
             $table->increments('ID');
-            $table->string('positionname', 45);
-            $table->string('policepositioncode', 10);
+            $table->string('positionname', 45)->unique();
+            $table->string('policepositioncode', 10)->unique();
             $table->string('desc', 60)->nullable();
             $table->softDeletes();
         });

@@ -48,7 +48,7 @@ class ACSubcategoryController extends Controller
             echo  $req;
             
             $cat->save();
-            return redirect("subcategory");
+            return json_encode(redirect("maintenance/subcategory"));
 
         }
     }
