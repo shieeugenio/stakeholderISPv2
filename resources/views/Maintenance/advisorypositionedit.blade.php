@@ -6,8 +6,10 @@
 		<div>
 		<form method="POST" action="acpositionupdate">
 			<input type="hidden" name="_token" id="csrf-token" value="{{Session::token()}}">
-			ID:<input type="number" name="acpositionsid" value="{{$sql->ID}}" readonly="TRUE" />
-			Advisory Position:<input type="text" name="setpositionname" value="{{$sql->acpositionname}}"/>
+			ID:<input type="number" name="acpositionsid" value="{{$sql->ID}}" readonly="TRUE" /><br>
+			Advisory Position:<input type="text" name="setpositionname" value="{{$sql->acpositionname}}"/><br>
+			Position Code:<input type="text" name="setpositioncode" value="{{$sql->acpositioncode}}"/></br>
+			Description:<input type="text" name="setdesc" value="{{$sql->desc}}"/></br>
 			<input type="submit" name="btn_updateacposition" onclick="return confirm('Record will be saved!')" value="SAVE"/>
 			<input type="submit" name="cancel" value="DISCARD"/>
 		</form>
@@ -18,8 +20,11 @@
 		
 				<table border="1">
 					<thead>
-						<tr><div><th>Position Name</th></div>
-						<div><th>Action</th></div>
+						<tr>
+							<th>Position Name</th>
+							<th>Position Code</th>
+							<th>Desc</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					</tbody>
@@ -32,6 +37,15 @@
 							<label style="color:red; font-weight: bold;;">{{ $positions->acpositionname}}</label> 
 							<input type="hidden" name="acpositionid" value="{{$positions->ID}}"/>
 							</td>
+
+							<td>
+								<label style="color:red; font-weight: bold;;">{{ $positions->acpositioncode}}</label>					
+							</td>
+
+							<td>
+								<label style="color:red; font-weight: bold;;">{{ $positions->desc}}</label>					
+							</td>
+
 
 							<td>
 							<input type="submit" name="editacposition" value="Edit"/>

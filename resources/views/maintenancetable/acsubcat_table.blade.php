@@ -5,7 +5,7 @@
 		<div class = "ui grid">
 			<div class = "ten wide column">
 				<div class = "tablepane">
-					<div class = "mtitle">Advisory Council Category
+					<div class = "mtitle">Advisory Council Sub-category
 						<!--<div class = "ui icon button addbtn" title = "add">
 							<i class="plus icon topmargin"></i>
 										
@@ -75,7 +75,7 @@
 							</div>
 
 							<div class = "twelve wide column bspacing2">
-								<select class="browser-default">
+								<select class="ui selection dropdown selectstyle" id = "select">
 								  <option value="- Select Category -" >- Select Category -</option>
 								  <option value="volvo">Fuss</option>
 								  <option value="saab">Deym</option>
