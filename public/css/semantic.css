@@ -742,8 +742,8 @@ input::selection {
 ---------------*/
 
 .ui.button:focus {
-  /*background-color: #CACBCD;*/
-  color: white;
+  /*background-color: #CACBCD;
+  color: white;*/
   background-image: '' !important;
   box-shadow: '' !important;
 }
@@ -6195,11 +6195,11 @@ i.flag.zimbabwe:before {
   font-weight: bold;
   line-height: 1.2857em;
   text-transform: none;
-  color: rgba(0, 0, 0, 0.87);
+  /*color: rgba(0, 0, 0, 0.87);*/
 }
 
 .ui.header:first-child {
-  margin-top: -0.14285em;
+  margin-top: 4%;
 }
 
 .ui.header:last-child {
@@ -14426,7 +14426,7 @@ ol.ui.horizontal.list li:before,
   position: relative;
   background: rgba(white, white, white);
   box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
-  margin: 1rem 0em;
+  /*margin: 1rem 0em;*/
   padding: 1em 1em;
   border-radius: 0.28571429rem;
   border: 1px solid rgba(34, 36, 38, 0.15);
@@ -17661,6 +17661,13 @@ ol.ui.horizontal.list li:before,
 .ui.grid > [class*="five wide"].column,
 .ui.column.grid > [class*="five wide"].column {
   width: 31.25% !important;
+}
+
+.ui.grid > .row > [class*="five1 wide"].column,
+.ui.grid > .column.row > [class*="five1 wide"].column,
+.ui.grid > [class*="five1 wide"].column,
+.ui.column.grid > [class*="five1 wide"].column {
+  width: 33.33% !important;
 }
 
 .ui.grid > .row > [class*="six wide"].column,
@@ -29524,16 +29531,16 @@ select.ui.dropdown {
 .ui.modal > .header {
   display: block;
   font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  background: #FFFFFF;
-  margin: 0em;
+  /*background: #FFFFFF;*/
+  margin-top: 2%;
   padding: 1.25rem 1.5rem;
   box-shadow: none;
-  color: rgba(0, 0, 0, 0.85);
-  border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+  /*color: rgba(0, 0, 0, 0.85);
+  border-bottom: 1px solid rgba(34, 36, 38, 0.15);*/
 }
 
 .ui.modal > .header:not(.ui) {
-  font-size: 1.42857143rem;
+  font-size: 1.4rem;
   line-height: 1.2857em;
   font-weight: bold;
 }

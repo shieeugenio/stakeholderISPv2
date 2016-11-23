@@ -14,16 +14,16 @@
 //MENU
 
 Route::get('/', function() {
-	return redirect('home');
+	return view('home.defaultphome');
 
-});
+}); //public
 
 Route::get('home', function() {
-	return view('module.home');
+	return view('home.defaulthome');
 
-});
+}); //admin
 
-Route::get('adviser', function () {
+Route::get('directory', function () {
     return view('module.adviser');
 });
 

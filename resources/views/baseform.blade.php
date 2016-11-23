@@ -35,17 +35,7 @@
 		<header class = "banner">
 			<div class = "ui relaxed grid">
 				<div class = "six wide column">
-					<div class = "logocon">
-						<image class = "logoicon" src="{{URL::asset('images/Philippine-National-Police.png')}}"/>
-					
-					</div>
-
-					<image class = "acname" src="{{URL::asset('objects/Logo/ACName.png')}}"/>
-
-					<div class = "logocon2">
-						<image class = "logoicon" src="{{URL::asset('images/pp_logoforae.png')}}"/>
-							
-					</div>
+					<image class = "acname" src="{{URL::asset('objects/Logo/ACName2.png')}}"/>
 				</div>
 
 				<div class = "ten wide column">
@@ -58,15 +48,15 @@
 						</div>
 							
 						<div class = "row rightrow">
-							<div class="ui tabular menu">
+							<div class="ui top attached tabular menu">
 								<div class="mlink item" id = "tab1" data-tab="home" onclick = "window.location='{{url('home')}}'">
 								    Home
 								</div>
 								<div class="mlink item" id = "tab2"  data-tab="maintenance" onclick = "window.location='{{url('maintenance')}}'">
 								    Maintenance
 								</div>
-								<div class="mlink item" id = "tab3" data-tab = "adviser" onclick = "window.location='{{url('adviser')}}'">
-								    Adviser
+								<div class="mlink item" id = "tab3" data-tab = "directory" onclick = "window.location='{{url('directory')}}'">
+								    Directory
 								</div>
 							</div>
 								
@@ -88,7 +78,7 @@
 				</div>
 				<div class="ui tab" data-tab="maintenance">
 				</div>
-				<div class="ui tab" data-tab="adviser">
+				<div class="ui tab" data-tab="directory">
 				</div>
 
 				@yield('maincontent')
