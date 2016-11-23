@@ -24,9 +24,9 @@
 						    <tbody>
 						    	@foreach($offices as $citem)
 						    		<tr onclick = "loaddata({{$citem->ID}})" id = "{{$citem->ID}}">
-							    		<td><center>{{$citem->officename}}</center></td>
 							    		<td><center>{{$citem->policeofficecode}}</center></td>
 							    		<td><center>{{$citem->policestaff}}</center></td>
+							    		<td><center>{{$citem->officename}}</center></td>
 							    		<td><center>{{$citem->desc}}</center></td>
 							    		<td><center>{{$citem->police_address}}</center></td>
 							    		<td><center>{{$citem->contactno}}</center></td>
@@ -75,7 +75,7 @@
 
 							</div>							
 
-							<div class = "twelve wide column bspacing">
+							<div class = "twelve wide column bspacing10">
 								<label class = "formlabel">Description
 								</label>
 

@@ -17,39 +17,16 @@
 	height: 18%;
 }
 
-.logocon {
-	/*background-color: #565656;*/
-	width: 13%;
-	height: 100%;
-	color: #e9e2df;
-	margin-left: 10%;
-	margin-top: 1%;
-	float:left;
-
-}
-
-.logocon2 {
-	/*background-color: #565656;*/
-	width: 17%;
-	height: 100%;
-	color: #e9e2df;
-	margin-left: 2%;
-	margin-top: 1%;
-	float:left;
-
-}
-
 .logoicon {
 	width: 100%;
 	height: 100%;
 }
 
 .acname {
-	width: 45%;
+	width: 84%;
 	height: 100%;
 	margin-top: 1%;
-	margin-left: 3%;
-	float:left;
+	margin-left: 4%;
 
 }
 
@@ -88,7 +65,7 @@ span {
 
 }
 
-.content1 {
+.content1, .homecon {
 	width: 100%;
 	height: 100%;
 }
@@ -131,6 +108,12 @@ span {
 	padding-top: 2%;
 }
 
+.ui.grid.cardlist2 {
+	width: 98%;
+	margin-left: 1%;
+	padding-top: 2%;
+}
+
 hr {
 	width: 95%;
 	border-top: 1px solid #ede8e6;
@@ -141,6 +124,13 @@ hr {
 	width: 100%;
 	height: 100%;
 	border-radius: 3%;
+	float:left;
+	cursor: pointer;
+}
+
+.cardstyle:hover {
+	border: 2px solid #00253a;
+
 }
 
 .colheight {
@@ -263,7 +253,7 @@ hr {
 }
 
 
-form {
+form, .dcon {
 	width: 100%;
 	height: 100%;
 }
@@ -316,6 +306,20 @@ form {
 	margin-left: 2%;
 }
 
+.bspacing8 {
+	margin-top: 3%;
+	margin-left: 5%;
+}
+
+.bspacing9 {
+	margin-bottom: 2.3%;
+}
+
+.bspacing10 {
+	margin-top: 28%;
+}
+
+
 .fieldpane {
 	height: 100%;
 	width: 65%;
@@ -323,6 +327,7 @@ form {
 	margin-left: 3%;
 	float:left;
 }
+
 
 .fieldpane2 {
 	height: 100%;
@@ -379,4 +384,165 @@ tr:hover, .activerow {
 .maintecon {
 	width: 100%;
 	height: 100%;
+}
+
+.search {
+	width: 20em;
+	height: 2em;
+	margin: 5% 0 0 3%;
+}
+
+.ui.segment.summcon {
+	width: 95%;
+	height: 20em;
+	margin: 4% 0 0 5%;
+	background-color: #ede8e6;
+}
+
+.summhead {
+	color: #00253a;
+	width: 100%;
+	height: 50%;
+	font-family: "Franklin Gothic Book";
+	font-weight: bold;
+	font-size: 1em;
+	margin-top: 1%;
+}
+
+.summcontent {
+	margin-top: 2%;
+	width: 100%;
+	max-width: 100%;
+	min-height: 90%;
+	height: auto;
+}
+
+.hcontent {
+	width: 98%;
+	margin-top: 1%;
+	min-height: 90%;
+	height: auto;
+}
+
+.banner1 {
+	background-color: #00253a;
+	width: 100%;
+	height: 18%;
+}
+
+
+.acname1 {
+	width: 84%;
+	height: 100%;
+	margin-top: 1%;
+	margin-left: 4%;
+	cursor: pointer;
+
+}
+
+.phbdy {
+	background-color: #e7e7e7;
+}
+
+
+.ui.segment.logcon {
+	width: 95%;
+	height: 15em;
+	margin: 4% 0 0 5%;
+	background-color: white;
+}
+
+.ui.segment.rightpane {
+	width: 98%;
+	min-height: 100%;
+	margin-top:1.3%;
+	height: auto;
+	background-color: white;
+
+}
+
+.loghead {
+	color: #00253a;
+	width: 100%;
+	height: 50%;
+	font-family: "Franklin Gothic Book";
+	font-weight: bold;
+	font-size: 1.2em;
+	margin-top: 3%;
+}
+
+.logcontent {
+	margin-top: 2%;
+	width: 100%;
+	max-width: 100%;
+	min-height: 90%;
+	height: auto;
+}
+
+.hr1 {
+	width: 90%;
+	border-top: 1px solid #00253a;
+	margin-right: 10%;
+}
+
+.logfield {
+	width: 89%;
+	height: 1%;
+	margin-left: -3%;
+	line-height: 4%;
+	margin-bottom: 3%;
+}
+
+.centerbtn {
+	margin-left: 27%;
+	margin-top: 4%;
+}
+
+.cardstyleportrait {
+	border: 2px solid #ebebeb;
+	width: 100%;
+	height: 100%;
+	border-radius: 3%;
+	margin-left: 4%;
+}
+
+.colheight1 {
+	height: 60%;
+}
+
+.advphoto1 {
+	height: 43%;
+	width: 100%;
+	border-top-left-radius: inherit;
+	border-top-right-radius: inherit;
+}
+
+.advdata1 {
+	width: 100%;
+	height: 90%;
+	margin: 2% 4% 2% 2%;
+	font-family: "Franklin Gothic Book";
+}
+
+.search2 {
+	margin-left: 3.5%;
+}
+
+#viewadv {
+	background-color:  #ede8e6;
+}
+
+.modalcontent, .tabbody {
+	width: 100%;
+	height: auto;
+	min-height: 90%;
+	background-color: white;
+}
+
+.tabbody {
+	padding: 3%;
+}
+
+.labeldesc {
+	color: #565656;
 }

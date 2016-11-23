@@ -10,5 +10,12 @@ function init() {
 
 	$('#select').dropdown();
 
+	$('.ui.sticky')
+	  .sticky({
+	    context: '#summary'
+	  });
+
+	$('.ui.modal')
+	  .modal();
 	
 }//function init() {
