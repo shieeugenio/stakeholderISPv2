@@ -19,24 +19,22 @@ class PoliceOfficeTwoController extends Controller
         if(isset($_POST['submit'])){
             $policeoffice = new App\Models\PoliceOfficeSecond;
 
-    	    $policeoffice->police_office_id = $request->input('office');
-    	    $policeoffice->officename = $request->input('name');
-    	    $policeoffice->policeofficecode2 = $request->input('secondcode');
-    	    $policeoffice->desc = $request->input('desc');
-    	    $policeoffice->street = $request->input('street');
-    	    $policeoffice->barangay = $request->input('barangay');
-    	    $policeoffice->city = $request->input('city');
-    	    $policeoffice->province = $request->input('province');
-    	    $policeoffice->contactno = $request->input('contact');
+    	    $policeoffice->police_office_id = $request->office;
+    	    $policeoffice->officename = $request->name;
+    	    $policeoffice->policeofficecode2 = $request->code;
+    	    $policeoffice->desc = $request->desc;
+    	    $policeoffice->street = $request->street;
+    	    $policeoffice->barangay = $request->barangay;
+    	    $policeoffice->city = $request->city;
+    	    $policeoffice->province = $request->province;
+    	    $policeoffice->contactno = $request->contact;
  
            	$policeoffice->save();
 
-    	    return redirect('maintenance/policeoffice2');
         }
     }
 
     public function find(Request $request){
-    	$office = App\Models\PoliceOffices::all();
         $police = $request->id;
     	$id = App\Models\PoliceOfficeSecond::find($police);
     	return $id;
@@ -50,7 +48,7 @@ class PoliceOfficeTwoController extends Controller
     		
     		$id->police_office_id = $request->office;
   		  	$id->officename = $request->name;
-  		  	$id->policeofficecode2 = $request->secondcode;
+  		  	$id->policeofficecode2 = $request->code;
   		  	$id->desc = $request->desc;
     		$id->street = $request->street;
     		$id->barangay = $request->barangay;
@@ -59,8 +57,6 @@ class PoliceOfficeTwoController extends Controller
     		$id->contactno = $request->contact;
 
     		$id->save();
-
-    		return redirect('maintenance/policeoffice2');
     	}
     }
 

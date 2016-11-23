@@ -13,12 +13,8 @@ class ACSubcategoryController extends Controller
     public function index(){
     	$sub = ACSubcategory::with('category')->get();
     	$cat = ACCategory::all();
-    	return View ('Maintenance.ACSubcat-index')->with('category',$cat)->with('subcat', $sub);
+    	return View ('maintenancetable.acsubcat_table')->with('category',$cat)->with('subcat', $sub);
 
-    }
-
-    public function addView(){
-    	return View ('Maintenance.ACCategory');
     }
 
     public function confirm(Request $req){
@@ -29,15 +25,14 @@ class ACSubcategoryController extends Controller
             $cat->acsubcategorycode = $req->subcatcode;
             $cat->desc = $req->desc;
             $cat->save();
-             //Session::flash('mess', 'category successfully added to list!');
-            return redirect("subcategory");
         }
     }
 
-    public function edit($id){
-        $subcat = ACSubcategory::find($id);
-        $cat = ACCategory::all();
-        return View ('Maintenance.acsubcategoryedit')->with('subcategory', $subcat)->with('cat',$cat);
+    public function edit(Request $req){
+        $id = $req->id;
+        $cat = ACSubcategory::find($id);
+        return $cat;
+        
     }
 
     public function update(Request $req){
@@ -48,10 +43,7 @@ class ACSubcategoryController extends Controller
             $cat->categoryid = $req->catID;
             $cat->desc = $req->desc;
             
-            echo  $req;
-            
             $cat->save();
-            return redirect("subcategory");
 
         }
     }

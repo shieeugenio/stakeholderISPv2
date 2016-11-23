@@ -5,19 +5,14 @@
 		<div class = "ui grid">
 			<div class = "ten wide column">
 				<div class = "tablepane">
-					<div class = "mtitle">Advisory Council Category
-						<!--<div class = "ui icon button addbtn" title = "add">
-							<i class="plus icon topmargin"></i>
-										
-						</div>-->
-					</div>
+					<div class = "mtitle">Advisory Council Category</div>
 
 					<div class = "tablecon">
 						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
 						    <thead>
 						    	<tr>
-						            <th><center>Category Code</center></th>
-						            <th><center>Category Name</center></th>
+						            <th><center>Code</center></th>
+						            <th><center>Name</center></th>
 						            <th><center>Description</center></th>
 
 						        </tr>	
@@ -44,6 +39,7 @@
 			<div class = "six wide column">
 				<div class = "formpane">
 					<div class = "mhead">
+						<div id="myToast" class="toast-popup"></div>
 						<i class="write square big icon"></i>
 					</div>
 
@@ -51,23 +47,15 @@
 					<form class = "ui form" id = "form" action = "javascript:controlaction()">
 							
 						<div class = "labelpane">
-									
-							<!--<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Category ID
-									<span class = "asterisk">*</span>
-
-								</label>
-
-							</div>-->
 
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Category Code</label>
+								<label class = "formlabel">Code</label>
 								<span class = "asterisk">*</span>
 										
 							</div>
 
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Category Name</label>
+								<label class = "formlabel">Name</label>
 								<span class = "asterisk">*</span>
 										
 							</div>
@@ -83,14 +71,14 @@
 						<input type="hidden" value="" name="categid"/>
 						<div class = "fieldpane">
 							<div class = "twelve wide column bspacing2">
-								<div class="ui input formfield">
-								  <input type="text" name = "categcode" pattern = "^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}" placeholder="e.g AC" required>
+								<div class="ui input field formfield">
+								  <input type="text" name = "categcode" placeholder="e.g. REG">
 								</div>
 							</div>
 
 							<div class = "twelve wide column bspacing2">
-								<div class="ui input formfield">
-								  <input type="text" name = "categname" pattern = "^(?=.*(\d|\w))[A-Za-z0-9 ]{5,35}" placeholder="e.g Name" required>
+								<div class="ui input field formfield">
+								  <input type="text" name = "categname" placeholder="e.g. Regional">
 								</div>
 							</div>
 
@@ -101,13 +89,12 @@
 							</div>
 
 							<div class = "twelve wide column bspacing2">
-								<center><button name="submit" 
-												class="ui tiny button savebtnstyle"
-												onclick = "return confirm('Save Record?')">
+								<center><button type = "submit" name="submit" 
+												class="ui tiny button submit savebtnstyle">
 
 									Save
 								</button>
-								<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag()}"class="ui tiny button">
+								<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button">
 									Cancel
 
 								</button></center>
@@ -128,65 +115,31 @@
 
 	<script type="text/javascript">
 
-		/**$('.ui.form')
-			.form({
-				fields: {
-					categcode : ['empty', 'regExp[/^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}$/]]'],
-					categname : ['empty', 'regExp[/^(?=.*(\d|\w))[A-Za-z0-9 ]{5,35}$/]]']
-			    }
-			  });
-
-		function validateFields() {
-			var code = document.getElementsByName('categcode')[0].value;
-			var name = document.getElementsByName('categname')[0].value;
-			var cpattern = new RegExp("^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}");
-			var npattern = new RegExp("^(?=.*(\d|\w))[A-Za-z0-9 ]{5,35}");
-
-			if(cpattern.test(code) ==  "true" && npattern.test(name) ==  "true") {
-				$("name = 'submit'").attr('class', 'ui tiny button savebtnstyle');
-				$("#ccode").attr('class','ui input formfield');
-				$("#cname").attr('class','ui input formfield');
-
-			} else {
-				if(cpattern.test(code) == "false") {
-					$("name = 'submit'").attr('class', 'ui tiny button savebtnstyle disabled');
-					$("#ccode").attr('class','ui input formfield error');
-
-
-				} else if(cpattern.test(code) ==  "true") {
-					$("#ccode").attr('class','ui input formfield');
-
-				}//if(cpattern.text(code) == "false") {
-
-				if(npattern.test(name) == "false") {
-					$("name = 'submit'").attr('class', 'ui tiny button savebtnstyle disabled');
-					$("#cname").attr('class','ui input formfield error');
-
-				} else if(npattern.test(name) == "true") {
-					$("#cname").attr('class','ui input formfield');
-
-				}//if(npattern.test(name) == "false") {
-
-			}//if(cpattern.text(code) ==  "true" && npattern.text(code) ==  "true") {
-		}//function validateFields() {**/
-
 		$('#m1').attr('class', 'item active');
 		var flag = 0;
 
 		function controlaction() {
-			console.log(flag);
 
-			if(flag == 1) {
-				editData();
+			if(confirm('Save?')) {
+				if(flag == 1) {
+					editData();
 
-			} else if(flag == 0) {
-				addData();
+				} else if(flag == 0) {
+					addData();
 
-			}//if(flag == 1) {
+				}//if(flag == 1) {
+
+			}//if(confirm('Save?')) {
+			
 		}//function controlaction() {
 
-		function resetflag() {
+		function resetflag(msg) {
 			flag = 0;
+
+			$("#myToast").showToast({
+				message: msg,
+				timeout: 2500
+			});
 
 		}//function resetflag() {
 
@@ -203,7 +156,7 @@
 
 			$.ajax({
 				type: "POST",
-				url: "{{url('Maintenance/edit')}}",
+				url: "{{url('accategory/view')}}",
 				data: data,
 			   	dataType: "JSON",
 			   	success : function(data) {
@@ -212,8 +165,6 @@
 			   		document.getElementsByName('categname')[0].value = data['categoryname'];
 			   		document.getElementsByName('categcode')[0].value = data['accategorycode'];
 			   		document.getElementsByName('description')[0].value = data['desc'];
-
-			   		console.log(data);
 
 			   	}//success : function() {
 			});
@@ -232,22 +183,16 @@
 
 			$.ajax({
 				type: "POST",
-				url: "{{url('confirm')}}",
+				url: "{{url('accategory/add')}}",
 				data: data,
-			   	dataType: "JSON",
-			   	success : function() {
-			   		flag = 0;
-
-			   		$(document).ready(function(){
-						$("#toast").showToast({
-						    message: 'Saved!',
-						    timeout: 2500
-						});
-					});
-
-
+			   	success : function(msg) {
+			   		resetflag('Saved!');
 			   	}
 			});
+
+			setTimeout(function(){
+				location.reload();
+			}, 2600);
 
 		}//function addData(){
 
@@ -261,22 +206,21 @@
 				'_token' : '{{ Session::token() }}'
 			};
 
-			console.log(data)
-
 			$.ajax({
 				type: "POST",
-				url: "{{url('Maintenance/editCommit')}}",
+				url: "{{url('accategory/edit')}}",
 				data: data,
-			   	dataType: "JSON",
 			   	success : function() {
-			   		flag = 0;
-
-
+			   		resetflag("Updated!");
 			   	}//success : function() {
 			});
 
+			setTimeout(function(){
+				location.reload();
+			}, 2600);
 
-		}//
+
+		}//function editData() {
 	</script>
 
 @stop

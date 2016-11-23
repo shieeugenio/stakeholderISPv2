@@ -11,7 +11,18 @@
 |
 */
 
-//SHIELA
+//MENU
+
+Route::get('/', function() {
+	return redirect('home');
+
+});
+
+Route::get('home', function() {
+	return view('module.home');
+
+});
+
 Route::get('adviser', function () {
     return view('module.adviser');
 });
@@ -21,75 +32,43 @@ Route::get('maintenance', function () {
 });
 
 
-///editmaintenance UI [cja] 
-
-Route::get('maintenance/acsubcat', function () {
-    return view('maintenancetable.acsubcat_table');
-});
-Route::get('maintenance/policeoffice', function () {
-    return view('maintenancetable.policeoffice_table');
-});
-Route::get('maintenance/policeoffice2', function () {
-    return view('maintenancetable.policeoffice2_table');
-});
-
-//Routes for ADVISORY POSITIONS - RESUTAA
-Route::get('maintenance/advisoryposition','ACPositionController@index_acposition');
-Route::resource('maintenance/acpositioncrud','ACPositionController@acpositioncrud');
-
-//Routes for POLICE POSITIONS - RESUTAA
-Route::get('maintenance/policeposition','PolicePositionController@index_policeposition');
-Route::resource('maintenance/policepositioncrud','PolicePositionController@policepositioncrud');
-
-
-
-
-//routes for category
+//MAINTENANCE
 Route::get('maintenance/accategory', 'ACCategoryController@index');
-Route::get('cat','ACCategoryController@index');
-Route::get('CatForm', 'ACCategoryController@addView');
-Route::post("/confirm", 'ACCategoryController@confirm');
-Route::resource('Maintenance/edit','ACCategoryController@edit');
-Route::post("Maintenance/editCommit", "ACCategoryController@update");
-
-//end of category
-
-//routes for subcategory
-Route::get('subcategory','ACSubcategoryController@index');
-Route::get('subform', 'ACSubcategoryController@addView');
-Route::post('addcommit', 'ACSubcategoryController@confirm');
-Route::get('Maintenance/{id}/subedit','ACSubcategoryController@edit');
-Route::post("Maintenance/{id}/subeditCommit", "ACSubcategoryController@update");
-
-//end of subcategory
-
-
-//AC SECTOR maintenance w/ui [amps]
+Route::get('maintenance/acsubcategory','ACSubcategoryController@index');
+Route::get('maintenance/acposition','ACPositionController@index_acposition');
 Route::get('maintenance/acsector','acsectorController@index_acsectors');
-Route::resource('maintenancetable/acsectorCRUD','acsectorController@acsectorCRUD');
+Route::get('maintenance/primaryoffice', 'PoliceOfficesController@index');
+Route::get('maintenance/secondaryoffice', 'PoliceOfficeTwoController@index');
+Route::get('maintenance/policeposition','PolicePositionController@index_policeposition');
 
-//Police Office
+
+//BACK-END
+
+//AC CATEGORY
+Route::post("accategory/add", 'ACCategoryController@confirm');
+Route::post('accategory/view','ACCategoryController@edit');
+Route::post("accategory/edit", "ACCategoryController@update");
+
+//AC SUBCATEGORY
+Route::post('acsubcategory/add', 'ACSubcategoryController@confirm');
+Route::post('acsubcategory/view','ACSubcategoryController@edit');
+Route::post("acsubcategory/edit", "ACSubcategoryController@update");
+
+//AC POSITION
+Route::post('maintenance/acpositioncrud','ACPositionController@acpositioncrud');
+
+//AC SECTOR
+Route::post('maintenancetable/acsectorCRUD','acsectorController@acsectorCRUD');
+
+//PRIMARY OFFICE
 Route::post('/buttonsPoliceOffice', 'PoliceOfficesController@add');
 Route::post('maintenance/editpolice', 'PoliceOfficesController@edit');
+Route::post('maintenance/editpoliceview', 'PoliceOfficesController@find');
 
-
-Route::get('maintenance/editpoliceview', 'PoliceOfficesController@find');
-Route::get('maintenance/policeoffice', 'PoliceOfficesController@index');
-
-
-//Police Office Second
+//SECONDARY OFFICE
 Route::post('/confirmpolice', 'PoliceOfficeTwoController@add');
+Route::post('maintenance/subpoliceview', 'PoliceOfficeTwoController@find');
 Route::post('maintenance/editsubpolice', 'PoliceOfficeTwoController@edit');
 
-Route::get('maintenance/policeoffice2', 'PoliceOfficeTwoController@index');
-Route::get('maintenance/subpoliceview', 'PoliceOfficeTwoController@find');
-
-//This is for Police  Maintenance -- Ore wa Resutaa da :D
-Route::resource('maintenance/policeposition', 'PolicePositionController@index_policeposition');
-Route::resource('maintenance/policepositioninsert' , 'PolicePositionController@policepositioninsert');
-Route::resource('maintenance/policepositionedit', 'PolicePositionController@policepositionedit');
-Route::resource('maintenance/policepositionupdate' , 'PolicePositionController@policepositionupdate');
-
-Route::get('secondpolice', 'PoliceOfficeTwoController@manageofficetwo');
-Route::get('maintenance/{id}/subpoliceview', 'PoliceOfficeTwoController@find');
-
+//POLICE POSITION
+Route::post('maintenance/policepositioncrud','PolicePositionController@policepositioncrud');
