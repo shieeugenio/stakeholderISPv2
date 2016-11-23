@@ -121,8 +121,6 @@
 
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
-									<input type="text" name="desc" placeholder="Description">
-								<div class="field">
 									<textarea class = "areastyle" name="desc" rows = "4" placeholder="Type here..."></textarea>
 								</div>
 							</div>
