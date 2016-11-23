@@ -71,6 +71,13 @@
 							</div>
 
 							<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Office Staff
+									<span class = "asterisk">*</span>
+								</label>
+
+							</div>							
+
+							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Description
 								</label>
 
@@ -102,6 +109,17 @@
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input formfield">
 									<input type="text" name="code" placeholder="Office Code">
+								</div>
+							</div>
+
+							<div class = "twelve wide column bspacing2">
+								<div class="ui radio">
+									<input type="radio" name="staff" value="D-staff" checked="" tabindex="0" class="hidden">
+									<label>D-staff</label>
+								</div>
+								<div class="ui radio">
+									<input type="radio" name="staff" value="P-staff"  tabindex="0" class="hidden">
+									<label>P-staff</label>
 								</div>
 							</div>
 
