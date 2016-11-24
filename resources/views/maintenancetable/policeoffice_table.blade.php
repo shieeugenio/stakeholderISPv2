@@ -25,6 +25,7 @@
 						    	@foreach($offices as $citem)
 						    		<tr onclick = "loaddata({{$citem->ID}})" id = "{{$citem->ID}}">
 							    		<td><center>{{$citem->policeofficecode}}</center></td>
+							    		<td><center>{{$citem->policestaff}}</center></td>
 							    		<td><center>{{$citem->officename}}</center></td>
 							    		<td><center>{{$citem->desc}}</center></td>
 							    		<td><center>{{$citem->police_address}}</center></td>
@@ -212,6 +213,7 @@
 			   		document.getElementsByName('officeid')[0].value = data['ID'];
 			   		document.getElementsByName('name')[0].value = data['officename'];
 			   		document.getElementsByName('code')[0].value = data['policeofficecode'];
+			   		document.getElementsByName('staff')[0].value = data['policestaff'];
 			   		document.getElementsByName('desc')[0].value = data['desc'];
 			   		document.getElementsByName('address')[0].value = data['police_address'];
 			   		document.getElementsByName('contact')[0].value = data['contactno'];
@@ -226,6 +228,7 @@
 			var data = {
 				'name' : document.getElementsByName("name")[0].value,
 				'code' : document.getElementsByName("code")[0].value,
+				'staff' : document.getElementsByName("staff")[0].value,
 				'desc' : document.getElementsByName("desc")[0].value,
 				'add' : document.getElementsByName("address")[0].value,
 				'contact' : document.getElementsByName("contact")[0].value,
@@ -254,6 +257,7 @@
 				'policeID' : document.getElementsByName('officeid')[0].value,
 				'name' : document.getElementsByName("name")[0].value,
 				'code' : document.getElementsByName("code")[0].value,
+				'staff' : document.getElementsByName("staff")[0].value,
 				'desc' : document.getElementsByName("desc")[0].value,
 				'add' : document.getElementsByName("address")[0].value,
 				'contact' : document.getElementsByName("contact")[0].value,

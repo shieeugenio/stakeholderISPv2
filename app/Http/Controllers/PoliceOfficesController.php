@@ -26,6 +26,7 @@ class PoliceOfficesController extends Controller
             $office = new App\Models\PoliceOffices;
             $office->policeofficecode = $request->input('code');
             $office->officename = $request->input('name');
+            $office->policestaff = $request->input('staff');
     	    $office->desc = $request->input('desc');
     	    $office->police_address = $request->input('add');
     	    $office->contactno = $request->input('contact');
@@ -46,6 +47,7 @@ class PoliceOfficesController extends Controller
 
     		$id->policeofficecode = $request->code;
     		$id->officename = $request->name;
+            $id->policestaff = $request->staff;
     		$id->desc = $request->desc;
     		$id->police_address = $request->add;
     		$id->contactno = $request->contact;
