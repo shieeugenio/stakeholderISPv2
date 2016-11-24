@@ -134,10 +134,11 @@
 		function CRUD(id,func)
 		{
 
-			if(confirm('Save?')) {
-				var data;
-				if(func == 1)
-				{
+			
+			var data;
+			if(func == 1)
+			{
+				if(confirm('Save?')) {
 					data = {
 								'ppname' : document.getElementsByName('positionname')[0].value,
 								'ppcode' : document.getElementsByName('positioncode')[0].value,
@@ -146,21 +147,29 @@
 								'submit' : document.getElementsByName('submit')[0].value,
 								'_token' : '{{ Session::token()}}'
 						   };
-				}
 
-				if(func == 2)
-				{
-					data = {
-								'id' : id,
-								'callId' : 2,
-								'_token' : '{{ Session::token()}}'
-						   };
+					exec(data, func);
+
+				}//if(confirm('Save?')) {
+
+			}
+
+			if(func == 2)
+			{
+				data = {
+						'id' : id,
+						'callId' : 2,
+						'_token' : '{{ Session::token()}}'
+						};
 						   
-					document.getElementById('dualbutton').value = 3;
-				}
+				document.getElementById('dualbutton').value = 3;
+				exec(data, func);
 
-				if(func == 3)
-				{
+			}
+
+			if(func == 3)
+			{
+				if(confirm('Save?')) {
 					data = {
 								'id' : document.getElementById('ID').value,
 								'ppname' : document.getElementsByName('positionname')[0].value,
@@ -169,12 +178,16 @@
 								'callId' : 3,
 								'submit' : document.getElementsByName('submit')[0].value,
 								'_token' : '{{ Session::token()}}'
-						   };	
-				}
+						   };
+					exec(data, func);
 
-			
+				}//if(confirm('Save?')) {
+			}
 
-				$.ajax({
+		}
+
+		function exec(data, func) {
+			$.ajax({
 
 					type: "POST",
 					url : "{{url('maintenance/policepositioncrud')}}",
@@ -198,7 +211,7 @@
 
 						else
 						{
-							$('#' + id).attr('class', 'activerow');
+							$('#' + data['ID']).attr('class', 'activerow');
 							$('tr').not("[id = '" + data['ID'] + "']").removeAttr('class');
 
 							document.getElementById('ID').value = data['ID'];
@@ -212,9 +225,7 @@
 					}
 
 				});
-		}//if(confirm('Save?')) {
-
-	}
+		}//
 
 	</script>
 

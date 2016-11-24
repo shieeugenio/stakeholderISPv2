@@ -120,34 +120,36 @@
 <script type="text/javascript">
 	$('#m4').attr('class', 'item active');
 
-function resetflag(msg){
+	function resetflag(msg){
 
-	document.getElementById('dualbutton').value = 1;
+		document.getElementById('dualbutton').value = 1;
 
-	$("#myToast").showToast({
-		message: msg,
-		timeout: 2500
-	});
-	
-	
-}
+		$("#myToast").showToast({
+			message: msg,
+			timeout: 2500
+		});
+		
+		
+	}
 
-function CRUD(id, func){
+	function CRUD(id, func){
 
-	if(confirm('Save?')) {
 		var data;
 
 		if(func == 1)
 		{
-			
-			data = {
-			'secname' : document.getElementsByName('acsectorName')[0].value,
-			'seccode' : document.getElementsByName('acsectorCode')[0].value,
-			'secdesc' : document.getElementsByName('Desc')[0].value,
-			'submit': document.getElementsByName("submit")[0].value,
-			'callId' : 1,
-			'_token' : '{{ Session::token() }}'
-			};
+			if(confirm('Save?')) {
+				data = {
+				'secname' : document.getElementsByName('acsectorName')[0].value,
+				'seccode' : document.getElementsByName('acsectorCode')[0].value,
+				'secdesc' : document.getElementsByName('Desc')[0].value,
+				'submit': document.getElementsByName("submit")[0].value,
+				'callId' : 1,
+				'_token' : '{{ Session::token() }}'
+				};
+
+				exec(data, func);
+			}//if(confirm('Save?')) {
 		}//add
 
 		if(func == 2)
@@ -157,22 +159,34 @@ function CRUD(id, func){
 			'callId' : 2,
 			'_token' : '{{ Session::token() }}'};
 			document.getElementById('dualbutton').value = 3;
+
+			exec(data, func);
+			
+
 		}//view
 
 		if(func == 3)
 		{
-			data = {
-			'id' : document.getElementById('acsectorID').value,
-			'seccode' : document.getElementsByName('acsectorCode')[0].value,
-			'secname' : document.getElementsByName('acsectorName')[0].value,
-			'secdesc' : document.getElementsByName('Desc')[0].value,
-			'submit': document.getElementsByName("submit")[0].value,
-			'callId' : 3,
-			'_token' : '{{ Session::token() }}'
-			};
+			if(confirm('Save?')) {
+				data = {
+					'id' : document.getElementById('acsectorID').value,
+					'seccode' : document.getElementsByName('acsectorCode')[0].value,
+					'secname' : document.getElementsByName('acsectorName')[0].value,
+					'secdesc' : document.getElementsByName('Desc')[0].value,
+					'submit': document.getElementsByName("submit")[0].value,
+					'callId' : 3,
+					'_token' : '{{ Session::token() }}'
+					};
+
+				exec(data, func);
+
+			}//if(confirm('Save?')) {
 		}//update
 
-		
+			
+	}
+
+	function exec(data, func) {
 		$.ajax({
 
 			type: "POST",
@@ -195,7 +209,7 @@ function CRUD(id, func){
 
 				}//if func
 				else {
-					$('#' + id).attr('class', 'activerow');
+					$('#' + data['ID']).attr('class', 'activerow');
 					$('tr').not("[id = '" + data['ID'] + "']").removeAttr('class');
 
 					document.getElementById('acsectorID').value = data['ID'];
@@ -206,11 +220,8 @@ function CRUD(id, func){
 			} 
 
 		});
+	}//function exec() {
 
-	}//if(confirm('Save?')) {
-			
-}	
-
-	</script>
+</script>
 	
 @stop

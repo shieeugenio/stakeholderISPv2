@@ -129,12 +129,12 @@ function resetflag(msg){
 
 function CRUD(id, func){
 
-	if(confirm('Save?')) {
-		var data;
+	
+	var data;
 
-		if(func == 1)
-		{
-			
+	if(func == 1)
+	{
+		if(confirm('Save?')) {
 			data = {
 			'acpname' : document.getElementsByName('acpositionname')[0].value,
 			'acpcode' : document.getElementsByName('acpositioncode')[0].value,
@@ -143,19 +143,26 @@ function CRUD(id, func){
 			'callId' : 1,
 			'_token' : '{{ Session::token() }}'
 			};
-		}//add
 
-		if(func == 2)
-		{
-			data = {
+			exec(data, func);
+		}//if(confirm('Save?')) {
+	}//add
+
+	if(func == 2)
+	{
+		data = {
 			'id' : id,
 			'callId' : 2,
-			'_token' : '{{ Session::token() }}'};
-			document.getElementById('dualbutton').value = 3;
-		}//view
+			'_token' : '{{ Session::token() }}'
+		};
+		document.getElementById('dualbutton').value = 3;
 
-		if(func == 3)
-		{
+		exec(data, func);
+	}//view
+
+	if(func == 3)
+	{
+		if(confirm('Save?')) {
 			data = {
 			'id' : document.getElementById('ID').value,
 			'acpname' : document.getElementsByName('acpositionname')[0].value,
@@ -165,10 +172,17 @@ function CRUD(id, func){
 			'callId' : 3,
 			'_token' : '{{ Session::token() }}'
 			};
-		}//update
 
-		
-		$.ajax({
+			exec(data, func);
+		}//if(confirm('Save?')) {
+	}//update
+			
+}
+
+
+
+function exec(data, func) {
+	$.ajax({
 
 			type: "POST",
 			url: "{{url('maintenance/acpositioncrud')}}",
@@ -192,7 +206,7 @@ function CRUD(id, func){
 
 				}//if func
 				else {
-					$('#' + id).attr('class', 'activerow');
+					$('#' + data['ID']).attr('class', 'activerow');
 					$('tr').not("[id = '" + data['ID'] + "']").removeAttr('class');
 
 					document.getElementById('ID').value = data['ID'];
@@ -203,10 +217,10 @@ function CRUD(id, func){
 			} 
 
 		});
+}//
 
-	}//if(confirm('Save?')) {
-			
-}
-	</script>
+
+
+</script>
 
 @stop
