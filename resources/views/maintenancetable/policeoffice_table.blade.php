@@ -22,17 +22,17 @@
 						    </thead>
 						                   
 						    <tbody>
-						    	@foreach($offices as $citem)
-						    		<tr onclick = "loaddata({{$citem->ID}})" id = "{{$citem->ID}}">
-							    		<td><center>{{$citem->policeofficecode}}</center></td>
-							    		<td><center>{{$citem->policestaff}}</center></td>
-							    		<td><center>{{$citem->officename}}</center></td>
-							    		<td><center>{{$citem->desc}}</center></td>
-							    		<td><center>{{$citem->police_address}}</center></td>
-							    		<td><center>{{$citem->contactno}}</center></td>
+						    	@for($ctr = 0 ; $ctr < sizeof($offices) ; $ctr++)
+						    		<tr onclick = "loaddata({{$offices[$ctr]->ID}})" id = "{{$offices[$ctr]->ID}}">
+							    		<td><center>{{$offices[$ctr]->policeofficecode}}</center></td>
+							    		<td><center>{{$offices[$ctr]->officename}}</center></td>
+							    		<td><center>{{$staffdesc[$ctr]}}</center></td>
+							    		<td><center>{{$offices[$ctr]->desc}}</center></td>
+							    		<td><center>{{$offices[$ctr]->police_address}}</center></td>
+							    		<td><center>{{$offices[$ctr]->contactno}}</center></td>
 
 							    	</tr>
-						    	@endforeach
+						    	@endfor
 
 						    </tbody>
 
@@ -112,11 +112,11 @@
 
 							<div class = "twelve wide column bspacing2">
 								<div class="ui radio">
-									<input type="radio" name="staff" value="D-staff" checked="" tabindex="0" class="hidden">
+									<input type="radio" name="staff" value="0" checked="" tabindex="0" class="hidden">
 									<label>D-staff</label>
 								</div>
 								<div class="ui radio">
-									<input type="radio" name="staff" value="P-staff"  tabindex="0" class="hidden">
+									<input type="radio" name="staff" value="1"  tabindex="0" class="hidden">
 									<label>P-staff</label>
 								</div>
 							</div>
@@ -213,7 +213,7 @@
 			   		document.getElementsByName('officeid')[0].value = data['ID'];
 			   		document.getElementsByName('name')[0].value = data['officename'];
 			   		document.getElementsByName('code')[0].value = data['policeofficecode'];
-			   		document.getElementsByName('staff')[0].value = data['policestaff'];
+			   		$("input[name='staff'][value='" + data['policestaff'] + "']").prop("checked", 'true');
 			   		document.getElementsByName('desc')[0].value = data['desc'];
 			   		document.getElementsByName('address')[0].value = data['police_address'];
 			   		document.getElementsByName('contact')[0].value = data['contactno'];
@@ -228,7 +228,7 @@
 			var data = {
 				'name' : document.getElementsByName("name")[0].value,
 				'code' : document.getElementsByName("code")[0].value,
-				'staff' : document.getElementsByName("staff")[0].value,
+				'staff' : $("input[name='staff']:checked").val(),
 				'desc' : document.getElementsByName("desc")[0].value,
 				'add' : document.getElementsByName("address")[0].value,
 				'contact' : document.getElementsByName("contact")[0].value,
@@ -257,7 +257,7 @@
 				'policeID' : document.getElementsByName('officeid')[0].value,
 				'name' : document.getElementsByName("name")[0].value,
 				'code' : document.getElementsByName("code")[0].value,
-				'staff' : document.getElementsByName("staff")[0].value,
+				'staff' : $("input[name='staff']:checked").val(),
 				'desc' : document.getElementsByName("desc")[0].value,
 				'add' : document.getElementsByName("address")[0].value,
 				'contact' : document.getElementsByName("contact")[0].value,
@@ -271,7 +271,6 @@
 				data: data,
 			   	success : function() {
 			   		resetflag('Updated!');
-
 
 			   	}//success : function() {
 			});

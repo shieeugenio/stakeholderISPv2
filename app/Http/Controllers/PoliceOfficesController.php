@@ -11,8 +11,34 @@ class PoliceOfficesController extends Controller
     public function index(){
     	$office = App\Models\PoliceOffices::all();
 
-		return view('maintenancetable/policeoffice_table')->with('offices', $office);
+        $staffdesc = $this->getstaffdesc($office);
+
+		return view('maintenancetable/policeoffice_table')->with('offices', $office)
+                                                          ->with('staffdesc', $staffdesc);
+
+        //return $staffdesc;
 	}
+
+    public function getstaffdesc($office) {
+
+        $desclist = array();
+        foreach($office as $key => $items) {
+
+            if($items->policestaff == 0) {
+                $description = "D-Staff";
+            } else if($items->policestaff == 1) {
+                $description = "P-Staff";
+
+
+            }//if($items->policestaff == 0) {
+
+            $desclist = array_pad($desclist, sizeof($desclist) + 1, $description);
+
+        }//foreach($office as $key => $items) {
+
+        return $desclist;
+
+    }//public getstaffdesc() {
 
     public function confirmOffice(Request $request){
     	if(isset($_POST['addbtn'])){
