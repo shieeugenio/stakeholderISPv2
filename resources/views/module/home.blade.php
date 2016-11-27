@@ -143,17 +143,17 @@
 
 									<div class ="eleven wide column fieldpane">
 										<div class = "twelve wide column bspacing9">
-											<p>Contact No</p>
+											<p>INSERT CONTACT NO.</p>
 													
 										</div>
 
 										<div class = "twelve wide column bspacing9">
-											<p>Contact No</p>
+											<p>INSERT BIRTHDATE</p>
 													
 										</div>
 
 										<div class = "twelve wide column bspacing9">
-											<p>Contact No</p>
+											<p>INSERT HOME ADDRESS</p>
 													
 										</div>
 														

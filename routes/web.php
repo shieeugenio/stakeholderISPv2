@@ -27,6 +27,11 @@ Route::get('directory', function () {
     return view('module.adviser');
 });
 
+Route::get('directory/add', function () {
+    return view('module.adviser_add');
+});
+
+
 Route::get('maintenance', function () {
     return redirect('maintenance/accategory');
 });

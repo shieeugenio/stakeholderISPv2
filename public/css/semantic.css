@@ -6866,7 +6866,7 @@ a.ui.inverted.grey.header:hover {
   padding: 0em;
 }
 
-/*-------------------
+/*------------------
       Dividing
 --------------------*/
 
@@ -10649,7 +10649,7 @@ img.ui.bordered.image {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   text-align: left;
   line-height: 1.2142em;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   padding: 0.3em 0.5em;
   background: #FFFFFF;
   border: 1px solid rgba(34, 36, 38, 0.15);
@@ -12781,7 +12781,7 @@ ol.ui.list ol li,
 .ui.list > .item .header {
   display: block;
   margin: 0em;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   font-weight: bold;
   color: rgba(0, 0, 0, 0.87);
 }
@@ -15382,7 +15382,7 @@ ol.ui.horizontal.list li:before,
 /* Title */
 
 .ui.steps .step .title {
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   font-size: 1.14285714em;
   font-weight: bold;
 }
@@ -16158,7 +16158,7 @@ ol.ui.horizontal.list li:before,
 .ui.form input[type="time"],
 .ui.form input[type="text"],
 .ui.form input[type="url"] {
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   margin: 0em;
   outline: none;
   -webkit-appearance: none;
@@ -16167,7 +16167,7 @@ ol.ui.horizontal.list li:before,
   /*padding: 0.67861429em 1em;*/
   font-size: 1em;
   background: #FFFFFF;
-  border: 1px solid rgba(34, 36, 38, 0.15);
+  /*border: 1px solid rgba(34, 36, 38, 0.15);*/
   color: rgba(0, 0, 0, 0.87);
   border-radius: 0.28571429rem;
   box-shadow: 0em 0em 0em 0em transparent inset;
@@ -16443,7 +16443,7 @@ ol.ui.horizontal.list li:before,
 .ui.form input[type="tel"]:focus,
 .ui.form input[type="time"]:focus,
 .ui.form input[type="text"]:focus,
-.ui.form input[type="url"]:focus {
+.ui.form input[type="url"]:focus,{
   color: rgba(0, 0, 0, 0.95);
   border-color: #85B7D9;
   border-radius: 0.28571429rem;
@@ -19545,7 +19545,7 @@ ol.ui.horizontal.list li:before,
   display: -ms-flexbox;
   display: flex;
   margin: 1rem 0em;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   background: #FFFFFF;
   font-weight: normal;
   border: 1px solid #ede8e6;
@@ -21783,7 +21783,7 @@ Floated Menu / Item
 
 .ui.message .header {
   display: block;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   font-weight: bold;
   margin: -0.14285em 0em 0rem 0em;
 }
@@ -23990,7 +23990,7 @@ Floated Menu / Item
 .ui.card > .content > .header {
   display: block;
   margin: '';
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   color: rgba(0, 0, 0, 0.85);
 }
 
@@ -25606,7 +25606,7 @@ a.ui.card:hover,
 .ui.items > .item > .content > .header {
   display: inline-block;
   margin: -0.21425em 0em 0em;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   font-weight: bold;
   color: rgba(0, 0, 0, 0.85);
 }
@@ -26088,7 +26088,7 @@ a.ui.card:hover,
 
 .ui.statistics .statistic > .value,
 .ui.statistic > .value {
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   font-size: 4rem;
   font-weight: normal;
   line-height: 1em;
@@ -26103,7 +26103,7 @@ a.ui.card:hover,
 
 .ui.statistics .statistic > .label,
 .ui.statistic > .label {
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   font-size: 1em;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.87);
@@ -26659,7 +26659,7 @@ a.ui.card:hover,
 
 .ui.accordion .title:not(.ui) {
   padding: 0.5em 0em;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   font-size: 1em;
   color: rgba(0, 0, 0, 0.87);
 }
@@ -28124,6 +28124,7 @@ body.dimmable > .dimmer {
   transform: rotateZ(0deg);
   min-width: 9em;
   min-height: 1em;
+  height: 2em;
   background: #FFFFFF;
   display: inline-block;
   padding: 0.4em 2.6em 0.4em 1em;
@@ -29530,7 +29531,7 @@ select.ui.dropdown {
 
 .ui.modal > .header {
   display: block;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   /*background: #FFFFFF;*/
   margin-top: 2%;
   padding: 1.25rem 1.5rem;
@@ -30195,7 +30196,7 @@ a.ui.nag {
 
 .ui.popup > .header {
   padding: 0em;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   font-size: 1.125em;
   line-height: 1.2;
   font-weight: bold;
@@ -31549,7 +31550,7 @@ a.ui.nag {
 
 .ui.search > .results .result .title {
   margin: -0.14285em 0em 0em;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   font-weight: bold;
   font-size: 1em;
   color: rgba(0, 0, 0, 0.85);
@@ -31575,7 +31576,7 @@ a.ui.nag {
 }
 
 .ui.search > .results > .message .header {
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   font-size: 1rem;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.87);
@@ -31785,7 +31786,7 @@ a.ui.nag {
 .ui.category.search > .results .category > .name {
   width: 100px;
   background: transparent;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Franklin Gothic Book";
   font-size: 1em;
   float: 1em;
   float: left;

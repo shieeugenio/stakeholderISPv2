@@ -7,7 +7,9 @@
 			<div class = "ui grid">
 				<div class = "row">
 					<div class = "five wide column moveright">
-						<div class = "ui icon addbtn button tiny" title = "add">
+						<div class = "ui icon addbtn button tiny" 
+							onclick = "window.location='{{url('directory/add')}}'" 
+							title = "add">
 							<i class="plus icon topmargin"></i>
 							
 						</div>

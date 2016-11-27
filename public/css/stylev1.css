@@ -193,6 +193,15 @@ hr {
     border-top-right-radius: inherit;
 }
 
+.minvtitle {
+	color: #00253a;
+	background-color: white;
+	border-bottom: 1px solid #ede8e6;
+
+
+}
+
+
 .mtitle {
 	padding: 0.7em 0em 1.29em 1em;
 }
@@ -215,10 +224,7 @@ hr {
 .tablepane {
 	height: 100%;
 	width: 100%;
-	border-top-left-radius: 3%;
-    border-top-right-radius: 3%;
-    /*border: 1px solid #ede8e6;
-	border-radius: 1%;*/
+	border-radius: 0.28571429rem;
 }
 
 .formpane {
@@ -227,8 +233,8 @@ hr {
 	height: auto;
 	overflow: hidden;
 	width: 100%;
-	border-top-left-radius: 3%;
-    border-top-right-radius: 3%;
+	border-top-left-radius: 0.28571429rem;
+    border-top-right-radius: 0.28571429rem;
     border-right: 2px solid #ede8e6;
     border-bottom: 2px solid #ede8e6;
 	border-radius: 1%;
@@ -251,7 +257,6 @@ hr {
 	padding: 1% 1% 33% 1%;
 	float:left;
 }
-
 
 form, .dcon {
 	width: 100%;
@@ -352,14 +357,17 @@ form, .dcon {
 	color: red;
 }
 
-.ui.tiny.button.savebtnstyle {
+.ui.tiny.button.savebtnstyle,
+.ui.large.button.savebtnstyle {
 	background-color: #00253a;
 	border: 1px solid  #00253a;
 
 }
 
 .ui.tiny.button.savebtnstyle:hover,
-.ui.tiny.button.savebtnstyle:active {
+.ui.tiny.button.savebtnstyle:active,
+.ui.large.button.savebtnstyle:hover,
+.ui.large.button.savebtnstyle:active {
 	background-color: white;
 	color: #00253a;
 }
@@ -545,4 +553,29 @@ tr:hover, .activerow {
 
 .labeldesc {
 	color: #565656;
+}
+
+.formattp {
+	width: 96%;
+	margin-left: 1%;
+	margin-top: 1.8%;
+
+}
+
+.fborder {
+	border: 1px solid #ede8e6;
+}
+
+.fbtop {
+	border-top: 1px solid #ede8e6;
+}
+
+.fbradius {
+	border-radius: 0;
+}
+
+.htitle {
+	font-family: "Franklin Gothic Book";
+	margin-top : 1%;
+	margin-bottom: 2%;
 }
