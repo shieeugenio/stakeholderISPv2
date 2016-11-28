@@ -86,4 +86,5 @@ Route::get('maintenance/{id}/subpoliceview', 'PoliceOfficeTwoController@find');
 
 
 //ADVISER LESTER
-Route::get('maintenance/advisersample', 'AdviserController@index');
+Route::get('maintenance/trainingsample', 'TrainingController@index');
+Route::post('maintenance/store', 'TrainingController@store');
