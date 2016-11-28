@@ -47,7 +47,7 @@
 					</div>
 
 					
-					<form class = "ui form" id = "form" action = "javascript::controlaction()">
+					<form class = "ui form" id = "form" action = "javascript:controlaction()">
 							
 						<div class = "labelpane">
 									
