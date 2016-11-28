@@ -21,143 +21,164 @@
 						</div>
 
 						<div class = "tablecon">
-							<h4 class="ui dividing header">Basic Information</h4>
 
-							<div class = "field">
-								<label>Name <span class="asterisk">*</span></label>
+							<div class = "ui grid">
+								<div class = "thirteen wide column">
+									<h4 class="ui dividing header">Basic Information</h4>
 
-								<div class = "five fields">
-									<div class = "ui input field">
-										<input type="text" name = "lname" placeholder="Last Name">
-										
-									</div>
+									<div class = "field">
+										<label>Name <span class="asterisk">*</span></label>
 
-									<div class = "ui input field">
-										<input type="text" name = "fname" placeholder="First Name">
-
-									</div>
-
-									<div class = "ui input field">
-										<input type="text" name = "mname" placeholder="Middle Name">
-										
-									</div>
-									
-								</div>
-								
-							</div>
-
-							<div class = "five fields">
-								<div class = "field">
-									<label>Birthdate <span class="asterisk">*</span></label>
-
-									<div class = "ui input field">
-										<input type="date" name = "bdate">
-											
-									</div>
-								</div>
-
-								<div class = "field">
-									<label>Gender <span class="asterisk">*</span></label>
-									<div class = "inline fields">
-										<div class = "ui radio field">
-											<input type="radio" checked name="gender" value="0"  tabindex="0" class="hidden">
-											<label>Male</label>
+										<div class = "four fields">
+											<div class = "ui input field">
+												<input type="text" name = "lname" placeholder="Last Name">
 												
-										</div>
-										<div class = "ui radio field">
-											<input type="radio" name="gender" value="1"  tabindex="0" class="hidden">
-											<label>Female</label>
-											
+											</div>
+
+											<div class = "ui input field">
+												<input type="text" name = "fname" placeholder="First Name">
+
+											</div>
+
+											<div class = "ui input field">
+												<input type="text" name = "mname" placeholder="Middle Name">
 												
+											</div>
+											
 										</div>
 										
 									</div>
-								</div>			
-							</div>
+									<div class = "four fields">
+										<div class = "field">
+											<label>Birthdate <span class="asterisk">*</span></label>
 
-							<div class = "field">
-								<label>Home Address <span class="asterisk">*</span></label>
+											<div class = "ui input field">
+												<input type="date" name = "bdate">
+													
+											</div>
+										</div>
 
-								<div class = "five fields">
-									<div class = "ui input field">
-										<input type="text" name = "street" placeholder="Street Address">
+										<div class = "field">
+											<label>Gender <span class="asterisk">*</span></label>
+											<div class = "inline fields">
+												<div class = "ui radio field">
+													<input type="radio" checked name="gender" value="0"  tabindex="0" class="hidden">
+													<label>Male</label>
+														
+												</div>
+												<div class = "ui radio field">
+													<input type="radio" name="gender" value="1"  tabindex="0" class="hidden">
+													<label>Female</label>
+													
+														
+												</div>
+												
+											</div>
+										</div>			
+									</div>
+
+									<div class = "field">
+										<label>Home Address <span class="asterisk">*</span></label>
+
+										<div class = "four fields">
+											<div class = "ui input field">
+												<input type="text" name = "street" placeholder="Street Address">
+												
+											</div>
+
+											<div class = "ui input field">
+												<input type="text" name = "barangay" placeholder="Barangay">
+
+											</div>
+
+											<div class = "ui input field">
+												<input type="text" name = "city" placeholder="City">
+												
+											</div>
+
+											<div class = "ui input field">
+												<input type="text" name = "province" placeholder="Province">
+												
+											</div>
+
+
+											
+										</div>
 										
 									</div>
 
-									<div class = "ui input field">
-										<input type="text" name = "barangay" placeholder="Barangay">
+									<h4 class="ui dividing header">Contact Information</h4>
 
-									</div>
+									<div class = "field">
+										<label>Contact Number</label>
 
-									<div class = "ui input field">
-										<input type="text" name = "city" placeholder="City">
+										<div class = "four fields">
+											<div class = "ui input field">
+												<input type="text" name = "contact" placeholder="+639*********">
+												
+											</div>
+
+											<div class = "ui input field">
+												<input type="text" name = "contact" placeholder="+639*********">
+
+											</div>
+											
+										</div>
 										
 									</div>
 
-									<div class = "ui input field">
-										<input type="text" name = "province" placeholder="Province">
-										
+									<div class = "four fields">
+										<div class = "field">
+											<label>Email Address <span class="asterisk">*</span></label>
+
+											<div class = "ui input field">
+												<input type="email" name = "email" placeholder="e.g. sample@yahoo.com">
+												
+											</div>
+										</div>
+
+										<div class = "field">
+											<label>Facebook </label>
+											<div class = "ui input field">
+												<input type="text" name = "facebook" placeholder="e.g. sampleusername">
+												
+											</div>
+										</div>
+
+										<div class = "field">
+											<label>Twitter </label>
+											<div class = "ui input field">
+												<input type="text" name = "twitter" placeholder="e.g. sampleusername">
+												
+											</div>
+										</div>
+
+										<div class = "field">
+											<label>Instagram </label>
+											<div class = "ui input field">
+												<input type="text" name = "instagram" placeholder="e.g. sampleusername">
+												
+											</div>
+										</div>		
 									</div>
-
-
 									
+
+								</div>
+								<div class = "three wide column">
+									<div class = "fborder piccon">
+										<div class = "ui medium image">
+											<img class = "profpic" src="{{URL::asset('objects/Logo/InitProfile.png')}}">
+										</div>
+
+										<div class = "ui input sixteen wide field">
+											<input type = "file"/>
+											
+										</div>
+										
+									</div>
+
 								</div>
 								
-							</div>
-
-							<h4 class="ui dividing header">Contact Information</h4>
-
-							<div class = "field">
-								<label>Contact Number</label>
-
-								<div class = "five fields">
-									<div class = "ui input field">
-										<input type="text" name = "contact" placeholder="+639*********">
-										
-									</div>
-
-									<div class = "ui input field">
-										<input type="text" name = "contact" placeholder="+639*********">
-
-									</div>
-									
-								</div>
-								
-							</div>
-
-							<div class = "five fields">
-								<div class = "field">
-									<label>Email Address <span class="asterisk">*</span></label>
-
-									<div class = "ui input field">
-										<input type="email" name = "email" placeholder="e.g. sample@yahoo.com">
-										
-									</div>
-								</div>
-
-								<div class = "field">
-									<label>Facebook </label>
-									<div class = "ui input field">
-										<input type="text" name = "facebook" placeholder="e.g. sampleusername">
-										
-									</div>
-								</div>
-
-								<div class = "field">
-									<label>Twitter </label>
-									<div class = "ui input field">
-										<input type="text" name = "twitter" placeholder="e.g. sampleusername">
-										
-									</div>
-								</div>
-
-								<div class = "field">
-									<label>Instagram </label>
-									<div class = "ui input field">
-										<input type="text" name = "instagram" placeholder="e.g. sampleusername">
-										
-									</div>
-								</div>		
 							</div>
 
 							<br>
