@@ -379,6 +379,15 @@ form, .dcon {
     cursor: pointer;
 }
 
+.trow1:hover {
+    background-color: #faefe3;
+
+}
+
+.disitem {
+	font-weight: bold;
+}
+
 .selectstyle {
 	width: 16.5em;
 	padding: 0.3em 0.5em;
@@ -633,4 +642,8 @@ legend {
 }
 .dlink:hover {
 	text-decoration: underline;
+}
+
+.formadd {
+	width: 100%;
 }

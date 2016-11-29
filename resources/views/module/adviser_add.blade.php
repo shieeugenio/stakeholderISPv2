@@ -243,7 +243,7 @@
 
 								</div>
 
-								<div class = "field">
+								<!--<div class = "field">
 									<label>Authority <span class="asterisk">*</span></label>
 
 									<div class = "five fields">
@@ -254,22 +254,24 @@
 											
 									</div>
 										
-								</div>
+								</div>-->
 
 
 
 								<div id = "tempfields">
-									<div class = "field">
-										<label>Position <span class="asterisk">*</span></label>
+									<!--<div class = "five fields">
+										<div class = "field">
+											<label>AC Position <span class="asterisk">*</span></label>
 
-										<div class = "five fields">
-											<div class = "ui input field">
-												<input type="text" name = "position" placeholder="e.g. Software Developer">
-												
+											<div class = "field">
+												<select  class="ui selection dropdown" name="acposition">
+													<option class="disabled">Select One</option>
+													<option value="1">Opt 1</option>
+												</select>
 											</div>
-											
+												
+												
 										</div>
-										
 									</div>
 									
 									<div class = "three fields">
@@ -293,21 +295,8 @@
 												
 										</div>
 									</div>
-									
+
 									<div class = "five fields">
-										<div class = "field">
-											<label>AC Sector <span class="asterisk">*</span></label>
-
-											<div class = "field">
-												<select  class="ui selection dropdown" name="acsector">
-													<option class="disabled">Select One</option>
-													<option value="1">Opt 1</option>
-												</select>
-											</div>
-											
-											
-										</div>
-
 										<div class = "field">
 											<label>AC Category <span class="asterisk">*</span></label>
 
@@ -321,8 +310,35 @@
 											
 										</div>
 
+										<div class = "field">
+											<label>AC Sub-category <span class="asterisk">*</span></label>
+
+											<div class = "field">
+												<select  class="ui selection dropdown" name="acsubcateg">
+													<option class="disabled">Select One</option>
+													<option value="1">Opt 1</option>
+												</select>
+											</div>
+											
+											
+										</div>
 										
 									</div>
+									
+									<div class = "five fields">
+										<div class = "field">
+											<label>AC Sector <span class="asterisk">*</span></label>
+
+											<div class = "field">
+												<select  multiple class="ui selection dropdown" name="acsector">
+													<option class="disabled">Select One or More</option>
+													<option value="1">Opt 1</option>
+												</select>
+											</div>
+											
+											
+										</div>
+									</div>-->
 								</div>
 
 								<br>
@@ -343,15 +359,15 @@
 										<th><center>Title</center></th>
 										<th><center>Training Category</center></th>
 										<th><center>Location</center></th>
-										<th><center>Date</center></th>
-										<th><center>Time</center></th>
+										<th><center>Start</center></th>
+										<th><center>End</center></th>
 										<th><center>Speaker(s)</center></th>
 										<th><center>Organizer</center></th>
 									</tr>
 								</thead>
 
 								<tbody>
-										<tr class = "trow">
+										<!--<tr class = "trow1">
 											<td><center>
 												<div class = "ui input field">
 													<input type="text" name = "traintitle" placeholder="e.g. The Sample Title">
@@ -389,16 +405,35 @@
 											</center></td>
 
 											<td><center>
-												<div class = "ui input field">
-													<input type="date" max = "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}" name = "traindate">
+												<div class = "field">
+													<div class = "ui input field">
+														<input type="date" max = "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}" name = "trainsdate">
 														
+													</div>
+
+													<div class = "ui input field">
+														
+
+														<input type="time" name = "trainstime">
+															
+													</div>
 												</div>
 											</center></td>
 
 											<td><center>
-												<div class = "ui input field">
-													<input type="time" name = "traintime">
+
+												<div class = "field">
+													<div class = "ui input field">
+														<input type="date" max = "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}" name = "trainedate">
 														
+													</div>
+
+													<div class = "ui input field">
+														
+
+														<input type="time" name = "trainetime">
+															
+													</div>
 												</div>
 											</center></td>
 
@@ -424,6 +459,10 @@
 													
 													
 												</div>
+
+												<div class="field">
+													<textarea  name = "trainlecturer" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
+												</div>
 									
 											</center></td>
 
@@ -435,7 +474,7 @@
 												</div>
 											</center></td>
 
-										</tr>
+										</tr>-->
 
 
 								</tbody>
@@ -481,8 +520,15 @@
 
 	<script type="text/javascript">
 		$('#tab3').attr('class', 'mlink item active');
-		var lecturers = new Array();
+		//var lecturers = new Array();
 
+		addT1Elements();
+
+		for (var ctr = rowcount ; ctr < 3 ; ctr++) {
+			rowcount = ctr;
+			addrow();
+
+		};
 
 		function changeform(selcat) {
 			if(selcat == 0) {
@@ -497,20 +543,24 @@
 
 		}//function changeform() {
 
-		function showfield(trcat, index) {
+		function showfield() {
 
-			if(trcat == 7) {
-				document.getElementsByName('othercon')[index].style.display = "block";
-				//document.getElementsByName('othercat')[0].setAttribute("required");
+			var categsel = document.getElementsByName('traincateg');
 
-			} else {
-				document.getElementsByName('othercon')[index].style.display = "none";
-				//document.getElementsByName('othercat')[0].removeAttribute("required");
+			for(var find = 0 ; find < categsel.length ; find++) {
+				if(categsel[find].value == 7) {
+					document.getElementsByName('othercon')[find].style.display = "block";
 
-			}//if(trcat == 7) {
+				} else {
+					document.getElementsByName('othercon')[find].style.display = "none";
+
+				}//if
+
+			};
+
 		}//function showfield(value) {
 
-		function addarritem(index) {
+		/*function addarritem(index) {
 			var text = document.getElementsByName('inputlecturer')[index].value;
 			var pattern = new RegExp("^(?=.*(\d|\w))[A-Za-z0-9 .,'-]{3,}$");
 			var flag = 0;
@@ -550,7 +600,7 @@
 			console.log(lecturers);
 
 
-		}//delete from array
+		}//delete from array*/
 
 
 		/**
