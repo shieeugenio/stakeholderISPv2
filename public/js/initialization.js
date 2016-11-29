@@ -4,6 +4,7 @@ function init() {
 
 	$('.ui.dropdown').dropdown();
 
+
 	$(document).ready(function() {
 		$('#datatable').DataTable();
 	} );

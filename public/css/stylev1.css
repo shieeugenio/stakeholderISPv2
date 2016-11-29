@@ -612,3 +612,13 @@ legend {
 	border-radius: 0.28571429rem;
 	margin-bottom: 1%;
 }
+
+.selectcon {
+	margin-top: 100px;
+}
+
+.addtr {
+	color: #00253a;
+	font-family: "Franklin Gothic Book";
+	font-weight: bold;
+}
