@@ -213,9 +213,51 @@
 										</div>
 										
 									</div>
+								</div> <br>
+
+								<div class = "field">
+									<label>Duration</label>
+									
 								</div>
 
-								<br>
+								<div class = "five fields">
+
+									<div class = "field">
+										<label>Start Date<span class="asterisk">*</span></label>
+
+
+										<div class = "ui input field">
+											<input type="date" name = "durationsdate">
+												
+										</div>
+									</div>
+
+									<div class = "field">
+										<label>End Date <span class="asterisk">*</span></label>
+
+										<div class = "ui input field">
+											<input type="date" name = "durationedate">
+												
+										</div>
+									</div>	
+
+								</div>
+
+								<div class = "field">
+									<label>Authority <span class="asterisk">*</span></label>
+
+									<div class = "five fields">
+										<div class = "ui input field">
+											<input type="file" name = "letterorder" >
+											
+										</div>
+											
+									</div>
+										
+								</div>
+
+
+
 								<div id = "tempfields">
 									<div class = "field">
 										<label>Position <span class="asterisk">*</span></label>
@@ -295,7 +337,7 @@
 						</div>
 
 						<div class = "tablecon">
-							<div class = "field">
+							<!--<div class = "field">
 								<label>Title <span class="asterisk">*</span></label>
 
 								<div class = "five fields">
@@ -354,7 +396,7 @@
 
 							<div class = "five fields">
 								<div class = "field">
-									<label>Start Date <span class="asterisk">*</span></label>
+									<label>Date<span class="asterisk">*</span></label>
 
 									<div class = "ui input field">
 										<input type="date" max = "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}" name = "traindate">
@@ -363,19 +405,7 @@
 								</div>
 
 								<div class = "field">
-									<label>End Date <span class="asterisk">*</span></label>
-
-									<div class = "ui input field">
-										<input type="date" max = "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}" name = "traindate">
-											
-									</div>
-								</div>
-	
-							</div>
-
-							<div class = "five fields">
-								<div class = "field">
-									<label>Start Time <span class="asterisk">*</span></label>
+									<label>Time <span class="asterisk">*</span></label>
 
 									<div class = "ui input field">
 										<input type="time" name = "traintime">
@@ -383,14 +413,6 @@
 									</div>
 								</div>	
 
-								<div class = "field">
-									<label>End Time <span class="asterisk">*</span></label>
-
-									<div class = "ui input field">
-										<input type="time" name = "traintime">
-											
-									</div>
-								</div>		
 							</div>
 
 							<div class = "field">
@@ -433,7 +455,116 @@
 									
 								</div>
 								
-							</div>
+							</div>-->
+
+							<table class = "ui celled padding table" id = "traintable">
+								<thead>
+									<tr>
+										<th><center>Title</center></th>
+										<th><center>Training Category</center></th>
+										<th><center>Location</center></th>
+										<th><center>Date</center></th>
+										<th><center>Time</center></th>
+										<th><center>Speaker(s)</center></th>
+										<th><center>Organizer</center></th>
+									</tr>
+								</thead>
+
+								<tbody>
+										<tr>
+											<td><center>
+												<div class = "ui input field">
+													<input type="text" name = "traintitle" placeholder="e.g. The Sample Title">
+														
+												</div>
+											</center></td>
+
+											<td><center>
+
+												<div class = "field">
+													<select id = "select" class="ui selection dropdown" onchange = "showfield(this.value, rowcount)" name="traincateg">
+														<option class="disabled">Select One</option>
+														<option value="Advisory Council Summit">Advisory Council Summit</option>
+														<option value="Family Conference">Family Conference</option>
+														<option value="Boot Camp (Basic)">Boot Camp (Basic)</option>
+														<option value="Boot Camp (Master)">Boot Camp (Master)</option>
+														<option value="Lecture Series">Lecture Series</option>
+														<option value="Strategy Refresh">Strategy Refresh</option>
+														<option value="7">Others</option>
+													</select>
+
+													<div class = "ui input"  name = "othercon" style = "display:none"> <br>
+														<input type="text" name = "othercat" placeholder="Please specify (required)">
+														
+													</div>
+												</div>
+												
+											</center></td>
+
+											<td><center>
+												<div class = "ui input field">
+													<input type="text" name = "location" placeholder="e.g. Makati City">
+														
+												</div>
+											</center></td>
+
+											<td><center>
+												<div class = "ui input field">
+													<input type="date" max = "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}" name = "traindate">
+														
+												</div>
+											</center></td>
+
+											<td><center>
+												<div class = "ui input field">
+													<input type="time" name = "traintime">
+														
+												</div>
+											</center></td>
+
+											<td><center>
+												<div class = "five fields">
+
+													<div class = "divpercon" name = "pcontainer">
+
+														<ul class = "perlist" name = "lecturer">
+															<li class = "inputitem" name="inputlist">
+
+																<input type="text" 
+																	placeholder="LN, FN MI" 
+																	class = "perfield error" 
+																	name="inputlecturer"
+																	onclick = "divonfocus(rowcount)"
+																	onkeydown = "if(event.keyCode == 13){ addarritem(rowcount);}" 
+																	value=''/>
+															</li>
+														</ul>
+
+													</div>
+													
+													
+												</div>
+									
+											</center></td>
+
+
+											<td><center>
+												<div class = "ui input field">
+													<input type="text" name = "trainorg" placeholder="e.g. CPSM">
+														
+												</div>
+											</center></td>
+
+										</tr>
+
+
+								</tbody>
+
+								<tfoot>
+									<tr class = "addtr" onclick = "addrow()"><td colspan = "7"><center><i class = "add circle icon"></i> ADD </center></td></tr>
+								</tfoot>
+								
+							</table>
 
 						</div>
 
@@ -486,60 +617,93 @@
 
 		}//function changeform() {
 
-		function showfield(trcat) {
+		function showfield(trcat, index) {
 
 			if(trcat == 7) {
-				document.getElementsByName('othercat')[0].style.display = "block";
+				document.getElementsByName('othercon')[index].style.display = "block";
 				//document.getElementsByName('othercat')[0].setAttribute("required");
 
 			} else {
-				document.getElementsByName('othercat')[0].style.display = "none";
+				document.getElementsByName('othercon')[index].style.display = "none";
 				//document.getElementsByName('othercat')[0].removeAttribute("required");
 
 			}//if(trcat == 7) {
 		}//function showfield(value) {
 
-		function addarritem() {
-			var text = document.getElementsByName('inputlecturer')[0].value;
+		function addarritem(index) {
+			var text = document.getElementsByName('inputlecturer')[index].value;
 			var pattern = new RegExp("^(?=.*(\d|\w))[A-Za-z0-9 .,'-]{3,}$");
 			var flag = 0;
 
 			//if(pattern.test(text) == true) {
 				for (var count = 0 ; count < lecturers.length ; count++) {
-					if(text === lecturers[count]) {
+					if(text === lecturers[count][0] && index == lecturers[count][1]) {
 						flag = 1;
 						break;
 					}//if
 				};//for
 
 				if(flag == 0) {
-					additem(text);
-					lecturers.push(text);
+					additem(text, index);
+					lecturers.push(new Array(text, index));
 
-				}//if(flag == 0) {
-
+				}//if(flag == 0) {]
 
 			//}//pattern
 
 		}//add item to array
 
-		function deletearritem(index) {
-			var ulist = document.getElementsByName('lecturer')[0];
+		function deletearritem(index, rowindex) {
+			var ulist = document.getElementsByName('lecturer')[rowindex];
 			var text = ulist.getElementsByTagName('li')[index].firstChild.innerHTML;
 
-			deleteitem(index,ulist);
+			deleteitem(index, rowindex, ulist);
 
 			for (var count = 0 ; count < lecturers.length ; count++) {
-				if(text === lecturers[count]) {
+				if(text === lecturers[count][0] && rowindex == lecturers[count][1]) {
 					lecturers.splice(count, 1);
 					break;
 				}//if
 					
 			};//for
 
+			console.log(lecturers);
+
 
 		}//delete from array
 
+
+		/**
+
+			NOTE:
+
+				yung array na lecturers -> 2 dime
+				ang laman is yung lecturer name and yung row index kung san ininput
+				para madistinguish kung saang training item siya nilagay ng user.
+
+				so bale ganto ang itsura
+
+				input:
+
+				training 1
+				lecturers: shie, mae, lemon
+				row index/count: 0
+
+				training 2
+				lecturers: red, blue, yellow
+				row index/count: 1
+
+				lecturer: (array)
+					shie, 0
+					mae, 0
+					lemon, 0
+					red, 1
+					blue, 1
+					yellow, 1
+
+				data order ng array depends sa pagkakainput so pwedeng nakashuffle yan
+
+		**/
 	</script>
 
 
