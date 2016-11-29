@@ -15,7 +15,6 @@ class AdvisoryCouncil extends Migration
             $table->string('officeaddress', 45);
             $table->date('startdate');
             $table->date('enddate');
-            $table->string('authority');
             $table->integer('advisory_position_id')->unsigned();
             $table->integer('categoryId')->unsigned();
             $table->integer('ID')->unsigned();

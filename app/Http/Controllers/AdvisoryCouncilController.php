@@ -93,17 +93,17 @@ class AdvisoryCouncilController extends Controller
         }
     }
 
-    public function subcatOptions(Request $request) {
-        $catID = $request->subcat;
+    // public function subcatOptions(Request $request) {
+    //     $catID = $request->subcat;
 
-        $params = array($catID);
+    //     $params = array($catID);
 
-        $stmt = DB::select('select * from "accategory" as b
-            left join "acsubcategory" as c on b.id = c.id' , $params);
+    //     $stmt = DB::select('select * from "accategory" as b
+    //         left join "acsubcategory" as c on b.id = c.id' , $params);
 
-        $array_Result = array();
+    //     $array_Result = array();
 
-        return json_encode($array_Result);
+    //     return json_encode($array_Result);
 
-    }//End Of Select Unit 1
+    // }//End Of Select Unit 1
 }
