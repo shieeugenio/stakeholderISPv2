@@ -562,7 +562,7 @@ tr:hover, .activerow {
 
 }
 
-.fborder {
+.fborder, fieldset {
 	border: 1px solid #ede8e6;
 }
 
@@ -578,4 +578,37 @@ tr:hover, .activerow {
 	font-family: "Franklin Gothic Book";
 	margin-top : 1%;
 	margin-bottom: 2%;
+}
+
+.fbc {
+	background-color: transparent;
+}
+
+legend {
+	color: #00253a;
+	font-family: "Franklin Gothic Book";
+	font-weight: bold;
+}
+
+.outlink {
+	color: #565656;
+	font-family: "Franklin Gothic Book";
+	font-size: 0.7em;
+
+}
+
+.outlink:hover {
+	color: #565656;
+	text-decoration: underline;
+
+}
+
+.piccon {
+	padding: 3%;
+	border-radius: 0.28571429rem;
+}
+
+.profpic {
+	border-radius: 0.28571429rem;
+	margin-bottom: 1%;
 }
