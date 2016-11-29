@@ -24,17 +24,20 @@
 
 				<label for='accategoryid'>Category </label>
 					<select name="category" id="cat" onchange="catChange()">
-						@foreach($cat as $adv => $key)
+						<option disabled selected>Category</option>
+						@foreach($cat as $key)
 							<option value='{{$key->ID}}'>
 								{{$key->categoryname}}
 							</option>
 						@endforeach
-					</select>&nbsp
+
+					</select>
 
 					
 				<label for='acsubcategoryid'>Sub-Category </label>
-					<select name="subcat" id="sub">
-								@foreach($sub as $adv => $key)
+					<select name="subcat" id="sub" onchange="subcat()">
+								
+							@foreach($sub as $key)
 							<option value='{{$key->ID}}'>
 								{{$key->subcategoryname}}
 							</option>
@@ -68,6 +71,9 @@
 						Category
 					</th>
 					<th>
+						SubCategory
+					</th>
+					<th>
 						Start Date
 					</th>
 					<th>
@@ -81,6 +87,8 @@
 						<td>{{$res->officename}}</td>
 						<td>{{$res->officeaddress}}</td>
 						<td>{{$res->advisoryposition->acpositionname}}</td>
+						<!-- <td>{{$res->acsubcategory->subcategoryname}}</td> -->
+						<td></td>
 						<td>{{$res->acsubcategory->subcategoryname}}</td>
 						<td>{{$res->startdate}}</td>
 						<td>{{$res->enddate}}</td>
@@ -92,21 +100,70 @@
 	
 
 </body>
-<script>
-function catChange(){
-    $.get('/subcatOptions?catID=' + $("#cat").val(), function(data){
-      var $selectDropdown = 
-        $("#sub")
-          .empty()
-          .html(' ');
-      $.each(data, function(index, subcatObj){
-          $selectDropdown.append(
-            $("<option></option>")
-              .attr("value",subcatObj.ID)
-              .text(subcatObj.subcategoryname)
-          );
-      });
-    });
-  } 
+<script type="text/javascript">
+	function catChange(){
+		var categ = document.getElementById('cat').value;
+		var dataString = "ID=" + categ;
+		var token = document.getElementById('csrf-token').value;
+
+		$.ajax({
+
+				type: "post",
+				headers: {'X-CSRF-TOKEN': token},
+				url: "subcatOptionsone",
+				data: dataString,
+				datatype: 'json',
+				cache: false,
+				success: function(data){
+
+					var parse_data = JSON.parse(data);
+
+					document.getElementById('sub').disabled = false;
+
+					document.getElementById('sub').innerHTML = "<option>- Select Subcategory -</option>";
+
+					for (var i = 0; i < parse_data.length; i = i + 2) {
+							
+						var j = i + 1;
+
+					}
+					
+				}
+
+			});
+	}
+
+	// function subcat(){
+	// 	var subID = document.getElementById('sub').value;
+	// 	var dataString = "ID=" + subID;
+	// 	var token = document.getElementById('csrf-token').value;
+		
+	// 		$.ajax({
+
+	// 			type: "post",
+	// 			headers: {'X-CSRF-TOKEN': token},
+	// 			url: "subcatOptions",
+	// 			data: dataString,
+	// 			datatype: 'json',
+	// 			cache: false,
+	// 			success: function(data){
+
+	// 				var parse_data = JSON.parse(data);
+
+	// 				document.getElementById('cat').disabled = false;
+
+	// 				document.getElementById('cat').innerHTML = "<option>- SUB -</option>";
+
+	// 				for (var i = 0; i < parse_data.length; i = i + 2) {
+							
+	// 					var j = i + 1;
+
+	// 				}
+					
+
+	// 			}
+
+	// 		});
+	// }
 </script>
 </html>

@@ -92,12 +92,15 @@ Route::post('maintenance/policepositioncrud','PolicePositionController@policepos
 Route::get('advisorycouncil', 'AdvisoryCouncilController@index');
 
 Route::post('/add', 'AdvisoryCouncilController@add');
-Route::post('transac/{id}/edit', 'AdvisoryCouncilController@find');
+Route::get('transac/{id}/edit', 'AdvisoryCouncilController@find');
 Route::post('transac/{id}/editAc', 'AdvisoryCouncilController@edit');
 
+// Route::get('/subcatOptions', 'AdvisoryCouncilController@cityOptions');
 
 //profile [ren]
 Route::get('transaction/adviser','ProfileController@index');
 Route::post('transaction/addadvisers','ProfileController@store');
 Route::get('transaction/advedt','ProfileController@edit');
+
+
 
