@@ -101,7 +101,7 @@
 									  
 									  @foreach($offices as $sitem)
 
-									  	<option value = '{{$sitem->ID}}'>{{$sitem->officename}} ({{$sitem->policeofficecode2}})</option>
+									  	<option value = '{{$sitem->ID}}'>{{$sitem->officename}} ({{$sitem->policeofficecode}})</option>
 
 									  @endforeach
 									  	

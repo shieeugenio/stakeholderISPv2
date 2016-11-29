@@ -77,3 +77,11 @@ Route::post('maintenance/editsubpolice', 'PoliceOfficeTwoController@edit');
 
 //POLICE POSITION
 Route::post('maintenance/policepositioncrud','PolicePositionController@policepositioncrud');
+
+//advisory council transac
+Route::get('advisorycouncil', 'AdvisoryCouncilController@index');
+
+Route::post('/add', 'AdvisoryCouncilController@add');
+Route::post('transac/{id}/edit', 'AdvisoryCouncilController@find');
+Route::post('transac/{id}/editAc', 'AdvisoryCouncilController@edit');
+

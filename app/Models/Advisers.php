@@ -10,9 +10,9 @@ class Advisers extends Model
     protected $primaryKey = "ID";
     public $timestamps = false;
 
-    public function advisorycounsil()
+    public function advisorycouncil()
     {
-    	return $this->hasMany('App\Models\AdvisoryCouncil', 'ID');
+    	return $this->hasOne('App\Models\AdvisoryCouncil', 'ID');
     }
 
     public function persontraining()
