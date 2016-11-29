@@ -24,7 +24,7 @@
 						                   
 						    <tbody>
 						    	@foreach($suboffices as $key)
-						    		<tr onclick = "loaddata({{$key->ID}})" id = "{{$key->ID}}">
+						    		<tr class = "trow" onclick = "loaddata({{$key->ID}})" id = "{{$key->ID}}">
 						    			<td>{{$key->policeoffice->policeofficecode}}: {{$key->policeoffice->officename}}</td>
 						    			<td>{{$key->officename}}</td>
 						    			<td>{{$key->policeofficecode2}}</td>

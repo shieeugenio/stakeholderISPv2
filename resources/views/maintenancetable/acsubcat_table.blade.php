@@ -21,7 +21,7 @@
 						                   
 						    <tbody>
 						    	@foreach($subcat as $sitem)
-									<tr onclick = "loaddata({{$sitem->ID}})" id = "{{$sitem->ID}}">
+									<tr class = "trow" onclick = "loaddata({{$sitem->ID}})" id = "{{$sitem->ID}}">
 										<td>{{$sitem->acsubcategorycode}}</td>
 										<td>{{$sitem->subcategoryname}}</td>
 										<td>{{$sitem->category->categoryname}} ({{$sitem->category->accategorycode}})</td>

@@ -313,13 +313,17 @@ $(document).ready(function() {
   });
 });
 
+//Adviser Add Table
+
 function addrow() {
 
 	rowcount += 1;
 
 	var table = document.getElementById('traintable').getElementsByTagName('tbody')[0];
 
-	table.appendChild(document.createElement('tr'));
+	tr = document.createElement('tr');
+	tr.setAttribute('class', 'trow');
+	table.appendChild(tr);
 
 	table.lastChild.appendChild(document.createElement('td'));
 

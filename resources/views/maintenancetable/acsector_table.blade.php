@@ -19,7 +19,7 @@
 						                   
 						    <tbody>
 						    @foreach ($sector as $sec) 
-						       	<tr onclick = "CRUD({{$sec->ID}},2)" id = "{{$sec->ID}}">
+						       	<tr class = "trow" onclick = "CRUD({{$sec->ID}},2)" id = "{{$sec->ID}}">
 						    		<td><center>{{$sec->sectorcode}}</center></td>
 						    		<td><center>{{$sec->sectorname}}</center></td>
 						    		<td><center>{{$sec->desc}}</center></td>
