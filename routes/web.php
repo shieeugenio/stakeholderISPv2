@@ -81,3 +81,8 @@ Route::get('maintenance/policeoffice', 'PoliceOfficesController@index');
 Route::post('/confirmpolice', 'PoliceOfficeTwoController@add');
 Route::post('maintenance/editsubpolice', 'PoliceOfficeTwoController@edit');
 
+//prfiling routes [ren]
+Route::get('transaction/adviser','ProfileController@index');
+Route::post('transaction/addadvisers','ProfileController@store');
+//end of profiling
+
