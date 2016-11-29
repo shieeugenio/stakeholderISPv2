@@ -12,8 +12,11 @@ class acsectorController extends Controller
 {
    
     public function index_acsectors(){
-      $sector = DB::table('ACSectors')->get();
-      return view('maintenancetable.acsector_table')->with('sector', $sector);
+      $sector = DB::table('ACSectors')
+      ->orderBy('ACSectors.ID','DESC')
+      ->get();
+      return view('maintenancetable.acsector_table')
+      ->with('sector', $sector);
       
     }
 

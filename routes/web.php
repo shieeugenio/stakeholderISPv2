@@ -75,8 +75,18 @@ Route::post('/confirmpolice', 'PoliceOfficeTwoController@add');
 Route::post('maintenance/subpoliceview', 'PoliceOfficeTwoController@find');
 Route::post('maintenance/editsubpolice', 'PoliceOfficeTwoController@edit');
 
+
+Route::get('secondpolice', 'PoliceOfficeTwoController@manageofficetwo');
+Route::get('maintenance/{id}/subpoliceview', 'PoliceOfficeTwoController@find');
+
+
+//ADVISER LESTER
+Route::get('maintenance/trainingsample', 'TrainingController@index');
+Route::post('maintenance/store', 'TrainingController@store');
+
 //POLICE POSITION
 Route::post('maintenance/policepositioncrud','PolicePositionController@policepositioncrud');
+
 
 //advisory council transac
 Route::get('advisorycouncil', 'AdvisoryCouncilController@index');
@@ -84,4 +94,10 @@ Route::get('advisorycouncil', 'AdvisoryCouncilController@index');
 Route::post('/add', 'AdvisoryCouncilController@add');
 Route::post('transac/{id}/edit', 'AdvisoryCouncilController@find');
 Route::post('transac/{id}/editAc', 'AdvisoryCouncilController@edit');
+
+
+//profile [ren]
+Route::get('transaction/adviser','ProfileController@index');
+Route::post('transaction/addadvisers','ProfileController@store');
+Route::get('transaction/advedt','ProfileController@edit');
 
