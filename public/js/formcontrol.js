@@ -502,7 +502,7 @@ function addrow() {
 	var input7 = document.createElement('input');
 	input7.setAttribute('type', 'text');
 	input7.setAttribute('name','trainorg');
-	input7.setAttribute('name','e.g. CPSM');
+	input7.setAttribute('placeholder','e.g. CPSM');
 	table.lastChild.lastChild.lastChild.lastChild.appendChild(input7);
 }//function addrow() {
 //View
