@@ -337,9 +337,24 @@
 								
 							</div>
 
+							<div class = "field">
+								<label>Location <span class="asterisk">*</span></label>
+
+								<div class = "five fields">
+
+									<div class = "ui input field">
+										<input type="text" name = "location" placeholder="e.g. Makati City">
+											
+									</div>
+									
+									
+								</div>
+								
+							</div>
+
 							<div class = "five fields">
 								<div class = "field">
-									<label>Date <span class="asterisk">*</span></label>
+									<label>Start Date <span class="asterisk">*</span></label>
 
 									<div class = "ui input field">
 										<input type="date" max = "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}" name = "traindate">
@@ -348,7 +363,28 @@
 								</div>
 
 								<div class = "field">
-									<label>Time <span class="asterisk">*</span></label>
+									<label>End Date <span class="asterisk">*</span></label>
+
+									<div class = "ui input field">
+										<input type="date" max = "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}" name = "traindate">
+											
+									</div>
+								</div>
+	
+							</div>
+
+							<div class = "five fields">
+								<div class = "field">
+									<label>Start Time <span class="asterisk">*</span></label>
+
+									<div class = "ui input field">
+										<input type="time" name = "traintime">
+											
+									</div>
+								</div>	
+
+								<div class = "field">
+									<label>End Time <span class="asterisk">*</span></label>
 
 									<div class = "ui input field">
 										<input type="time" name = "traintime">

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Controllers\Controller;
 use App\Models\Advisers;
+use App\Models\Trainings;
+use App\Models\Lecturers;
 use App\Http\Requests;
 
 class ProfileController extends Controller
@@ -27,7 +29,9 @@ class ProfileController extends Controller
  		$adv->city = $req->city;
  		$adv->province = $req->province;
  		$adv->email = $req->email;
- 		$adv->birthdate = $req->birthday;
+ 		$adv->contanctno = $req->contanct;
+ 		$adv->birthdate = $req->bdate;
+ 		$adv->gender =  $req->gender;
  		$adv->category = $req->category;
  		$adv->occupationstat = $req->stat;
  		//$adv->imagepath = $req->img;
@@ -41,7 +45,25 @@ class ProfileController extends Controller
         $image->move($local . '\images\advisers\\', $filename);
         $adv->imagepath = $path;        	
  		$adv-> save();
- 		return redirect('transaction/adviser');
+
+ 		$training = new Trainings();
+    	$training->trainingname = $req->tname;
+    	$training->startdate = $req->startdate;
+    	$training->enddate = $req->enddate;
+    	$training->location = $req->location;
+    	$training->organizer = $req->organizer;
+    	$training->starttime = $req->starttime;
+    	$training->endtime = $req->endtime;
+    	$training->trainingtype = $req->ttype;
+    	$training->save();
+
+    	$lecturer = new lecturers();
+    	$lecturer->fname = $req->fname;
+    	$lecturer->mname = $req->mname;
+    	$lecturer->lname = $reg->lname;
+    	$lecturer->save();
+
+ 		return redirect('directory');
 
 
 
