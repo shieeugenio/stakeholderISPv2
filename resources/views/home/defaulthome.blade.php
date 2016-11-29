@@ -185,8 +185,107 @@
 
 					</div>
 					<div class="ui tab" data-tab="work">
-						<div name = "acview" style = "display:block" >
+						<div name = "acview" style = "display:none" >
 							<div class = "ui grid row">
+				        		<div class ="three wide column fbc labelpane">
+
+				        			<div class = "twelve wide column bspacing">
+										<label class = "formlabel">Adviser Category</label>
+													
+									</div>
+
+									<div class = "twelve wide column bspacing">
+										<label class = "formlabel">Duration</label>
+													
+									</div>
+
+									<div class = "twelve wide column bspacing">
+										<label class = "formlabel">AC Position</label>
+													
+									</div>
+
+									<div class = "twelve wide column bspacing">
+										<label class = "formlabel">Office Name</label>
+													
+									</div>
+
+									<div class = "twelve wide column bspacing">
+										<label class = "formlabel">Office Address</label>
+															
+									</div>
+
+									<div class = "twelve wide column bspacing">
+										<label class = "formlabel">AC Category</label>
+															
+									</div>
+
+									<div class = "twelve wide column bspacing">
+										<label class = "formlabel">AC Sub-category</label>
+															
+									</div>
+
+									<div class = "twelve wide column bspacing">
+										<label class = "formlabel">AC Sector</label>
+															
+									</div>
+
+									
+																
+								</div>
+
+								<div class ="eleven wide column fieldpane">
+
+									<div class = "twelve wide column bspacing11">
+										<p>Adviser Categ</p>
+														
+									</div>
+
+									<div class = "twelve wide column bspacing11">
+										<p>Date1 to date2</p>
+														
+									</div>
+
+									<div class = "twelve wide column bspacing11">
+										<p>AC Position</p>
+														
+									</div>
+
+									<div class = "twelve wide column bspacing11">
+										<p>OfName</p>
+															
+									</div>
+
+									<div class = "twelve wide column bspacing11">
+										<p>OfAdd</p>
+															
+									</div>
+
+
+									<div class = "twelve wide column bspacing11">
+										<p>AC Categ</p>
+															
+									</div>
+
+
+									<div class = "twelve wide column bspacing11">
+										<p>AC Sub-categ</p>
+															
+									</div>
+
+									<div class = "twelve wide column bspacing11">
+										<p>AC Sector</p>
+															
+									</div>
+
+																
+								</div>
+											
+
+				        	</div>
+			        	</div>
+
+			        	<div name = "tpview" style = "display:block" >
+			        		<div class = "ui grid row">
 				        		<div class ="three wide column fbc labelpane">
 
 				        			<div class = "twelve wide column bspacing">
@@ -204,101 +303,6 @@
 													
 									</div>
 
-
-									<div class = "twelve wide column bspacing">
-										<label class = "formlabel">Position</label>
-													
-									</div>
-
-									<div class = "twelve wide column bspacing">
-										<label class = "formlabel">Office Name</label>
-													
-									</div>
-
-									<div class = "twelve wide column bspacing">
-										<label class = "formlabel">Office Address</label>
-															
-									</div>
-
-									<div class = "twelve wide column bspacing">
-										<label class = "formlabel">AC Sector</label>
-															
-									</div>
-
-									<div class = "twelve wide column bspacing">
-										<label class = "formlabel">AC Category</label>
-															
-									</div>
-																
-								</div>
-
-								<div class ="eleven wide column fieldpane">
-
-									<div class = "twelve wide column bspacing9">
-										<p>Adviser Categ</p>
-														
-									</div>
-
-									<div class = "twelve wide column bspacing9">
-										<p>Date1 to date2</p>
-														
-									</div>
-
-									<div class = "twelve wide column bspacing9">
-										<a class = "dlink">Insert Letter Order link for downloading purposes</a>
-														
-									</div>
-
-									<div class = "twelve wide column bspacing9">
-										<p>Position</p>
-														
-									</div>
-
-									<div class = "twelve wide column bspacing9">
-										<p>OfName</p>
-															
-									</div>
-
-									<div class = "twelve wide column bspacing9">
-										<p>OfAdd</p>
-															
-									</div>
-
-									<div class = "twelve wide column bspacing9">
-										<p>AC Sector</p>
-															
-									</div>
-
-									<div class = "twelve wide column bspacing9">
-										<p>AC Categ</p>
-															
-									</div>
-																
-								</div>
-											
-
-				        	</div>
-			        	</div>
-
-			        	<div name = "tpview" style = "display:none" >
-			        		<div class = "ui grid row">
-				        		<div class ="three wide column fbc labelpane">
-
-				        			<div class = "twelve wide column bspacing">
-										<label class = "formlabel">Adviser Category</label>
-													
-									</div>
-
-									<div class = "twelve wide column bspacing">
-										<label class = "formlabel">Adviser Category</label>
-													
-									</div>
-
-									<div class = "twelve wide column bspacing">
-										<label class = "formlabel">Duration</label>
-													
-									</div>
-
 									<div class = "twelve wide column bspacing">
 										<label class = "formlabel">Position</label>
 													
@@ -313,27 +317,27 @@
 
 								<div class ="eleven wide column fieldpane">
 
-									<div class = "twelve wide column bspacing9">
+									<div class = "twelve wide column bspacing11">
 										<p>Adviser Categ</p>
 														
 									</div>
 
-									<div class = "twelve wide column bspacing9">
+									<div class = "twelve wide column bspacing11">
 										<p>Date1 to date2</p>
 														
 									</div>
 
-									<div class = "twelve wide column bspacing9">
+									<div class = "twelve wide column bspacing11">
 										<a class = "dlink">Insert Letter Order link for downloading purposes</a>
 														
 									</div>
 
-									<div class = "twelve wide column bspacing9">
+									<div class = "twelve wide column bspacing11">
 										<p>Position</p>
 														
 									</div>
 
-									<div class = "twelve wide column bspacing9">
+									<div class = "twelve wide column bspacing11">
 										<p>Unit/Of</p>
 															
 									</div>
@@ -354,8 +358,8 @@
 									<th><center>Title</center></th>
 									<th><center>Training Category</center></th>
 									<th><center>Location</center></th>
-									<th><center>Date</center></th>
-									<th><center>Time</center></th>
+									<th><center>Start</center></th>
+									<th><center>End</center></th>
 									<th><center>Speaker(s)</center></th>
 									<th><center>Organizer</center></th>
 								</tr>
