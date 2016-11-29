@@ -23,7 +23,7 @@
 						                   
 						    <tbody>
 						    	@for($ctr = 0 ; $ctr < sizeof($offices) ; $ctr++)
-						    		<tr onclick = "loaddata({{$offices[$ctr]->ID}})" id = "{{$offices[$ctr]->ID}}">
+						    		<tr class = "trow" onclick = "loaddata({{$offices[$ctr]->ID}})" id = "{{$offices[$ctr]->ID}}">
 							    		<td><center>{{$offices[$ctr]->policeofficecode}}</center></td>
 							    		<td><center>{{$offices[$ctr]->officename}}</center></td>
 							    		<td><center>{{$staffdesc[$ctr]}}</center></td>

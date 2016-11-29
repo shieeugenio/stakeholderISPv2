@@ -216,14 +216,14 @@
 								</div> <br>
 
 								<div class = "field">
-									<label>Duration</label>
+									<label>Duration </label>
 									
 								</div>
 
 								<div class = "five fields">
 
 									<div class = "field">
-										<label>Start Date<span class="asterisk">*</span></label>
+										<label>Start Date <span class="asterisk">*</span></label>
 
 
 										<div class = "ui input field">
@@ -337,126 +337,6 @@
 						</div>
 
 						<div class = "tablecon">
-							<!--<div class = "field">
-								<label>Title <span class="asterisk">*</span></label>
-
-								<div class = "five fields">
-
-									<div class = "ui input field">
-										<input type="text" name = "traintitle" placeholder="e.g. The Sample Title">
-											
-									</div>
-									
-									
-								</div>
-								
-							</div>
-
-							<div class = "field">
-								<label>Training Category <span class="asterisk">*</span></label>
-
-								<div class = "five fields">
-
-									<div class = "field">
-										<select  class="ui selection dropdown" onchange = "showfield(this.value)" name="traincateg">
-											<option class="disabled">Select One</option>
-											<option value="Advisory Council Summit">Advisory Council Summit</option>
-											<option value="Family Conference">Family Conference</option>
-											<option value="Boot Camp (Basic)">Boot Camp (Basic)</option>
-											<option value="Boot Camp (Master)">Boot Camp (Master)</option>
-											<option value="Lecture Series">Lecture Series</option>
-											<option value="Strategy Refresh">Strategy Refresh</option>
-											<option value="7">Others</option>
-										</select>
-									</div>
-
-									<div class = "ui input field">
-										<input type="text" name = "othercat" style = "display:none" placeholder="Please specify (required)">
-										
-									</div>
-									
-								</div>
-								
-							</div>
-
-							<div class = "field">
-								<label>Location <span class="asterisk">*</span></label>
-
-								<div class = "five fields">
-
-									<div class = "ui input field">
-										<input type="text" name = "location" placeholder="e.g. Makati City">
-											
-									</div>
-									
-									
-								</div>
-								
-							</div>
-
-							<div class = "five fields">
-								<div class = "field">
-									<label>Date<span class="asterisk">*</span></label>
-
-									<div class = "ui input field">
-										<input type="date" max = "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}" name = "traindate">
-											
-									</div>
-								</div>
-
-								<div class = "field">
-									<label>Time <span class="asterisk">*</span></label>
-
-									<div class = "ui input field">
-										<input type="time" name = "traintime">
-											
-									</div>
-								</div>	
-
-							</div>
-
-							<div class = "field">
-								<label>Speaker(s) <span class="asterisk">*</span></label>
-
-								<div class = "five fields">
-
-									<div class = "divpercon" name = "pcontainer">
-
-										<ul class = "perlist" name = "lecturer">
-											<li class = "inputitem" name="inputlist">
-
-												<input type="text" 
-													placeholder="LN, FN MI" 
-													class = "perfield error" 
-													name="inputlecturer"
-													onclick = "divonfocus()"
-													onkeydown = "if(event.keyCode == 13){ addarritem();}" 
-													value=''/>
-											</li>
-										</ul>
-
-									</div>
-									
-									
-								</div>
-								
-							</div>
-
-							<div class = "field">
-								<label>Organizer <span class="asterisk">*</span></label>
-
-								<div class = "five fields">
-
-									<div class = "ui input field">
-										<input type="text" name = "trainorg" placeholder="e.g. CPSM">
-											
-									</div>
-									
-									
-								</div>
-								
-							</div>-->
-
 							<table class = "ui celled padding table" id = "traintable">
 								<thead>
 									<tr>
@@ -471,7 +351,7 @@
 								</thead>
 
 								<tbody>
-										<tr>
+										<tr class = "trow">
 											<td><center>
 												<div class = "ui input field">
 													<input type="text" name = "traintitle" placeholder="e.g. The Sample Title">

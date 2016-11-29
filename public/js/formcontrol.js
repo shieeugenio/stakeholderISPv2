@@ -313,13 +313,17 @@ $(document).ready(function() {
   });
 });
 
+//Adviser Add Table
+
 function addrow() {
 
 	rowcount += 1;
 
 	var table = document.getElementById('traintable').getElementsByTagName('tbody')[0];
 
-	table.appendChild(document.createElement('tr'));
+	tr = document.createElement('tr');
+	tr.setAttribute('class', 'trow');
+	table.appendChild(tr);
 
 	table.lastChild.appendChild(document.createElement('td'));
 
@@ -498,7 +502,7 @@ function addrow() {
 	var input7 = document.createElement('input');
 	input7.setAttribute('type', 'text');
 	input7.setAttribute('name','trainorg');
-	input7.setAttribute('name','e.g. CPSM');
+	input7.setAttribute('placeholder','e.g. CPSM');
 	table.lastChild.lastChild.lastChild.lastChild.appendChild(input7);
 }//function addrow() {
 //View

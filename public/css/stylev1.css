@@ -372,7 +372,7 @@ form, .dcon {
 	color: #00253a;
 }
 
-tr:hover, .activerow {
+.trow:hover, .activerow {
 	color: #62503d;
     background-color: #faefe3;
     font-weight: bold;
@@ -621,4 +621,16 @@ legend {
 	color: #00253a;
 	font-family: "Franklin Gothic Book";
 	font-weight: bold;
+}
+
+.addtr:hover {
+	background-color: #ede8e6;
+
+}
+
+.unorderedlist {
+	list-style-type: none;
+}
+.dlink:hover {
+	text-decoration: underline;
 }
