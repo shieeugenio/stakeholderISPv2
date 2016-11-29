@@ -86,7 +86,21 @@ Route::post('maintenance/store', 'TrainingController@store');
 
 //POLICE POSITION
 Route::post('maintenance/policepositioncrud','PolicePositionController@policepositioncrud');
+
+
+//advisory council transac
+Route::get('advisorycouncil', 'AdvisoryCouncilController@index');
+
+Route::post('/add', 'AdvisoryCouncilController@add');
+Route::get('transac/{id}/edit', 'AdvisoryCouncilController@find');
+Route::post('transac/{id}/editAc', 'AdvisoryCouncilController@edit');
+
+// Route::get('/subcatOptions', 'AdvisoryCouncilController@cityOptions');
+
 //profile [ren]
 Route::get('transaction/adviser','ProfileController@index');
 Route::post('transaction/addadvisers','ProfileController@store');
 Route::get('transaction/advedt','ProfileController@edit');
+
+
+

@@ -11,9 +11,7 @@ class Lecturers extends Migration
         Schema::create('Lecturers', function(Blueprint $table)
         {
             $table->increments('ID');
-            $table->string('fname', 45);
-            $table->string('mname', 45);
-            $table->string('lname', 45);
+            $table->string('lecturername', 100);
         });
     }
 

@@ -11,6 +11,7 @@ class PoliceAdvisory extends Migration
         Schema::create('PoliceAdvisory', function(Blueprint $table)
         {
             $table->primary('ID');
+            $table->string('authorityorder', 20)->unique();
             $table->integer('ID')->unsigned();
             $table->integer('police_position_id')->unsigned();
             $table->integer('policeoffice_id')->unsigned();
