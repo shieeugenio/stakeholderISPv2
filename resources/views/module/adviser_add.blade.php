@@ -263,19 +263,18 @@
 										<div class = "field">
 											<label>AC Position <span class="asterisk">*</span></label>
 
-<<<<<<< HEAD
+
 										<div class = "five fields">
 											<div class = "ui input field">
 											
 												<input type="text" name = "position" placeholder="e.g. Software Developer">
 												
-=======
+
 											<div class = "field">
 												<select  class="ui selection dropdown" name="acposition">
 													<option class="disabled">Select One</option>
 													<option value="1">Opt 1</option>
 												</select>
->>>>>>> 0014c49454bd2959d7b0507e452a4a1d9243a940
 											</div>
 												
 												

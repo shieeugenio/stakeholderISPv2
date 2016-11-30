@@ -13,6 +13,7 @@ use App\Models\PoliceOffices;
 use App\Models\PoliceOfficeSecond;
 use App\Models\AdvisoryPositions;
 use App\Models\ACCategory;
+use App\Models\ACSubcategory;
 use App\Models\ACSectors;
 use App\Http\Requests;
 
@@ -23,12 +24,10 @@ class ProfileController extends Controller
  		//$profile = Advisers::all();
  		$acsec = DB::table('ACSectors')->select('ID', 'sectorname')->get();
  		$accat = DB::table('ACCategory')->select('ID', 'categoryname')->get();
- 		$pposition = DB::table('PolicePositions')->select('ID', 'policepositionname')->get();
- 		$poffice = DB::table('PoliceOffices')->select('ID', 'officename')->get();
- 		$poffice2 = DB::table('PoliceOfficeSecond')->select('ID', 'officename')->get();
- 		$acposition = DB::table('AdvisoryPositions')->select('ID', 'acpositionname')->get();
+ 		$acsubcat = DB::table('ACSubcategory')->select('ID','subcategoryname')->get();
  		return View ('module/adviser_add')->with('acsec', $acsec)
- 										  ->with('accat',$accat);
+ 										  ->with('accat',$accat)
+ 										  ->with('acsubcat',$acsubcat);
  }  
 
  public function getinfo(Request $req){
