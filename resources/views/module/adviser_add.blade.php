@@ -2,6 +2,488 @@
 	
 @section('maincontent')
 
+	<div class = "advcon">
+		<div class = "formattp tablepane">
+			<div class = "mtitle">
+				Add Adviser
+								
+			</div>
+
+			<div class = "tablecon">
+				<form class = "ui form" id = "form">
+
+					<input type="hidden" value="" name="advid"/>
+
+
+					<div class = "fborder tablepane">
+						<div class = "minvtitle mtitle">
+							Profile			
+						</div>
+
+						<div class = "tablecon">
+							<h4 class="ui dividing header">Basic Information</h4>
+
+							<div class = "field">
+								<label>Name <span class="asterisk">*</span></label>
+
+								<div class = "five fields">
+									<div class = "ui input field">
+										<input type="text" name = "lname" placeholder="Last Name">
+										
+									</div>
+
+									<div class = "ui input field">
+										<input type="text" name = "fname" placeholder="First Name">
+
+									</div>
+
+									<div class = "ui input field">
+										<input type="text" name = "mname" placeholder="Middle Name">
+										
+									</div>
+									
+								</div>
+								
+							</div>
+
+							<div class = "five fields">
+								<div class = "field">
+									<label>Birthdate <span class="asterisk">*</span></label>
+
+									<div class = "ui input field">
+										<input type="date" name = "bdate">
+											
+									</div>
+								</div>
+
+								<div class = "field">
+									<label>Gender <span class="asterisk">*</span></label>
+									<div class = "inline fields">
+										<div class = "ui radio field">
+											<input type="radio" checked name="gender" value="0"  tabindex="0" class="hidden">
+											<label>Male</label>
+												
+										</div>
+										<div class = "ui radio field">
+											<input type="radio" name="gender" value="1"  tabindex="0" class="hidden">
+											<label>Female</label>
+											
+												
+										</div>
+										
+									</div>
+								</div>			
+							</div>
+
+							<div class = "field">
+								<label>Home Address <span class="asterisk">*</span></label>
+
+								<div class = "five fields">
+									<div class = "ui input field">
+										<input type="text" name = "street" placeholder="Street Address">
+										
+									</div>
+
+									<div class = "ui input field">
+										<input type="text" name = "barangay" placeholder="Barangay">
+
+									</div>
+
+									<div class = "ui input field">
+										<input type="text" name = "city" placeholder="City">
+										
+									</div>
+
+									<div class = "ui input field">
+										<input type="text" name = "province" placeholder="Province">
+										
+									</div>
+
+
+									
+								</div>
+								
+							</div>
+
+							<h4 class="ui dividing header">Contact Information</h4>
+
+							<div class = "field">
+								<label>Contact Number</label>
+
+								<div class = "five fields">
+									<div class = "ui input field">
+										<input type="text" name = "contact" placeholder="+639*********">
+										
+									</div>
+
+									<div class = "ui input field">
+										<input type="text" name = "contact" placeholder="+639*********">
+
+									</div>
+									
+								</div>
+								
+							</div>
+
+							<div class = "five fields">
+								<div class = "field">
+									<label>Email Address <span class="asterisk">*</span></label>
+
+									<div class = "ui input field">
+										<input type="email" name = "email" placeholder="e.g. sample@yahoo.com">
+										
+									</div>
+								</div>
+
+								<div class = "field">
+									<label>Facebook </label>
+									<div class = "ui input field">
+										<input type="text" name = "facebook" placeholder="e.g. sampleusername">
+										
+									</div>
+								</div>
+
+								<div class = "field">
+									<label>Twitter </label>
+									<div class = "ui input field">
+										<input type="text" name = "twitter" placeholder="e.g. sampleusername">
+										
+									</div>
+								</div>
+
+								<div class = "field">
+									<label>Instagram </label>
+									<div class = "ui input field">
+										<input type="text" name = "instagram" placeholder="e.g. sampleusername">
+										
+									</div>
+								</div>		
+							</div>
+
+							<br>
+						</div>
+
+						<div class = "fbtop minvtitle mtitle">
+							Advisory Council <!-- SUBJECT FOR CHANGE-->	
+						</div>
+
+						<div class = "tablecon">
+							<div class = "field">
+								<div class = "field">
+									<label>Adviser Category <span class="asterisk">*</span></label>
+									<div class = "inline fields">
+										<div class = "ui radio field">
+											<input type="radio" checked onchange = "changeform(this.value)" name="advcateg" value="0"  tabindex="0" class="hidden">
+											<label>AC</label>
+												
+										</div>
+										<div class = "ui radio field">
+											<input type="radio" onchange = "changeform(this.value)" name="advcateg" value="1"  tabindex="0" class="hidden">
+											<label>TWG</label>
+											
+												
+										</div>
+
+										<div class = "ui radio field">
+											<input type="radio" onchange = "changeform(this.value)" name="advcateg" value="2"  tabindex="0" class="hidden">
+											<label>PSMU</label>
+											
+												
+										</div>
+										
+									</div>
+								</div>
+
+								<br>
+								<div id = "tempfields">
+									<div class = "field">
+										<label>Position <span class="asterisk">*</span></label>
+
+										<div class = "five fields">
+											<div class = "ui input field">
+												<input type="text" name = "position" placeholder="e.g. Software Developer">
+												
+											</div>
+											
+										</div>
+										
+									</div>
+									
+									<div class = "three fields">
+										<div class = "field">
+											<label>Office Name <span class="asterisk">*</span></label>
+
+											<div class = "ui input field">
+												<input type="text" name = "officename" placeholder="e.g. Sample Inc.">
+											</div>
+											
+											
+										</div>
+
+										<div class = "field">
+											<label>Office Address <span class="asterisk">*</span></label>
+
+											<div class = "ui input field">
+												<input type="text" name = "officeadd" placeholder="Street Address Barangay City">
+												
+											</div>
+												
+										</div>
+									</div>
+									
+									<div class = "five fields">
+										<div class = "field">
+											<label>AC Sector <span class="asterisk">*</span></label>
+
+											<div class = "field">
+												<select  class="ui selection dropdown" name="acsector">
+													<option class="disabled">Select One</option>
+													<option value="1">Opt 1</option>
+												</select>
+											</div>
+											
+											
+										</div>
+
+										<div class = "field">
+											<label>AC Category <span class="asterisk">*</span></label>
+
+											<div class = "field">
+												<select  class="ui selection dropdown" name="accateg">
+													<option class="disabled">Select One</option>
+													<option value="1">Opt 1</option>
+												</select>
+											</div>
+											
+											
+										</div>
+
+										
+									</div>
+								</div>
+
+								<br>
+
+								
+							</div>
+									
+						</div>
+
+						<div class = "fbtop minvtitle mtitle">
+							Training							
+						</div>
+
+						<div class = "tablecon">
+							<div class = "field">
+								<label>Title <span class="asterisk">*</span></label>
+
+								<div class = "five fields">
+
+									<div class = "ui input field">
+										<input type="text" name = "traintitle" placeholder="e.g. The Sample Title">
+											
+									</div>
+									
+									
+								</div>
+								
+							</div>
+
+							<div class = "field">
+								<label>Training Category <span class="asterisk">*</span></label>
+
+								<div class = "five fields">
+
+									<div class = "field">
+										<select  class="ui selection dropdown" onchange = "showfield(this.value)" name="traincateg">
+											<option class="disabled">Select One</option>
+											<option value="Advisory Council Summit">Advisory Council Summit</option>
+											<option value="Family Conference">Family Conference</option>
+											<option value="Boot Camp (Basic)">Boot Camp (Basic)</option>
+											<option value="Boot Camp (Master)">Boot Camp (Master)</option>
+											<option value="Lecture Series">Lecture Series</option>
+											<option value="Strategy Refresh">Strategy Refresh</option>
+											<option value="7">Others</option>
+										</select>
+									</div>
+
+									<div class = "ui input field">
+										<input type="text" name = "othercat" style = "display:none" placeholder="Please specify (required)">
+										
+									</div>
+									
+								</div>
+								
+							</div>
+
+							<div class = "five fields">
+								<div class = "field">
+									<label>Date <span class="asterisk">*</span></label>
+
+									<div class = "ui input field">
+										<input type="date" max = "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}" name = "traindate">
+											
+									</div>
+								</div>
+
+								<div class = "field">
+									<label>Time <span class="asterisk">*</span></label>
+
+									<div class = "ui input field">
+										<input type="time" name = "traintime">
+											
+									</div>
+								</div>		
+							</div>
+
+							<div class = "field">
+								<label>Speaker(s) <span class="asterisk">*</span></label>
+
+								<div class = "five fields">
+
+									<div class = "divpercon" name = "pcontainer">
+
+										<ul class = "perlist" name = "lecturer">
+											<li class = "inputitem" name="inputlist">
+
+												<input type="text" 
+													placeholder="LN, FN MI" 
+													class = "perfield error" 
+													name="inputlecturer"
+													onclick = "divonfocus()"
+													onkeydown = "if(event.keyCode == 13){ addarritem();}" 
+													value=''/>
+											</li>
+										</ul>
+
+									</div>
+									
+									
+								</div>
+								
+							</div>
+
+							<div class = "field">
+								<label>Organizer <span class="asterisk">*</span></label>
+
+								<div class = "five fields">
+
+									<div class = "ui input field">
+										<input type="text" name = "trainorg" placeholder="e.g. CPSM">
+											
+									</div>
+									
+									
+								</div>
+								
+							</div>
+
+						</div>
+
+						<br>
+								
+					</div>
+
+					<br>
+
+					<center>
+						<button type = "submit" name="submit" 
+								class="ui large button submit savebtnstyle">
+
+							Save
+						</button>
+						<button type = "reset" 
+								onclick = "if(confirm('Cancel?')) { window.location='{{url('directory')}}'}" 
+								class="ui large button">
+							Cancel
+
+						</button>
+					</center>
+				</form>
+
+
+				
+			</div>
+							
+		</div>
+		
+	</div>
+
+	<script type="text/javascript" src="{{ URL::asset('js/formcontrol.js') }}"></script>
+
+	<script type="text/javascript">
+		$('#tab3').attr('class', 'mlink item active');
+		var lecturers = new Array();
+
+
+		function changeform(selcat) {
+			if(selcat == 0) {
+				removeElements();
+				addT1Elements();
+
+			} else {
+				removeElements();
+				addT2Elements();
+
+			}//if(selcat == 0) {
+
+		}//function changeform() {
+
+		function showfield(trcat) {
+
+			if(trcat == 7) {
+				document.getElementsByName('othercat')[0].style.display = "block";
+				//document.getElementsByName('othercat')[0].setAttribute("required");
+
+			} else {
+				document.getElementsByName('othercat')[0].style.display = "none";
+				//document.getElementsByName('othercat')[0].removeAttribute("required");
+
+			}//if(trcat == 7) {
+		}//function showfield(value) {
+
+		function addarritem() {
+			var text = document.getElementsByName('inputlecturer')[0].value;
+			var pattern = new RegExp("^(?=.*(\d|\w))[A-Za-z0-9 .,'-]{3,}$");
+			var flag = 0;
+
+			//if(pattern.test(text) == true) {
+				for (var count = 0 ; count < lecturers.length ; count++) {
+					if(text === lecturers[count]) {
+						flag = 1;
+						break;
+					}//if
+				};//for
+
+				if(flag == 0) {
+					additem(text);
+					lecturers.push(text);
+
+				}//if(flag == 0) {
+
+
+			//}//pattern
+
+		}//add item to array
+
+		function deletearritem(index) {
+			var ulist = document.getElementsByName('lecturer')[0];
+			var text = ulist.getElementsByTagName('li')[index].firstChild.innerHTML;
+
+			deleteitem(index,ulist);
+
+			for (var count = 0 ; count < lecturers.length ; count++) {
+				if(text === lecturers[count]) {
+					lecturers.splice(count, 1);
+					break;
+				}//if
+					
+			};//for
+
+
+		}//delete from array
+
+	</script>
 
 
 

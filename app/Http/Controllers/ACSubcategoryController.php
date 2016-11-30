@@ -25,12 +25,10 @@ class ACSubcategoryController extends Controller
             $cat->acsubcategorycode = $req->subcatcode;
             $cat->desc = $req->desc;
             $cat->save();
-             //Session::flash('mess', 'category successfully added to list!');
-            return json_encode(redirect("maintenance/subcategory"));
         }
     }
 
-    public function edit($id){
+    public function edit(Request $req){
         $id = $req->id;
         $cat = ACSubcategory::find($id);
         return $cat;
@@ -45,10 +43,7 @@ class ACSubcategoryController extends Controller
             $cat->categoryid = $req->catID;
             $cat->desc = $req->desc;
             
-            echo  $req;
-            
             $cat->save();
-            return json_encode(redirect("maintenance/subcategory"));
 
         }
     }

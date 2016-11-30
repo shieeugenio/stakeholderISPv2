@@ -13,8 +13,8 @@
 		    			<div class="menu">
 
 		    				<a class="item" id = "m1" href = "{{url('maintenance/accategory')}}">Advisory Council Category</a>
-		    				<a class="item" id = "m2" href = "{{url('maintenance/acsubcat')}}">Advisory Council Sub-category</a>
-		    				<a class="item" id = "m3" href = "{{url('maintenance/advisoryposition')}}">Advisory Council Position</a>
+		    				<a class="item" id = "m2" href = "{{url('maintenance/acsubcategory')}}">Advisory Council Sub-category</a>
+		    				<a class="item" id = "m3" href = "{{url('maintenance/acposition')}}">Advisory Council Position</a>
 		    				<a class="item" id = "m4" href = "{{url('maintenance/acsector')}}">Advisory Council Sector</a>
 
 
@@ -27,8 +27,8 @@
 		  			<div class = "item">
 		    			<div class="menu">
 
-		    				<a class="item" id = "m5" href = "{{url('maintenance/policeoffice')}}">Primary Unit/Office</a>
-		    				<a class="item" id = "m6" href = "{{url('maintenance/policeoffice2')}}" >Secondary Unit/Office</a>
+		    				<a class="item" id = "m5" href = "{{url('maintenance/primaryoffice')}}">Primary Unit/Office</a>
+		    				<a class="item" id = "m6" href = "{{url('maintenance/secondaryoffice')}}" >Secondary Unit/Office</a>
 		    				<a class="item" id = "m7" href = "{{url('maintenance/policeposition')}}">PNP Position</a>
 
 		    			</div>
@@ -54,6 +54,8 @@
 		$('#tab2').attr('class', 'mlink item active');
 
 	</script>
+
+	<script type="text/javascript" src = "{{ URL::asset('js/formvalidation.js') }}"></script>
 
 
 

@@ -5,19 +5,14 @@
 		<div class = "ui grid">
 			<div class = "ten wide column">
 				<div class = "tablepane">
-					<div class = "mtitle">Advisory Council Category
-						<!--<div class = "ui icon button addbtn" title = "add">
-							<i class="plus icon topmargin"></i>
-										
-						</div>-->
-					</div>
+					<div class = "mtitle">Advisory Council Sector</div>
 
 					<div class = "tablecon">
 						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
 						    <thead>
 						    	<tr>
-						            <th><center>ID</center></th>
-						            <th><center>Sector Name</center></th> 
+						            <th><center>Code</center></th>
+						            <th><center>Name</center></th>
 						            <th><center>Description</center></th> 
 						        </tr>	
 						    </thead>
@@ -25,8 +20,8 @@
 						    <tbody>
 						    @foreach ($sector as $sec) 
 						       	<tr onclick = "CRUD({{$sec->ID}},2)" id = "{{$sec->ID}}">
-						       		<td><center>{{$sec->ID}}</center></td>
-						    		<td><CENTER>{{$sec->sectorname}}</CENTER></td>
+						    		<td><center>{{$sec->sectorcode}}</center></td>
+						    		<td><center>{{$sec->sectorname}}</center></td>
 						    		<td><center>{{$sec->desc}}</center></td>
 						    	</tr>  
 						                               
@@ -41,23 +36,28 @@
 			<div class = "six wide column">
 				<div class = "formpane">
 					<div class = "mhead">
+						<div id="myToast" class="toast-popup"></div>
 						<i class="write square big icon"></i>
 					</div>
 
 					
-					<form action="javascript:CRUD(0,document.getElementById('dualbutton').value)">	
+					<form class = "ui form" id = "form" action="javascript:CRUD(0,document.getElementById('dualbutton').value)">	
 					
-							
 						<div class = "labelpane">
 						<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Sector Name
+								<label class = "formlabel">Code
+									<span class = "asterisk">*</span>
+								</label>
+						</div>
+
+						<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Name
 									<span class = "asterisk">*</span>
 								</label>
 						</div>
 
 						<div class = "twelve wide column bspacing">
 							<label class = "formlabel">Description
-								<span class = "asterisk">*</span>
 							</label>
 						</div>
 													
@@ -69,8 +69,14 @@
 							<input name="acsectorID" id="acsectorID" type="hidden" value="">					
 
 							<div class = "twelve wide column bspacing2">
-								<div class="ui input formfield">
-								  <input type="text" name="acsectorName"  id="acsectorName" placeholder="e.g Sector Name" pattern = "^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}">
+								<div class="ui input field formfield">
+								  <input type="text" name="acsectorCode"  id="acsectorCode" placeholder="e.g. LGU">
+								</div>
+							</div>
+
+							<div class = "twelve wide column bspacing2">
+								<div class="ui input field formfield">
+								  <input type="text" name="acsectorName"  id="acsectorName" placeholder="e.g. Local Government Unit">
 								</div>
 							</div>
 
@@ -82,16 +88,18 @@
 
 							<div class = "twelve wide column bspacing2">
 								<center>
-								<button class="ui tiny button savebtnstyle"
-								id="dualbutton"
-								name="submit" 
-								value = '1'; 
-	     						onclick="return confirm('This record will saved!');">
+								<button class="ui tiny button submit savebtnstyle"
+									id="dualbutton"
+									type="submit"
+									name="submit" 
+									value = '1'; 
+		     					>
+									
 									Save
 								</button>
 
 								<button class="ui tiny button"  
-								type = "reset" onclick = "resetflag()" >
+								type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" >
 									Cancel
 								</button>					
 								</center>
@@ -109,113 +117,111 @@
 	</div>
 
 
-	<script type="text/javascript">
-		$('#m4').attr('class', 'item active');
+<script type="text/javascript">
+	$('#m4').attr('class', 'item active');
 
-	function resetflag(){
+	function resetflag(msg){
 
-	document.getElementById('dualbutton').value = 1;
-	document.getElementById('acsectorID')[0].value = "";
-	document.getElementsByName('acsectorName')[0].value = "";
-	document.getElementsByName('Desc')[0].value = "";
-	
-}
+		document.getElementById('dualbutton').value = 1;
 
-function CRUD(id, func){
-
-	var data;
-
-	if(func == 1)
-	{
+		$("#myToast").showToast({
+			message: msg,
+			timeout: 2500
+		});
 		
-		data = {
-		'secname' : document.getElementsByName('acsectorName')[0].value,
-		'secdesc' : document.getElementsByName('Desc')[0].value,
-		'submit': document.getElementsByName("submit")[0].value,
-		'callId' : 1,
-		'_token' : '{{ Session::token() }}'
-		};
-	}//add
-
-	if(func == 2)
-	{
-		data = {
-		'id' : id,
-		'callId' : 2,
-		'_token' : '{{ Session::token() }}'};
-		document.getElementById('dualbutton').value = 3;
-	}//update
-
-	if(func == 3)
-	{
-		data = {
-		'id' : document.getElementById('acsectorID').value,
-		'secname' : document.getElementsByName('acsectorName')[0].value,
-		'secdesc' : document.getElementsByName('Desc')[0].value,
-		'submit': document.getElementsByName("submit")[0].value,
-		'callId' : 3,
-		'_token' : '{{ Session::token() }}'
-		};
+		
 	}
 
-	
-	$.ajax({
+	function CRUD(id, func){
 
-		type: "POST",
-		url: "{{url('maintenancetable/acsectorCRUD')}}",
-		data: data,
-		dataype: "JSON",
-		success:function(data){
-			if(  func == 1 || func == 3){ 
-				
-				document.getElementById('acsectorID').value = "";
-				document.getElementsByName('acsectorName')[0].value = "";
-				document.getElementsByName('Desc')[0].value = "";
+		var data;
 
-				window.location.href = "{{url('maintenance/acsector')}}";
+		if(func == 1)
+		{
+			if(confirm('Save?')) {
+				data = {
+				'secname' : document.getElementsByName('acsectorName')[0].value,
+				'seccode' : document.getElementsByName('acsectorCode')[0].value,
+				'secdesc' : document.getElementsByName('Desc')[0].value,
+				'submit': document.getElementsByName("submit")[0].value,
+				'callId' : 1,
+				'_token' : '{{ Session::token() }}'
+				};
 
-			}//if func
-			else {
-				document.getElementById('acsectorID').value = data['ID'];
-				document.getElementsByName('acsectorName')[0].value = data['sectorname'];
-				document.getElementsByName('Desc')[0].value = data['desc'];
-			}
-		} 
+				exec(data, func);
+			}//if(confirm('Save?')) {
+		}//add
 
-	});
+		if(func == 2)
+		{
+			data = {
+			'id' : id,
+			'callId' : 2,
+			'_token' : '{{ Session::token() }}'};
+			document.getElementById('dualbutton').value = 3;
+
+			exec(data, func);
 			
-}	
 
-	</script>
+		}//view
 
-<!--	<script type="text/javascript">
-	function Row_Click(id) {
+		if(func == 3)
+		{
+			if(confirm('Save?')) {
+				data = {
+					'id' : document.getElementById('acsectorID').value,
+					'seccode' : document.getElementsByName('acsectorCode')[0].value,
+					'secname' : document.getElementsByName('acsectorName')[0].value,
+					'secdesc' : document.getElementsByName('Desc')[0].value,
+					'submit': document.getElementsByName("submit")[0].value,
+					'callId' : 3,
+					'_token' : '{{ Session::token() }}'
+					};
 
-			var ID = id;			
-			var dataString = "ID=" + ID;
-			var token = document.getElementById('csrf-token').value;
+				exec(data, func);
+
+			}//if(confirm('Save?')) {
+		}//update
+
 			
-				$.ajax({
+	}
 
-					type: "post",
-					headers: {'X-CSRF-TOKEN': token},
-					url: "ajax_editacsector",
-					data: dataString,
-					datatype: 'JSON',
-					cache: false,
-					success: function(data){
+	function exec(data, func) {
+		$.ajax({
 
-						window.location.href = "ajax_session_acsector";
-						
-					}
+			type: "POST",
+			url: "{{url('maintenancetable/acsectorCRUD')}}",
+			data: data,
+			dataype: "JSON",
+			success:function(data){
+				if(  func == 1 || func == 3){ 
+					
+					if(func == 1) {
+						msg = "Saved!";
+					} else {
+						msg = "Updated!";
+					}//if(func == 1) {
 
-				});
+					resetflag(msg);
+					setTimeout(function(){
+						location.reload();
+					}, 2600);
 
-				return false;
+				}//if func
+				else {
+					$('#' + data['ID']).attr('class', 'activerow');
+					$('tr').not("[id = '" + data['ID'] + "']").removeAttr('class');
 
-		}//End Of Row
+					document.getElementById('acsectorID').value = data['ID'];
+					document.getElementsByName('acsectorCode')[0].value = data['sectorcode'];
+					document.getElementsByName('acsectorName')[0].value = data['sectorname'];
+					document.getElementsByName('Desc')[0].value = data['desc'];
+				}
+			} 
 
-	</script> -->
+		});
+	}//function exec() {
 
+</script>
 	
 @stop

@@ -7,7 +7,9 @@
 			<div class = "ui grid">
 				<div class = "row">
 					<div class = "five wide column moveright">
-						<div class = "ui icon addbtn button tiny" title = "add">
+						<div class = "ui icon addbtn button tiny" 
+							onclick = "window.location='{{url('directory/add')}}'" 
+							title = "add">
 							<i class="plus icon topmargin"></i>
 							
 						</div>
@@ -29,7 +31,7 @@
 							    	Advisory Council (AC)
 							    </div>
 							    <div class="item">
-							     	Police Strategry Management Unit (PSMU)
+							     	Police Strategy Management Unit (PSMU)
 							    </div>
 							    <div class="item">
 							    	Technical Worker Group (TWG)
@@ -78,72 +80,11 @@
 					</div>
 
 				</div>
-				<div class = "five wide column colheight">
-					<div class = "cardstyle">
-						<img class = "advphoto" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
-
-						<div class = "advdata">
-							<h4 class = "name">Eugenio, Shiela Mae F.</h4>
-							<p>Other data comes here</p>
-							
-						</div>
-					</div>
-
-				</div>
-				<div class = "five wide column colheight">
-					<div class = "cardstyle">
-						<img class = "advphoto" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
-
-						<div class = "advdata">
-							<h4 class = "name">Eugenio, Shiela Mae F.</h4>
-							<p>Other data comes here</p>
-							
-						</div>
-					</div>
-
-				</div>
-				<div class = "five wide column colheight">
-					<div class = "cardstyle">
-						<img class = "advphoto" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
-
-						<div class = "advdata">
-							<h4 class = "name">Eugenio, Shiela Mae F.</h4>
-							<p>Other data comes here</p>
-							
-						</div>
-					</div>
-
-				</div>
-				<div class = "five wide column colheight">
-					<div class = "cardstyle">
-						<img class = "advphoto" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
-
-						<div class = "advdata">
-							<h4 class = "name">Eugenio, Shiela Mae F.</h4>
-							<p>Other data comes here</p>
-							
-						</div>
-					</div>
-
-				</div>
-				<div class = "five wide column colheight">
-					<div class = "cardstyle">
-						<img class = "advphoto" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
-
-						<div class = "advdata">
-							<h4 class = "name">Eugenio, Shiela Mae F.</h4>
-							<p>Other data comes here</p>
-							
-						</div>
-					</div>
-
-				</div>
-
 				
 			</div>
 			
 				
-
+			
 			
 		</div>
 		

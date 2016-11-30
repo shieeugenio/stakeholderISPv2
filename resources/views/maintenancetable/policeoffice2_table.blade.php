@@ -6,10 +6,7 @@
 			<div class = "ten wide column">
 				<div class = "tablepane">
 					<div class = "mtitle">Secondary Unit/Office
-						<!--<div class = "ui icon button addbtn" title = "add">
-							<i class="plus icon topmargin"></i>
-										
-						</div>-->
+						
 					</div>
 
 					<div class = "tablecon">
@@ -17,8 +14,8 @@
 						    <thead>
 						    	<tr>
 						            <th><center>Primary Office</center></th>
+						            <th><center>Secondary Office Code</center></th>
 						            <th><center>Secondary Office</center></th>
-						            <th><center>Secondary OfficeCode</center></th>
 						            <th><center>Description</center></th>
 						            <th><center>Address</center></th> 
 						            <th><center>Contact No.</center></th> 
@@ -27,7 +24,7 @@
 						                   
 						    <tbody>
 						    	@foreach($suboffices as $key)
-						    		<tr>
+						    		<tr onclick = "loaddata({{$key->ID}})" id = "{{$key->ID}}">
 						    			<td>{{$key->policeoffice->policeofficecode}}: {{$key->policeoffice->officename}}</td>
 						    			<td>{{$key->officename}}</td>
 						    			<td>{{$key->policeofficecode2}}</td>
@@ -49,16 +46,23 @@
 			<div class = "six wide column">
 				<div class = "formpane">
 					<div class = "mhead">
+						<div id="myToast" class="toast-popup"></div>
 						<i class="write square big icon"></i>
 					</div>
 
 					
-					<form class = "ui form" id = "form" action = "javascript:controlaction()">
+					<form class = "ui form" id = "form" action="javascript:controlaction()">
 							
 						<div class = "labelpane2">
 									
 							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Primary Office
+									<span class = "asterisk">*</span>
+								</label>
+							</div>
+
+							<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Secondary Office Code
 									<span class = "asterisk">*</span>
 								</label>
 							</div>
@@ -70,24 +74,18 @@
 							</div>
 
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Sub Code
-									<span class = "asterisk">*</span>
-								</label>
-							</div>
-
-							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Description
 								</label>
 							</div>
 
-							<div class = "twelve wide column bspacing">
+							<div class = "twelve wide column bspacing6">
 								<label class = "formlabel">Address</label>	
 								<span class = "asterisk">*</span>
 							</div>
 
 							
 
-							<div class = "twelve wide column bspacing4">
+							<div class = "twelve wide column bspacing7">
 								<label class = "formlabel">Contact No.</label>
 								<span class = "asterisk">*</span>
 							</div>
@@ -97,70 +95,81 @@
 						<div class = "fieldpane2">
 
 							<div class = "twelve wide column bspacing2">
-								<select class="ui selection dropdown selectstyle2" name="office" id = "select">
-									  <option value="- Select Category -" >- Select Primary Office -</option>
+								<div class = "field">
+									<select class="ui selection dropdown selectstyle2" name="office" id = "select">
+									  <option class = "disabled">Select One</option>
 									  
-									  <option value="saab">Deym</option>		
+									  @foreach($offices as $sitem)
 
-								</select>
+									  	<option value = '{{$sitem->ID}}'>{{$sitem->officename}} ({{$sitem->policeofficecode2}})</option>
+
+									  @endforeach
+									  	
+
+									</select>
+									
+								</div>
+								
 							</div>
 
 							<div class = "twelve wide column bspacing2">
-								<div class="ui input formfield">
-									<input type="text" name="name" placeholder="Sub Office Name">
+								<div class="ui input field formfield">
+									<input type="text" name="code" placeholder="e.g. REG">
+								</div>
+							</div>
+
+							<div class = "twelve wide column bspacing5">
+								<div class="ui input field formfield">
+									<input type="text" name="name" placeholder="e.g. Regional">
 								</div>
 							</div>
 
 							<div class = "twelve wide column bspacing2">
-								<div class="ui input formfield">
-									<input type="text" name="code" placeholder="Sub Office Code">
-								</div>
-							</div>
-
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input formfield">
-									<input type="text" name="desc" placeholder="Type here..">
+								<div class="field">
+									<textarea  id = "description" name = "desc" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
 								</div>
 							</div>
 							
 							<div class = "twelve wide column bspacing2">
-								<div class="ui input formfield">
+								<div class="ui input field formfield">
 									<input type="text" name="street" placeholder="Street">
 								</div>
 							</div>
 							
 							<div class = "twelve wide column bspacing2">
-								<div class="ui input formfield">
+								<div class="ui input field formfield">
 									<input type="text" name="barangay" placeholder="Barangay">
 								</div>
 							</div>				
 
 						
 							<div class = "twelve wide column bspacing2">
-								<div class="ui input formfield">
+								<div class="ui input field formfield">
 									<input type="text" name="city" placeholder="City">
 								</div>
 							</div>
 
 							<div class = "twelve wide column bspacing2">
-								<div class="ui input formfield">
+								<div class="ui input field formfield">
 									<input type="text" name="prov" placeholder="Province">
 								</div>
 							</div>		
 						
 							<div class = "twelve wide column bspacing2">
-								<div class="ui input formfield">
-								  <input type='tel' value='' name='contact' required placeholder="+639..." pattern = '[0-9]+'/>
+								<div class="ui input field formfield">
+								  <input type='tel' value='' name='contact' placeholder="+639*********"/>
 								</div>
 							</div>
 
 
 							<div class = "twelve wide column bspacing2">
-								<center><button type="submit" value="submit" name="submit" class="ui tiny button savebtnstyle">
+								<center><button type = "submit" name="submit" 
+												class="ui tiny button submit savebtnstyle"
+										>
 
 									Save
 								</button>
-								<button class="ui tiny button">
+								<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button">
 									Cancel
 
 								</button></center>
@@ -183,19 +192,24 @@
 		var flag = 0;
 
 		function controlaction() {
-			console.log(flag);
+			if(confirm('Save?')) {
+				if(flag == 1) {
+					editData();
 
-			if(flag == 1) {
-				editData();
+				} else if(flag == 0) {
+					addData();
 
-			} else if(flag == 0) {
-				addData();
-
-			}//if(flag == 1) {
+				}//if(flag == 1) {
+			}//if(confirm('Save?')) {
 		}//function controlaction() {
 
-		function resetflag() {
+		function resetflag(msg) {
 			flag = 0;
+
+			$("#myToast").showToast({
+				message: msg,
+				timeout: 2500
+			});
 
 		}//function resetflag() {
 
@@ -217,8 +231,9 @@
 			   	dataType: "JSON",
 			   	success : function(data) {
 
+			   		console.log(data);
 			   		document.getElementsByName('subid')[0].value = data['ID'];
-			   		document.getElementsByName('office')[0].value = data['police_office_id'];
+			   		$('#select').dropdown('set selected', data['police_office_id']);
 			   		document.getElementsByName('name')[0].value = data['officename'];
 			   		document.getElementsByName('code')[0].value = data['policeofficecode2'];
 			   		document.getElementsByName('desc')[0].value = data['desc'];
@@ -227,8 +242,6 @@
 			   		document.getElementsByName('city')[0].value = data['city'];
 			   		document.getElementsByName('prov')[0].value = data['province'];
 			   		document.getElementsByName('contact')[0].value = data['contactno'];
-
-			   		console.log(data);
 
 			   	}//success : function() {
 			});
@@ -255,20 +268,16 @@
 				type: "POST",
 				url: "{{url('confirmpolice')}}",
 				data: data,
-			   	dataType: "JSON",
 			   	success : function() {
-			   		flag = 0;
-
-			   		$(document).ready(function(){
-						$("#toast").showToast({
-						    message: 'Saved!',
-						    timeout: 2500
-						});
-					});
+			   		resetflag('Saved!');
 
 
 			   	}
 			});
+
+			setTimeout(function(){
+				location.reload();
+			}, 2600);
 
 		}//function addData(){
 
@@ -288,19 +297,20 @@
 				'_token' : '{{ Session::token() }}'
 			};
 
-			console.log(data)
-
 			$.ajax({
 				type: "POST",
 				url: "{{url('maintenance/editsubpolice')}}",
 				data: data,
-			   	dataType: "JSON",
 			   	success : function() {
-			   		flag = 0;
+			   		resetflag('Updated!');
 
 
 			   	}//success : function() {
 			});
+
+			setTimeout(function(){
+				location.reload();
+			}, 2600);
 
 
 		}//
