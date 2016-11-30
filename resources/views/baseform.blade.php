@@ -15,6 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/toast.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/multipletextinput.css')}}">
 
+
 		<!-- JS -->
 		<script type="text/javascript" src="{{ URL::asset('js/jquery-2.1.4.js') }}"></script>
 		<script type="text/javascript" src="{{ URL::asset('js/semantic.js') }}"></script>
@@ -44,7 +45,7 @@
 						<div class = "row rightrow">
 							<div class = "ucon">
 								<img class="ui avatar image profile" src="{{URL::asset('objects/Logo/InitProfile.png')}}">
-									<span>Username</span>
+									<span>Username </span><a class = "outlink" href="#">(LOG OUT)</a>
 							</div>
 						</div>
 							
