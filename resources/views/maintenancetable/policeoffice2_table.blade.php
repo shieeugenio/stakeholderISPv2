@@ -24,7 +24,7 @@
 						                   
 						    <tbody>
 						    	@foreach($suboffices as $key)
-						    		<tr onclick = "loaddata({{$key->ID}})" id = "{{$key->ID}}">
+						    		<tr class = "trow" onclick = "loaddata({{$key->ID}})" id = "{{$key->ID}}">
 						    			<td>{{$key->policeoffice->policeofficecode}}: {{$key->policeoffice->officename}}</td>
 						    			<td>{{$key->officename}}</td>
 						    			<td>{{$key->policeofficecode2}}</td>
@@ -96,12 +96,12 @@
 
 							<div class = "twelve wide column bspacing2">
 								<div class = "field">
-									<select class="ui selection dropdown selectstyle2" name="office" id = "select">
+									<select class="modified ui selection dropdown selectstyle2" name="office" id = "select">
 									  <option class = "disabled">Select One</option>
 									  
 									  @foreach($offices as $sitem)
 
-									  	<option value = '{{$sitem->ID}}'>{{$sitem->officename}} ({{$sitem->policeofficecode2}})</option>
+									  	<option value = '{{$sitem->ID}}'>{{$sitem->officename}} ({{$sitem->policeofficecode}})</option>
 
 									  @endforeach
 									  	
