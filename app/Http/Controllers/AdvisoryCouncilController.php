@@ -21,7 +21,7 @@ class AdvisoryCouncilController extends Controller
         // // $auctionEndTime = explode(' ', $auction->EndDateTime);
         // $currentDatetime = explode(' ', $currentDatetime);
     	
-    	return view('Advisorycouncil')->with('council', $advisory)->with('sub', $subcat)
+    	return view('transaction/Advisorycouncil')->with('council', $advisory)->with('sub', $subcat)
                     ->with('cat', $category)->with('positions', $position);
     }
 
@@ -50,8 +50,8 @@ class AdvisoryCouncilController extends Controller
     public function find($id){
         $advisory = App\Models\AdvisoryCouncil::with('advisoryposition')->with('acsubcategory')->get();
         $id = App\Models\AdvisoryCouncil::find($id);
-        $position = App\Models\AdvisoryPositions::all();
-        return view('editAdvisorycouncil')->with('ids', $id)->with('ac', $advisory)->with('positions', $position);
+        // $position = App\Models\AdvisoryPositions::all();
+        return view('transaction/editAdvisorycouncil')->with('ids', $id)->with('ac', $advisory);
     }
 
     public function edit(Request $request){
