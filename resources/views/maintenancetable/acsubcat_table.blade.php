@@ -89,7 +89,7 @@
 							</div>
 							<div class = "twelve wide column bspacing2">
 								<div class = "field">
-									<select class="ui selection dropdown selectstyle" name="category" id = "select">
+									<select class="modified ui selection dropdown selectstyle" name="category" id = "select">
 										<option class="disabled">Select One</option>
 									  	@foreach($category as $key=>$value)
 											<option value="{{$value->ID}}">

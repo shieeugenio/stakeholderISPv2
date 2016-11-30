@@ -14,43 +14,49 @@ function addT1Elements() { //AC ELEMENTS
 
 	//----------------------------------------------------------------------------------
 
+	var div = document.createElement('div');
+	div.setAttribute('class', 'five fields');
+	tempcon.appendChild(div);
+
 	var div1 = document.createElement('div');
 	div1.setAttribute('class', 'field');
-	tempcon.appendChild(div1);
+	tempcon.lastChild.appendChild(div1);
 
-	tempcon.lastChild.appendChild(document.createElement('label'));
+	tempcon.lastChild.lastChild.appendChild(document.createElement('label'));
 
-	tempcon.lastChild.lastChild.appendChild(document.createTextNode('Position '));
+	tempcon.lastChild.lastChild.lastChild.appendChild(document.createTextNode('AC Position '));
 
 	var span1 = document.createElement('span');
 	span1.setAttribute('class', 'asterisk');
-	tempcon.lastChild.lastChild.appendChild(span1);
+	tempcon.lastChild.lastChild.lastChild.appendChild(span1);
 
-	tempcon.lastChild.lastChild.lastChild.appendChild(document.createTextNode('*'));
+	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('*'));
 
 	var div2 = document.createElement('div');
-	div2.setAttribute('class', 'five fields');
-	tempcon.lastChild.appendChild(div2);
+	div2.setAttribute('class', 'field');
+	tempcon.lastChild.lastChild.appendChild(div2);
 
-	var div3 = document.createElement('div');
-	div3.setAttribute('class', 'ui input field');
-	tempcon.lastChild.lastChild.appendChild(div3);
+	var select = document.createElement('select');
+	select.setAttribute('class','ui selection dropdown');
+	select.setAttribute('name', 'acposition');
+	tempcon.lastChild.lastChild.lastChild.appendChild(select);
 
-	var input1 = document.createElement('input');
-	input1.setAttribute('type','text');
-	input1.setAttribute('name', 'position');
-	input1.setAttribute('placeholder', 'e.g. Software Developer');
-	tempcon.lastChild.lastChild.lastChild.appendChild(input1);
+	var opt = document.createElement('option');
+	opt.setAttribute('class', 'disabled');
+	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt);
+
+	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One'));
+
 
 	//----------------------------------------------------------------------------------
 
-	var div4 = document.createElement('div');
-	div4.setAttribute('class', 'three fields');
-	tempcon.appendChild(div4);
+	var div3 = document.createElement('div');
+	div3.setAttribute('class', 'three fields');
+	tempcon.appendChild(div3);
 
-	var div5 = document.createElement('div');
-	div5.setAttribute('class', 'field');
-	tempcon.lastChild.appendChild(div5);
+	var div4 = document.createElement('div');
+	div4.setAttribute('class', 'field');
+	tempcon.lastChild.appendChild(div4);
 
 	tempcon.lastChild.lastChild.appendChild(document.createElement('label'));
 
@@ -62,9 +68,9 @@ function addT1Elements() { //AC ELEMENTS
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('*'));
 
-	var div6 = document.createElement('div');
-	div6.setAttribute('class', 'ui input field');
-	tempcon.lastChild.lastChild.appendChild(div6);
+	var div5 = document.createElement('div');
+	div5.setAttribute('class', 'ui input field');
+	tempcon.lastChild.lastChild.appendChild(div5);
 
 	var input2 = document.createElement('input');
 	input2.setAttribute('type','text');
@@ -74,9 +80,9 @@ function addT1Elements() { //AC ELEMENTS
 
 	//----------------------------------------------------------------------------------
 
-	var div7 = document.createElement('div');
-	div7.setAttribute('class', 'field');
-	tempcon.lastChild.appendChild(div7);
+	var div6 = document.createElement('div');
+	div6.setAttribute('class', 'field');
+	tempcon.lastChild.appendChild(div6);
 
 	tempcon.lastChild.lastChild.appendChild(document.createElement('label'));
 
@@ -88,9 +94,9 @@ function addT1Elements() { //AC ELEMENTS
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('*'));
 
-	var div8 = document.createElement('div');
-	div8.setAttribute('class', 'ui input field');
-	tempcon.lastChild.lastChild.appendChild(div8);
+	var div7 = document.createElement('div');
+	div7.setAttribute('class', 'ui input field');
+	tempcon.lastChild.lastChild.appendChild(div7);
 
 	var input2 = document.createElement('input');
 	input2.setAttribute('type','text');
@@ -100,45 +106,13 @@ function addT1Elements() { //AC ELEMENTS
 
 	//----------------------------------------------------------------------------------
 
-	div9 = document.createElement('div');
-	div9.setAttribute('class', 'five fields');
-	tempcon.appendChild(div9);
-
-	var div10 = document.createElement('div');
-	div10.setAttribute('class', 'field');
-	tempcon.lastChild.appendChild(div10);
-
-	tempcon.lastChild.lastChild.appendChild(document.createElement('label'));
-
-	tempcon.lastChild.lastChild.lastChild.appendChild(document.createTextNode('AC Sector '));
-
-	var span4 = document.createElement('span');
-	span4.setAttribute('class', 'asterisk');
-	tempcon.lastChild.lastChild.lastChild.appendChild(span4);
-
-	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('*'));
+	div13 = document.createElement('div');
+	div13.setAttribute('class', 'five fields');
+	tempcon.appendChild(div13);
 
 	div11 = document.createElement('div');
-	div11.setAttribute('class', 'five fields');
-	tempcon.lastChild.lastChild.appendChild(div11);
-
-	var select1 = document.createElement('select');
-	select1.setAttribute('class', 'ui selection dropdown');
-	select1.setAttribute('name', 'acsector');
-	tempcon.lastChild.lastChild.lastChild.appendChild(select1);
-
-	var opt1 = document.createElement('option');
-	opt1.setAttribute('class', 'disabled');
-	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt1);
-
-	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One'));
-
-
-	//----------------------------------------------------------------------------------
-
-	div12 = document.createElement('div');
-	div12.setAttribute('class', 'field');
-	tempcon.lastChild.appendChild(div12);
+	div11.setAttribute('class', 'field');
+	tempcon.lastChild.appendChild(div11);
 
 	tempcon.lastChild.lastChild.appendChild(document.createElement('label'));
 
@@ -150,9 +124,9 @@ function addT1Elements() { //AC ELEMENTS
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('*'));
 
-	div13 = document.createElement('div');
-	div13.setAttribute('class', 'five fields');
-	tempcon.lastChild.lastChild.appendChild(div13);
+	div12 = document.createElement('div');
+	div12.setAttribute('class', 'field');
+	tempcon.lastChild.lastChild.appendChild(div12);
 
 	var select2 = document.createElement('select');
 	select2.setAttribute('class', 'ui selection dropdown');
@@ -165,12 +139,106 @@ function addT1Elements() { //AC ELEMENTS
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One'));
 
+	//----------------------------------------------------------------------------------
 
+	div14 = document.createElement('div');
+	div14.setAttribute('class', 'field');
+	tempcon.lastChild.appendChild(div14);
+
+	tempcon.lastChild.lastChild.appendChild(document.createElement('label'));
+
+	tempcon.lastChild.lastChild.lastChild.appendChild(document.createTextNode('AC Sub-Category '));
+
+	var span6 = document.createElement('span');
+	span6.setAttribute('class', 'asterisk');
+	tempcon.lastChild.lastChild.lastChild.appendChild(span6);
+
+	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('*'));
+
+	div15 = document.createElement('div');
+	div15.setAttribute('class', 'field');
+	tempcon.lastChild.lastChild.appendChild(div15);
+
+	var select3 = document.createElement('select');
+	select3.setAttribute('class', 'ui selection dropdown');
+	select3.setAttribute('name', 'acsubcateg');
+	tempcon.lastChild.lastChild.lastChild.appendChild(select3);
+
+	var opt5 = document.createElement('option');
+	opt5.setAttribute('class', 'disabled');
+	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt5);
+
+	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One'));
+
+	//----------------------------------------------------------------------------------
+
+	div8 = document.createElement('div');
+	div8.setAttribute('class', 'five fields');
+	tempcon.appendChild(div8);
+
+	var div9 = document.createElement('div');
+	div9.setAttribute('class', 'field');
+	tempcon.lastChild.appendChild(div9);
+
+	tempcon.lastChild.lastChild.appendChild(document.createElement('label'));
+
+	tempcon.lastChild.lastChild.lastChild.appendChild(document.createTextNode('AC Sector '));
+
+	var span4 = document.createElement('span');
+	span4.setAttribute('class', 'asterisk');
+	tempcon.lastChild.lastChild.lastChild.appendChild(span4);
+
+	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('*'));
+
+	div10 = document.createElement('div');
+	div10.setAttribute('class', 'field');
+	tempcon.lastChild.lastChild.appendChild(div10);
+
+	var select1 = document.createElement('select');
+	select1.setAttribute('class', 'ui selection dropdown multiple');
+	select1.setAttribute('multiple', 'true');
+	select1.setAttribute('name', 'acsector');
+	tempcon.lastChild.lastChild.lastChild.appendChild(select1);
+
+	var opt1 = document.createElement('option');
+	opt1.setAttribute('class', 'disabled');
+	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt1);
+
+	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One or More'));
+
+	$("select[name='acsector']").dropdown(); //refresh dropdown
 }//function addACElements() {
 
 function addT2Elements() { //PSMU and TWG ELEMENTS
 
 	var tempcon = document.getElementById('tempfields');
+
+	var div = document.createElement('div');
+	div.setAttribute('class', 'field');
+	tempcon.appendChild(div);
+
+	tempcon.lastChild.appendChild(document.createElement('label'));
+
+	tempcon.lastChild.lastChild.appendChild(document.createTextNode('Authority '));
+
+	var span = document.createElement('span');
+	span.setAttribute('class', 'asterisk');
+	tempcon.lastChild.lastChild.appendChild(span);
+
+	tempcon.lastChild.lastChild.lastChild.appendChild(document.createTextNode('*'));
+
+	var div8 = document.createElement('div');
+	div8.setAttribute('class', 'five fields');
+	tempcon.lastChild.appendChild(div8);
+
+	var div9 = document.createElement('div');
+	div9.setAttribute('class', 'ui input field');
+	tempcon.lastChild.lastChild.appendChild(div9);
+
+	var input = document.createElement('input');
+	input.setAttribute('type','file');
+	input.setAttribute('name','letterorder');
+	tempcon.lastChild.lastChild.lastChild.appendChild(input);
 
 	//----------------------------------------------------------------------------------
 
@@ -180,7 +248,7 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 
 	tempcon.lastChild.appendChild(document.createElement('label'));
 
-	tempcon.lastChild.lastChild.appendChild(document.createTextNode('Position '));
+	tempcon.lastChild.lastChild.appendChild(document.createTextNode('PNP Position '));
 
 	var span1 = document.createElement('span');
 	span1.setAttribute('class', 'asterisk');
@@ -265,7 +333,7 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 
 //Multiple Text Input
 
-function additem(text, index) {
+/**function additem(text, index) {
 	var ulist = document.getElementsByName('lecturer')[index];
 	var container = document.getElementsByName('pcontainer')[index];
 	var inputlist = document.getElementsByName('inputlist')[index];
@@ -311,19 +379,23 @@ $(document).ready(function() {
       return false;
     }
   });
-});
+});**/
 
 //Adviser Add Table
 
 function addrow() {
+	console.log(rowcount);
 
-	rowcount += 1;
 
 	var table = document.getElementById('traintable').getElementsByTagName('tbody')[0];
 
 	tr = document.createElement('tr');
-	tr.setAttribute('class', 'trow');
+	tr.setAttribute('class', 'trow1');
 	table.appendChild(tr);
+
+
+	//----------------------------------------Title------------------------------------------
+
 
 	table.lastChild.appendChild(document.createElement('td'));
 
@@ -339,6 +411,10 @@ function addrow() {
 	input1.setAttribute('placeholder', 'e.g. The Sample Title');
 	table.lastChild.lastChild.lastChild.lastChild.appendChild(input1);
 
+
+	//--------------------------------------Category--------------------------------------------
+
+
 	table.lastChild.appendChild(document.createElement('td'));
 
 	table.lastChild.lastChild.appendChild(document.createElement('center'));
@@ -350,7 +426,7 @@ function addrow() {
 	var select1 = document.createElement('select');
 	select1.setAttribute('id', 'select');
 	select1.setAttribute('class', 'ui selection dropdown');
-	select1.setAttribute('onchange', 'showfield(this.value, rowcount)');
+	select1.setAttribute('onchange', 'showfield()');
 	select1.setAttribute('name','traincateg');
 	table.lastChild.lastChild.lastChild.lastChild.appendChild(select1);
 
@@ -417,6 +493,8 @@ function addrow() {
 	input2.setAttribute('placeholder', 'Please specify (required)');
 	table.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(input2);
 
+	//-------------------------------------------Location---------------------------------------
+
 	table.lastChild.appendChild(document.createElement('td'));
 
 	table.lastChild.lastChild.appendChild(document.createElement('center'));
@@ -432,42 +510,78 @@ function addrow() {
 	table.lastChild.lastChild.lastChild.lastChild.appendChild(input3);
 
 
+	//---------------------------------------Start-------------------------------------------
+
+
 	table.lastChild.appendChild(document.createElement('td'));
 
 	table.lastChild.lastChild.appendChild(document.createElement('center'));
 
+	var div = document.createElement('div');
+	div.setAttribute('class', 'field');
+	table.lastChild.lastChild.lastChild.appendChild(div);
+
 	var div5 = document.createElement('div');
 	div5.setAttribute('class', 'ui input field');
-	table.lastChild.lastChild.lastChild.appendChild(div5);
+	table.lastChild.lastChild.lastChild.lastChild.appendChild(div5);
 
 	var input4 = document.createElement('input');
 	input4.setAttribute('type', 'date');
-	input4.setAttribute('name','traindate');
+	input4.setAttribute('name','trainsdate');
 	input4.setAttribute('max', "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}");
-	table.lastChild.lastChild.lastChild.lastChild.appendChild(input4);
+	table.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(input4);
+
+	var div10 = document.createElement('div');
+	div10.setAttribute('class', 'ui input field');
+	table.lastChild.lastChild.lastChild.lastChild.appendChild(div10);
+
+	var input8 = document.createElement('input');
+	input8.setAttribute('type', 'time');
+	input8.setAttribute('name','trainstime');
+	table.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(input8);
+
+
+	//-------------------------------------End---------------------------------------------
+
 
 	table.lastChild.appendChild(document.createElement('td'));
 
 	table.lastChild.lastChild.appendChild(document.createElement('center'));
 
 	var div6 = document.createElement('div');
-	div6.setAttribute('class', 'ui input field');
+	div6.setAttribute('class', 'field');
 	table.lastChild.lastChild.lastChild.appendChild(div6);
 
+	var div11 = document.createElement('div');
+	div11.setAttribute('class', 'ui input field');
+	table.lastChild.lastChild.lastChild.lastChild.appendChild(div11);
+
 	var input5 = document.createElement('input');
-	input5.setAttribute('type', 'time');
-	input5.setAttribute('name','traintime');
-	table.lastChild.lastChild.lastChild.lastChild.appendChild(input5);
+	input5.setAttribute('type', 'date');
+	input5.setAttribute('name','trainedate');
+	input5.setAttribute('max', "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}");
+	table.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(input5);
+
+	var div11 = document.createElement('div');
+	div11.setAttribute('class', 'ui input field');
+	table.lastChild.lastChild.lastChild.lastChild.appendChild(div11);
+
+	var input9 = document.createElement('input');
+	input9.setAttribute('type', 'time');
+	input9.setAttribute('name','trainetime');
+	table.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(input9);
+
+	//------------------------------------Lecturer----------------------------------------------
 
 	table.lastChild.appendChild(document.createElement('td'));
 
 	table.lastChild.lastChild.appendChild(document.createElement('center'));
 
 	var div7 = document.createElement('div');
-	div7.setAttribute('class', 'five fields');
+	div7.setAttribute('class', 'field');
 	table.lastChild.lastChild.lastChild.appendChild(div7);
 
-	var div8 = document.createElement('div');
+	/*var div8 = document.createElement('div');
 	div8.setAttribute('class', 'divpercon');
 	div8.setAttribute('name', 'pcontainer');
 	table.lastChild.lastChild.lastChild.lastChild.appendChild(div8);
@@ -489,7 +603,18 @@ function addrow() {
 	input6.setAttribute('class','perfield');
 	input6.setAttribute('onclick','divonfocus()');
 	input6.setAttribute('onkeydown','if(event.keyCode == 13){ addarritem(rowcount);}');
-	table.lastChild.lastChild.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(input6);
+	table.lastChild.lastChild.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(input6);*/
+
+	var textarea = document.createElement('textarea');
+	textarea.setAttribute('name', 'trainlecturer');
+	textarea.setAttribute('class', 'areastyle');
+	textarea.setAttribute('rows', '4');
+	textarea.setAttribute('placeholder', 'Type here...');
+	table.lastChild.lastChild.lastChild.lastChild.appendChild(textarea);
+
+
+	//-----------------------------------Organization-----------------------------------------------
+
 
 	table.lastChild.appendChild(document.createElement('td'));
 
@@ -504,5 +629,6 @@ function addrow() {
 	input7.setAttribute('name','trainorg');
 	input7.setAttribute('placeholder','e.g. CPSM');
 	table.lastChild.lastChild.lastChild.lastChild.appendChild(input7);
+
 }//function addrow() {
 //View

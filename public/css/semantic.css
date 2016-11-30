@@ -16239,6 +16239,10 @@ ol.ui.horizontal.list li:before,
 /* Block */
 
 .ui.form .field > .selection.dropdown {
+  width: 100%;
+}
+
+.ui.form .field > .modified.selection.dropdown {
   width: 96%;
 }
 
@@ -28124,7 +28128,7 @@ body.dimmable > .dimmer {
   transform: rotateZ(0deg);
   min-width: 9em;
   min-height: 1em;
-  height: 2em;
+  height: auto;
   background: #FFFFFF;
   display: inline-block;
   padding: 0.4em 2.6em 0.4em 1em;
@@ -28410,7 +28414,8 @@ select.ui.dropdown {
 /* Multiple Selection */
 
 .ui.multiple.dropdown {
-  padding: 0.22620476em 2.6em 0.22620476em 0.28571429em;
+  /*padding: 0.22620476em 2.6em 0.22620476em 0.28571429em;*/
+  padding: 0.15em 2.6em 0.6em 0.28571429em
 }
 
 .ui.multiple.dropdown .menu {

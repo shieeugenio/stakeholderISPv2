@@ -324,6 +324,10 @@ form, .dcon {
 	margin-top: 28%;
 }
 
+.bspacing11 {
+	margin-bottom: 2.7%;
+}
+
 
 .fieldpane {
 	height: 100%;
@@ -377,6 +381,15 @@ form, .dcon {
     background-color: #faefe3;
     font-weight: bold;
     cursor: pointer;
+}
+
+.trow1:hover {
+    background-color: #faefe3;
+
+}
+
+.disitem {
+	font-weight: bold;
 }
 
 .selectstyle {
@@ -633,4 +646,8 @@ legend {
 }
 .dlink:hover {
 	text-decoration: underline;
+}
+
+.formadd {
+	width: 100%;
 }
