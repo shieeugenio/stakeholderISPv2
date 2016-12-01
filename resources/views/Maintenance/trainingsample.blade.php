@@ -27,6 +27,46 @@
 
 							</select>
 
+							<legend>Training</legend>
+							<input type="hidden" id="ID" value="" />
+							Training Name:<input type="text" name="tname" value="" /><br>
+							Start date   :<input type="date" name="startdate" value="" /><br>
+							End date     :<input type="date" name="enddate" value="" /><br>
+
+							Location:<input type="text" name="location" value="" /><br>
+							Organizer:<input type="text" name="organizer" value="" /><br>
+
+							Start Time   :<input type="long time" name="starttime"  date-format="HH:mm:ss" value="12:00 AM" /><br>
+							End Time     :<input type="long time" name="endtime" value="12:00 AM" /><br>
+							Training Type:
+							<select id="ttype">
+								<option selected><----select----></option>
+								<option value="1">Barilan</option>
+								<option value="2">Suntukan</option>
+								<option value="3">Technical</option>
+
+							</select>
+
+							<legend>Training</legend>
+							<input type="hidden" id="ID" value="" />
+							Training Name:<input type="text" name="tname" value="" /><br>
+							Start date   :<input type="date" name="startdate" value="" /><br>
+							End date     :<input type="date" name="enddate" value="" /><br>
+
+							Location:<input type="text" name="location" value="" /><br>
+							Organizer:<input type="text" name="organizer" value="" /><br>
+
+							Start Time   :<input type="long time" name="starttime"  date-format="HH:mm:ss" value="12:00 AM" /><br>
+							End Time     :<input type="long time" name="endtime" value="12:00 AM" /><br>
+							Training Type:
+							<select id="ttype">
+								<option selected><----select----></option>
+								<option value="1">Barilan</option>
+								<option value="2">Suntukan</option>
+								<option value="3">Technical</option>
+
+							</select>
+
 							<button id="dualbutton" value="1" name="submit">Add Training</button>
 							<button type="reset" onclick="resetflag()">Cancel</button>
 
@@ -78,20 +118,55 @@
 		function CRUD(id,func)
 		{
 			var data;
+			var ctr;
 
 			if(func == 1)
 			{
+				var form = document.forms[0];
+				var title = form['tname'];
+				var trainingsdate = form['startdate'];
+				var trainingedate = form['enddate'];
+				var trainloc = form['location'];
+				var trainorg = form['organizer'];
+				var trainingstime = form['starttime'];
+				var trainingetime = form['endtime'];
+				var traincat = form['ttype'];
+
+				var traintitle = new Array();
+				var trainsdate = new Array();
+				var trainedate = new Array();
+				var location = new Array();
+				var org = new Array();
+				var trainstime = new Array();
+				var trainetime = new Array();
+				var traintype = new Array();
+
+			for(ctr=0;ctr<title.length;ctr++){
+				if(title[ctr].value==""){
+						break;
+				}
+				else{
+					traintitle.push(title[ctr].value);
+					trainsdate.push(trainingsdate[ctr].value);
+					trainedate.push(trainingedate[ctr].value);
+					location.push(trainloc[ctr].value);
+					org.push(trainorg[ctr].value);
+					trainstime.push(trainingstime[ctr].value);
+					trainetime.push(trainingetime[ctr].value);
+					traintype.push(traincat[ctr].value);
+				}
+			}
 				callId=1;
 				var data = {
 					'id' : id,
-					'tname' : document.getElementsByName('tname')[0].value,
-					'startdate' : document.getElementsByName('startdate')[0].value,
-					'enddate' : document.getElementsByName('enddate')[0].value,
-					'location' : document.getElementsByName('location')[0].value,
-					'organizer' : document.getElementsByName('organizer')[0].value,
-					'starttime' : document.getElementsByName('starttime')[0].value,
-					'endtime' : document.getElementsByName('endtime')[0].value,
-					'trainingtype' : document.getElementById('ttype').value,
+					'tname' : traintitle,
+					'startdate' : trainsdate,
+					'enddate' : trainedate,
+					'location' : location,
+					'organizer' : org,
+					'starttime' : trainstime,
+					'endtime' : trainetime,
+					'trainingtype' : traintype,
 					'callId' : callId,
 					'submit' : document.getElementsByName('submit')[0].value,
 					'_token' : '{{Session::token()}}'
@@ -111,24 +186,62 @@
 			
 			if(func == 3)
 			{
+				var form = document.forms[0];
+				var title = form['tname'];
+				var trainingsdate = form['startdate'];
+				var trainingedate = form['enddate'];
+				var trainloc = form['location'];
+				var trainorg = form['organizer'];
+				var trainingstime = form['starttime'];
+				var trainingetime = form['endtime'];
+				var traincat = form['ttype'];
+				var trainId = form['ID'];
+
+				var id = new Array();
+				var traintitle = new Array();
+				var trainsdate = new Array();
+				var trainedate = new Array();
+				var location = new Array();
+				var org = new Array();
+				var trainstime = new Array();
+				var trainetime = new Array();
+				var traintype = new Array();
+
+				for(ctr=0;ctr<title.length;ctr++){
+					if(title[ctr].value==""){
+							break;
+					}
+					else{
+						id.push(trainId[ctr].value);
+						traintitle.push(title[ctr].value);
+						trainsdate.push(trainingsdate[ctr].value);
+						trainedate.push(trainingedate[ctr].value);
+						location.push(trainloc[ctr].value);
+						org.push(trainorg[ctr].value);
+						trainstime.push(trainingstime[ctr].value);
+						trainetime.push(trainingetime[ctr].value);
+						traintype.push(traincat[ctr].value);
+					}
+				}
+				
+
 				callId=3;
 				var data = {
-					'id' : document.getElementById('ID').value,
-					'tname' : document.getElementsByName('tname')[0].value,
-					'startdate' : document.getElementsByName('startdate')[0].value,
-					'enddate' : document.getElementsByName('enddate')[0].value,
-					'location' : document.getElementsByName('location')[0].value,
-					'organizer' : document.getElementsByName('organizer')[0].value,
-					'starttime' : document.getElementsByName('starttime')[0].value,
-					'endtime' : document.getElementsByName('endtime')[0].value,
-					'trainingtype' : document.getElementById('ttype').value,
+					'id' : id,
+					'tname' : traintitle,
+					'startdate' : trainsdate,
+					'enddate' : trainedate,
+					'location' : location,
+					'organizer' : org,
+					'starttime' : trainstime,
+					'endtime' : trainetime,
+					'trainingtype' : traintype,
 					'callId' : callId,
 					'submit' : document.getElementsByName('submit')[0].value,
 					'_token' : '{{Session::token()}}'
 				};
 			}
 			
-
 
 			console.log(data);
 			

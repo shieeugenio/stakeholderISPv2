@@ -319,9 +319,6 @@
 												<select  class="ui selection dropdown" name="accateg">
 													<option class="disabled">Select One</option>
 													
-													@foreach ($acsec as $acsec)
-													<option value="{{$acsec->ID}}">{{$acsec->sectorname}}</option>
-													@endforeach
 												
 												</select>
 											</div>
@@ -336,9 +333,6 @@
 												<select  class="ui selection dropdown" name="acsubcateg">
 													<option class="disabled">Select One</option>
 													
-													@foreach ($accat as $accat)
-													<option value="{{$accat->ID}}">{{$accat->categoryname}}</option>
-													@endforeach
 												
 												</select>
 											</div>
@@ -605,8 +599,9 @@
 					additem(text, index);
 					lecturers.push(new Array(text, index));
 
-				}//if(flag == 0) {]
 
+				}//if(flag == 0) {]
+				alert(lecturers);
 			//}//pattern
 
 		}//add item to array
