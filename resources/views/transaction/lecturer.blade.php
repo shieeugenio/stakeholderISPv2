@@ -7,7 +7,14 @@
 		<form method="POST" action="javascript:lectcrud(0,document.getElementById('dualbutton').value)">
 			<input type="hidden" name="_token" id="csrf-token" value="{{Session::token()}}">
 			<input type="hidden" id="ID" value="">
-			Name:<textarea id="lectname" placeholder="Type Here.."></textarea> 
+			Name:
+																<input type="text" 
+																	placeholder="LN, FN MI" 
+																	class = "perfield error" 
+																	name="inputlecturer"
+																	onclick = "divonfocus(rowcount)"
+																	onkeydown = "if(event.keyCode == 13){ addarritem(rowcount);}" 
+																	value=''/>
 			<button id="dualbutton" value="1" name="submit">Save</button>
 			<button name="reset" onclick="resetflag()">Cancel</button>
 		</form>	
@@ -32,6 +39,48 @@
 
 	<script type="text/javascript">
 		
+		function addarritem(index) {
+			var text = document.getElementsByName('inputlecturer')[index].value;
+			var pattern = new RegExp("^(?=.*(\d|\w))[A-Za-z0-9 .,'-]{3,}$");
+			var flag = 0;
+
+			//if(pattern.test(text) == true) {
+				for (var count = 0 ; count < lecturers.length ; count++) {
+					if(text === lecturers[count][0] && index == lecturers[count][1]) {
+						flag = 1;
+						break;
+					}//if
+				};//for
+
+				if(flag == 0) {
+					additem(text, index);
+					lecturers.push(new Array(text, index));
+
+				}//if(flag == 0) {]
+
+			//}//pattern
+
+		}//add item to array
+
+		function deletearritem(index, rowindex) {
+			var ulist = document.getElementsByName('lecturer')[rowindex];
+			var text = ulist.getElementsByTagName('li')[index].firstChild.innerHTML;
+
+			deleteitem(index, rowindex, ulist);
+
+			for (var count = 0 ; count < lecturers.length ; count++) {
+				if(text === lecturers[count][0] && rowindex == lecturers[count][1]) {
+					lecturers.splice(count, 1);
+					break;
+				}//if
+					
+			};//for
+
+			console.log(lecturers);
+
+
+		}//delete from array
+		
 		function lectcrud(id,func)
 		{
 			var data;
@@ -40,7 +89,7 @@
 			var form = document.forms[0];
 			var txt = form["lectname"];
 			if(txt.length == null){
-				splits = $('#lectname').val().split("\n");
+				splits = $('#lectname').val().replace(/\n/gm, '<br/>').split('\n');
 				for(var i=0; i<splits.length;i++){
 					if(splits[i]){
 						alert(split[l]);
