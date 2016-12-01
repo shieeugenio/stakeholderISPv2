@@ -7,6 +7,7 @@ use App;
 use App\Models;
 use Carbon\Carbon;
 use App\Models\AdvisoryCouncil;
+use App\Models\ACSectors;
 use DB;
 
 class AdvisoryCouncilController extends Controller
@@ -16,13 +17,12 @@ class AdvisoryCouncilController extends Controller
         $subcat = App\Models\ACSubcategory::all();
         $category = App\Models\ACCategory::orderBy('categoryname')->get();
         $position = App\Models\AdvisoryPositions::all();
-
-        // $currentDatetime = Carbon::now('Asia/Manila');
-        // // $auctionEndTime = explode(' ', $auction->EndDateTime);
-        // $currentDatetime = explode(' ', $currentDatetime);
+        $personnel = App\Models\PersonnelSector::all();
+        $acsector = ACSectors::all();
     	
     	return view('transaction/Advisorycouncil')->with('council', $advisory)->with('sub', $subcat)
-                    ->with('cat', $category)->with('positions', $position);
+                    ->with('cat', $category)->with('positions', $position)->with('sector', $personnel)
+                    ->with('ac', $acsector);
     }
 
     public function add(Request $request){
@@ -36,12 +36,30 @@ class AdvisoryCouncilController extends Controller
             $advisory->ID = $acID;
         	$advisory->officename = $request->input('acofficename');
     	    $advisory->officeaddress = $request->input('acofficeadd');
-    	    $advisory->startdate = $request->input('startdate');
-    	    $advisory->enddate = $request->input('enddate');
     	    $advisory->advisory_position_id = $request->input('position');
-    	    $advisory->categoryId = $request->input('subcat');
+    	    $advisory->subcategoryId = $request->input('subcat');
 
             $advisory->save();
+
+            // $adv = App\Models\AdvisoryCouncil::orderBy('ID', 'desc')->take(1)->get();
+            // $advID = 0;
+            // foreach ($adv as $key => $u) {
+            //     $advID = $u->ID;
+            // }
+            foreach(input('selected') as $select){
+                $newpost = array(
+                    // $personnel = new App\Models\PersonnelSector;
+                    'advisory_council_id' => $acID,
+                    'ac_sector_id' =>input::get('sector'),
+
+                    // $personnel->advisory_council_id = $acID;
+
+                    // $personnel->ac_sector_id = $request->input('sector');
+
+        );
+                    $person = new App\Models\PersonnelSector($newpost);
+                    $person->save();
+        } echo $newpost;           
 
             return redirect('advisorycouncil');
         }
@@ -64,21 +82,17 @@ class AdvisoryCouncilController extends Controller
             }
             $name = $request->acofficename;
             $address = $request->acofficeadd;
-            $startdate = $request->startdate;
-            $enddate = $request->enddate;
             $position = $request->position;
             $subcateg = $request->subcat;
             $id = $acID;
 
-            $params = array($name, $address, $startdate, $enddate, $position, $subcateg, $id);
+            $params = array($name, $address, $position, $subcateg, $id);
             $var = DB::statement('update advisorycouncil
                 set
                    officename = ?,
                    officeaddress = ?,
-                   startdate = ?,
-                   enddate = ?,
                    advisory_position_id = ?,
-                   categoryId = ? 
+                   subcategoryId = ? 
                 where id = ?', $params);
             if($var){
                 return redirect('advisorycouncil');

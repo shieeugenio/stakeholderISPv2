@@ -27,14 +27,16 @@ Route::get('directory', function () {
     return view('module.adviser');
 });
 
-Route::get('directory/add', function () {
-    return view('module.adviser_add');
-});
+
+//Route::get('directory/add', function () {
+//    return view('module.adviser_add');
+//});
 
 
-Route::get('maintenance', function () {
-    return redirect('maintenance/accategory');
-});
+//TRANSACTION
+Route::get('directory/add', 'ProfileController@index');
+Route::post('directory/store', 'ProfileController@store');
+Route::post('directory/getinfo', 'ProfileController@getinfo');
 
 
 //MAINTENANCE
@@ -81,13 +83,27 @@ Route::get('maintenance/{id}/subpoliceview', 'PoliceOfficeTwoController@find');
 
 
 //ADVISER LESTER
-Route::get('maintenance/trainingsample', 'TrainingController@index');
-Route::post('maintenance/store', 'TrainingController@store');
+Route::get('transaction/trainingsample', 'TrainingController@index');
+Route::post('transaction/trainingcrud', 'TrainingController@trainingcrud');
+
+//Lecturer
+Route::get('transaction/lecturer','LecturerController@index');
+Route::post('transaction/lectcrud', 'LecturerController@lectcrud');
 
 //POLICE POSITION
 Route::post('maintenance/policepositioncrud','PolicePositionController@policepositioncrud');
 
+//profile 
 
+//TRANSACTION
+
+//ADD ADVISER
+
+Route::post('adviser/add', 'AdvDirectoryController@addadviser');
+Route::post('adviser/edit', 'AdvDirectoryController@editadviser');
+
+
+///----------------------------------------------------------------------
 //advisory council transac Joanne
 Route::get('advisorycouncil', 'AdvisoryCouncilController@index');
 

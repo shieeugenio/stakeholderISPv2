@@ -109,20 +109,28 @@
 
 									<h4 class="ui dividing header">Contact Information</h4>
 
-									<div class = "field">
-										<label>Contact Number</label>
+									<div class = "four fields">
 
-										<div class = "four fields">
+										<div class = "field">
+											<label>Mobile Number <span class="asterisk">*</span></label>
+
+										
 											<div class = "ui input field">
-												<input type="text" name = "contact" placeholder="+639*********">
+												<input type="text" name = "mobile" placeholder="+639*********">
 												
 											</div>
 
-											<div class = "ui input field">
-												<input type="text" name = "contact" placeholder="+639*********">
+										</div>
 
+										<div class = "field">
+											<label>Landline <span class="asterisk">*</span></label>
+
+										
+											<div class = "ui input field">
+												<input type="text" name = "landline" placeholder="e.g. 4479049">
+												
 											</div>
-											
+
 										</div>
 										
 									</div>
@@ -171,7 +179,7 @@
 										</div>
 
 										<div class = "ui input sixteen wide field">
-											<input type = "file"/>
+											<input type = "file" accept="image/jpeg, image/png" name = "upphoto"/>
 											
 										</div>
 										
@@ -263,6 +271,13 @@
 										<div class = "field">
 											<label>AC Position <span class="asterisk">*</span></label>
 
+
+										<div class = "five fields">
+											<div class = "ui input field">
+											
+												<input type="text" name = "position" placeholder="e.g. Software Developer">
+												
+
 											<div class = "field">
 												<select  class="ui selection dropdown" name="acposition">
 													<option class="disabled">Select One</option>
@@ -303,7 +318,8 @@
 											<div class = "field">
 												<select  class="ui selection dropdown" name="accateg">
 													<option class="disabled">Select One</option>
-													<option value="1">Opt 1</option>
+													
+												
 												</select>
 											</div>
 											
@@ -316,7 +332,8 @@
 											<div class = "field">
 												<select  class="ui selection dropdown" name="acsubcateg">
 													<option class="disabled">Select One</option>
-													<option value="1">Opt 1</option>
+													
+												
 												</select>
 											</div>
 											
@@ -494,8 +511,13 @@
 					<br>
 
 					<center>
-						<button type = "submit" name="submit" 
-								class="ui large button submit savebtnstyle">
+
+						<button type = "button" name="submit" 
+								class="ui large button  savebtnstyle" onclick = "controlaction()">
+
+						<!--<button type = "submit" name="submit" onclick ="if(confirm('Save?')) {addProfile()}"
+								class="ui large button submit savebtnstyle">-->
+
 
 							Save
 						</button>
@@ -520,7 +542,7 @@
 
 	<script type="text/javascript">
 		$('#tab3').attr('class', 'mlink item active');
-		//var lecturers = new Array();
+		var lecturers = new Array();
 
 		addT1Elements();
 
@@ -560,7 +582,7 @@
 
 		}//function showfield(value) {
 
-		/*function addarritem(index) {
+		function addarritem(index) {
 			var text = document.getElementsByName('inputlecturer')[index].value;
 			var pattern = new RegExp("^(?=.*(\d|\w))[A-Za-z0-9 .,'-]{3,}$");
 			var flag = 0;
@@ -577,8 +599,9 @@
 					additem(text, index);
 					lecturers.push(new Array(text, index));
 
-				}//if(flag == 0) {]
 
+				}//if(flag == 0) {]
+				alert(lecturers);
 			//}//pattern
 
 		}//add item to array
@@ -600,9 +623,139 @@
 			console.log(lecturers);
 
 
-		}//delete from array*/
+		}//delete from array
 
 
+		function controlaction() {
+			var slctdtype = $("input[name='advcateg']:checked").val();
+			var traintitle = new Array();
+			var traincateg = new Array();
+			var location = new Array();
+			var sdate = new Array();
+			var edate = new Array();
+			var stime = new Array();
+			var etime = new Array();
+			var speaker = new Array();
+			var org = new Array();
+
+			for(var count = 0 ; count <= rowcount ; count++) {
+				traintitle.push(document.getElementsByName('traintitle')[count].value);
+				traincateg.push(document.getElementsByName('traincateg')[count].value);
+				location.push(document.getElementsByName('location')[count].value);
+				sdate.push(document.getElementsByName('trainsdate')[count].value);
+				edate.push(document.getElementsByName('trainedate')[count].value);
+				stime.push(document.getElementsByName('trainstime')[count].value);
+				etime.push(document.getElementsByName('trainetime')[count].value);
+				//speaker.push(document.getElementsByName('trainlecturer')[count].value);
+				org.push(document.getElementsByName('trainorg')[count].value);
+			};
+
+			if (slctdtype == 0) {
+				var data = {
+					'advid' : document.getElementsByName('advid')[0].value,
+					'lname' : document.getElementsByName('lname')[0].value,
+					'fname' : document.getElementsByName('fname')[0].value,
+					'mname' : document.getElementsByName('mname')[0].value,
+					'bdate' : document.getElementsByName('bdate')[0].value,
+					'gender' : $("input[name='gender']:checked").val(),
+					'street' : document.getElementsByName('street')[0].value,
+					'barangay' : document.getElementsByName('barangay')[0].value,
+					'city' : document.getElementsByName('city')[0].value,
+					'province' : document.getElementsByName('province')[0].value,
+					'mobile' : document.getElementsByName('mobile')[0].value,
+					'landline' : document.getElementsByName('landline')[0].value,
+					'email' : document.getElementsByName('email')[0].value,
+					'facebook' : document.getElementsByName('facebook')[0].value,
+					'twitter' : document.getElementsByName('twitter')[0].value,
+					'instagram' : document.getElementsByName('instagram')[0].value,
+					'advcateg' : slctdtype,
+					'durstart' : document.getElementsByName('durationsdate')[0].value,
+					'durend' : document.getElementsByName('durationedate')[0].value,
+					'acposition' : document.getElementsByName('acposition')[0].value,
+					'officename' : document.getElementsByName('officename')[0].value,
+					'officeadd' : document.getElementsByName('officeadd')[0].value,
+					'acsubcateg' : document.getElementsByName('acsubcateg')[0].value,
+					'acsector' : $("select[name='acsector']").val(),
+					'traintitle' : traintitle,
+					'traincateg' : traincateg,
+					'location' : location,
+					'sdate' : sdate,
+					'stime' : stime,
+					'etime' : etime,
+					'edate' : edate,
+					'speaker' : lecturers,
+					'org' : org,
+					'profpic' : document.getElementsByName('upphoto')[0].files[0],
+					'_token' : '{{ Session::token() }}'
+				};
+
+			} else if(slctdtype == 1 || slctdtype == 2) {
+				var data = {
+					'advid' : document.getElementsByName('advid')[0].value,
+					'lname' : document.getElementsByName('lname')[0].value,
+					'fname' : document.getElementsByName('fname')[0].value,
+					'mname' : document.getElementsByName('mname')[0].value,
+					'bdate' : document.getElementsByName('bdate')[0].value,
+					'gender' : $("input[name='gender']:checked").val(),
+					'street' : document.getElementsByName('street')[0].value,
+					'barangay' : document.getElementsByName('barangay')[0].value,
+					'city' : document.getElementsByName('city')[0].value,
+					'province' : document.getElementsByName('province')[0].value,
+					'mobile' : document.getElementsByName('mobile')[0].value,
+					'landline' : document.getElementsByName('landline')[0].value,
+					'email' : document.getElementsByName('email')[0].value,
+					'facebook' : document.getElementsByName('facebook')[0].value,
+					'twitter' : document.getElementsByName('twitter')[0].value,
+					'instagram' : document.getElementsByName('instagram')[0].value,
+					'advcateg' : slctdtype,
+					'durstart' : document.getElementsByName('durationsdate')[0].value,
+					'durend' : document.getElementsByName('durationedate')[0].value,
+					'authorder' : document.getElementsByName('authorder')[0].value,
+					'pnppost' : document.getElementsByName('position')[0].value,
+					'suboffice' : document.getElementsByName('secondary')[0].value,
+					'traintitle' : traintitle,
+					'traincateg' : traincateg,
+					'location' : location,
+					'sdate' : sdate,
+					'stime' : stime,
+					'etime' : etime,
+					'edate' : edate,
+					'speaker' : lecturers,
+					'org' : org,
+					'profpic' : document.getElementsByName('upphoto')[0].files[0],
+					'_token' : '{{ Session::token() }}'
+				};
+
+
+			}//if (slctdtype == 0) {
+
+			/**if(action == 0) {
+
+				var url = {{url('adviser/add')}};
+
+			} else if(edit == 1) {
+				var url = {{url('adviser/edit')}};
+
+
+			}//if(action == 0) {**/
+
+			$.ajax({
+				type: "POST",
+				url: "{{url('adviser/add')}}",
+				data: data,
+				mimeType: "multipart/form-data",
+    			contentType: false,
+   				processData: false,
+			   	success : function(info) {
+			   		
+			   		alert(info);
+			   	}//success : function() {
+			});
+
+			console.log(document.getElementsByName('upphoto')[0].files[0]);
+
+			
+		}//function controlaction() {
 		/**
 
 			NOTE:

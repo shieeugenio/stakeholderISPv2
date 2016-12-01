@@ -18,20 +18,52 @@ class TrainingController extends Controller
     }
 
 
-    public function store(Request $req)
+    public function trainingcrud(Request $req)
     {
-    	$training = new Trainings();
-    	$training->trainingname = $req->tname;
-    	$training->startdate = $req->startdate;
-    	$training->enddate = $req->enddate;
-    	$training->location = $req->location;
-    	$training->organizer = $req->organizer;
-    	$training->starttime = $req->starttime;
-    	$training->endtime = $req->endtime;
-    	$training->trainingtype = $req->ttype;
-    	$training->save();
+    	$callId = $req->callId;
+    	
+    	if($callId==1)
+    	{	
+    		$count = count($req->tname);
+    		for($i=0;$i<$count;$i++){
+		    	$training = new Trainings();
+		    	$training->trainingname = $req->tname[$i];
+		    	$training->startdate = $req->startdate[$i];
+		    	$training->enddate = $req->enddate[$i];
+		    	$training->location = $req->location[$i];
+		    	$training->organizer = $req->organizer[$i];
+		    	$training->starttime = $req->starttime[$i];
+		    	$training->endtime = $req->endtime[$i];
+		    	$training->trainingtype = $req->trainingtype[$i];
+		    	$training->save();
+	    	}
+    	}
+    	
+    	if($callId==2)
+    	{
+	    	$id = $req->id;
+	    	$training = Trainings::find($id);
+	    	return $training;
+    	}
 
-    	$info= DB::table('Trainings')->get();
-    	return view('maintenance/trainingsample')->with('info', $info);
+    	if($callId==3)
+    	{
+    		$count = count($req->tname);
+    		for($i=0;$i<$count;$i++){
+	    		$training = Trainings::find($req->id[$i]);
+		    	$training->trainingname = $req->tname[$i];
+		    	$training->startdate = $req->startdate[$i];
+		    	$training->enddate = $req->enddate[$i];
+		    	$training->location = $req->location[$i];
+		    	$training->organizer = $req->organizer[$i];
+		    	$training->starttime = $req->starttime[$i];
+		    	$training->endtime = $req->endtime[$i];
+		    	$training->trainingtype = $req->trainingtype[$i];
+		    	$training->save();
+    		}
+    	}
+
     }
+
+
 }
