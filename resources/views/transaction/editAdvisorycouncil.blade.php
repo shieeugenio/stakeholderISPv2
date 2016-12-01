@@ -43,12 +43,6 @@
 						
 					</select></br><br>
 				
-				<label for='startdate'>Start Date </label>
-				<input type='date' value='{{$ids->startdate}}' name='startdate' required placeholder='Start Date'>&nbsp
-					
-				<label for='enddate'>End Date </label>
-				<input type='date' value='{{$ids->enddate}}' name='enddate' required placeholder='End Date'>
-
 				<button type="submit" name="edit">Save</button>
 
 		</fieldset>

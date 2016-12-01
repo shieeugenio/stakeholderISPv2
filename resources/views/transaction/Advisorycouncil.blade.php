@@ -2,7 +2,11 @@
 <head>
 <title>Advisory Council</title>
 </head>
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/semantic.css')}}">
+<script type="text/javascript" src="{{ URL::asset('js/jquery-2.1.4.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('js/semantic.js') }}"></script>
 
+</head>
 <body>
 	<form action="/add" method="POST">
 		<fieldset>
@@ -43,14 +47,23 @@
 							</option>
 						@endforeach
 					</select></br><br>
-				
-				<label for='startdate'>Start Date </label>
-				<input type='date' value='' name='startdate' required placeholder='Start Date'>&nbsp
-					
-				<label for='enddate'>End Date </label>
-				<input type='date' value='' name='enddate' required placeholder='End Date'>
 
-				<button type="submit" name="submit">Save</button>
+			</br></br>
+
+
+					<label>AC Sectors</label>
+					<select name="sector" id="multipleSelect" multiple class="ui selection dropdown">
+							@foreach($ac as $id => $key)
+
+							<option value='{{$key->ID}}'>
+								{{$key->sectorname}}
+							</option>
+							@endforeach
+						
+					</select></br><br>
+
+					<button type="submit" name="submit">Save</button>
+
 
 		</fieldset>
 	</form>
@@ -73,12 +86,6 @@
 					<th>
 						SubCategory
 					</th>
-					<th>
-						Start Date
-					</th>
-					<th>
-						End Date
-					</th>
 				</tr>
 			</thead>
 				<tbody>
@@ -90,8 +97,6 @@
 						<!-- <td>{{$res->acsubcategory->subcategoryname}}</td> -->
 						<td></td>
 						<td>{{$res->acsubcategory->subcategoryname}}</td>
-						<td>{{$res->startdate}}</td>
-						<td>{{$res->enddate}}</td>
 						<td><a href="{{URL::to('transac/' .$res->ID. '/edit')}}" value="edit">EDIT</a></td>
 					</tr>
 					@endforeach
@@ -101,6 +106,16 @@
 
 </body>
 <script type="text/javascript">
+
+
+$("select[name='sector']").dropdown(); //refresh dropdown
+
+var selected=[];
+$('#multipleSelect :selected').each(function(){
+	selected[$(this).val]=$(this).text();
+});
+console.log(selected);
+
 	function catChange(){
 		var categ = document.getElementById('cat').value;
 		var dataString = "ID=" + categ;
