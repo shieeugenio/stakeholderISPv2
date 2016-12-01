@@ -19,7 +19,7 @@ class AdvisoryCouncil extends Migration
             $table->integer('categoryId')->unsigned();
             $table->integer('ID')->unsigned();
             $table->foreign('advisory_position_id')->references('ID')->on('AdvisoryPositions');
-            $table->foreign('categoryId')->references('ID')->on('ACSubcategory');
+            $table->foreign('subcategoryId')->references('ID')->on('ACSubcategory');
             $table->foreign('ID')->references('ID')->on('Advisers');
         });
     }
