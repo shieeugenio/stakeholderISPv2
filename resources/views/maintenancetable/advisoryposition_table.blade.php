@@ -19,7 +19,7 @@
 						                   
 						    <tbody>
 						    	@foreach ( $positions as $position)
-						    	<tr onclick = "CRUD({{$position->ID}},2)" id = "{{$position->ID}}">
+						    	<tr class = "trow" onclick = "CRUD({{$position->ID}},2)" id = "{{$position->ID}}">
 							    	<td><center>{{$position->acpositioncode}}</center></td>
 							    	<td><center>{{$position->acpositionname}}</center></td>
 							    	<td><center>{{$position->desc}}</center></td>

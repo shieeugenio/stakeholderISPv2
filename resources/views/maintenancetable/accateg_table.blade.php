@@ -21,7 +21,7 @@
 						    <tbody>
 
 						    	@foreach($category as $citem)
-						    		<tr onclick = "loaddata({{$citem->ID}})" id = "{{$citem->ID}}">
+						    		<tr class = "trow" onclick = "loaddata({{$citem->ID}})" id = "{{$citem->ID}}">
 							    		<td><center>{{$citem->accategorycode}}</center></td>
 							    		<td><center>{{$citem->categoryname}}</center></td>
 							    		<td><center>{{$citem->desc}}</center></td>

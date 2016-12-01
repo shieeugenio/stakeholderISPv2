@@ -21,7 +21,7 @@
 						                   
 						    <tbody>
 						    	@foreach($subcat as $sitem)
-									<tr onclick = "loaddata({{$sitem->ID}})" id = "{{$sitem->ID}}">
+									<tr class = "trow" onclick = "loaddata({{$sitem->ID}})" id = "{{$sitem->ID}}">
 										<td>{{$sitem->acsubcategorycode}}</td>
 										<td>{{$sitem->subcategoryname}}</td>
 										<td>{{$sitem->category->categoryname}} ({{$sitem->category->accategorycode}})</td>
@@ -89,7 +89,7 @@
 							</div>
 							<div class = "twelve wide column bspacing2">
 								<div class = "field">
-									<select class="ui selection dropdown selectstyle" name="category" id = "select">
+									<select class="modified ui selection dropdown selectstyle" name="category" id = "select">
 										<option class="disabled">Select One</option>
 									  	@foreach($category as $key=>$value)
 											<option value="{{$value->ID}}">
