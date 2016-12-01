@@ -21,7 +21,7 @@ Route::get('/', function() {
 Route::get('home', function() {
 	return view('home.defaulthome');
 
-}); //admin
+})->middleware('auth'); //admin
 
 Route::get('directory', function () {
     return view('module.adviser');
