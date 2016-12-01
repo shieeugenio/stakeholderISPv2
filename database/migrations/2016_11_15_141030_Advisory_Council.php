@@ -16,7 +16,7 @@ class AdvisoryCouncil extends Migration
             $table->date('startdate');
             $table->date('enddate');
             $table->integer('advisory_position_id')->unsigned();
-            $table->integer('categoryId')->unsigned();
+            $table->integer('subcategoryId')->unsigned();
             $table->integer('ID')->unsigned();
             $table->foreign('advisory_position_id')->references('ID')->on('AdvisoryPositions');
             $table->foreign('subcategoryId')->references('ID')->on('ACSubcategory');
