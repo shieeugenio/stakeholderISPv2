@@ -130,7 +130,8 @@ class AdvDirectoryController extends Controller {
 	 	$adv->birthdate = $data->bdate;
 	 	$adv->gender =  $data->gender;
 	 	$adv->category = $data->advcateg;
-	 	$adv->occupationstat = 0;
+	 	$adv->startdate = $data->durstart;
+        $adv->enddate = $data->durend;
 	 	//$adv->imagepath = $req->img;
 	 	/*$image = $req->img;
 	 	$filename = time() . '.' . $image->getClientOriginalExtension();
@@ -167,7 +168,8 @@ class AdvDirectoryController extends Controller {
 		$adv->birthdate = $data->bdate;
 		$adv->gender =  $data->gender;
 		$adv->category = $data->advcateg;
-		$adv->occupationstat = 0;
+		$adv->startdate = $data->durstart;
+        $adv->enddate = $data->durend;
 		/*if ($req->hasFile('img')) {
 			if (file_exists($adv->imagepath)) {
 				unlink($adv->imagepath);
@@ -193,8 +195,6 @@ class AdvDirectoryController extends Controller {
         $advisory->ID = $id;
        	$advisory->officename = $data->officename;
         $advisory->officeaddress = $data->officeadd;
-        $advisory->startdate = $data->durstart;
-        $advisory->enddate = $data->durend;
         $advisory->advisory_position_id = $data->acposition;
         $advisory->subcategoryId = $data->acsubcat;
         //$advisory->acsector = $data->acsector;
@@ -228,8 +228,6 @@ class AdvDirectoryController extends Controller {
     	$advisory->police_position_id = $data->pnppost;
     	$advisory->policeoffice_id = $data->suboffice;
     	$advisory->authorityorder = $data->authorder;
-    	$advisory->startdate = $data->durstart;
-        $advisory->enddate = $data->durend;
 
     	$advisory->save();
 

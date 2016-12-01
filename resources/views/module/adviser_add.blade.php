@@ -252,7 +252,7 @@
 
 								<div id = "tempfields">
 									
-									
+		
 								</div>
 
 								<br>
@@ -396,8 +396,9 @@
 					additem(text, index);
 					lecturers.push(new Array(text, index));
 
-				}//if(flag == 0) {]
 
+				}//if(flag == 0) {]
+				alert(lecturers);
 			//}//pattern
 
 		}//add item to array
