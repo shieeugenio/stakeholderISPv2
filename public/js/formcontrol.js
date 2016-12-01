@@ -219,7 +219,7 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 
 	tempcon.lastChild.appendChild(document.createElement('label'));
 
-	tempcon.lastChild.lastChild.appendChild(document.createTextNode('Authority '));
+	tempcon.lastChild.lastChild.appendChild(document.createTextNode('Authority Order '));
 
 	var span = document.createElement('span');
 	span.setAttribute('class', 'asterisk');
@@ -236,8 +236,9 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 	tempcon.lastChild.lastChild.appendChild(div9);
 
 	var input = document.createElement('input');
-	input.setAttribute('type','file');
-	input.setAttribute('name','letterorder');
+	input.setAttribute('type','text');
+	input.setAttribute('name','authorder');
+	input.setAttribute('placeholder', 'Authority Order');
 	tempcon.lastChild.lastChild.lastChild.appendChild(input);
 
 	//----------------------------------------------------------------------------------
@@ -333,7 +334,7 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 
 //Multiple Text Input
 
-/**function additem(text, index) {
+function additem(text, index) {
 	var ulist = document.getElementsByName('lecturer')[index];
 	var container = document.getElementsByName('pcontainer')[index];
 	var inputlist = document.getElementsByName('inputlist')[index];
@@ -379,14 +380,11 @@ $(document).ready(function() {
       return false;
     }
   });
-});**/
+});
 
 //Adviser Add Table
 
 function addrow() {
-	console.log(rowcount);
-
-
 	var table = document.getElementById('traintable').getElementsByTagName('tbody')[0];
 
 	tr = document.createElement('tr');
@@ -578,10 +576,10 @@ function addrow() {
 	table.lastChild.lastChild.appendChild(document.createElement('center'));
 
 	var div7 = document.createElement('div');
-	div7.setAttribute('class', 'field');
+	div7.setAttribute('class', 'five fields');
 	table.lastChild.lastChild.lastChild.appendChild(div7);
 
-	/*var div8 = document.createElement('div');
+	var div8 = document.createElement('div');
 	div8.setAttribute('class', 'divpercon');
 	div8.setAttribute('name', 'pcontainer');
 	table.lastChild.lastChild.lastChild.lastChild.appendChild(div8);
@@ -599,18 +597,19 @@ function addrow() {
 	var input6 = document.createElement('input');
 	input6.setAttribute('type', 'text');
 	input6.setAttribute('name','inputlecturer');
+	input6.setAttribute('id', rowcount);
 	input6.setAttribute('placeholder','LN, FN MI');
 	input6.setAttribute('class','perfield');
 	input6.setAttribute('onclick','divonfocus()');
-	input6.setAttribute('onkeydown','if(event.keyCode == 13){ addarritem(rowcount);}');
-	table.lastChild.lastChild.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(input6);*/
+	input6.setAttribute('onkeydown','if(event.keyCode == 13){ addarritem(this.id);}');
+	table.lastChild.lastChild.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(input6);
 
-	var textarea = document.createElement('textarea');
+	/*var textarea = document.createElement('textarea');
 	textarea.setAttribute('name', 'trainlecturer');
 	textarea.setAttribute('class', 'areastyle');
 	textarea.setAttribute('rows', '4');
 	textarea.setAttribute('placeholder', 'Type here...');
-	table.lastChild.lastChild.lastChild.lastChild.appendChild(textarea);
+	table.lastChild.lastChild.lastChild.lastChild.appendChild(textarea);*/
 
 
 	//-----------------------------------Organization-----------------------------------------------
@@ -629,6 +628,8 @@ function addrow() {
 	input7.setAttribute('name','trainorg');
 	input7.setAttribute('placeholder','e.g. CPSM');
 	table.lastChild.lastChild.lastChild.lastChild.appendChild(input7);
+
+	console.log(rowcount);
 
 }//function addrow() {
 //View
