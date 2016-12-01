@@ -47,7 +47,6 @@ function addT1Elements() { //AC ELEMENTS
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One'));
 
-
 	//----------------------------------------------------------------------------------
 
 	var div3 = document.createElement('div');
@@ -131,6 +130,7 @@ function addT1Elements() { //AC ELEMENTS
 	var select2 = document.createElement('select');
 	select2.setAttribute('class', 'ui selection dropdown');
 	select2.setAttribute('name', 'accateg');
+	select2.setAttribute('onchange', 'getsubcateg()');
 	tempcon.lastChild.lastChild.lastChild.appendChild(select2);
 
 	var opt2 = document.createElement('option');
@@ -206,7 +206,7 @@ function addT1Elements() { //AC ELEMENTS
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One or More'));
 
-	$("select[name='acsector']").dropdown(); //refresh dropdown
+	$("select").dropdown(); //refresh dropdown
 }//function addACElements() {
 
 function addT2Elements() { //PSMU and TWG ELEMENTS
@@ -303,6 +303,7 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 	var select2 = document.createElement('select');
 	select2.setAttribute('class', 'ui selection dropdown');
 	select2.setAttribute('name', 'primary');
+	select2.setAttribute('onchange', 'getsecoffice()');
 	tempcon.lastChild.lastChild.lastChild.appendChild(select2);
 
 	var opt2 = document.createElement('option');
@@ -328,7 +329,7 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Secondary Office'));
 
-
+	$("select").dropdown(); //refresh dropdown
 }//function addT2Elements() {
 
 
@@ -632,4 +633,15 @@ function addrow() {
 	console.log(rowcount);
 
 }//function addrow() {
-//View
+
+
+//DROPDOWNS
+
+function populatedropdown(id, selname, code, desc) {
+	var item = document.createElement('option');
+	item.setAttribute('value',  id);
+	document.getElementsByName(selname)[0].appendChild(item);
+	document.getElementsByName(selname)[0].lastChild.appendChild(document.createTextNode(desc + ' (' + code + ')'));
+
+
+}//function populatedropdown() {

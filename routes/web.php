@@ -23,6 +23,10 @@ Route::get('home', function() {
 
 }); //admin
 
+Route::get('maintenance', function () {
+    return redirect('maintenance/accategory');
+});
+
 Route::get('directory', function () {
     return view('module.adviser');
 });
@@ -34,9 +38,13 @@ Route::get('directory', function () {
 
 
 //TRANSACTION
-Route::get('directory/add', 'ProfileController@index');
+Route::get('directory/add', 'AdvDirectoryController@index');
 Route::post('directory/store', 'ProfileController@store');
 Route::post('directory/getinfo', 'ProfileController@getinfo');
+
+//DROPDOWN
+Route::post('dropdown/getsubcateg', 'AdvDirectoryController@getSubCateg');
+Route::post('dropdown/getsecoffice', 'AdvDirectoryController@getSecOffice');
 
 
 //MAINTENANCE

@@ -10,7 +10,45 @@ use Carbon\Carbon;
 
 use App\Models\AdvisoryCouncil;
 
+use App\Models\PoliceAdvisory;
+
+use App\Models\PolicePositions;
+
+use App\Models\PoliceOffices;
+
+use App\Models\PoliceOfficeSecond;
+
+use App\Models\AdvisoryPositions;
+
+use App\Models\ACCategory;
+
+use App\Models\ACSubcategory;
+
+use App\Models\ACSectors;
+
+
+
 class AdvDirectoryController extends Controller {
+
+	public function index(){
+ 		/*$profile = Advisers::all();
+ 		return View ('module/adviser_add')->with('profile', $profile);*/
+
+ 		$acposition = AdvisoryPositions::all();
+ 		$accateg = ACCategory::all();
+ 		$acsector = ACSectors::all();
+ 		$pnpposition = PolicePositions::all();
+ 		$primaryoffice = PoliceOffices::all();
+
+ 		return view('module.adviser_add')->with('acposition', $acposition)
+ 										 ->with('accateg', $accateg)
+ 										 ->with('acsector', $acsector)
+ 										 ->with('pnppost', $pnpposition)
+ 										 ->with('primaryoffice', $primaryoffice);
+ 		//return $pnpposition;
+
+ 	} //select dropdowns
+
 
 	public function addadviser(Request $req) {
 		$data = $req->all();
@@ -18,7 +56,16 @@ class AdvDirectoryController extends Controller {
 			$this->addProfile($data);
 
 			$id = $this->getID();
-			$this->addAC($data, $id);
+
+
+			if($data->advcateg == 0) {
+				$this->addAC($data, $id);
+
+			} else {
+				$this->addTP($data, $id);
+
+
+			}//if($data->advcateg == 0) {
 
 		}// if
 
@@ -35,10 +82,25 @@ class AdvDirectoryController extends Controller {
 
 	}//public function getID() {
 
-	public function index(){
- 		$profile = Advisers::all();
- 		return View ('module/adviser_add')->with('profile', $profile);
- 	} //select all
+	//DROPDOWN
+
+	public function getSubCateg(Request $req) {
+		$categID = $req->categID;
+
+		$subcategory = ACSubcategory::where('categoryId', $categID)->get();
+
+		return $subcategory;
+
+	}//public function getSubCateg() {
+
+	public function getSecOffice(Request $req) {
+		$primary = $req->poID;
+
+		$secoffice = PoliceOfficeSecond::where('police_office_id', $primary)->get();
+
+		return $secoffice;
+	}//public function getSecOffice(Request $req) {
+
 
  	public function edit(Request $req){
 	 	$id = $req->ID;
@@ -83,11 +145,10 @@ class AdvDirectoryController extends Controller {
 
 	    	
 	 	//return redirect('directory');
-	}
 
 	} // add profile
 
-	public function updateProfile($data){
+	public function updateProfile($data) {
 	 	
 	    $adv = Advisers::find($data->ID);
 	    $adv->fname = $data->fname;
@@ -121,7 +182,7 @@ class AdvDirectoryController extends Controller {
 		}*/
 		$adv->imagepath = "objects/Logo/InitProfile.png";
 	    $adv->save();
-	        }
+	    
 	} // update profile
 
 
@@ -136,7 +197,7 @@ class AdvDirectoryController extends Controller {
         $advisory->enddate = $data->durend;
         $advisory->advisory_position_id = $data->acposition;
         $advisory->subcategoryId = $data->acsubcat;
-        $advisory->acsector = $data->acsector;
+        //$advisory->acsector = $data->acsector;
 
         $advisory->save();
 
@@ -144,43 +205,56 @@ class AdvDirectoryController extends Controller {
         
     } // add AC
 
-    public function edit(Request $request){
-        if(isset($_POST['submit'])){
-            // $advisory = App\Models\AdvisoryCouncil::find($request->editID);
-            $ac = App\Models\Advisers::orderBy('ID', 'desc')->take(1)->get();
-            $acID = 0;
-            foreach ($ac as $key => $u) {
-                $acID = $u->ID;
-            }
-            $name = $request->acofficename;
-            $address = $request->acofficeadd;
-            $startdate = $request->startdate;
-            $enddate = $request->enddate;
-            $position = $request->position;
-            $subcateg = $request->subcat;
-            $id = $acID;
+    public function editAC(Request $request){
 
-            $params = array($name, $address, $startdate, $enddate, $position, $subcateg, $id);
-            $var = DB::statement('update advisorycouncil
-                set
-                   officename = ?,
-                   officeaddress = ?,
-                   startdate = ?,
-                   enddate = ?,
-                   advisory_position_id = ?,
-                   subcategoryId = ? 
-                where id = ?', $params);
-            if($var){
-                return redirect('advisorycouncil');
+    	$advisory = AdvisoryCouncil::find($data->ID);
+        $advisory->officename = $data->officename;
+        $advisory->officeaddress = $data->officeadd;
+        $advisory->startdate = $data->durstart;
+        $advisory->enddate = $data->durend;
+        $advisory->advisory_position_id = $data->acposition;
+        $advisory->subcategoryId = $data->acsubcat;
+        //$advisory->acsector = $data->acsector;
+	    $adv->save();
 
-            }
-            else{
-                return "Error";
-            }
-
-            // $advisory->save();
-
-        }
     } // update AC
+
+   	//TWG/PSMU
+
+   	public function addTP($data, $id){
+    
+    	$advisory = new PoliceAdvisory;
+    	$advisory->ID = $id;
+    	$advisory->police_position_id = $data->pnppost;
+    	$advisory->policeoffice_id = $data->suboffice;
+    	$advisory->authorityorder = $data->authorder;
+    	$advisory->startdate = $data->durstart;
+        $advisory->enddate = $data->durend;
+
+    	$advisory->save();
+
+    	//return redirect('policeadvisory');
+	    
+	}// add TP
+
+	 public function editTP($data){
+    	$advisory = PoliceAdvisory::find($data->ID);
+    	$advisory->police_position_id = $data->pnppost;
+    	$advisory->policeoffice_id = $data->suboffice;
+    	$advisory->authorityorder = $data->authorder;
+    	$advisory->save();
+        
+    }// update TP
+
+    //Training
+
+    public function addTraining($data, $id) {
+
+    }// add Training
+
+    public function editTraining($data) {
+
+    }// update Training
+
 
 }//class

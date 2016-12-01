@@ -1,7 +1,6 @@
 @extends('baseform')
 	
 @section('maincontent')
-
 	<div class = "advcon">
 		<div class = "formattp tablepane">
 			<div class = "mtitle">
@@ -251,113 +250,9 @@
 
 								</div>
 
-								<!--<div class = "field">
-									<label>Authority <span class="asterisk">*</span></label>
-
-									<div class = "five fields">
-										<div class = "ui input field">
-											<input type="file" name = "letterorder" >
-											
-										</div>
-											
-									</div>
-										
-								</div>-->
-
-
-
 								<div id = "tempfields">
-									<!--<div class = "five fields">
-										<div class = "field">
-											<label>AC Position <span class="asterisk">*</span></label>
-
-
-										<div class = "five fields">
-											<div class = "ui input field">
-											
-												<input type="text" name = "position" placeholder="e.g. Software Developer">
-												
-
-											<div class = "field">
-												<select  class="ui selection dropdown" name="acposition">
-													<option class="disabled">Select One</option>
-													<option value="1">Opt 1</option>
-												</select>
-											</div>
-												
-												
-										</div>
-									</div>
 									
-									<div class = "three fields">
-										<div class = "field">
-											<label>Office Name <span class="asterisk">*</span></label>
-
-											<div class = "ui input field">
-												<input type="text" name = "officename" placeholder="e.g. Sample Inc.">
-											</div>
-											
-											
-										</div>
-
-										<div class = "field">
-											<label>Office Address <span class="asterisk">*</span></label>
-
-											<div class = "ui input field">
-												<input type="text" name = "officeadd" placeholder="Street Address Barangay City">
-												
-											</div>
-												
-										</div>
-									</div>
-
-									<div class = "five fields">
-										<div class = "field">
-											<label>AC Category <span class="asterisk">*</span></label>
-
-											<div class = "field">
-												<select  class="ui selection dropdown" name="accateg">
-													<option class="disabled">Select One</option>
-													
-													
-												
-												</select>
-											</div>
-											
-											
-										</div>
-
-										<div class = "field">
-											<label>AC Sub-category <span class="asterisk">*</span></label>
-
-											<div class = "field">
-												<select  class="ui selection dropdown" name="acsubcateg">
-													<option class="disabled">Select One</option>
-													
-													
-												
-												</select>
-											</div>
-											
-											
-										</div>
-										
-									</div>
 									
-									<div class = "five fields">
-										<div class = "field">
-											<label>AC Sector <span class="asterisk">*</span></label>
-
-											<div class = "field">
-												<select  multiple class="ui selection dropdown" name="acsector">
-													<option class="disabled">Select One or More</option>
-													<option value="1">Opt 1</option>
-												</select>
-											</div>
-											
-											
-										</div>
-									</div>-->
 								</div>
 
 								<br>
@@ -386,116 +281,7 @@
 								</thead>
 
 								<tbody>
-										<!--<tr class = "trow1">
-											<td><center>
-												<div class = "ui input field">
-													<input type="text" name = "traintitle" placeholder="e.g. The Sample Title">
-														
-												</div>
-											</center></td>
-
-											<td><center>
-
-												<div class = "field">
-													<select id = "select" class="ui selection dropdown" onchange = "showfield(this.value, rowcount)" name="traincateg">
-														<option class="disabled">Select One</option>
-														<option value="Advisory Council Summit">Advisory Council Summit</option>
-														<option value="Family Conference">Family Conference</option>
-														<option value="Boot Camp (Basic)">Boot Camp (Basic)</option>
-														<option value="Boot Camp (Master)">Boot Camp (Master)</option>
-														<option value="Lecture Series">Lecture Series</option>
-														<option value="Strategy Refresh">Strategy Refresh</option>
-														<option value="7">Others</option>
-													</select>
-
-													<div class = "ui input"  name = "othercon" style = "display:none"> <br>
-														<input type="text" name = "othercat" placeholder="Please specify (required)">
-														
-													</div>
-												</div>
-												
-											</center></td>
-
-											<td><center>
-												<div class = "ui input field">
-													<input type="text" name = "location" placeholder="e.g. Makati City">
-														
-												</div>
-											</center></td>
-
-											<td><center>
-												<div class = "field">
-													<div class = "ui input field">
-														<input type="date" max = "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}" name = "trainsdate">
-														
-													</div>
-
-													<div class = "ui input field">
-														
-
-														<input type="time" name = "trainstime">
-															
-													</div>
-												</div>
-											</center></td>
-
-											<td><center>
-
-												<div class = "field">
-													<div class = "ui input field">
-														<input type="date" max = "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}" name = "trainedate">
-														
-													</div>
-
-													<div class = "ui input field">
-														
-
-														<input type="time" name = "trainetime">
-															
-													</div>
-												</div>
-											</center></td>
-
-											<td><center>
-												<div class = "five fields">
-
-													<div class = "divpercon" name = "pcontainer">
-
-														<ul class = "perlist" name = "lecturer">
-															<li class = "inputitem" name="inputlist">
-
-																<input type="text" 
-																	placeholder="LN, FN MI" 
-																	class = "perfield error" 
-																	name="inputlecturer"
-																	onclick = "divonfocus(rowcount)"
-																	onkeydown = "if(event.keyCode == 13){ addarritem(rowcount);}" 
-																	value=''/>
-															</li>
-														</ul>
-
-													</div>
-													
-													
-												</div>
-
-												<div class="field">
-													<textarea  name = "trainlecturer" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
-												</div>
 									
-											</center></td>
-
-
-											<td><center>
-												<div class = "ui input field">
-													<input type="text" name = "trainorg" placeholder="e.g. CPSM">
-														
-												</div>
-											</center></td>
-
-										</tr>-->
-
-
 								</tbody>
 
 								<tfoot>
@@ -547,6 +333,10 @@
 		var lecturers = new Array();
 
 		addT1Elements();
+		populateacp();
+		populateacc();
+		populateacs();
+
 
 		for (var ctr = rowcount ; ctr < 3 ; ctr++) {
 			rowcount = ctr;
@@ -558,10 +348,15 @@
 			if(selcat == 0) {
 				removeElements();
 				addT1Elements();
+				populateacp();
+				populateacc();
+				populateacs();
 
 			} else {
 				removeElements();
 				addT2Elements();
+				populatepp();
+				populatepo();
 
 			}//if(selcat == 0) {
 
@@ -761,6 +556,107 @@
 
 			
 		}//function controlaction() {
+
+		//DROPDOWNS
+
+		function populateacp() {
+			@foreach($acposition as $acpitem)
+				populatedropdown('{{$acpitem->ID}}', 'acposition' , '{{$acpitem->acpositioncode}}', '{{$acpitem->acpositionname}}');
+			
+			@endforeach
+
+
+		}//function populateacp() {
+
+		function populateacc() {
+			@foreach($accateg as $catitem)
+				populatedropdown('{{$catitem->ID}}', 'accateg' , '{{$catitem->accategorycode}}', '{{$catitem->categoryname}}');
+
+			@endforeach
+
+		}//function populateacc() {
+
+		function populateacs() {
+			@foreach($acsector as $secitem)
+				populatedropdown('{{$secitem->ID}}', 'acsector' , '{{$secitem->sectorcode}}', '{{$secitem->sectorname}}');
+
+				
+			@endforeach
+
+		}//function populateacs() {
+
+		function populatepp() {
+			@foreach($pnppost as $ppitem)
+				populatedropdown('{{$ppitem->ID}}', 'position' , '{{$ppitem->policepositioncode}}', '{{$ppitem->positionname}}');
+
+				
+			@endforeach
+
+		}//function populateacs() {
+
+		function populatepo() {
+			@foreach($primaryoffice as $poitem)
+				populatedropdown('{{$poitem->ID}}', 'primary' , '{{$poitem->policeofficecode}}', '{{$poitem->officename}}');
+
+				
+			@endforeach
+
+		}//function populateacs() {
+
+		function getsubcateg() {
+			var data = {
+				'categID' : document.getElementsByName('accateg')[0].value,
+				'_token' : '{{ Session::token() }}'
+
+			};
+
+			$.ajax({
+				type: "POST",
+				url: "{{url('dropdown/getsubcateg')}}",
+				data: data,
+				dataType: 'json',
+			   	success : function(subcategory) {
+
+			   		for (var ctr = 0 ; ctr < subcategory.length ; ctr++) {
+			   			populatedropdown(subcategory[ctr]['ID'], 'acsubcateg', subcategory[ctr]['acsubcategorycode'], subcategory[ctr]['subcategoryname']);
+			   			
+			   		};
+
+			   		
+			   	}//success : function() {
+			});
+
+		}//function getsubcateg() {
+
+		function getsecoffice() {
+			var data = {
+				'poID' : document.getElementsByName('primary')[0].value,
+				'_token' : '{{ Session::token() }}'
+
+			};
+
+			$.ajax({
+				type: "POST",
+				url: "{{url('dropdown/getsecoffice')}}",
+				data: data,
+				dataType: 'json',
+			   	success : function(secoffice) {
+
+			   		for (var ctr = 0 ; ctr < secoffice.length ; ctr++) {
+			   			populatedropdown(secoffice[ctr]['ID'], 'secondary', secoffice[ctr]['policeofficecode2'], secoffice[ctr]['officename']);
+			   			
+			   		};
+
+			   		
+			   	}//success : function() {
+			});
+
+		}//function getsecoffice() {
+
+
+
+
+
 		/**
 
 			NOTE:
