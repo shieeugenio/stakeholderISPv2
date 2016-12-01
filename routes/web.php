@@ -110,4 +110,11 @@ Route::post('transaction/addadvisers','ProfileController@store');
 Route::get('transaction/advedt','ProfileController@edit');
 
 
+//login [ren]
+Route::get('login', array('uses' => 'HomeController@index'));
+Route::post('login', array('uses' => 'HomeController@login'));
+Route::get('logout', array('uses' => 'HomeController@logout'));
 
+//registration[ren]
+Route::get('registration', 'RegistrationController@index');
+Route::resource('register', 'RegistrationController@register');

@@ -106,6 +106,5 @@ class ProfileController extends Controller
             $adv->save();
         }
  }
-
-
+ 
 }
