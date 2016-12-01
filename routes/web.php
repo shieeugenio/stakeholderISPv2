@@ -95,6 +95,15 @@ Route::post('maintenance/policepositioncrud','PolicePositionController@policepos
 
 //profile 
 
+//TRANSACTION
+
+//ADD ADVISER
+
+Route::post('adviser/add', 'AdvDirectoryController@addadviser');
+Route::post('adviser/edit', 'AdvDirectoryController@editadviser');
+
+
+///----------------------------------------------------------------------
 //advisory council transac Joanne
 Route::get('advisorycouncil', 'AdvisoryCouncilController@index');
 
