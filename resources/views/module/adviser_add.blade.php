@@ -271,6 +271,13 @@
 										<div class = "field">
 											<label>AC Position <span class="asterisk">*</span></label>
 
+
+										<div class = "five fields">
+											<div class = "ui input field">
+											
+												<input type="text" name = "position" placeholder="e.g. Software Developer">
+												
+
 											<div class = "field">
 												<select  class="ui selection dropdown" name="acposition">
 													<option class="disabled">Select One</option>
@@ -311,7 +318,11 @@
 											<div class = "field">
 												<select  class="ui selection dropdown" name="accateg">
 													<option class="disabled">Select One</option>
-													<option value="1">Opt 1</option>
+													
+													@foreach ($acsec as $acsec)
+													<option value="{{$acsec->ID}}">{{$acsec->sectorname}}</option>
+													@endforeach
+												
 												</select>
 											</div>
 											
@@ -324,7 +335,11 @@
 											<div class = "field">
 												<select  class="ui selection dropdown" name="acsubcateg">
 													<option class="disabled">Select One</option>
-													<option value="1">Opt 1</option>
+													
+													@foreach ($accat as $accat)
+													<option value="{{$accat->ID}}">{{$accat->categoryname}}</option>
+													@endforeach
+												
 												</select>
 											</div>
 											
@@ -502,8 +517,13 @@
 					<br>
 
 					<center>
+
 						<button type = "button" name="submit" 
 								class="ui large button  savebtnstyle" onclick = "controlaction()">
+
+						<!--<button type = "submit" name="submit" onclick ="if(confirm('Save?')) {addProfile()}"
+								class="ui large button submit savebtnstyle">-->
+
 
 							Save
 						</button>

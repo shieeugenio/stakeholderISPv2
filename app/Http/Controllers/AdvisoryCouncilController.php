@@ -39,7 +39,7 @@ class AdvisoryCouncilController extends Controller
     	    $advisory->startdate = $request->input('startdate');
     	    $advisory->enddate = $request->input('enddate');
     	    $advisory->advisory_position_id = $request->input('position');
-    	    $advisory->categoryId = $request->input('subcat');
+    	    $advisory->subcategoryId = $request->input('subcat');
 
             $advisory->save();
 
@@ -78,7 +78,7 @@ class AdvisoryCouncilController extends Controller
                    startdate = ?,
                    enddate = ?,
                    advisory_position_id = ?,
-                   categoryId = ? 
+                   subcategoryId = ? 
                 where id = ?', $params);
             if($var){
                 return redirect('advisorycouncil');
