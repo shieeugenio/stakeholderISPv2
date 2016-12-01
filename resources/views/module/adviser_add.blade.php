@@ -10,7 +10,7 @@
 			</div>
 
 			<div class = "tablecon">
-				<form class = "ui form" id = "form">
+				<form enctype="multipart/form-data" class = "ui form" id = "form">
 
 					<input type="hidden" value="" name="advid"/>
 
@@ -319,9 +319,7 @@
 												<select  class="ui selection dropdown" name="accateg">
 													<option class="disabled">Select One</option>
 													
-													@foreach ($acsec as $acsec)
-													<option value="{{$acsec->ID}}">{{$acsec->sectorname}}</option>
-													@endforeach
+													
 												
 												</select>
 											</div>
@@ -336,9 +334,7 @@
 												<select  class="ui selection dropdown" name="acsubcateg">
 													<option class="disabled">Select One</option>
 													
-													@foreach ($accat as $accat)
-													<option value="{{$accat->ID}}">{{$accat->categoryname}}</option>
-													@endforeach
+													
 												
 												</select>
 											</div>
@@ -657,7 +653,7 @@
 
 			if (slctdtype == 0) {
 				var data = {
-					'advid' : document.getElementsByName('advid')[0].value,
+					'ID' : document.getElementsByName('advid')[0].value,
 					'lname' : document.getElementsByName('lname')[0].value,
 					'fname' : document.getElementsByName('fname')[0].value,
 					'mname' : document.getElementsByName('mname')[0].value,
@@ -691,12 +687,13 @@
 					'speaker' : lecturers,
 					'org' : org,
 					'profpic' : document.getElementsByName('upphoto')[0].files[0],
+					'submit' : '',
 					'_token' : '{{ Session::token() }}'
 				};
 
 			} else if(slctdtype == 1 || slctdtype == 2) {
 				var data = {
-					'advid' : document.getElementsByName('advid')[0].value,
+					'ID' : document.getElementsByName('advid')[0].value,
 					'lname' : document.getElementsByName('lname')[0].value,
 					'fname' : document.getElementsByName('fname')[0].value,
 					'mname' : document.getElementsByName('mname')[0].value,
@@ -728,6 +725,7 @@
 					'speaker' : lecturers,
 					'org' : org,
 					'profpic' : document.getElementsByName('upphoto')[0].files[0],
+					'submit' : '',
 					'_token' : '{{ Session::token() }}'
 				};
 
@@ -748,16 +746,18 @@
 				type: "POST",
 				url: "{{url('adviser/add')}}",
 				data: data,
-				mimeType: "multipart/form-data",
+				dataType: "json", 
+				enctype: 'multipart/form-data',
     			contentType: false,
    				processData: false,
-			   	success : function(info) {
-			   		
-			   		alert(info);
+   				async: true,
+			   	success : function(path) {
+			   		console.log(path);
+			   	
 			   	}//success : function() {
 			});
 
-			console.log(document.getElementsByName('upphoto')[0].files[0]);
+			console.log( document.getElementsByName('upphoto')[0].files[0]);
 
 			
 		}//function controlaction() {

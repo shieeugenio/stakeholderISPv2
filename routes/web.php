@@ -99,7 +99,7 @@ Route::post('maintenance/policepositioncrud','PolicePositionController@policepos
 
 //ADD ADVISER
 
-Route::post('adviser/add', 'AdvDirectoryController@addadviser');
+Route::resource('adviser/add', 'AdvDirectoryController@addadviser');
 Route::post('adviser/edit', 'AdvDirectoryController@editadviser');
 
 
