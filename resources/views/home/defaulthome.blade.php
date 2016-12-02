@@ -7,18 +7,38 @@
 			<div class = "mtitle">Recently Added</div>
 
 			<div class = "ui doubling grid cardlist2">
-				<div class = "five1 wide column colheight">
-					<div class = "cardstyle" onclick = "$('#viewadv').modal('show')">
-						<img class = "advphoto" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
 
-						<div class = "advdata">
-							<h4 class = "name">Eugenio, Shiela Mae F.</h4>
-							<p>Other data comes here</p>
-							
+
+				@foreach($recent as $ritem)
+					<div class = "five1 wide column colheight">
+						<div class = "cardstyle" onclick = "loadModal({{$ritem->ID}})">
+							<img class = "advphoto" src="{{$ritem->imagepath}}"/>
+
+							<div class = "advdata">
+								<h4 class = "name">{{$ritem->lname}}, {{$ritem->fname}} {{$ritem->mname}}</h4>
+								<p>
+									@if($ritem->category == 0)
+										Advisory Council
+
+									@elseif($ritem->category == 1)
+										Technical Worker Group
+
+
+									@elseif($ritem->category == 2)
+										Police Strategy Management Unit
+
+									@endif
+
+									<br>
+									$ritem->email | $ritem->contactno | $ritem->landline
+
+								</p>
+								
+							</div>
 						</div>
-					</div>
 
-				</div>
+					</div>
+				@endforeach
 
 			</div>
 
@@ -408,6 +428,11 @@
 			document.getElementsByName('tpview')[0].style.display = "block";
 
 		}//function showacview() {
+
+		function loadModal(id) {
+			$('#viewadv').modal('show');
+
+		}//function loadModal() {
 
 		/**
 			Iisang modal lang yung sa ac saka twg/psmu

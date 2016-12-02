@@ -31,6 +31,8 @@ class Advisers extends Migration
             $table->tinyInteger('category');
             $table->tinyInteger('occupationstat');
             $table->text('imagepath');
+            $table->integer('training_id')->unsigned();
+            $table->foreign('training_id')->references('ID')->on('Trainings');
         });
 }
 

@@ -13,10 +13,8 @@
 
 //MENU
 
-Route::get('/', function() {
-	return view('home.defaultphome');
+Route::get('/', 'AdvDirectoryController@readyPHome'); //public
 
-}); //public
 
 Route::get('home', function() {
 	$all = App\Models\Advisers::count();
@@ -36,21 +34,25 @@ Route::get('home', function() {
 								   ->with('ppsmu', $ppsmu);
 
 })->middleware('auth'); //admin
-
-Route::get('directory', function () {
-    return view('module.adviser');
-});
+Route::get('home', 'AdvDirectoryController@getRecent'); //admin
 
 
-//Route::get('directory/add', function () {
-//    return view('module.adviser_add');
-//});
+Route::get('maintenance', function () {
+    return redirect('maintenance/accategory');
+})->middleware('auth');
+
+Route::get('directory', 'AdvDirectoryController@getList')->middleware('auth');
 
 
 //TRANSACTION
-Route::get('directory/add', 'ProfileController@index')->middleware('auth');;
+Route::get('directory/add', 'ProfileController@index')->middleware('auth');
+Route::get('directory/add', 'AdvDirectoryController@index')->middleware('auth');
 Route::post('directory/store', 'ProfileController@store');
 Route::post('directory/getinfo', 'ProfileController@getinfo');
+
+//DROPDOWN
+Route::post('dropdown/getsubcateg', 'AdvDirectoryController@getSubCateg');
+Route::post('dropdown/getsecoffice', 'AdvDirectoryController@getSecOffice');
 
 
 //MAINTENANCE
@@ -113,7 +115,7 @@ Route::post('maintenance/policepositioncrud','PolicePositionController@policepos
 
 //ADD ADVISER
 
-Route::post('adviser/add', 'AdvDirectoryController@addadviser');
+Route::resource('adviser/add', 'AdvDirectoryController@addadviser');
 Route::post('adviser/edit', 'AdvDirectoryController@editadviser');
 
 
@@ -121,7 +123,7 @@ Route::post('adviser/edit', 'AdvDirectoryController@editadviser');
 //advisory council transac Joanne
 Route::get('advisorycouncil', 'AdvisoryCouncilController@index');
 
-Route::post('/add', 'AdvisoryCouncilController@add');
+Route::post('/addCat', 'AdvisoryCouncilController@addCat');
 Route::get('transac/{id}/edit', 'AdvisoryCouncilController@find');
 Route::post('transac/{id}/editAc', 'AdvisoryCouncilController@edit');
 

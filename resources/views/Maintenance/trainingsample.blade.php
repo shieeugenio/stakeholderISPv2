@@ -119,27 +119,30 @@
 		{
 			var data;
 			var ctr;
+			var form = document.forms[0];
+			var title = form['tname'];
+			var trainingsdate = form['startdate'];
+			var trainingedate = form['enddate'];
+			var trainloc = form['location'];
+			var trainorg = form['organizer'];
+			var trainingstime = form['starttime'];
+			var trainingetime = form['endtime'];
+			var traincat = form['ttype'];
+			var trainId = form['ID'];
+
+			var id = new Array();
+			var traintitle = new Array();
+			var trainsdate = new Array();
+			var trainedate = new Array();
+			var location = new Array();
+			var org = new Array();
+			var trainstime = new Array();
+			var trainetime = new Array();
+			var traintype = new Array();
 
 			if(func == 1)
 			{
-				var form = document.forms[0];
-				var title = form['tname'];
-				var trainingsdate = form['startdate'];
-				var trainingedate = form['enddate'];
-				var trainloc = form['location'];
-				var trainorg = form['organizer'];
-				var trainingstime = form['starttime'];
-				var trainingetime = form['endtime'];
-				var traincat = form['ttype'];
-
-				var traintitle = new Array();
-				var trainsdate = new Array();
-				var trainedate = new Array();
-				var location = new Array();
-				var org = new Array();
-				var trainstime = new Array();
-				var trainetime = new Array();
-				var traintype = new Array();
+				
 
 			for(ctr=0;ctr<title.length;ctr++){
 				if(title[ctr].value==""){
@@ -158,6 +161,7 @@
 			}
 				callId=1;
 				var data = {
+					'adviserid' : 3,
 					'id' : id,
 					'tname' : traintitle,
 					'startdate' : trainsdate,
@@ -178,6 +182,7 @@
 				callId=2;
 				var data = {
 					'id' : id,
+					'adviserid' : 2,
 					'callId' : callId,
 					'submit' : document.getElementsByName('submit')[0].value,
 					'_token' : '{{Session::token()}}'
@@ -186,27 +191,6 @@
 			
 			if(func == 3)
 			{
-				var form = document.forms[0];
-				var title = form['tname'];
-				var trainingsdate = form['startdate'];
-				var trainingedate = form['enddate'];
-				var trainloc = form['location'];
-				var trainorg = form['organizer'];
-				var trainingstime = form['starttime'];
-				var trainingetime = form['endtime'];
-				var traincat = form['ttype'];
-				var trainId = form['ID'];
-
-				var id = new Array();
-				var traintitle = new Array();
-				var trainsdate = new Array();
-				var trainedate = new Array();
-				var location = new Array();
-				var org = new Array();
-				var trainstime = new Array();
-				var trainetime = new Array();
-				var traintype = new Array();
-
 				for(ctr=0;ctr<title.length;ctr++){
 					if(title[ctr].value==""){
 							break;
@@ -227,6 +211,7 @@
 
 				callId=3;
 				var data = {
+					'adviserid' : 2,
 					'id' : id,
 					'tname' : traintitle,
 					'startdate' : trainsdate,
@@ -258,25 +243,32 @@
 					}
 
 					else {
-						document.getElementById('ID').value = data['ID'];
-						document.getElementsByName('tname')[0].value = data['trainingname'];
-						document.getElementsByName('startdate')[0].value = data['startdate'];
-						document.getElementsByName('enddate')[0].value = data['enddate'];
-						document.getElementsByName('location')[0].value = data['location'];
-						document.getElementsByName('organizer')[0].value = data['organizer'];
-						document.getElementsByName('starttime')[0].value = data['starttime'];
-						document.getElementsByName('endtime')[0].value = data['endtime'];
+							for(var j=0;j<data.length;j++){
+								trainId[j].value = data[j].ID;
+								title[j].value = data[j].trainingname;
+								trainingsdate[j].value = data[j].startdate;
+								trainingedate[j].value = data[j].enddate;
+								trainloc[j].value = data[j].location;
+								trainorg[j].value = data[j].organizer;
+								trainingstime[j].value = data[j].starttime;
+								trainingetime[j].value = data[j].endtime;
+								
 
-						for(var i=0, opt = document.getElementById('ttype').options; i < 10 ;++i){
-							if( opt[i].value == data['trainingtype'] )
-			   				{
-			   				   document.getElementById('ttype').options[i].selected = true; 
-			   				   break;
-			   				}
+							for(var k=0, opt = traincat[j].options; k < opt.length ;++k)
+							{	
+								if( opt[k].value == data[j].trainingtype)
+					   			{
+					   				alert(opt[k].value);
+					   			   	traincat[j].options[k].selected = true; 
+					   			   	break;
+					   			}
+							}
+							
 						}
 						document.getElementById('dualbutton').value = 3;
+
 						console.log(data);
-					}
+					}//else
 				}//success funtion
 			});
 
