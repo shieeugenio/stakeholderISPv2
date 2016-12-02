@@ -52,7 +52,7 @@
 
 
 					<label>AC Sectors</label>
-					<select id="multipleSelect" multiple class="ui selection dropdown"  name="sector" onclick="sectoradd(this.id)">
+					<select id="multipleSelect" multiple class="ui selection dropdown" onchange="sectoradd(this.id)" name="sector">
 							@foreach($ac as $id => $key)
 							<option value='{{$key->ID}}'>
 								{{$key->sectorname}}
@@ -108,67 +108,112 @@
 
 $("select[name='sector']").dropdown(); //refresh dropdown
 
-$("select[name='sector']").val(); 
+	function resetflag(msg){
 
-// var selected= new array();
-// $('.sector :selected').each(function(){
-// 	selected[$(this).val]=$(this).text();
-// });
-// console.log(selected);
+			document.getElementById('dualbutton').value = 1;
 
-
-	function sectoradd(id){
-		var categ = document.getElementById('multipleSelect').value;
-		var dataString = "ID=" + categ;
-		var token = document.getElementById('csrf-token').value;
-
-		$.ajax({
-
-				type: "post",
-				headers: {'X-CSRF-TOKEN': token},
-				url: "{{url('../add')}}",
-				data: dataString,
-				datatype: 'json',
-				cache: false,
-				success: function(data){
-
-				
-
-					}
+			$("#myToast").showToast({
+				message: msg,
+				timeout: 2500
 			});
+						
+		}
+
+function CRUD(id, func){
+
+		var data;
+
+		if(func == 1)
+		{
+			if(confirm('Save?')) {
+				data = {
+				'positioN' : document.getElementsByName('acsectorName')[0].value,
+				'acofficenamE' : document.getElementsByName('acsectorCode')[0].value,
+				'acofficeadD' : document.getElementsByName('Desc')[0].value,
+				'categorY' : document.getElementsByName('category')[0].value,
+				'subcaT' : document.getElementsByName('subcat')[0].value,
+				'sectoR' : document.getElementsByName('sector')[0].value,
+				'submit': document.getElementsByName("submit")[0].value,
+				'callId' : 1,
+				'_token' : '{{ Session::token() }}'
+				};
+
+				exec(data, func);
+			}//if(confirm('Save?')) {
+		}//add
+
+		if(func == 2)
+		{
+			data = {
+			'id' : id,
+			'callId' : 2,
+			'_token' : '{{ Session::token() }}'};
+			document.getElementById('dualbutton').value = 3;
+
+			exec(data, func);
+			
+
+		}//view
+
+		if(func == 3)
+		{
+			if(confirm('Save?')) {
+				data = {
+					'positioN' : document.getElementsByName('acsectorName')[0].value,
+					'acofficenamE' : document.getElementsByName('acsectorCode')[0].value,
+					'acofficeadD' : document.getElementsByName('Desc')[0].value,
+					'categorY' : document.getElementsByName('category')[0].value,
+					'subcaT' : document.getElementsByName('subcat')[0].value,
+					'sectoR' : document.getElementsByName('sector')[0].value,
+					'submit': document.getElementsByName("submit")[0].value,
+					'callId' : 3,
+					'_token' : '{{ Session::token() }}'
+				exec(data, func);
+
+			}//if(confirm('Save?')) {
+		}//update
+
+			
 	}
 
-	// function subcat(){
-	// 	var subID = document.getElementById('sub').value;
-	// 	var dataString = "ID=" + subID;
-	// 	var token = document.getElementById('csrf-token').value;
-		
-	// 		$.ajax({
+	function exec(data, func) {
+		$.ajax({
 
-	// 			type: "post",
-	// 			headers: {'X-CSRF-TOKEN': token},
-	// 			url: "subcatOptions",
-	// 			data: dataString,
-	// 			datatype: 'json',
-	// 			cache: false,
-	// 			success: function(data){
-
-	// 				var parse_data = JSON.parse(data);
-
-	// 				document.getElementById('cat').disabled = false;
-
-	// 				document.getElementById('cat').innerHTML = "<option>- SUB -</option>";
-
-	// 				for (var i = 0; i < parse_data.length; i = i + 2) {
-							
-	// 					var j = i + 1;
-
-	// 				}
+			type: "POST",
+			url: "{{url('transaction/acCRUD')}}",
+			data: data,
+			dataype: "JSON",
+			success:function(data){
+				if(  func == 1 || func == 3){ 
 					
+					if(func == 1) {
+						msg = "Saved!";
+					} else {
+						msg = "Updated!";
+					}//if(func == 1) {
 
-	// 			}
+					resetflag(msg);
+					setTimeout(function(){
+						location.reload();
+					}, 2600);
 
-	// 		});
-	// }
+				}//if func
+				else {
+					$('#' + data['ID']).attr('class', 'activerow');
+					$('tr').not("[id = '" + data['ID'] + "']").removeAttr('class');
+
+					document.getElementById('acsectorID').value = data['ID'];
+					document.getElementsByName('acsectorCode')[0].value = data['sectorcode'];
+					document.getElementsByName('acsectorName')[0].value = data['sectorname'];
+					document.getElementsByName('Desc')[0].value = data['desc'];
+				}
+			} 
+
+		});
+	}//function exec() {
+
+
+
+
 </script>
 </html>

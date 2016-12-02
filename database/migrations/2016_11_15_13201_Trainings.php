@@ -19,8 +19,8 @@ class Trainings extends Migration
             $table->time('starttime');
             $table->time('endtime');
             $table->smallInteger('trainingtype');
-            $table->integer('lecturer_id')->unsigned();
-            $table->foreign('lecturer_id')->references('ID')->on('Lecturers');
+            $table->integer('adviser_id')->unsigned();
+            $table->foreign('adviser_id')->references('ID')->on('Advisers');
         });
     }
 

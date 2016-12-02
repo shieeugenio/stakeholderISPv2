@@ -12,6 +12,8 @@ class Lecturers extends Migration
         {
             $table->increments('ID');
             $table->text('lecturername');
+            $table->integer('training_id')->unsigned();
+            $table->foreign('training_id')->references('ID')->on('Trainings');
         });
     }
 
