@@ -15,5 +15,14 @@
 	<label>Password</label> <input type="password" name="password">
 	<input type="submit">
 </form>
+<br>
+<br>
+@foreach($adviser as $key => $val)
+	<img src={{ $val->imagepath }}>
+	{{ $val->fname }} {{ $val->fname }}
+
+	<br>
+
+@endforeach
 </body>
 </html>

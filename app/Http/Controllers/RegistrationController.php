@@ -32,4 +32,8 @@ class RegistrationController extends Controller
 	        return Redirect::to('registration')->with('message',$message);
         }
     }
+
+    
+
+
 }

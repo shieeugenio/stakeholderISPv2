@@ -19,7 +19,21 @@ Route::get('/', function() {
 }); //public
 
 Route::get('home', function() {
-	return view('home.defaulthome');
+	$all = App\Models\Advisers::count();
+	$ac = App\Models\Advisers::where('category', '=', 0)->count();
+    $twg = App\Models\Advisers::where('category', '=', 1)->count();
+    $psmu = App\Models\Advisers::where('category', '=', 2)->count();
+    $pac = round(($ac/$all) * 100, 2);
+    $ptwg = round(($twg/$all) * 100,2);
+    $ppsmu = round(($psmu/$all) * 100,2);
+            
+	return view('home.defaulthome')->with('all', $all)
+								   ->with('ac', $ac)
+								   ->with('twg', $twg)
+								   ->with('psmu', $psmu)
+								   ->with('pac', $pac)
+								   ->with('ptwg', $ptwg)
+								   ->with('ppsmu', $ppsmu);
 
 })->middleware('auth'); //admin
 
@@ -34,19 +48,19 @@ Route::get('directory', function () {
 
 
 //TRANSACTION
-Route::get('directory/add', 'ProfileController@index');
+Route::get('directory/add', 'ProfileController@index')->middleware('auth');;
 Route::post('directory/store', 'ProfileController@store');
 Route::post('directory/getinfo', 'ProfileController@getinfo');
 
 
 //MAINTENANCE
-Route::get('maintenance/accategory', 'ACCategoryController@index');
-Route::get('maintenance/acsubcategory','ACSubcategoryController@index');
-Route::get('maintenance/acposition','ACPositionController@index_acposition');
-Route::get('maintenance/acsector','acsectorController@index_acsectors');
-Route::get('maintenance/primaryoffice', 'PoliceOfficesController@index');
-Route::get('maintenance/secondaryoffice', 'PoliceOfficeTwoController@index');
-Route::get('maintenance/policeposition','PolicePositionController@index_policeposition');
+Route::get('maintenance/accategory', 'ACCategoryController@index')->middleware('auth');;
+Route::get('maintenance/acsubcategory','ACSubcategoryController@index')->middleware('auth');;
+Route::get('maintenance/acposition','ACPositionController@index_acposition')->middleware('auth');;
+Route::get('maintenance/acsector','acsectorController@index_acsectors')->middleware('auth');;
+Route::get('maintenance/primaryoffice', 'PoliceOfficesController@index')->middleware('auth');;
+Route::get('maintenance/secondaryoffice', 'PoliceOfficeTwoController@index')->middleware('auth');;
+Route::get('maintenance/policeposition','PolicePositionController@index_policeposition')->middleware('auth');;
 
 
 //BACK-END
@@ -134,3 +148,4 @@ Route::get('logout', array('uses' => 'HomeController@logout'));
 //registration[ren]
 Route::get('registration', 'RegistrationController@index');
 Route::resource('register', 'RegistrationController@register');
+
