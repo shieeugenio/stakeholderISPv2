@@ -150,8 +150,3 @@ Route::get('logout', array('uses' => 'HomeController@logout'));
 //registration[ren]
 Route::get('registration', 'RegistrationController@index');
 Route::resource('register', 'RegistrationController@register');
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
