@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('baseform')
 
 @section('content')
 	<script type="text/javascript" src="{{ URL::asset('js/jquery-2.1.4.js') }}"></script>
