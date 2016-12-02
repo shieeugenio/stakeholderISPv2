@@ -17,7 +17,7 @@ class AdvisoryCouncil extends Model
 
     public function acsubcategory()
     {
-    	return $this->belongsTo('App\Models\ACSubcategory', 'categoryId', 'ID');
+    	return $this->belongsTo('App\Models\ACSubcategory', 'subcategoryId', 'ID');
     }
 
     public function advisoryposition()

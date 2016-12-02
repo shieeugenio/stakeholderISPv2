@@ -1,39 +1,130 @@
 @extends('module.home')
 
 @section('homesection')
-
-	<div class="dcon">
-		<div class = "tablepane">
-			<div class = "mtitle">Recently Added</div>
-
-			<div class = "ui doubling grid cardlist2">
-				<div class = "five1 wide column colheight">
-					<div class = "cardstyle" onclick = "$('#viewadv').modal('show')">
-						<img class = "advphoto" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
-
-						<div class = "advdata">
-							<h4 class = "name">Eugenio, Shiela Mae F.</h4>
-							<p>Other data comes here</p>
-							
+	<div class = "four wide column">
+		<div class = "ui segment summcon" id="summary">
+			<div class = "ui rail">
+				<div class = "ui sticky">
+					<div class="ui container">
+						<div class = "summhead">
+							<i class = "pie chart medium icon"></i>
+								Summary
 						</div>
+
+						<div class = "summcontent">
+							<div class ="twelve wide column  bspacing8">
+								<label class="formlabel">% of AC: <span class = "labeldesc">{{$pac}}%</span></label>
+										
+							</div>
+
+							<div class ="twelve wide column  bspacing8">
+								<label class="formlabel">No. of AC: <span class = "labeldesc">{{$ac}}</span></label>
+											
+							</div>
+
+							<div class ="twelve wide column  bspacing8">
+								<label class="formlabel">% of PSMU: <span class = "labeldesc">{{$ppsmu}}%</span></label>
+											
+							</div>
+
+							<div class ="twelve wide column  bspacing8">
+								<label class="formlabel">No. of PSMU: <span class = "labeldesc">{{$psmu}}</span></label>
+										
+							</div>
+
+							<div class ="twelve wide column  bspacing8">
+								<label class="formlabel">% of TWG: <span class = "labeldesc">{{$ptwg}}%</span></label>
+											
+							</div>
+
+							<div class ="twelve wide column  bspacing8">
+								<label class="formlabel">No. of TWG: <span class = "labeldesc">{{$twg}}</span></label>
+											
+							</div>
+
+							<!--<div class ="twelve wide column  bspacing8">
+								<label class="formlabel">No. of Recently Added: <span class = "labeldesc"></span></label>
+											
+							</div>-->
+							<br>
+
+							<div class ="twelve wide column bspacing8">
+								<label class="formlabel">Total No. of Adviser: <span class = "labeldesc">{{$all}}</span></label>
+											
+							</div>
+										
+						</div>
+											
 					</div>
-
+								
 				</div>
-
+							
 			</div>
+								
+						
+		</div>
+					
+	</div>
+
+	<div class = "twelve wide column">
+		<div class = "hcontent">
+			<div class="dcon">
+				<div class = "tablepane">
+					<div class = "mtitle">Recently Added</div>
+
+					<div class = "ui doubling grid cardlist2">
+
+
+						@foreach($recent as $ritem)
+							<div class = "five1 wide column colheight">
+								<div class = "cardstyle" onclick = "loadModal({{$ritem->ID}})">
+									<img class = "advphoto" src="{{$ritem->imagepath}}"/>
+
+									<div class = "advdata">
+										<h5 class = "name">{{$ritem->lname}}, {{$ritem->fname}} {{$ritem->mname}}</h5>
+										<p class = "p1">
+											@if($ritem->category == 0)
+												Advisory Council
+
+											@elseif($ritem->category == 1)
+												Technical Worker Group
+
+
+											@elseif($ritem->category == 2)
+												Police Strategy Management Unit
+
+											@endif
+
+											<br>
+											{{$ritem->email}} <br> {{$ritem->contactno}} | {{$ritem->landline}}
+
+										</p>
+										
+									</div>
+								</div>
+
+							</div>
+						@endforeach
+
+					</div>
 
 
 			
-		</div>
+				</div>
 		
+			</div>
+						
+		</div>
+					
 	</div>
+
 
 	<div class = "modal">
 		<div id = "viewadv" class = "ui modal">
 	        <div class = "header mtitle">
-	            Eugenio, Shiela Mae F.
 
-	            <div class = "ui icon addbtn button tiny" title = "edit">
+	        	<h3 class = "h3name" name = "name"></h3>
+	            <div class = "ui icon addbtn button tiny" name="edit" title = "edit">
 					<i class="edit icon topmargin"></i>
 							
 				</div>
@@ -82,17 +173,17 @@
 										<div class ="eleven wide column fieldpane">
 
 											<div class = "twelve wide column bspacing9">
-												<p>INSERT BIRTHDATE</p>
+												<p name="bdate"></p>
 														
 											</div>
 
 											<div class = "twelve wide column bspacing9">
-												<p>Gender</p>
+												<p name ="gender"></p>
 														
 											</div>
 
 											<div class = "twelve wide column bspacing9">
-												<p>INSERT HOME ADDRESS</p>
+												<p name = "address"></p>
 														
 											</div>
 															
@@ -112,7 +203,12 @@
 			        					<div class ="three wide column fbc labelpane">
 
 											<div class = "twelve wide column bspacing">
-												<label class = "formlabel">Contact No.</label>
+												<label class = "formlabel">Mobile No.</label>
+														
+											</div>
+
+											<div class = "twelve wide column bspacing">
+												<label class = "formlabel">Landline</label>
 														
 											</div>
 
@@ -141,27 +237,32 @@
 										<div class ="eleven wide column fieldpane">
 
 											<div class = "twelve wide column bspacing9">
-												<p>INSERT CONTACT NO.</p>
+												<p name="contactno"></p>
 														
 											</div>
 
 											<div class = "twelve wide column bspacing9">
-												<p>INSERT EMAIL</p>
+												<p name="landline"></p>
 														
 											</div>
 
 											<div class = "twelve wide column bspacing9">
-												<p>INSERT FACEBOOK</p>
+												<p name="email"></p>
 														
 											</div>
 
 											<div class = "twelve wide column bspacing9">
-												<p>INSERT TWITTER</p>
+												<p name="fb"></p>
 														
 											</div>
 
 											<div class = "twelve wide column bspacing9">
-												<p>INSERT IG</p>
+												<p name="twitter"></p>
+														
+											</div>
+
+											<div class = "twelve wide column bspacing9">
+												<p name = "ig"></p>
 														
 											</div>
 															
@@ -236,7 +337,7 @@
 								<div class ="eleven wide column fieldpane">
 
 									<div class = "twelve wide column bspacing11">
-										<p>Adviser Categ</p>
+										<p></p>
 														
 									</div>
 
@@ -408,6 +509,43 @@
 			document.getElementsByName('tpview')[0].style.display = "block";
 
 		}//function showacview() {
+
+		function loadModal(id) {
+
+			var data = {
+				'ID' :id,
+				'_token' : '{{ Session::token() }}'
+			};
+
+			$.ajax({
+				type: "POST",
+				url: "{{url('modalView')}}",
+				data: data,
+				dataType: "json",
+			   	success : function(recorddata) {
+			   		console.log(recorddata);
+
+			   		//Profile
+			   		document.getElementsByName('name')[0].innerHTML = recorddata[0][0]['lname'] + ", " + recorddata[0][0]['fname'] + " " + recorddata[0][0]['mname'];
+			   		document.getElementsByName('bdate')[0].innerHTML = recorddata[1];
+
+			   		if(recorddata[0][0]['gender'] == 0) {
+			   			document.getElementsByName('gender')[0].innerHTML = "Male";
+
+			   		} else {
+			   			document.getElementsByName('gender')[0].innerHTML = "Female";
+
+			   		}//if(recorddata[0][0]['gender'] == 0) {
+
+			   		document.getElementsByName('address')[0].innerHTML = recorddata[0][0]['street'] + " " + recorddata[0][0]['barangay']
+			   															  + " " + recorddata[0][0]['city']  + " " + recorddata[0][0]['province'];
+
+			   	}//success : function() {
+			});
+
+			$('#viewadv').modal('show');
+
+		}//function loadModal() {
 
 		/**
 			Iisang modal lang yung sa ac saka twg/psmu

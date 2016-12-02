@@ -11,89 +11,118 @@
 |
 */
 
-//MENU
+//LOGIN @author: Ren Buluran
+Route::get('login', array('uses' => 'HomeController@index'));
+Route::post('login', array('uses' => 'HomeController@login'));
+Route::get('logout', array('uses' => 'HomeController@logout'));
 
-Route::get('/', function() {
-	return view('home.defaultphome');
+//REGISTRATION @author: Ren Buluran
+Route::get('registration', 'RegistrationController@index');
+Route::resource('register', 'RegistrationController@register');
 
-}); //public
+//MENU @author: Shie Eugenio
+Route::get('/', 'AdvDirectoryController@readyPHome'); //public
+
 
 Route::get('home', function() {
+	
+            
 	return view('home.defaulthome');
 
-}); //admin
+})->middleware('auth'); //admin
 
-Route::get('directory', function () {
-    return view('module.adviser');
-});
+Route::get('home', 'AdvDirectoryController@getRecent')->middleware('auth'); //admin
 
-Route::get('directory/add', function () {
-    return view('module.adviser_add');
-});
+
+Route::get('home', 'AdvDirectoryController@getRecent'); //admin
 
 
 Route::get('maintenance', function () {
     return redirect('maintenance/accategory');
-});
+})->middleware('auth');
+
+Route::get('directory', 'AdvDirectoryController@getList')->middleware('auth');
 
 
-//MAINTENANCE
-Route::get('maintenance/accategory', 'ACCategoryController@index');
-Route::get('maintenance/acsubcategory','ACSubcategoryController@index');
-Route::get('maintenance/acposition','ACPositionController@index_acposition');
-Route::get('maintenance/acsector','acsectorController@index_acsectors');
-Route::get('maintenance/primaryoffice', 'PoliceOfficesController@index');
-Route::get('maintenance/secondaryoffice', 'PoliceOfficeTwoController@index');
-Route::get('maintenance/policeposition','PolicePositionController@index_policeposition');
+//TRANSACTION @author: Shie Eugenio
+Route::get('directory/add', 'AdvDirectoryController@index')->middleware('auth');
+Route::resource('modalView', 'AdvDirectoryController@getRecordData');
+
+//DROPDOWN @author: Shie Eugenio
+Route::post('dropdown/getsubcateg', 'AdvDirectoryController@getSubCateg');
+Route::post('dropdown/getsecoffice', 'AdvDirectoryController@getSecOffice');
+
+
+//MAINTENANCE @author: Shie Eugenio
+Route::get('maintenance/accategory', 'ACCategoryController@index')->middleware('auth');;
+Route::get('maintenance/acsubcategory','ACSubcategoryController@index')->middleware('auth');;
+Route::get('maintenance/acposition','ACPositionController@index_acposition')->middleware('auth');;
+Route::get('maintenance/acsector','acsectorController@index_acsectors')->middleware('auth');;
+Route::get('maintenance/primaryoffice', 'PoliceOfficesController@index')->middleware('auth');;
+Route::get('maintenance/secondaryoffice', 'PoliceOfficeTwoController@index')->middleware('auth');;
+Route::get('maintenance/policeposition','PolicePositionController@index_policeposition')->middleware('auth');;
 
 
 //BACK-END
 
-//AC CATEGORY
+//AC CATEGORY @author: Shie Eugenio
 Route::post("accategory/add", 'ACCategoryController@confirm');
 Route::post('accategory/view','ACCategoryController@edit');
 Route::post("accategory/edit", "ACCategoryController@update");
 
-//AC SUBCATEGORY
+//AC SUBCATEGORY @author: Ren Buluran
 Route::post('acsubcategory/add', 'ACSubcategoryController@confirm');
 Route::post('acsubcategory/view','ACSubcategoryController@edit');
 Route::post("acsubcategory/edit", "ACSubcategoryController@update");
 
-//AC POSITION
+//AC POSITION @author: Lester Acula
 Route::post('maintenance/acpositioncrud','ACPositionController@acpositioncrud');
 
-//AC SECTOR
+//AC SECTOR @author: Christine Amper
 Route::post('maintenancetable/acsectorCRUD','acsectorController@acsectorCRUD');
 
-//PRIMARY OFFICE
+//PRIMARY OFFICE @author: Joanne Dasig
 Route::post('/buttonsPoliceOffice', 'PoliceOfficesController@add');
 Route::post('maintenance/editpolice', 'PoliceOfficesController@edit');
 Route::post('maintenance/editpoliceview', 'PoliceOfficesController@find');
 
-//SECONDARY OFFICE
+//SECONDARY OFFICE @author: Joanne Dasig
 Route::post('/confirmpolice', 'PoliceOfficeTwoController@add');
 Route::post('maintenance/subpoliceview', 'PoliceOfficeTwoController@find');
 Route::post('maintenance/editsubpolice', 'PoliceOfficeTwoController@edit');
 
-
-Route::get('secondpolice', 'PoliceOfficeTwoController@manageofficetwo');
-Route::get('maintenance/{id}/subpoliceview', 'PoliceOfficeTwoController@find');
-
-
-//ADVISER LESTER
-Route::get('maintenance/trainingsample', 'TrainingController@index');
-Route::post('maintenance/store', 'TrainingController@store');
-
-//POLICE POSITION
+//POLICE POSITION @author: Lester Acula
 Route::post('maintenance/policepositioncrud','PolicePositionController@policepositioncrud');
 
+//TRANSACTION
 
+//ADD ADVISER @author: Shie Eugenio
+Route::post('adviser/add', 'AdvDirectoryController@addadviser');
+Route::post('adviser/edit', 'AdvDirectoryController@editadviser');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///-------------------------------------------------------------------------------------------------------------------------------
 //advisory council transac Joanne
 Route::get('advisorycouncil', 'AdvisoryCouncilController@index');
+Route::post('transac/acCRUD', 'AdvisoryCouncilController@acCRUD');
+Route::post('transac/getsub', 'AdvisoryCouncilController@getsub');
 
-Route::post('/add', 'AdvisoryCouncilController@add');
+/*Route::post('/add', 'AdvisoryCouncilController@add');
 Route::get('transac/{id}/edit', 'AdvisoryCouncilController@find');
-Route::post('transac/{id}/editAc', 'AdvisoryCouncilController@edit');
+Route::post('transac/{id}/editAc', 'AdvisoryCouncilController@edit');*/
 
 // Route::get('/subcatOptions', 'AdvisoryCouncilController@cityOptions');
 
@@ -110,4 +139,14 @@ Route::post('transaction/addadvisers','ProfileController@store');
 Route::get('transaction/advedt','ProfileController@edit');
 
 
+//smart search [ren]
+Route::get('search', 'SearchController@index');
 
+//login [ren]
+Route::get('login', array('uses' => 'HomeController@index'));
+Route::post('login', array('uses' => 'HomeController@login'));
+Route::get('logout', array('uses' => 'HomeController@logout'));
+
+//registration[ren]
+Route::get('registration', 'RegistrationController@index');
+Route::resource('register', 'RegistrationController@register');

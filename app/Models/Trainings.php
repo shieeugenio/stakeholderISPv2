@@ -10,13 +10,16 @@ class Trainings extends Model
     protected $primaryKey = "ID";
     public $timestamps = false;
 
-    public function traininglecturer()
+    public function adviser()
     {
-    	return $this->hasMany('App\Models\TrainingLecturer', 'training_id');
+    	return $this->belongsTo('App\Models\Advisers','adviser_id', 'ID');
     }
 
-    public function persontraining()
+
+    public function lecturer()
     {
-    	return $this->hasMany('App\Models\PersonTraining', 'training_id');
+        return $this->hasMany('App\Models\Lecturers', 'training_id');
     }
+
+    
 }

@@ -5,119 +5,36 @@
 	<div class =  "dcon">
 
 		<div class = "ui doubling grid cardlist2">
-			<div class = "four wide column colheight1">
-				<div class = "cardstyleportrait">
-					<img class = "advphoto1" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
 
-					<div class = "advdata1">
-						<h4 class = "name">Eugenio, Shiela Mae F.</h4>
-						<p>Other data 1 <br> Other data 2 <br> Other data 3</p>
+			@foreach($directory as $ritem)
+				<div class = "four wide column colheight1">
+					<div class = "cardstyleportrait">
+						<img class = "advphoto1" src="{{$ritem->imagepath}}"/>
 
-							
+						<div class = "advdata1">
+							<h4 class = "name">{{$ritem->lname}}, {{$ritem->fname}} {{$ritem->mname}}</h4>
+							<p>@if($ritem->category == 0)
+										Advisory Council
+
+									@elseif($ritem->category == 1)
+										Technical Worker Group
+
+
+									@elseif($ritem->category == 2)
+										Police Strategy Management Unit
+
+									@endif
+
+									<br>
+									{{$ritem->email}} <br> {{$ritem->contactno}} | {{$ritem->landline}}
+							</p>
+
+								
+						</div>
 					</div>
+
 				</div>
-
-			</div>
-
-			<div class = "four wide column colheight1">
-				<div class = "cardstyleportrait">
-					<img class = "advphoto1" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
-
-					<div class = "advdata1">
-						<h4 class = "name">Eugenio, Shiela Mae F.</h4>
-						<p>Other data 1 <br> Other data 2 <br> Other data 3</p>
-
-							
-					</div>
-				</div>
-
-			</div>
-
-			<div class = "four wide column colheight1">
-				<div class = "cardstyleportrait">
-					<img class = "advphoto1" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
-
-					<div class = "advdata1">
-						<h4 class = "name">Eugenio, Shiela Mae F.</h4>
-						<p>Other data 1 <br> Other data 2 <br> Other data 3</p>
-
-							
-					</div>
-				</div>
-
-			</div>
-
-			<div class = "four wide column colheight1">
-				<div class = "cardstyleportrait">
-					<img class = "advphoto1" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
-
-					<div class = "advdata1">
-						<h4 class = "name">Eugenio, Shiela Mae F.</h4>
-						<p>Other data 1 <br> Other data 2 <br> Other data 3</p>
-
-							
-					</div>
-				</div>
-
-			</div>
-
-			<div class = "four wide column colheight1">
-				<div class = "cardstyleportrait">
-					<img class = "advphoto1" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
-
-					<div class = "advdata1">
-						<h4 class = "name">Eugenio, Shiela Mae F.</h4>
-						<p>Other data 1 <br> Other data 2 <br> Other data 3</p>
-
-							
-					</div>
-				</div>
-
-			</div>
-
-			<div class = "four wide column colheight1">
-				<div class = "cardstyleportrait">
-					<img class = "advphoto1" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
-
-					<div class = "advdata1">
-						<h4 class = "name">Eugenio, Shiela Mae F.</h4>
-						<p>Other data 1 <br> Other data 2 <br> Other data 3</p>
-
-							
-					</div>
-				</div>
-
-			</div>
-
-			<div class = "four wide column colheight1">
-				<div class = "cardstyleportrait">
-					<img class = "advphoto1" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
-
-					<div class = "advdata1">
-						<h4 class = "name">Eugenio, Shiela Mae F.</h4>
-						<p>Other data 1 <br> Other data 2 <br> Other data 3</p>
-
-							
-					</div>
-				</div>
-
-			</div>
-
-			<div class = "four wide column colheight1">
-				<div class = "cardstyleportrait">
-					<img class = "advphoto1" src="{{URL::asset('objects/Logo/InitProfile.png')}}"/>
-
-					<div class = "advdata1">
-						<h4 class = "name">Eugenio, Shiela Mae F.</h4>
-						<p>Other data 1 <br> Other data 2 <br> Other data 3</p>
-
-							
-					</div>
-				</div>
-
-			</div>
-				
-				
+			@endforeach
 
 		</div>
 			

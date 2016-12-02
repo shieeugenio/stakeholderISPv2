@@ -10,8 +10,10 @@ class Lecturers extends Model
     protected $primaryKey = "ID";
     public $timestamps = false;
 
-    public function traininglecturer()
+    public function lecturer()
     {
-    	return $this->hasMany('App\Models\TrainingLecturer', 'lecturer_id');
+    	
+    	return $this->belongsTo('App\Models\Training', 'training_id', 'ID');
+
     }
 }

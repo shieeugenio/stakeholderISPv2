@@ -11,14 +11,16 @@ class Trainings extends Migration
         Schema::create('Trainings', function(Blueprint $table)
         {
             $table->increments('ID');
-            $table->string('trainingname', 100)->unique();
+            $table->string('trainingname', 100);
             $table->date('startdate');
             $table->date('enddate');
             $table->string('location', 100);
             $table->string('organizer', 45);
             $table->time('starttime');
             $table->time('endtime');
-            $table->smallInteger('trainingtype');
+            $table->string('trainingtype', 45);
+            $table->integer('adviser_id')->unsigned();
+            $table->foreign('adviser_id')->references('ID')->on('Advisers');
         });
     }
 

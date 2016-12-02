@@ -1,7 +1,6 @@
 @extends('baseform')
 	
 @section('maincontent')
-
 	<div class = "advcon">
 		<div class = "formattp tablepane">
 			<div class = "mtitle">
@@ -10,7 +9,7 @@
 			</div>
 
 			<div class = "tablecon">
-				<form class = "ui form" id = "form">
+				<form enctype="multipart/form-data" action = "javascript:controlaction()" class = "ui form" id = "form">
 
 					<input type="hidden" value="" name="advid"/>
 
@@ -109,20 +108,28 @@
 
 									<h4 class="ui dividing header">Contact Information</h4>
 
-									<div class = "field">
-										<label>Contact Number</label>
+									<div class = "four fields">
 
-										<div class = "four fields">
+										<div class = "field">
+											<label>Mobile Number <span class="asterisk">*</span></label>
+
+										
 											<div class = "ui input field">
-												<input type="text" name = "contact" placeholder="+639*********">
+												<input type="text" name = "mobile" placeholder="+639*********">
 												
 											</div>
 
-											<div class = "ui input field">
-												<input type="text" name = "contact" placeholder="+639*********">
+										</div>
 
+										<div class = "field">
+											<label>Landline <span class="asterisk">*</span></label>
+
+										
+											<div class = "ui input field">
+												<input type="text" name = "landline" placeholder="e.g. 4479049">
+												
 											</div>
-											
+
 										</div>
 										
 									</div>
@@ -171,7 +178,7 @@
 										</div>
 
 										<div class = "ui input sixteen wide field">
-											<input type = "file"/>
+											<input type = "file" accept="image/jpeg, image/png" name = "upphoto"/>
 											
 										</div>
 										
@@ -243,102 +250,9 @@
 
 								</div>
 
-								<!--<div class = "field">
-									<label>Authority <span class="asterisk">*</span></label>
-
-									<div class = "five fields">
-										<div class = "ui input field">
-											<input type="file" name = "letterorder" >
-											
-										</div>
-											
-									</div>
-										
-								</div>-->
-
-
-
 								<div id = "tempfields">
-									<!--<div class = "five fields">
-										<div class = "field">
-											<label>AC Position <span class="asterisk">*</span></label>
-
-											<div class = "field">
-												<select  class="ui selection dropdown" name="acposition">
-													<option class="disabled">Select One</option>
-													<option value="1">Opt 1</option>
-												</select>
-											</div>
-												
-												
-										</div>
-									</div>
 									
-									<div class = "three fields">
-										<div class = "field">
-											<label>Office Name <span class="asterisk">*</span></label>
-
-											<div class = "ui input field">
-												<input type="text" name = "officename" placeholder="e.g. Sample Inc.">
-											</div>
-											
-											
-										</div>
-
-										<div class = "field">
-											<label>Office Address <span class="asterisk">*</span></label>
-
-											<div class = "ui input field">
-												<input type="text" name = "officeadd" placeholder="Street Address Barangay City">
-												
-											</div>
-												
-										</div>
-									</div>
-
-									<div class = "five fields">
-										<div class = "field">
-											<label>AC Category <span class="asterisk">*</span></label>
-
-											<div class = "field">
-												<select  class="ui selection dropdown" name="accateg">
-													<option class="disabled">Select One</option>
-													<option value="1">Opt 1</option>
-												</select>
-											</div>
-											
-											
-										</div>
-
-										<div class = "field">
-											<label>AC Sub-category <span class="asterisk">*</span></label>
-
-											<div class = "field">
-												<select  class="ui selection dropdown" name="acsubcateg">
-													<option class="disabled">Select One</option>
-													<option value="1">Opt 1</option>
-												</select>
-											</div>
-											
-											
-										</div>
-										
-									</div>
-									
-									<div class = "five fields">
-										<div class = "field">
-											<label>AC Sector <span class="asterisk">*</span></label>
-
-											<div class = "field">
-												<select  multiple class="ui selection dropdown" name="acsector">
-													<option class="disabled">Select One or More</option>
-													<option value="1">Opt 1</option>
-												</select>
-											</div>
-											
-											
-										</div>
-									</div>-->
+		
 								</div>
 
 								<br>
@@ -367,116 +281,7 @@
 								</thead>
 
 								<tbody>
-										<!--<tr class = "trow1">
-											<td><center>
-												<div class = "ui input field">
-													<input type="text" name = "traintitle" placeholder="e.g. The Sample Title">
-														
-												</div>
-											</center></td>
-
-											<td><center>
-
-												<div class = "field">
-													<select id = "select" class="ui selection dropdown" onchange = "showfield(this.value, rowcount)" name="traincateg">
-														<option class="disabled">Select One</option>
-														<option value="Advisory Council Summit">Advisory Council Summit</option>
-														<option value="Family Conference">Family Conference</option>
-														<option value="Boot Camp (Basic)">Boot Camp (Basic)</option>
-														<option value="Boot Camp (Master)">Boot Camp (Master)</option>
-														<option value="Lecture Series">Lecture Series</option>
-														<option value="Strategy Refresh">Strategy Refresh</option>
-														<option value="7">Others</option>
-													</select>
-
-													<div class = "ui input"  name = "othercon" style = "display:none"> <br>
-														<input type="text" name = "othercat" placeholder="Please specify (required)">
-														
-													</div>
-												</div>
-												
-											</center></td>
-
-											<td><center>
-												<div class = "ui input field">
-													<input type="text" name = "location" placeholder="e.g. Makati City">
-														
-												</div>
-											</center></td>
-
-											<td><center>
-												<div class = "field">
-													<div class = "ui input field">
-														<input type="date" max = "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}" name = "trainsdate">
-														
-													</div>
-
-													<div class = "ui input field">
-														
-
-														<input type="time" name = "trainstime">
-															
-													</div>
-												</div>
-											</center></td>
-
-											<td><center>
-
-												<div class = "field">
-													<div class = "ui input field">
-														<input type="date" max = "{{date('Y-m-d', strtotime(date('Y-m-d')  . ' +1 day'))}}" name = "trainedate">
-														
-													</div>
-
-													<div class = "ui input field">
-														
-
-														<input type="time" name = "trainetime">
-															
-													</div>
-												</div>
-											</center></td>
-
-											<td><center>
-												<div class = "five fields">
-
-													<div class = "divpercon" name = "pcontainer">
-
-														<ul class = "perlist" name = "lecturer">
-															<li class = "inputitem" name="inputlist">
-
-																<input type="text" 
-																	placeholder="LN, FN MI" 
-																	class = "perfield error" 
-																	name="inputlecturer"
-																	onclick = "divonfocus(rowcount)"
-																	onkeydown = "if(event.keyCode == 13){ addarritem(rowcount);}" 
-																	value=''/>
-															</li>
-														</ul>
-
-													</div>
-													
-													
-												</div>
-
-												<div class="field">
-													<textarea  name = "trainlecturer" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
-												</div>
 									
-											</center></td>
-
-
-											<td><center>
-												<div class = "ui input field">
-													<input type="text" name = "trainorg" placeholder="e.g. CPSM">
-														
-												</div>
-											</center></td>
-
-										</tr>-->
-
-
 								</tbody>
 
 								<tfoot>
@@ -494,8 +299,13 @@
 					<br>
 
 					<center>
+
 						<button type = "submit" name="submit" 
 								class="ui large button submit savebtnstyle">
+
+						<!--<button type = "submit" name="submit" onclick ="if(confirm('Save?')) {addProfile()}"
+								class="ui large button submit savebtnstyle">-->
+
 
 							Save
 						</button>
@@ -520,9 +330,13 @@
 
 	<script type="text/javascript">
 		$('#tab3').attr('class', 'mlink item active');
-		//var lecturers = new Array();
+		var lecturers = new Array();
 
 		addT1Elements();
+		populateacp();
+		populateacc();
+		populateacs();
+
 
 		for (var ctr = rowcount ; ctr < 3 ; ctr++) {
 			rowcount = ctr;
@@ -534,10 +348,15 @@
 			if(selcat == 0) {
 				removeElements();
 				addT1Elements();
+				populateacp();
+				populateacc();
+				populateacs();
 
 			} else {
 				removeElements();
 				addT2Elements();
+				populatepp();
+				populatepo();
 
 			}//if(selcat == 0) {
 
@@ -560,7 +379,7 @@
 
 		}//function showfield(value) {
 
-		/*function addarritem(index) {
+		function addarritem(index) {
 			var text = document.getElementsByName('inputlecturer')[index].value;
 			var pattern = new RegExp("^(?=.*(\d|\w))[A-Za-z0-9 .,'-]{3,}$");
 			var flag = 0;
@@ -577,8 +396,9 @@
 					additem(text, index);
 					lecturers.push(new Array(text, index));
 
-				}//if(flag == 0) {]
 
+				}//if(flag == 0) {]
+				//alert(lecturers);
 			//}//pattern
 
 		}//add item to array
@@ -597,10 +417,267 @@
 					
 			};//for
 
-			console.log(lecturers);
+			//console.log(lecturers);
 
 
-		}//delete from array*/
+		}//delete from array
+
+
+		function controlaction() {
+			var slctdtype = $("input[name='advcateg']:checked").val();
+			var traintitle = new Array();
+			var traincateg = new Array();
+			var location = new Array();
+			var sdate = new Array();
+			var edate = new Array();
+			var stime = new Array();
+			var etime = new Array();
+			var speaker = new Array();
+			var org = new Array();
+
+			for(var count = 0 ; count <= rowcount ; count++) {
+				var initspk = new Array();
+
+				if(document.getElementsByName('traintitle')[count].value !== "") {
+					traintitle.push(document.getElementsByName('traintitle')[count].value);
+
+					if(document.getElementsByName('traincateg')[count].value == 7) {
+						traincateg.push(document.getElementsByName('othercat')[count].value);
+
+					} else {
+						traincateg.push(document.getElementsByName('traincateg')[count].value);
+
+					}//if
+
+					location.push(document.getElementsByName('location')[count].value);
+					sdate.push(document.getElementsByName('trainsdate')[count].value);
+					edate.push(document.getElementsByName('trainedate')[count].value);
+					stime.push(document.getElementsByName('trainstime')[count].value);
+					etime.push(document.getElementsByName('trainetime')[count].value);
+					
+					for(var ctrspk = 0 ; ctrspk < lecturers.length ; ctrspk++) {
+						if(lecturers[ctrspk][1] == count) {
+							initspk.push(lecturers[ctrspk][0]);
+						}//if
+					}//for
+
+					speaker.push(initspk);
+
+					org.push(document.getElementsByName('trainorg')[count].value);
+
+				}//if
+			};
+
+			if (slctdtype == 0) {
+				var data = {
+					'ID' : document.getElementsByName('advid')[0].value,
+					'lname' : document.getElementsByName('lname')[0].value,
+					'fname' : document.getElementsByName('fname')[0].value,
+					'mname' : document.getElementsByName('mname')[0].value,
+					'bdate' : document.getElementsByName('bdate')[0].value,
+					'gender' : $("input[name='gender']:checked").val(),
+					'street' : document.getElementsByName('street')[0].value,
+					'barangay' : document.getElementsByName('barangay')[0].value,
+					'city' : document.getElementsByName('city')[0].value,
+					'province' : document.getElementsByName('province')[0].value,
+					'mobile' : document.getElementsByName('mobile')[0].value,
+					'landline' : document.getElementsByName('landline')[0].value,
+					'email' : document.getElementsByName('email')[0].value,
+					'facebook' : document.getElementsByName('facebook')[0].value,
+					'twitter' : document.getElementsByName('twitter')[0].value,
+					'instagram' : document.getElementsByName('instagram')[0].value,
+					'advcateg' : slctdtype,
+					'durstart' : document.getElementsByName('durationsdate')[0].value,
+					'durend' : document.getElementsByName('durationedate')[0].value,
+					'acposition' : document.getElementsByName('acposition')[0].value,
+					'officename' : document.getElementsByName('officename')[0].value,
+					'officeadd' : document.getElementsByName('officeadd')[0].value,
+					'acsubcateg' : document.getElementsByName('acsubcateg')[0].value,
+					'acsector' : $("select[name='acsector']").val(),
+					'traintitle' : traintitle,
+					'traincateg' : traincateg,
+					'location' : location,
+					'sdate' : sdate,
+					'stime' : stime,
+					'etime' : etime,
+					'edate' : edate,
+					'speaker' : speaker,
+					'org' : org,
+					'submit' : 'save',
+					'_token' : '{{ Session::token() }}'
+				};
+
+			} else if(slctdtype == 1 || slctdtype == 2) {
+				var data = {
+					'ID' : document.getElementsByName('advid')[0].value,
+					'lname' : document.getElementsByName('lname')[0].value,
+					'fname' : document.getElementsByName('fname')[0].value,
+					'mname' : document.getElementsByName('mname')[0].value,
+					'bdate' : document.getElementsByName('bdate')[0].value,
+					'gender' : $("input[name='gender']:checked").val(),
+					'street' : document.getElementsByName('street')[0].value,
+					'barangay' : document.getElementsByName('barangay')[0].value,
+					'city' : document.getElementsByName('city')[0].value,
+					'province' : document.getElementsByName('province')[0].value,
+					'mobile' : document.getElementsByName('mobile')[0].value,
+					'landline' : document.getElementsByName('landline')[0].value,
+					'email' : document.getElementsByName('email')[0].value,
+					'facebook' : document.getElementsByName('facebook')[0].value,
+					'twitter' : document.getElementsByName('twitter')[0].value,
+					'instagram' : document.getElementsByName('instagram')[0].value,
+					'advcateg' : slctdtype,
+					'durstart' : document.getElementsByName('durationsdate')[0].value,
+					'durend' : document.getElementsByName('durationedate')[0].value,
+					'authorder' : document.getElementsByName('authorder')[0].value,
+					'pnppost' : document.getElementsByName('position')[0].value,
+					'suboffice' : document.getElementsByName('secondary')[0].value,
+					'traintitle' : traintitle,
+					'traincateg' : traincateg,
+					'location' : location,
+					'sdate' : sdate,
+					'stime' : stime,
+					'etime' : etime,
+					'edate' : edate,
+					'speaker' : speaker,
+					'org' : org,
+					'submit' : 'save',
+					'_token' : '{{ Session::token() }}'
+				};
+
+
+			}//if (slctdtype == 0) {
+
+			/**if(action == 0) {
+
+				var url = {{url('adviser/add')}};
+
+			} else if(edit == 1) {
+				var url = {{url('adviser/edit')}};
+
+
+			}//if(action == 0) {**/
+
+
+			$.ajax({
+				type: "POST",
+				url: "{{url('adviser/add')}}",
+				data: data,
+			   	success : function() {
+			   		alert('Success');
+			   	
+			   	}//success : function() {
+			});
+
+			//console.log( document.getElementsByName('upphoto')[0].files[0]);
+
+			
+		}//function controlaction() {
+
+		//DROPDOWNS
+
+		function populateacp() {
+			@foreach($acposition as $acpitem)
+				populatedropdown('{{$acpitem->ID}}', 'acposition' , '{{$acpitem->acpositioncode}}', '{{$acpitem->acpositionname}}');
+			
+			@endforeach
+
+
+		}//function populateacp() {
+
+		function populateacc() {
+			@foreach($accateg as $catitem)
+				populatedropdown('{{$catitem->ID}}', 'accateg' , '{{$catitem->accategorycode}}', '{{$catitem->categoryname}}');
+
+			@endforeach
+
+		}//function populateacc() {
+
+		function populateacs() {
+			@foreach($acsector as $secitem)
+				populatedropdown('{{$secitem->ID}}', 'acsector' , '{{$secitem->sectorcode}}', '{{$secitem->sectorname}}');
+
+				
+			@endforeach
+
+		}//function populateacs() {
+
+		function populatepp() {
+			@foreach($pnppost as $ppitem)
+				populatedropdown('{{$ppitem->ID}}', 'position' , '{{$ppitem->policepositioncode}}', '{{$ppitem->positionname}}');
+
+				
+			@endforeach
+
+		}//function populateacs() {
+
+		function populatepo() {
+			@foreach($primaryoffice as $poitem)
+				populatedropdown('{{$poitem->ID}}', 'primary' , '{{$poitem->policeofficecode}}', '{{$poitem->officename}}');
+
+				
+			@endforeach
+
+		}//function populateacs() {
+
+		function getsubcateg() {
+			var data = {
+				'categID' : document.getElementsByName('accateg')[0].value,
+				'_token' : '{{ Session::token() }}'
+
+			};
+
+			$.ajax({
+				type: "POST",
+				url: "{{url('dropdown/getsubcateg')}}",
+				data: data,
+				dataType: 'json',
+			   	success : function(subcategory) {
+
+			   		$("select[name='acsubcateg'] option").not("[value='disitem']").remove();
+
+			   		for (var ctr = 0 ; ctr < subcategory.length ; ctr++) {
+			   			populatedropdown(subcategory[ctr]['ID'], 'acsubcateg', subcategory[ctr]['acsubcategorycode'], subcategory[ctr]['subcategoryname']);
+			   			
+			   		};
+
+			   		
+			   	}//success : function() {
+			});
+
+			console.log($("select[name='acsector']").val());
+
+
+		}//function getsubcateg() {
+
+		function getsecoffice() {
+			var data = {
+				'poID' : document.getElementsByName('primary')[0].value,
+				'_token' : '{{ Session::token() }}'
+
+			};
+
+			$.ajax({
+				type: "POST",
+				url: "{{url('dropdown/getsecoffice')}}",
+				data: data,
+				dataType: 'json',
+			   	success : function(secoffice) {
+
+			   		$("select[name='secondary'] option").not("[value='disitem']").remove();
+
+			   		for (var ctr = 0 ; ctr < secoffice.length ; ctr++) {
+			   			populatedropdown(secoffice[ctr]['ID'], 'secondary', secoffice[ctr]['policeofficecode2'], secoffice[ctr]['officename']);
+			   			
+			   		};
+
+			   		
+			   	}//success : function() {
+			});
+
+		}//function getsecoffice() {
+
+
+
 
 
 		/**

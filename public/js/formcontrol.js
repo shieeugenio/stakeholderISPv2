@@ -47,7 +47,6 @@ function addT1Elements() { //AC ELEMENTS
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One'));
 
-
 	//----------------------------------------------------------------------------------
 
 	var div3 = document.createElement('div');
@@ -131,6 +130,7 @@ function addT1Elements() { //AC ELEMENTS
 	var select2 = document.createElement('select');
 	select2.setAttribute('class', 'ui selection dropdown');
 	select2.setAttribute('name', 'accateg');
+	select2.setAttribute('onchange', 'getsubcateg()');
 	tempcon.lastChild.lastChild.lastChild.appendChild(select2);
 
 	var opt2 = document.createElement('option');
@@ -166,6 +166,7 @@ function addT1Elements() { //AC ELEMENTS
 
 	var opt5 = document.createElement('option');
 	opt5.setAttribute('class', 'disabled');
+	opt5.setAttribute('value', 'disitem');
 	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt5);
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One'));
@@ -206,7 +207,7 @@ function addT1Elements() { //AC ELEMENTS
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One or More'));
 
-	$("select[name='acsector']").dropdown(); //refresh dropdown
+	$("select").dropdown(); //refresh dropdown
 }//function addACElements() {
 
 function addT2Elements() { //PSMU and TWG ELEMENTS
@@ -219,7 +220,7 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 
 	tempcon.lastChild.appendChild(document.createElement('label'));
 
-	tempcon.lastChild.lastChild.appendChild(document.createTextNode('Authority '));
+	tempcon.lastChild.lastChild.appendChild(document.createTextNode('Authority Order '));
 
 	var span = document.createElement('span');
 	span.setAttribute('class', 'asterisk');
@@ -236,8 +237,9 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 	tempcon.lastChild.lastChild.appendChild(div9);
 
 	var input = document.createElement('input');
-	input.setAttribute('type','file');
-	input.setAttribute('name','letterorder');
+	input.setAttribute('type','text');
+	input.setAttribute('name','authorder');
+	input.setAttribute('placeholder', 'Authority Order');
 	tempcon.lastChild.lastChild.lastChild.appendChild(input);
 
 	//----------------------------------------------------------------------------------
@@ -302,6 +304,7 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 	var select2 = document.createElement('select');
 	select2.setAttribute('class', 'ui selection dropdown');
 	select2.setAttribute('name', 'primary');
+	select2.setAttribute('onchange', 'getsecoffice()');
 	tempcon.lastChild.lastChild.lastChild.appendChild(select2);
 
 	var opt2 = document.createElement('option');
@@ -323,17 +326,18 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 
 	var opt3 = document.createElement('option');
 	opt3.setAttribute('class', 'disabled');
+	opt2.setAttribute('value', 'item');
 	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt3);
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Secondary Office'));
 
-
+	$("select").dropdown(); //refresh dropdown
 }//function addT2Elements() {
 
 
 //Multiple Text Input
 
-/**function additem(text, index) {
+function additem(text, index) {
 	var ulist = document.getElementsByName('lecturer')[index];
 	var container = document.getElementsByName('pcontainer')[index];
 	var inputlist = document.getElementsByName('inputlist')[index];
@@ -379,14 +383,11 @@ $(document).ready(function() {
       return false;
     }
   });
-});**/
+});
 
 //Adviser Add Table
 
 function addrow() {
-	console.log(rowcount);
-
-
 	var table = document.getElementById('traintable').getElementsByTagName('tbody')[0];
 
 	tr = document.createElement('tr');
@@ -578,10 +579,10 @@ function addrow() {
 	table.lastChild.lastChild.appendChild(document.createElement('center'));
 
 	var div7 = document.createElement('div');
-	div7.setAttribute('class', 'field');
+	div7.setAttribute('class', 'five fields');
 	table.lastChild.lastChild.lastChild.appendChild(div7);
 
-	/*var div8 = document.createElement('div');
+	var div8 = document.createElement('div');
 	div8.setAttribute('class', 'divpercon');
 	div8.setAttribute('name', 'pcontainer');
 	table.lastChild.lastChild.lastChild.lastChild.appendChild(div8);
@@ -599,18 +600,19 @@ function addrow() {
 	var input6 = document.createElement('input');
 	input6.setAttribute('type', 'text');
 	input6.setAttribute('name','inputlecturer');
+	input6.setAttribute('id', rowcount);
 	input6.setAttribute('placeholder','LN, FN MI');
 	input6.setAttribute('class','perfield');
 	input6.setAttribute('onclick','divonfocus()');
-	input6.setAttribute('onkeydown','if(event.keyCode == 13){ addarritem(rowcount);}');
-	table.lastChild.lastChild.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(input6);*/
+	input6.setAttribute('onkeydown','if(event.keyCode == 13){ addarritem(this.id);}');
+	table.lastChild.lastChild.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(input6);
 
-	var textarea = document.createElement('textarea');
+	/*var textarea = document.createElement('textarea');
 	textarea.setAttribute('name', 'trainlecturer');
 	textarea.setAttribute('class', 'areastyle');
 	textarea.setAttribute('rows', '4');
 	textarea.setAttribute('placeholder', 'Type here...');
-	table.lastChild.lastChild.lastChild.lastChild.appendChild(textarea);
+	table.lastChild.lastChild.lastChild.lastChild.appendChild(textarea);*/
 
 
 	//-----------------------------------Organization-----------------------------------------------
@@ -630,5 +632,18 @@ function addrow() {
 	input7.setAttribute('placeholder','e.g. CPSM');
 	table.lastChild.lastChild.lastChild.lastChild.appendChild(input7);
 
+	console.log(rowcount);
+
 }//function addrow() {
-//View
+
+
+//DROPDOWNS
+
+function populatedropdown(id, selname, code, desc) {
+	var item = document.createElement('option');
+	item.setAttribute('value',  id);
+	document.getElementsByName(selname)[0].appendChild(item);
+	document.getElementsByName(selname)[0].lastChild.appendChild(document.createTextNode(desc + ' (' + code + ')'));
+
+
+}//function populatedropdown() {

@@ -22,6 +22,8 @@ class Advisers extends Migration
             $table->string('city', 45);
             $table->string('province', 45);
             $table->string('email', 65);
+            $table->date('startdate');
+            $table->date('enddate');
             $table->string('fbuser', 20)->nullable();
             $table->string('twitteruser', 20)->nullable();
             $table->string('iguser', 20)->nullable();
@@ -29,6 +31,7 @@ class Advisers extends Migration
             $table->tinyInteger('category');
             $table->tinyInteger('occupationstat');
             $table->text('imagepath');
+
         });
 }
 
