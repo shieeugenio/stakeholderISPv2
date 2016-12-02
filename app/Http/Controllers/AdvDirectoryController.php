@@ -172,7 +172,7 @@ class AdvDirectoryController extends Controller {
 	}//public function getID() {
 
 	public function getTrainIDList($id) {
-		$getid = Trainings::where('adviserID', $id)->get('ID');
+		$getid = Trainings::where('training_id', $id)->pluck('ID');
 
 		$trainID = array();
 		foreach($getid as $key=> $item) {
@@ -360,7 +360,7 @@ class AdvDirectoryController extends Controller {
 		   	$training->starttime = $data->stime[$i];
 		   	$training->endtime = $data->etime[$i];
 		   	$training->trainingtype = $data->traincateg[$i];
-		   	$training->adviserID = $id;
+		   	$training->adviser_id = $id;
 		   	$training->save();
 
 		   	$trainID = $this->getTrainID();
@@ -372,7 +372,7 @@ class AdvDirectoryController extends Controller {
     }// add Training
 
     public function editTraining($data, $id) {
-    	Trainings::where('adviserID', $id)->delete();
+    	Trainings::where('adviser_id', $id)->delete();
 
     	$this->addTraining($data, $id);
 
@@ -393,7 +393,7 @@ class AdvDirectoryController extends Controller {
    			$lecturer = new Lecturers;
 
    			$lecturer->lecturername = $data->speakers[$ctr][0];
-   			$lecturer->trainID = $data->speakers[$ctr][1];
+   			$lecturer->training_id = $data->speakers[$ctr][1];
 
    			$lecturer->save();
 
@@ -404,7 +404,7 @@ class AdvDirectoryController extends Controller {
    	public function editLecturer($data, $trainID, $id) {
 
    		for ($ctr=0; $ctr < sizeof($trainID) ; $ctr++) { 
-   			Lecturers::where('trainID', $trainID[$ctr])->delete();
+   			Lecturers::where('training_id', $trainID[$ctr])->delete();
 
    			
    		}//for
