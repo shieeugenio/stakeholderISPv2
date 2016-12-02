@@ -16,7 +16,7 @@ class Trainings extends Model
     }
 
 
-    public function training()
+    public function lecturer()
     {
         return $this->hasMany('App\Models\Lecturers', 'training_id');
     }

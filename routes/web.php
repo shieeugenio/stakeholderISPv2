@@ -44,8 +44,7 @@ Route::get('directory', 'AdvDirectoryController@getList')->middleware('auth');
 
 //TRANSACTION @author: Shie Eugenio
 Route::get('directory/add', 'AdvDirectoryController@index')->middleware('auth');
-Route::post('directory/store', 'ProfileController@store');
-Route::post('directory/getinfo', 'ProfileController@getinfo');
+Route::resource('modalView', 'AdvDirectoryController@getRecordData');
 
 //DROPDOWN @author: Shie Eugenio
 Route::post('dropdown/getsubcateg', 'AdvDirectoryController@getSubCateg');

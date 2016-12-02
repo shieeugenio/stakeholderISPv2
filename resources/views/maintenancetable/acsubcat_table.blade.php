@@ -60,17 +60,17 @@
 							</div>
 
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Sub Category</label>
+								<label class = "formlabel">Name </label>
 								<span class = "asterisk">*</span>		
 							</div>
 
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Sub Category</label>
+								<label class = "formlabel">Sub-category </label>
 								<span class = "asterisk">*</span>		
 							</div>
 
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Description</label>	
+								<label class = "formlabel">Description </label>	
 							</div>
 
 						</div>

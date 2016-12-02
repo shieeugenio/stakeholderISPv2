@@ -68,7 +68,7 @@
 			<hr>
 
 			<div class = "ui doubling grid cardlist">
-				@foreach($directory as $ritem)
+				@foreach ($directory as $ritem)
 					<div class = "five1 wide column colheight">
 						<div class = "cardstyle" onclick = "loadModal({{$ritem->ID}})">
 							<img class = "advphoto" src="{{$ritem->imagepath}}"/>
@@ -89,7 +89,7 @@
 									@endif
 
 									<br>
-									$ritem->email | $ritem->contactno | $ritem->landline
+									{{$ritem->email}} <br> {{$ritem->contactno}} | {{$ritem->landline}}
 
 								</p>
 								
