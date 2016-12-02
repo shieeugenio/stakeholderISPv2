@@ -110,10 +110,12 @@ Route::post('adviser/edit', 'AdvDirectoryController@editadviser');
 ///----------------------------------------------------------------------
 //advisory council transac Joanne
 Route::get('advisorycouncil', 'AdvisoryCouncilController@index');
+Route::post('transac/acCRUD', 'AdvisoryCouncilController@acCRUD');
+Route::post('transac/getsub', 'AdvisoryCouncilController@getsub');
 
-Route::post('/add', 'AdvisoryCouncilController@add');
+/*Route::post('/add', 'AdvisoryCouncilController@add');
 Route::get('transac/{id}/edit', 'AdvisoryCouncilController@find');
-Route::post('transac/{id}/editAc', 'AdvisoryCouncilController@edit');
+Route::post('transac/{id}/editAc', 'AdvisoryCouncilController@edit');*/
 
 // Route::get('/subcatOptions', 'AdvisoryCouncilController@cityOptions');
 

@@ -26,7 +26,7 @@ class AdvisoryCouncilController extends Controller
         $personnel = PersonnelSector::all();
         $acsector = ACSectors::all();    
       
-    	return view('transaction.Advisorycouncil')->with('council', $advisory)->with('sub', $subcat)
+    	return view('transaction.Advisorycouncil')->with('council', $advisory)->with('subcat', $subcat)
                     ->with('cat', $category)->with('positions', $position)->with('sector', $personnel)
                     ->with('ac', $acsector);
 
@@ -39,25 +39,23 @@ class AdvisoryCouncilController extends Controller
         $callId = $request->callId;
 
         if($callId==1)
-        {
-           $ac = Advisers::orderBy('ID', 'desc')->take(1)->get();
-            $acID = 0;
-            foreach ($ac as $key => $u) {
-                $acID = $u->ID;
-            }
+        {   
+            $acID = DB::table('Advisers')->select('ID')->orderBy('ID','desc')->first();
 
             $advisory = new AdvisoryCouncil;
             $advisory->ID = $acID;
             $advisory->officename = $request->acofficenamE;
-            $advisory->officeaddress = $request->acofficeaddD;
+            $advisory->officeaddress = $request->acofficeadD;
             $advisory->advisory_position_id = $request->positioN;
             $advisory->subcategoryId = $request->subcaT;
             $advisory->save();
 
-            $personnel = new PersonnelSector;
-            $personnel->advisory_council_id = $acID;
-            $personnel->ac_sector_id = $request->sectoR;
-            $personnel->save();
+            for($i=0;count($request->sectoR);$i++){
+                $personnel = new PersonnelSector;
+                $personnel->advisory_council_id = $acID;
+                $personnel->ac_sector_id = $request->sectoR[$i];
+                $personnel->save();
+            }
         }
 
         if($callId==2)
@@ -86,6 +84,14 @@ class AdvisoryCouncilController extends Controller
             $personnel->ac_sector_id = $request->sectoR;
             $personnel->save();
         }
+    }
+
+    public function getsub(Request $req){
+
+        $id = $req->id;
+        $subcat = DB::table('ACSubcategory')->select('ID','subcategoryname')->where('categoryId','=',$id)->get();
+
+        return $subcat;
     }
 
 
