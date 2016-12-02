@@ -1,52 +1,123 @@
 @extends('module.home')
 
 @section('homesection')
-
-	<div class="dcon">
-		<div class = "tablepane">
-			<div class = "mtitle">Recently Added</div>
-
-			<div class = "ui doubling grid cardlist2">
-
-
-				@foreach($recent as $ritem)
-					<div class = "five1 wide column colheight">
-						<div class = "cardstyle" onclick = "loadModal({{$ritem->ID}})">
-							<img class = "advphoto" src="{{$ritem->imagepath}}"/>
-
-							<div class = "advdata">
-								<h4 class = "name">{{$ritem->lname}}, {{$ritem->fname}} {{$ritem->mname}}</h4>
-								<p>
-									@if($ritem->category == 0)
-										Advisory Council
-
-									@elseif($ritem->category == 1)
-										Technical Worker Group
-
-
-									@elseif($ritem->category == 2)
-										Police Strategy Management Unit
-
-									@endif
-
-									<br>
-									$ritem->email | $ritem->contactno | $ritem->landline
-
-								</p>
-								
-							</div>
+	<div class = "four wide column">
+		<div class = "ui segment summcon" id="summary">
+			<div class = "ui rail">
+				<div class = "ui sticky">
+					<div class="ui container">
+						<div class = "summhead">
+							<i class = "pie chart medium icon"></i>
+								Summary
 						</div>
 
-					</div>
-				@endforeach
+						<div class = "summcontent">
+							<div class ="twelve wide column  bspacing8">
+								<label class="formlabel">% of AC: <span class = "labeldesc">{{$pac}}%</span></label>
+										
+							</div>
 
+							<div class ="twelve wide column  bspacing8">
+								<label class="formlabel">No. of AC: <span class = "labeldesc">{{$ac}}</span></label>
+											
+							</div>
+
+							<div class ="twelve wide column  bspacing8">
+								<label class="formlabel">% of PSMU: <span class = "labeldesc">{{$ppsmu}}%</span></label>
+											
+							</div>
+
+							<div class ="twelve wide column  bspacing8">
+								<label class="formlabel">No. of PSMU: <span class = "labeldesc">{{$psmu}}</span></label>
+										
+							</div>
+
+							<div class ="twelve wide column  bspacing8">
+								<label class="formlabel">% of TWG: <span class = "labeldesc">{{$ptwg}}%</span></label>
+											
+							</div>
+
+							<div class ="twelve wide column  bspacing8">
+								<label class="formlabel">No. of TWG: <span class = "labeldesc">{{$twg}}</span></label>
+											
+							</div>
+
+							<!--<div class ="twelve wide column  bspacing8">
+								<label class="formlabel">No. of Recently Added: <span class = "labeldesc"></span></label>
+											
+							</div>-->
+							<br>
+
+							<div class ="twelve wide column bspacing8">
+								<label class="formlabel">Total No. of Adviser: <span class = "labeldesc">{{$all}}</span></label>
+											
+							</div>
+										
+						</div>
+											
+					</div>
+								
+				</div>
+							
 			</div>
+								
+						
+		</div>
+					
+	</div>
+
+	<div class = "twelve wide column">
+		<div class = "hcontent">
+			<div class="dcon">
+				<div class = "tablepane">
+					<div class = "mtitle">Recently Added</div>
+
+					<div class = "ui doubling grid cardlist2">
+
+
+						@foreach($recent as $ritem)
+							<div class = "five1 wide column colheight">
+								<div class = "cardstyle" onclick = "loadModal({{$ritem->ID}})">
+									<img class = "advphoto" src="{{$ritem->imagepath}}"/>
+
+									<div class = "advdata">
+										<h4 class = "name">{{$ritem->lname}}, {{$ritem->fname}} {{$ritem->mname}}</h4>
+										<p>
+											@if($ritem->category == 0)
+												Advisory Council
+
+											@elseif($ritem->category == 1)
+												Technical Worker Group
+
+
+											@elseif($ritem->category == 2)
+												Police Strategy Management Unit
+
+											@endif
+
+											<br>
+											$ritem->email | $ritem->contactno | $ritem->landline
+
+										</p>
+										
+									</div>
+								</div>
+
+							</div>
+						@endforeach
+
+					</div>
 
 
 			
-		</div>
+				</div>
 		
+			</div>
+						
+		</div>
+					
 	</div>
+
 
 	<div class = "modal">
 		<div id = "viewadv" class = "ui modal">

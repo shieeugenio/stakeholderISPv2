@@ -9,7 +9,7 @@
 			</div>
 
 			<div class = "tablecon">
-				<form enctype="multipart/form-data" class = "ui form" id = "form">
+				<form enctype="multipart/form-data" action = "javascript:controlaction()" class = "ui form" id = "form">
 
 					<input type="hidden" value="" name="advid"/>
 
@@ -300,8 +300,8 @@
 
 					<center>
 
-						<button type = "button" name="submit" 
-								class="ui large button  savebtnstyle" onclick = "controlaction()">
+						<button type = "submit" name="submit" 
+								class="ui large button submit savebtnstyle">
 
 						<!--<button type = "submit" name="submit" onclick ="if(confirm('Save?')) {addProfile()}"
 								class="ui large button submit savebtnstyle">-->
@@ -398,7 +398,7 @@
 
 
 				}//if(flag == 0) {]
-				alert(lecturers);
+				//alert(lecturers);
 			//}//pattern
 
 		}//add item to array
@@ -417,7 +417,7 @@
 					
 			};//for
 
-			console.log(lecturers);
+			//console.log(lecturers);
 
 
 		}//delete from array
@@ -436,15 +436,36 @@
 			var org = new Array();
 
 			for(var count = 0 ; count <= rowcount ; count++) {
-				traintitle.push(document.getElementsByName('traintitle')[count].value);
-				traincateg.push(document.getElementsByName('traincateg')[count].value);
-				location.push(document.getElementsByName('location')[count].value);
-				sdate.push(document.getElementsByName('trainsdate')[count].value);
-				edate.push(document.getElementsByName('trainedate')[count].value);
-				stime.push(document.getElementsByName('trainstime')[count].value);
-				etime.push(document.getElementsByName('trainetime')[count].value);
-				//speaker.push(document.getElementsByName('trainlecturer')[count].value);
-				org.push(document.getElementsByName('trainorg')[count].value);
+				var initspk = new Array();
+
+				if(document.getElementsByName('traintitle')[count].value !== "") {
+					traintitle.push(document.getElementsByName('traintitle')[count].value);
+
+					if(document.getElementsByName('traincateg')[count].value == 7) {
+						traincateg.push(document.getElementsByName('othercat')[count].value);
+
+					} else {
+						traincateg.push(document.getElementsByName('traincateg')[count].value);
+
+					}//if
+
+					location.push(document.getElementsByName('location')[count].value);
+					sdate.push(document.getElementsByName('trainsdate')[count].value);
+					edate.push(document.getElementsByName('trainedate')[count].value);
+					stime.push(document.getElementsByName('trainstime')[count].value);
+					etime.push(document.getElementsByName('trainetime')[count].value);
+					
+					for(var ctrspk = 0 ; ctrspk < lecturers.length ; ctrspk++) {
+						if(lecturers[ctrspk][1] == count) {
+							initspk.push(lecturers[ctrspk][0]);
+						}//if
+					}//for
+
+					speaker.push(initspk);
+
+					org.push(document.getElementsByName('trainorg')[count].value);
+
+				}//if
 			};
 
 			if (slctdtype == 0) {
@@ -480,10 +501,9 @@
 					'stime' : stime,
 					'etime' : etime,
 					'edate' : edate,
-					'speaker' : lecturers,
+					'speaker' : speaker,
 					'org' : org,
-					'profpic' : document.getElementsByName('upphoto')[0].files[0],
-					'submit' : '',
+					'submit' : 'save',
 					'_token' : '{{ Session::token() }}'
 				};
 
@@ -518,10 +538,9 @@
 					'stime' : stime,
 					'etime' : etime,
 					'edate' : edate,
-					'speaker' : lecturers,
+					'speaker' : speaker,
 					'org' : org,
-					'profpic' : document.getElementsByName('upphoto')[0].files[0],
-					'submit' : '',
+					'submit' : 'save',
 					'_token' : '{{ Session::token() }}'
 				};
 
@@ -538,22 +557,18 @@
 
 			}//if(action == 0) {**/
 
+
 			$.ajax({
 				type: "POST",
 				url: "{{url('adviser/add')}}",
 				data: data,
-				dataType: "json", 
-				enctype: 'multipart/form-data',
-    			contentType: false,
-   				processData: false,
-   				async: true,
-			   	success : function(path) {
-			   		console.log(path);
+			   	success : function() {
+			   		alert('Success');
 			   	
 			   	}//success : function() {
 			});
 
-			console.log( document.getElementsByName('upphoto')[0].files[0]);
+			//console.log( document.getElementsByName('upphoto')[0].files[0]);
 
 			
 		}//function controlaction() {
