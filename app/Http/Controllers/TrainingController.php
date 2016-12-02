@@ -27,6 +27,7 @@ class TrainingController extends Controller
     	if($callId==1)
     	{	
     		$count = count($req->tname);
+    		for($i=0 ; $i<$count ; $i++){
     		$adviserid = $req->adviserid;
    			$ptraining = array();
     		for($i=0;$i<$count;$i++){
@@ -64,7 +65,7 @@ class TrainingController extends Controller
     	if($callId==3)
     	{
     		$count = count($req->tname);
-    		for($i=0;$i<$count;$i++){
+    		for ($i=0 ; $i<$count ; $i++){
 	    		$training = Trainings::find($req->id[$i]);
 		    	$training->trainingname = $req->tname[$i];
 		    	$training->startdate = $req->startdate[$i];

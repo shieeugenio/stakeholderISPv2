@@ -59,7 +59,7 @@ class AdvisoryCouncilController extends Controller
       
             return redirect('advisorycouncil');
         }
-    }
+    } // add AC
 
     public function find($id){
         $advisory = App\Models\AdvisoryCouncil::with('advisoryposition')->with('acsubcategory')->get();
@@ -101,7 +101,7 @@ class AdvisoryCouncilController extends Controller
             // $advisory->save();
 
         }
-    }
+    } // update AC
 
     /* public function subcatOptions(Request $request) {
          $catID = $request->subcat;
