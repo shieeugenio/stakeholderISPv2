@@ -22,7 +22,7 @@ Route::get('home', function() {
 	return view('home.defaulthome');
 
 })->middleware('auth'); //admin
-Route::get('home', 'AdvDirectoryController@getRecent'); //admin
+Route::get('home', 'AdvDirectoryController@getRecent')->middleware('auth'); //admin
 
 
 Route::get('maintenance', function () {

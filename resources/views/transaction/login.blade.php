@@ -1,6 +1,9 @@
 <!doctype html>
 <html>
 <head>
+<script type="text/javascript" src="{{ URL::asset('js/jquery-1.10.2.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('js/selectize/js/standalone/selectize.min.js') }}"></script>
+<link href="{{ URL::asset('js/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet">
 <title>Look at me Login</title>
 </head>
 <body>
@@ -24,5 +27,14 @@
 	<br>
 
 @endforeach
+
+<br>
+<br>
+<script>
+	$(document).ready(function(){
+	    $('#searchbox').selectize();
+	});
+</script>
+<select id="searchbox" name="q" placeholder="Search products or categories..." class="form-control"></select>
 </body>
 </html>
