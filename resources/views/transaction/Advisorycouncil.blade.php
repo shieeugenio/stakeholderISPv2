@@ -8,7 +8,7 @@
 
 </head>
 <body>
-	<form action="/add" method="POST">
+	<form action="javascript:CRUD(0,document.getElementById('dualbutton').value)" method="POST">
 		<fieldset>
 			<input type="hidden" name="_token" id="csrf-token" value="{{Session::token()}}" type="text">
 				<label for='acpositionid'>Position ID </label>
@@ -27,7 +27,7 @@
 				<input type='text' value='' name='acofficeadd' required placeholder="Office Addres" maxlength="20" pattern = '[A-Z a-z]+'/></br><br>
 
 				<label for='accategoryid'>Category </label>
-					<select name="category" id="cat" onchange="catChange()">
+					<select name="category" id="cat" >
 						<option disabled selected>Category</option>
 						@foreach($cat as $key)
 							<option value='{{$key->ID}}'>
@@ -39,29 +39,31 @@
 
 					
 				<label for='acsubcategoryid'>Sub-Category </label>
-					<select name="subcat" id="sub" onchange="subcat()">
-								
-							@foreach($sub as $key)
-							<option value='{{$key->ID}}'>
-								{{$key->subcategoryname}}
-							</option>
-						@endforeach
+					<select name="subcat" id="sub">
+							<option disabled selected value="select">select SubCat</option>
+							@foreach ($subcat as $key)
+								<option value="{{$key->ID}}">{{$key->subcategoryname}}</option>
+							@endforeach
 					</select></br><br>
 
 			</br></br>
 
 
 					<label>AC Sectors</label>
-					<select id="multipleSelect" multiple class="ui selection dropdown" onchange="sectoradd(this.id)" name="sector">
+					<select id="multipleSelect" multiple class="ui selection dropdown" name="sector">
 							@foreach($ac as $id => $key)
-							<option value='{{$key->ID}}'>
+							<option value="{{$key->ID}}">
 								{{$key->sectorname}}
 							</option>
 							@endforeach
 						
 					</select></br><br>
 
-					<button type="submit" name="submit">Save</button>
+					<button class="ui tiny button submit savebtnstyle" id="dualbutton"
+					type="submit" name="submit" value = '1'; > Save	</button>
+
+					<button class="ui tiny button"  type = "reset" 
+					onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" >	Cancel </button>
 
 
 		</fieldset>
@@ -106,7 +108,8 @@
 </body>
 <script type="text/javascript">
 
-$("select[name='sector']").dropdown(); //refresh dropdown
+	$("select[name='sector']").dropdown(); //refresh dropdown
+	
 
 	function resetflag(msg){
 
@@ -123,23 +126,24 @@ function CRUD(id, func){
 
 		var data;
 
+
 		if(func == 1)
 		{
-			if(confirm('Save?')) {
+
+			//if(confirm('Save?')) {
 				data = {
-				'positioN' : document.getElementsByName('acsectorName')[0].value,
-				'acofficenamE' : document.getElementsByName('acsectorCode')[0].value,
-				'acofficeadD' : document.getElementsByName('Desc')[0].value,
+				'positioN' : document.getElementsByName('position')[0].value,
+				'acofficenamE' : document.getElementsByName('acofficename')[0].value,
+				'acofficeadD' : document.getElementsByName('acofficeadd')[0].value,
 				'categorY' : document.getElementsByName('category')[0].value,
 				'subcaT' : document.getElementsByName('subcat')[0].value,
-				'sectoR' : document.getElementsByName('sector')[0].value,
+				'sectoR' : $('#multipleSelect').val(),
 				'submit': document.getElementsByName("submit")[0].value,
 				'callId' : 1,
 				'_token' : '{{ Session::token() }}'
 				};
-
-				exec(data, func);
-			}//if(confirm('Save?')) {
+				console.log(data);
+			//}//if(confirm('Save?')) {
 		}//add
 
 		if(func == 2)
@@ -149,9 +153,6 @@ function CRUD(id, func){
 			'callId' : 2,
 			'_token' : '{{ Session::token() }}'};
 			document.getElementById('dualbutton').value = 3;
-
-			exec(data, func);
-			
 
 		}//view
 
@@ -168,24 +169,21 @@ function CRUD(id, func){
 					'submit': document.getElementsByName("submit")[0].value,
 					'callId' : 3,
 					'_token' : '{{ Session::token() }}'
-				exec(data, func);
+				};
 
 			}//if(confirm('Save?')) {
 		}//update
 
-			
-	}
-
-	function exec(data, func) {
 		$.ajax({
 
 			type: "POST",
-			url: "{{url('transaction/acCRUD')}}",
+			url: "{{url('transac/acCRUD')}}",
 			data: data,
 			dataype: "JSON",
 			success:function(data){
 				if(  func == 1 || func == 3){ 
 					
+					console.log(data);
 					if(func == 1) {
 						msg = "Saved!";
 					} else {
@@ -202,18 +200,49 @@ function CRUD(id, func){
 					$('#' + data['ID']).attr('class', 'activerow');
 					$('tr').not("[id = '" + data['ID'] + "']").removeAttr('class');
 
-					document.getElementById('acsectorID').value = data['ID'];
-					document.getElementsByName('acsectorCode')[0].value = data['sectorcode'];
-					document.getElementsByName('acsectorName')[0].value = data['sectorname'];
-					document.getElementsByName('Desc')[0].value = data['desc'];
+					document.getElementsByName('acsectorName')[0].value = data[''];
+					document.getElementsByName('acsectorCode')[0].value = data[''];
+					document.getElementsByName('Desc')[0].value = data[''];
+					document.getElementsByName('category')[0].value = data[''];
+					document.getElementsByName('subcat')[0].value = data[''];
+					document.getElementsByName('sector')[0].value = data[''];
+				
 				}
 			} 
 
 		});
 	}//function exec() {
 
+	/*$('#cat').change(function() {
+		var newsub;
+		var id = $("#cat option:selected").val(); 
+		var data = {
+			'id' : id,
+			'_token' : '{{Session::token()}}'
+		}
+			console.log(data);
+		$.ajax({
+			type : "POST",
+			url: "{{url('transac/getsub')}}",
+			data : data,
+			datatype : "JSON",
+			success:function(data){
+				console.log(data);
+				for(var i=0;i<data.length;i++){
+					for(var j=0;j<data[i].length;j++){
+						newsub = new Option(data[j].subcategoryname,data[j].ID);
+						alert('saf');
+						$('#subcat').append(newsub);
+					}
+				}//add subcat option
 
+				console.log(data[0].length);
+			}//success
 
+		});//ajax
+	});
+
+	*/
 
 </script>
 </html>
