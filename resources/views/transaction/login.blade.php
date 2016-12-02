@@ -1,9 +1,9 @@
 <!doctype html>
 <html>
 <head>
-<script type="text/javascript" src="{{ URL::asset('js/jquery-1.10.2.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('js/selectize/js/standalone/selectize.min.js') }}"></script>
-<link href="{{ URL::asset('js/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet">
+<script type="text/javascript" src="{{ URL::asset('js/jquery-1.10.2.min.js') }}"></script>
+<link href="{{ URL::asset('selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet">
+<script type="text/javascript" src='{{ URL::asset("selectize/js/standalone/selectize.min.js") }}'></script>
 <title>Look at me Login</title>
 </head>
 <body>
@@ -29,12 +29,49 @@
 @endforeach
 
 <br>
-<br>
+<select id="searchbox" name="q" placeholder="Search Advisers or category" class="form-control"></select>
 <script>
 	$(document).ready(function(){
-	    $('#searchbox').selectize();
-	});
+    $('#searchbox').selectize({
+        valueField: 'url',
+        labelField: 'name',
+        searchField: ['name'],
+        maxOptions: 10,
+        options: [],
+        create: false,
+        render: {
+            option: function(item, escape) {
+                return '<div><img src="'+ item.icon +'">' +escape(item.name)+'</div>';
+            }
+        },
+        optgroups: [
+            {value: 'advisers', label: 'Advisers'},
+            {value: 'category', label: 'Categories'}
+        ],
+        optgroupField: 'class',
+        optgroupOrder: ['product','category'],
+        load: function(query, callback) {
+            if (!query.length) return callback();
+            $.ajax({
+                url: root+'/api/search',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    q: query
+                },
+                error: function() {
+                    callback();
+                },
+                success: function(res) {
+                    callback(res.data);
+                }
+            });
+        },
+        onChange: function(){
+            window.location = this.items[0];
+        }
+    });
+});
 </script>
-<select id="searchbox" name="q" placeholder="Search products or categories..." class="form-control"></select>
 </body>
 </html>
