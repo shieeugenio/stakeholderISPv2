@@ -156,8 +156,28 @@ class AdvDirectoryController extends Controller {
 							->pluck('ID', 'lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline');
 
 		//SUMMARY PANE INSERT CODE HERE
+		$all = Advisers::count();
+		$ac = Advisers::where('category', '=', 0)->count();
+	    $twg = Advisers::where('category', '=', 1)->count();
+	    $psmu = Advisers::where('category', '=', 2)->count();
+	    $pac = 0;
+	    $ptwg = 0;
+	    $ppsmu = 0;
+	    if ($all > 0) {
+	    	$pac = round(($ac/$all) * 100, 2);
+		    $ptwg = round(($twg/$all) * 100,2);
+		    $ppsmu = round(($psmu/$all) * 100,2);
+	    }
+	    
 
-		return view('home.defaulthome')->with('recent', $recent);
+		return view('home.defaulthome')->with('recent', $recent)
+									   ->with('all', $all)
+									   ->with('ac', $ac)
+									   ->with('twg', $twg)
+									   ->with('psmu', $psmu)
+									   ->with('pac', $pac)
+									   ->with('ptwg', $ptwg)
+									   ->with('ppsmu', $ppsmu);
 
 	}//public function getRecent() {
 
