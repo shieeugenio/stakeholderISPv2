@@ -33,7 +33,7 @@
 							</div>
 
 							<div class ="twelve wide column  bspacing8">
-								<label class="formlabel">% of TWG: <span class = "labeldesc">10</span></label>
+								<label class="formlabel">% of TWG: <span class = "labeldesc">{{$ptwg}}%</span></label>
 											
 							</div>
 
@@ -42,10 +42,11 @@
 											
 							</div>
 
-							<div class ="twelve wide column  bspacing8">
-								<label class="formlabel">No. of Recently Added: <span class = "labeldesc">{{$ptwg}}%</span></label>
+							<!--<div class ="twelve wide column  bspacing8">
+								<label class="formlabel">No. of Recently Added: <span class = "labeldesc"></span></label>
 											
-							</div>
+							</div>-->
+							<br>
 
 							<div class ="twelve wide column bspacing8">
 								<label class="formlabel">Total No. of Adviser: <span class = "labeldesc">{{$all}}</span></label>
@@ -116,7 +117,7 @@
 		</div>
 					
 	</div>
-	
+
 
 	<div class = "modal">
 		<div id = "viewadv" class = "ui modal">
