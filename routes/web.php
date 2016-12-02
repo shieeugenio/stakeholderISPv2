@@ -17,21 +17,9 @@ Route::get('/', 'AdvDirectoryController@readyPHome'); //public
 
 
 Route::get('home', function() {
-	$all = App\Models\Advisers::count();
-	$ac = App\Models\Advisers::where('category', '=', 0)->count();
-    $twg = App\Models\Advisers::where('category', '=', 1)->count();
-    $psmu = App\Models\Advisers::where('category', '=', 2)->count();
-    $pac = round(($ac/$all) * 100, 2);
-    $ptwg = round(($twg/$all) * 100,2);
-    $ppsmu = round(($psmu/$all) * 100,2);
+	
             
-	return view('home.defaulthome')->with('all', $all)
-								   ->with('ac', $ac)
-								   ->with('twg', $twg)
-								   ->with('psmu', $psmu)
-								   ->with('pac', $pac)
-								   ->with('ptwg', $ptwg)
-								   ->with('ppsmu', $ppsmu);
+	return view('home.defaulthome');
 
 })->middleware('auth'); //admin
 Route::get('home', 'AdvDirectoryController@getRecent'); //admin
