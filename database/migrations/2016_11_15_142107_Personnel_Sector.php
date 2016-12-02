@@ -10,7 +10,8 @@ class PersonnelSector extends Migration
     {
         Schema::create('PersonnelSector', function(Blueprint $table)
         {
-            $table->primary(array('advisory_council_id', 'ac_sector_id'));
+            $table->increments('ID');
+            // $table->primary(array('advisory_council_id', 'ac_sector_id'));
             $table->integer('advisory_council_id')->unsigned();
             $table->integer('ac_sector_id')->unsigned();
             $table->foreign('advisory_council_id')->references('ID')->on('AdvisoryCouncil');

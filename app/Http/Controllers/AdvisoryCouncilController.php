@@ -7,6 +7,7 @@ use App;
 use App\Models;
 use Carbon\Carbon;
 use App\Models\AdvisoryCouncil;
+use App\Http\Controllers\Controller;
 use App\Models\ACSectors;
 use DB;
 
@@ -46,21 +47,16 @@ class AdvisoryCouncilController extends Controller
             // foreach ($adv as $key => $u) {
             //     $advID = $u->ID;
             // }
-            foreach(input('selected') as $select){
-                $newpost = array(
-                    // $personnel = new App\Models\PersonnelSector;
-                    'advisory_council_id' => $acID,
-                    'ac_sector_id' =>input::get('sector'),
 
-                    // $personnel->advisory_council_id = $acID;
+            
+            for($i=0; $i < sizeOf($request->sector[$i]); $i++){
+            
+                $personnel = new App\Models\PersonnelSector;
+                $personnel->advisory_council_id = $acID;
+                $personnel->ac_sector_id = $request->sector;
 
-                    // $personnel->ac_sector_id = $request->input('sector');
-
-        );
-                    $person = new App\Models\PersonnelSector($newpost);
-                    $person->save();
-        } echo $newpost;           
-
+                $personnel->save();
+        }
             return redirect('advisorycouncil');
         }
     }
