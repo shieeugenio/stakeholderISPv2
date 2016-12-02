@@ -58,6 +58,11 @@ class HomeController extends Controller
         Auth::logout();
     }
 
+    public function search($data){
+        
+
+    }
+
 
 
 }

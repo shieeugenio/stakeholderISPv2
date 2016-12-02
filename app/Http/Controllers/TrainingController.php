@@ -45,6 +45,7 @@ class TrainingController extends Controller
 		    	$ptraining = DB::table('Trainings')->select('ID')->orderBy('ID', 'desc')->first();
 		    	$this->addPersonTraining($adviserid,$ptraining);
 	    	}
+	    	}
 
 	    	
 
@@ -81,7 +82,8 @@ class TrainingController extends Controller
 
     }
 
-    public function addPersonTraining($adviserid,$ptraining){
+    public function addPersonTraining($adviserid,$ptraining)
+    {
     	
     	$persontraining = new PersonTraining();
     	$persontraining->adviser_id = $adviserid;
