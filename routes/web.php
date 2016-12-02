@@ -118,10 +118,12 @@ Route::post('adviser/edit', 'AdvDirectoryController@editadviser');
 ///-------------------------------------------------------------------------------------------------------------------------------
 //advisory council transac Joanne
 Route::get('advisorycouncil', 'AdvisoryCouncilController@index');
+Route::post('transac/acCRUD', 'AdvisoryCouncilController@acCRUD');
+Route::post('transac/getsub', 'AdvisoryCouncilController@getsub');
 
-Route::post('/add', 'AdvisoryCouncilController@add');
+/*Route::post('/add', 'AdvisoryCouncilController@add');
 Route::get('transac/{id}/edit', 'AdvisoryCouncilController@find');
-Route::post('transac/{id}/editAc', 'AdvisoryCouncilController@edit');
+Route::post('transac/{id}/editAc', 'AdvisoryCouncilController@edit');*/
 
 // Route::get('/subcatOptions', 'AdvisoryCouncilController@cityOptions');
 
@@ -140,3 +142,17 @@ Route::get('transaction/advedt','ProfileController@edit');
 
 //smart search [ren]
 Route::get('search', 'SearchController@index');
+
+//login [ren]
+Route::get('login', array('uses' => 'HomeController@index'));
+Route::post('login', array('uses' => 'HomeController@login'));
+Route::get('logout', array('uses' => 'HomeController@logout'));
+
+//registration[ren]
+Route::get('registration', 'RegistrationController@index');
+Route::resource('register', 'RegistrationController@register');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
