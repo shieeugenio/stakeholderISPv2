@@ -39,8 +39,9 @@ class AdvisoryCouncilController extends Controller
         $callId = $request->callId;
 
         if($callId==1)
-        {   
-            $acID = DB::table('Advisers')->select('ID')->orderBy('ID','desc')->first();
+        {
+           $ac = DB::table('Advisers')->select('ID')->orderBy('ID','desc')->first();
+            $acID = $ac.ID;
 
             $advisory = new AdvisoryCouncil;
             $advisory->ID = $acID;

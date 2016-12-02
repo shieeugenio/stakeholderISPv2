@@ -126,8 +126,10 @@ function CRUD(id, func){
 
 		var data;
 
+
 		if(func == 1)
 		{
+
 			//if(confirm('Save?')) {
 				data = {
 				'positioN' : document.getElementsByName('position')[0].value,
@@ -141,7 +143,6 @@ function CRUD(id, func){
 				'_token' : '{{ Session::token() }}'
 				};
 				console.log(data);
-				exec(data, func);
 			//}//if(confirm('Save?')) {
 		}//add
 
@@ -152,8 +153,6 @@ function CRUD(id, func){
 			'callId' : 2,
 			'_token' : '{{ Session::token() }}'};
 			document.getElementById('dualbutton').value = 3;
-
-			exec(data, func);			
 
 		}//view
 
@@ -171,15 +170,10 @@ function CRUD(id, func){
 					'callId' : 3,
 					'_token' : '{{ Session::token() }}'
 				};
-				exec(data, func);
 
 			}//if(confirm('Save?')) {
 		}//update
 
-			
-	}
-
-	function exec(data, func) {
 		$.ajax({
 
 			type: "POST",
@@ -189,6 +183,7 @@ function CRUD(id, func){
 			success:function(data){
 				if(  func == 1 || func == 3){ 
 					
+					console.log(data);
 					if(func == 1) {
 						msg = "Saved!";
 					} else {
