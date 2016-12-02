@@ -15,8 +15,11 @@ class Trainings extends Model
     	return $this->belongsTo('App\Models\Advisers', 'ID');
     }
 
-    public function lecturer()
+
+    public function training()
     {
-    	return $this->hasMany('App\Models\Lecturers', 'training_id');
+        return $this->hasMany('App\Models\Lecturers', 'training_id');
     }
+
+    
 }

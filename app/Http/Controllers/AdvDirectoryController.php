@@ -163,11 +163,12 @@ class AdvDirectoryController extends Controller {
 	    $pac = 0;
 	    $ptwg = 0;
 	    $ppsmu = 0;
+
 	    if ($all > 0) {
 	    	$pac = round(($ac/$all) * 100, 2);
 		    $ptwg = round(($twg/$all) * 100,2);
 		    $ppsmu = round(($psmu/$all) * 100,2);
-	    }
+	    }//if
 	    
 
 		return view('home.defaulthome')->with('recent', $recent)

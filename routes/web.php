@@ -21,7 +21,9 @@ Route::get('home', function() {
             
 	return view('home.defaulthome');
 
-})->middleware('auth'); //admin
+})/*->middleware('auth')*/; //admin
+
+
 Route::get('home', 'AdvDirectoryController@getRecent'); //admin
 
 
