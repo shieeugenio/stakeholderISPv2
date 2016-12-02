@@ -119,7 +119,7 @@ $("select[name='sector']").dropdown(); //refresh dropdown
 						
 		}
 
-function CRUD(id, func){
+function acCRUD(id, func){
 
 		var data;
 
@@ -127,9 +127,9 @@ function CRUD(id, func){
 		{
 			if(confirm('Save?')) {
 				data = {
-				'positioN' : document.getElementsByName('acsectorName')[0].value,
-				'acofficenamE' : document.getElementsByName('acsectorCode')[0].value,
-				'acofficeadD' : document.getElementsByName('Desc')[0].value,
+				'positioN' : document.getElementsByName('position')[0].value,
+				'acofficenamE' : document.getElementsByName('acofficename')[0].value,
+				'acofficeadD' : document.getElementsByName('acofficeadd')[0].value,
 				'categorY' : document.getElementsByName('category')[0].value,
 				'subcaT' : document.getElementsByName('subcat')[0].value,
 				'sectoR' : document.getElementsByName('sector')[0].value,
@@ -202,10 +202,13 @@ function CRUD(id, func){
 					$('#' + data['ID']).attr('class', 'activerow');
 					$('tr').not("[id = '" + data['ID'] + "']").removeAttr('class');
 
-					document.getElementById('acsectorID').value = data['ID'];
-					document.getElementsByName('acsectorCode')[0].value = data['sectorcode'];
-					document.getElementsByName('acsectorName')[0].value = data['sectorname'];
-					document.getElementsByName('Desc')[0].value = data['desc'];
+					document.getElementsByName('acsectorName')[0].value = data[''];
+					document.getElementsByName('acsectorCode')[0].value = data[''];
+					document.getElementsByName('Desc')[0].value = data[''];
+					document.getElementsByName('category')[0].value = data[''];
+					document.getElementsByName('subcat')[0].value = data[''];
+					document.getElementsByName('sector')[0].value = data[''];
+				
 				}
 			} 
 
