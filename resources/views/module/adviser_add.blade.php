@@ -618,6 +618,8 @@
 				dataType: 'json',
 			   	success : function(subcategory) {
 
+			   		$("select[name='acsubcateg'] option").not("[value='disitem']").remove();
+
 			   		for (var ctr = 0 ; ctr < subcategory.length ; ctr++) {
 			   			populatedropdown(subcategory[ctr]['ID'], 'acsubcateg', subcategory[ctr]['acsubcategorycode'], subcategory[ctr]['subcategoryname']);
 			   			
@@ -626,6 +628,9 @@
 			   		
 			   	}//success : function() {
 			});
+
+			console.log($("select[name='acsector']").val());
+
 
 		}//function getsubcateg() {
 
@@ -642,6 +647,8 @@
 				data: data,
 				dataType: 'json',
 			   	success : function(secoffice) {
+
+			   		$("select[name='secondary'] option").not("[value='disitem']").remove();
 
 			   		for (var ctr = 0 ; ctr < secoffice.length ; ctr++) {
 			   			populatedropdown(secoffice[ctr]['ID'], 'secondary', secoffice[ctr]['policeofficecode2'], secoffice[ctr]['officename']);

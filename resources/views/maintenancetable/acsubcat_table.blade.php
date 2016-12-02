@@ -93,7 +93,7 @@
 										<option class="disabled">Select One</option>
 									  	@foreach($category as $key=>$value)
 											<option value="{{$value->ID}}">
-												{{$value->accategorycode}} - {{$value->categoryname}}
+												{{$value->categoryname}} ({{$value->accategorycode}})
 											</option>
 										@endforeach
 									  

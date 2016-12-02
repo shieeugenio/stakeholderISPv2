@@ -13,28 +13,17 @@
 
 //MENU
 
-Route::get('/', function() {
-	return view('home.defaultphome');
+Route::get('/', 'AdvDirectoryController@readyPHome'); //public
 
-}); //public
 
-Route::get('home', function() {
-	return view('home.defaulthome');
+Route::get('home', 'AdvDirectoryController@getRecent'); //admin
 
-}); //admin
 
 Route::get('maintenance', function () {
     return redirect('maintenance/accategory');
 });
 
-Route::get('directory', function () {
-    return view('module.adviser');
-});
-
-
-//Route::get('directory/add', function () {
-//    return view('module.adviser_add');
-//});
+Route::get('directory', 'AdvDirectoryController@getList');
 
 
 //TRANSACTION

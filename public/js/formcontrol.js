@@ -166,6 +166,7 @@ function addT1Elements() { //AC ELEMENTS
 
 	var opt5 = document.createElement('option');
 	opt5.setAttribute('class', 'disabled');
+	opt5.setAttribute('value', 'disitem');
 	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt5);
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One'));
@@ -325,6 +326,7 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 
 	var opt3 = document.createElement('option');
 	opt3.setAttribute('class', 'disabled');
+	opt2.setAttribute('value', 'item');
 	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt3);
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Secondary Office'));

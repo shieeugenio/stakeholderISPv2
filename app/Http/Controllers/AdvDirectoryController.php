@@ -26,6 +26,10 @@ use App\Models\ACSubcategory;
 
 use App\Models\ACSectors;
 
+use App\Models\Trainings;
+
+use App\Models\Lecturers;
+
 
 
 class AdvDirectoryController extends Controller {
@@ -45,10 +49,10 @@ class AdvDirectoryController extends Controller {
  										 ->with('acsector', $acsector)
  										 ->with('pnppost', $pnpposition)
  										 ->with('primaryoffice', $primaryoffice);
+
  		//return $pnpposition;
 
  	} //select dropdowns
-
 
 	public function addadviser(Request $req) {
 		$data = $req->all();
@@ -67,10 +71,95 @@ class AdvDirectoryController extends Controller {
 
 			}//if($data->advcateg == 0) {
 
+			$this->addTraining($data, $id);
+
 		}// if
 
 
-	}//public function addadviser() {
+	}//add - WHOLE
+	public function editadviser(Request $req) {
+		$data = $req->all();
+
+		if (isset($_POST['submit'])) {
+			$this->editProfile($data);
+
+
+			if($data->advcateg == 0) {
+				$this->editAC($data, $data->ID);
+
+			} else {
+				$this->editTP($data, $data->ID);
+
+
+			}//if($data->advcateg == 0) {
+
+			$trainID = $this->getTrainIDList($data->ID);
+
+			$this->editLecturer($data, $trainID, $data->ID);
+
+		}// if
+
+
+	}//edit - WHOLE
+
+	public function getView() {
+
+		$recorddata = $this->getRecordData();
+
+		return view('module.adviser_add')->with('recorddata', $recorddata);
+
+	}//view for edit
+
+	public function getRecordData(Request $req) {
+		$id = $req->ID;
+		
+
+		$categ = Advisers::where('ID', $id)->get('category');
+
+		if($categ[0]->ID == 0) {
+			$recorddata = Advisers::with('advisorycouncil')
+									->with('advtrainings')
+									->with('trainlecturer')
+									->where('ID', $id)
+									->get();
+
+
+		} else {
+			$recorddata = Advisers::with('policeadvisory')
+									->with('advtrainings')
+									->with('trainlecturer')
+									->where('ID', $id)
+									->get();
+
+		}// if
+
+		return $recorddata;
+	}//get record / modal view
+
+	public function getList() {
+		$directory = Advisers::orderBy('ID', 'desc')
+					->pluck('ID', 'lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline');
+
+		return view('module.adviser')->with('directory', $directory);
+	}//public function getList() {
+
+	public function readyPHome() {
+		$directory = Advisers::orderBy('ID', 'desc')
+								->pluck('lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline');
+
+		return view('home.defaultphome')->with('directory', $directory);
+	}//public function getList() {
+
+	public function getRecent() {
+		$recent = Advisers::orderBy('ID', 'desc')
+							->take(50)
+							->pluck('ID', 'lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline');
+
+		//SUMMARY PANE INSERT CODE HERE
+
+		return view('home.defaulthome')->with('recent', $recent);
+
+	}//public function getRecent() {
 
 	public function getID() {
 		$getid = Advisers::orderBy('ID', 'desc')->take(1)->get();
@@ -81,6 +170,18 @@ class AdvDirectoryController extends Controller {
 
 
 	}//public function getID() {
+
+	public function getTrainIDList($id) {
+		$getid = Trainings::where('adviserID', $id)->get('ID');
+
+		$trainID = array();
+		foreach($getid as $key=> $item) {
+			array_push($trainID, $item->ID);
+
+		}//foreach($getid as $key=> $item) {
+
+		return $trainID;
+	}//public function getTrainID($id) {
 
 	//DROPDOWN
 
@@ -149,7 +250,7 @@ class AdvDirectoryController extends Controller {
 
 	} // add profile
 
-	public function updateProfile($data) {
+	public function editProfile($data) {
 	 	
 	    $adv = Advisers::find($data->ID);
 	    $adv->fname = $data->fname;
@@ -247,12 +348,70 @@ class AdvDirectoryController extends Controller {
     //Training
 
     public function addTraining($data, $id) {
+    	$count = count($data->traintitle);
+
+    	for($i=0 ; $i < $count ; $i++){
+		   	$training = new Trainings();
+		   	$training->trainingname = $data->traintitle[$i];
+		   	$training->startdate = $data->sdate[$i];
+		   	$training->enddate = $data->edate[$i];
+		   	$training->location = $data->location[$i];
+		   	$training->organizer = $data->org[$i];
+		   	$training->starttime = $data->stime[$i];
+		   	$training->endtime = $data->etime[$i];
+		   	$training->trainingtype = $data->traincateg[$i];
+		   	$training->adviserID = $id;
+		   	$training->save();
+
+		   	$trainID = $this->getTrainID();
+
+		   	$this->addLecturer($data, $trainID);
+
+	    }//for
 
     }// add Training
 
-    public function editTraining($data) {
+    public function editTraining($data, $id) {
+    	Trainings::where('adviserID', $id)->delete();
+
+    	$this->addTraining($data, $id);
 
     }// update Training
+
+   	public function getTrainID() {
+   		$getid = Trainings::orderBy('ID', 'desc')->take(1)->get();
+
+		foreach ($getid as $key => $id) {
+            return $id->ID;
+        }//foreach ($getid as $key => $id) {
+
+
+   	}//public function getTrainID() {
+
+   	public function addLecturer($data, $trainID) {
+   		for($ctr = 0 ; $ctr < sizeof($data->speakers) ; $ctr++) {
+   			$lecturer = new Lecturers;
+
+   			$lecturer->lecturername = $data->speakers[$ctr][0];
+   			$lecturer->trainID = $data->speakers[$ctr][1];
+
+   			$lecturer->save();
+
+   		}//for($ctr = 0 ; $ctr < sizeof($data->speakers) ; $ctr++) {
+   	}//public function addLecturer($data, $trainID) {
+
+   	//call
+   	public function editLecturer($data, $trainID, $id) {
+
+   		for ($ctr=0; $ctr < sizeof($trainID) ; $ctr++) { 
+   			Lecturers::where('trainID', $trainID[$ctr])->delete();
+
+   			
+   		}//for
+   										
+   		$this->editTraining($data, $id);
+
+   	}//public function editLecturer($data, $trainID) {
 
 
 }//class
