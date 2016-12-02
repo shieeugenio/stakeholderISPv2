@@ -47,16 +47,16 @@ class AdvisoryCouncilController extends Controller
             // foreach ($adv as $key => $u) {
             //     $advID = $u->ID;
             // }
-
-            
-            for($i=0; $i < sizeOf($request->sector[$i]); $i++){
+           
             
                 $personnel = new App\Models\PersonnelSector;
                 $personnel->advisory_council_id = $acID;
-                $personnel->ac_sector_id = $request->sector;
-
+                $personnel->ac_sector_id = $request->sect;
+               
                 $personnel->save();
-        }
+
+                return $request;
+      
             return redirect('advisorycouncil');
         }
     } // add AC
@@ -103,17 +103,20 @@ class AdvisoryCouncilController extends Controller
         }
     } // update AC
 
-    // public function subcatOptions(Request $request) {
-    //     $catID = $request->subcat;
+    /* public function subcatOptions(Request $request) {
+         $catID = $request->subcat;
 
-    //     $params = array($catID);
+         $params = array($catID);
 
-    //     $stmt = DB::select('select * from "accategory" as b
-    //         left join "acsubcategory" as c on b.id = c.id' , $params);
+         $stmt = DB::select('select * from "accategory" as b
+             left join "acsubcategory" as c on b.id = c.id' , $params);
 
-    //     $array_Result = array();
+         $array_Result = array();
 
-    //     return json_encode($array_Result);
+         return json_encode($array_Result);
 
-    // }//End Of Select Unit 1
+     }//End Of Select Unit 1    */
+
+
+ 
 }

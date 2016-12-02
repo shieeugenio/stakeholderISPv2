@@ -12,6 +12,6 @@ class Lecturers extends Model
 
     public function training()
     {
-    	return $this->belongsTo('App\Models\Trainings', 'ID');
+    	return $this->belongsTo('App\Models\Training', 'training_id', 'ID');
     }
 }

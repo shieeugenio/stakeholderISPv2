@@ -12,7 +12,7 @@ class Trainings extends Model
 
     public function adviser()
     {
-    	return $this->belongsTo('App\Models\Advisers', 'ID');
+    	return $this->belongsTo('App\Models\Advisers','adviser_id', 'ID');
     }
 
     public function lecturer()
