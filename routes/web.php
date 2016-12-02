@@ -104,7 +104,7 @@ Route::post('adviser/edit', 'AdvDirectoryController@editadviser');
 //advisory council transac Joanne
 Route::get('advisorycouncil', 'AdvisoryCouncilController@index');
 
-Route::post('/add', 'AdvisoryCouncilController@add');
+Route::post('/addCat', 'AdvisoryCouncilController@addCat');
 Route::get('transac/{id}/edit', 'AdvisoryCouncilController@find');
 Route::post('transac/{id}/editAc', 'AdvisoryCouncilController@edit');
 

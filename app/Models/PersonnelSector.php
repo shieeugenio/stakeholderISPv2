@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PersonnelSector extends Model
 {
     protected $table = "PersonnelSector";
-    protected $primaryKey = "ac_sector_id";
+    protected $primaryKey = "ID";
     public $timestamps = false;
 
     public function acsector()

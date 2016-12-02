@@ -17,7 +17,7 @@ class Advisers extends Model
 
     public function persontraining()
     {
-    	return $this->hasMany('App\Models\PersonTraining', 'training_id');
+    	return $this->belongsTo('App\Models\Trainings', 'training_id');
     }
 
     public function policeadvisory()

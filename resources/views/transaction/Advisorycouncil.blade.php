@@ -52,9 +52,8 @@
 
 
 					<label>AC Sectors</label>
-					<select name="sector" id="multipleSelect" multiple class="ui selection dropdown">
+					<select id="multipleSelect" multiple class="ui selection dropdown"  name="sector" onclick="sectoradd(this.id)">
 							@foreach($ac as $id => $key)
-
 							<option value='{{$key->ID}}'>
 								{{$key->sectorname}}
 							</option>
@@ -107,17 +106,19 @@
 </body>
 <script type="text/javascript">
 
-
 $("select[name='sector']").dropdown(); //refresh dropdown
 
-var selected=[];
-$('#multipleSelect :selected').each(function(){
-	selected[$(this).val]=$(this).text();
-});
-console.log(selected);
+$("select[name='sector']").val(); 
 
-	function catChange(){
-		var categ = document.getElementById('cat').value;
+// var selected= new array();
+// $('.sector :selected').each(function(){
+// 	selected[$(this).val]=$(this).text();
+// });
+// console.log(selected);
+
+
+	function sectoradd(id){
+		var categ = document.getElementById('multipleSelect').value;
 		var dataString = "ID=" + categ;
 		var token = document.getElementById('csrf-token').value;
 
@@ -125,26 +126,15 @@ console.log(selected);
 
 				type: "post",
 				headers: {'X-CSRF-TOKEN': token},
-				url: "subcatOptionsone",
+				url: "{{url('../add')}}",
 				data: dataString,
 				datatype: 'json',
 				cache: false,
 				success: function(data){
 
-					var parse_data = JSON.parse(data);
-
-					document.getElementById('sub').disabled = false;
-
-					document.getElementById('sub').innerHTML = "<option>- Select Subcategory -</option>";
-
-					for (var i = 0; i < parse_data.length; i = i + 2) {
-							
-						var j = i + 1;
+				
 
 					}
-					
-				}
-
 			});
 	}
 
