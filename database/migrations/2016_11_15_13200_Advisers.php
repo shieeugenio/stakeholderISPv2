@@ -31,6 +31,7 @@ class Advisers extends Migration
             $table->tinyInteger('category');
             $table->tinyInteger('occupationstat');
             $table->text('imagepath');
+
         });
 }
 

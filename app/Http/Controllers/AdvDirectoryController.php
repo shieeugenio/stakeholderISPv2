@@ -56,13 +56,41 @@ class AdvDirectoryController extends Controller {
 
 	public function addadviser(Request $req) {
 		$data = $req->all();
+
+
+
+		/**$data = array(
+					'ID' => '',
+					'lname' =>'lname',
+					'fname' =>'fname',
+					'mname' => 'mname',
+					'bdate' => '1996-11-21',
+					'gender' => '1',
+					'street' => 'street',
+					'barangay' => 'barangay',
+					'city' => 'city',
+					'province' => 'province',
+					'mobile' => '890209129012',
+					'landline' => '2345234',
+					'email' => 'shie@yahoo.com',
+					'facebook' => 'shieeugenio',
+					'twitter' => 'shieeugenio',
+					'instagram' => 'shieeugenio',
+					'advcateg'  => '0',
+					'durstart' => '2016-12-01',
+					'durend' => '2016-12-01',
+					'submit' => 'save'
+				);**/
+
+		
+
 		if (isset($_POST['submit'])) {
 			$this->addProfile($data);
 
 			$id = $this->getID();
+			//print_r($data['fname']);
 
-
-			if($data->advcateg == 0) {
+			/*if($data->advcateg == 0) {
 				$this->addAC($data, $id);
 
 			} else {
@@ -71,12 +99,15 @@ class AdvDirectoryController extends Controller {
 
 			}//if($data->advcateg == 0) {
 
-			$this->addTraining($data, $id);
+			$this->addTraining($data, $id);*/
+		
 
 		}// if
 
 
+
 	}//add - WHOLE
+
 	public function editadviser(Request $req) {
 		$data = $req->all();
 
@@ -163,11 +194,12 @@ class AdvDirectoryController extends Controller {
 	    $pac = 0;
 	    $ptwg = 0;
 	    $ppsmu = 0;
+
 	    if ($all > 0) {
 	    	$pac = round(($ac/$all) * 100, 2);
 		    $ptwg = round(($twg/$all) * 100,2);
 		    $ppsmu = round(($psmu/$all) * 100,2);
-	    }
+	    }//if
 	    
 
 		return view('home.defaulthome')->with('recent', $recent)
@@ -192,7 +224,7 @@ class AdvDirectoryController extends Controller {
 	}//public function getID() {
 
 	public function getTrainIDList($id) {
-		$getid = Trainings::where('adviserID', $id)->get('ID');
+		$getid = Trainings::where('training_id', $id)->pluck('ID');
 
 		$trainID = array();
 		foreach($getid as $key=> $item) {
@@ -235,24 +267,25 @@ class AdvDirectoryController extends Controller {
 	public function addProfile($data){
 		
 	 	$adv = new Advisers;
-	 	$adv->fname = $data->fname;
-	 	$adv->lname = $data->lname;
-	 	$adv->mname = $data->mname;
-	 	$adv->street = $data->street;
-	 	$adv->barangay = $data->barangay;
-	 	$adv->city = $data->city;
-	 	$adv->province = $data->province;
-	 	$adv->email = $data->email;
-	 	$adv->fbuser = $data->facebook;
-	 	$adv->twitteruser = $data->twitter;
-	 	$adv->iguser = $data->instagram;
-	 	$adv->contanctno = $data->mobile;
-	 	$adv->landline = $data->landline;
-	 	$adv->birthdate = $data->bdate;
-	 	$adv->gender =  $data->gender;
-	 	$adv->category = $data->advcateg;
-	 	$adv->startdate = $data->durstart;
-        $adv->enddate = $data->durend;
+	 	$adv->fname = $data['fname'];
+	 	$adv->lname = $data['lname'];
+	 	$adv->mname = $data['mname'];
+	 	$adv->street = $data['street'];
+	 	$adv->barangay = $data['barangay'];
+	 	$adv->city = $data['city'];
+	 	$adv->province = $data['province'];
+	 	$adv->email = $data['email'];
+	 	$adv->fbuser = $data['facebook'];
+	 	$adv->twitteruser = $data['twitter'];
+	 	$adv->iguser = $data['instagram'];
+	 	$adv->contactno = $data['mobile'];
+	 	$adv->landline = $data['landline'];
+	 	$adv->birthdate = $data['bdate'];
+	 	$adv->gender =  $data['gender'];
+	 	$adv->category = $data['advcateg'];
+	 	$adv->startdate = $data['durstart'];
+        $adv->enddate = $data['durend'];
+        $adv->occupationstat = 0;
 	 	//$adv->imagepath = $req->img;
 	 	/*$image = $req->img;
 	 	$filename = time() . '.' . $image->getClientOriginalExtension();
@@ -272,25 +305,25 @@ class AdvDirectoryController extends Controller {
 
 	public function editProfile($data) {
 	 	
-	    $adv = Advisers::find($data->ID);
-	    $adv->fname = $data->fname;
-		$adv->lname = $data->lname;
-		$adv->mname = $data->mname;
-		$adv->street = $data->street;
-		$adv->barangay = $data->barangay;
-		$adv->city = $data->city;
-		$adv->province = $data->province;
-		$adv->email = $data->email;
-		$adv->fbuser = $data->facebook;
-		$adv->twitteruser = $data->twitter;
-		$adv->iguser = $data->instagram;
-		$adv->contactno = $data->mobile;
-		$adv->landline = $data->landline;
-		$adv->birthdate = $data->bdate;
-		$adv->gender =  $data->gender;
-		$adv->category = $data->advcateg;
-		$adv->startdate = $data->durstart;
-        $adv->enddate = $data->durend;
+	    $adv = Advisers::find($data['ID']);
+	    $adv->fname = $data['fname'];
+		$adv->lname = $data['lname'];
+		$adv->mname = $data['mname'];
+		$adv->street = $data['street'];
+		$adv->barangay = $data['barangay'];
+		$adv->city = $data['city'];
+		$adv->province = $data['province'];
+		$adv->email = $data['email'];
+		$adv->fbuser = $data['facebook'];
+		$adv->twitteruser = $data['twitter'];
+		$adv->iguser = $data['instagram'];
+		$adv->contactno = $data['mobile'];
+		$adv->landline = $data['landline'];
+		$adv->birthdate = $data['bdate'];
+		$adv->gender =  $data['gender'];
+		$adv->category = $data['advcateg'];
+		$adv->startdate = $data['durstart'];
+        $adv->enddate = $data['durend'];
 		/*if ($req->hasFile('img')) {
 			if (file_exists($adv->imagepath)) {
 				unlink($adv->imagepath);
@@ -314,10 +347,10 @@ class AdvDirectoryController extends Controller {
 	public function addAC($data, $id){
         $advisory = new AdvisoryCouncil;
         $advisory->ID = $id;
-       	$advisory->officename = $data->officename;
-        $advisory->officeaddress = $data->officeadd;
-        $advisory->advisory_position_id = $data->acposition;
-        $advisory->subcategoryId = $data->acsubcat;
+       	$advisory->officename = $data['officename'];
+        $advisory->officeaddress = $data['officeadd'];
+        $advisory->advisory_position_id = $data['acposition'];
+        $advisory->subcategoryId = $data['acsubcat'];
         //$advisory->acsector = $data->acsector;
 
         $advisory->save();
@@ -328,14 +361,14 @@ class AdvDirectoryController extends Controller {
 
     public function editAC(Request $request){
 
-    	$advisory = AdvisoryCouncil::find($data->ID);
-        $advisory->officename = $data->officename;
-        $advisory->officeaddress = $data->officeadd;
-        $advisory->startdate = $data->durstart;
-        $advisory->enddate = $data->durend;
-        $advisory->advisory_position_id = $data->acposition;
-        $advisory->subcategoryId = $data->acsubcat;
-        //$advisory->acsector = $data->acsector;
+    	$advisory = AdvisoryCouncil::find($data['ID']);
+        $advisory->officename = $data['officename'];
+        $advisory->officeaddress = $data['officeadd'];
+        $advisory->startdate = $data['durstart'];
+        $advisory->enddate = $data['durend'];
+        $advisory->advisory_position_id = $data['acposition'];
+        $advisory->subcategoryId = $data['acsubcat'];
+        //$advisory->acsector = $data['acsector'];
 	    $adv->save();
 
     } // update AC
@@ -346,9 +379,9 @@ class AdvDirectoryController extends Controller {
     
     	$advisory = new PoliceAdvisory;
     	$advisory->ID = $id;
-    	$advisory->police_position_id = $data->pnppost;
-    	$advisory->policeoffice_id = $data->suboffice;
-    	$advisory->authorityorder = $data->authorder;
+    	$advisory->police_position_id = $data['pnppost'];
+    	$advisory->policeoffice_id = $data['suboffice'];
+    	$advisory->authorityorder = $data['authorder'];
 
     	$advisory->save();
 
@@ -357,10 +390,10 @@ class AdvDirectoryController extends Controller {
 	}// add TP
 
 	 public function editTP($data){
-    	$advisory = PoliceAdvisory::find($data->ID);
-    	$advisory->police_position_id = $data->pnppost;
-    	$advisory->policeoffice_id = $data->suboffice;
-    	$advisory->authorityorder = $data->authorder;
+    	$advisory = PoliceAdvisory::find($data['ID']);
+    	$advisory->police_position_id = $data['pnppost'];
+    	$advisory->policeoffice_id = $data['suboffice'];
+    	$advisory->authorityorder = $data['authorder'];
     	$advisory->save();
         
     }// update TP
@@ -372,27 +405,27 @@ class AdvDirectoryController extends Controller {
 
     	for($i=0 ; $i < $count ; $i++){
 		   	$training = new Trainings();
-		   	$training->trainingname = $data->traintitle[$i];
-		   	$training->startdate = $data->sdate[$i];
-		   	$training->enddate = $data->edate[$i];
-		   	$training->location = $data->location[$i];
-		   	$training->organizer = $data->org[$i];
-		   	$training->starttime = $data->stime[$i];
-		   	$training->endtime = $data->etime[$i];
-		   	$training->trainingtype = $data->traincateg[$i];
-		   	$training->adviserID = $id;
+		   	$training->trainingname = $data['traintitle'][$i];
+		   	$training->startdate = $data['sdate'][$i];
+		   	$training->enddate = $data['edate'][$i];
+		   	$training->location = $data['location'][$i];
+		   	$training->organizer = $data['org'][$i];
+		   	$training->starttime = $data['stime'][$i];
+		   	$training->endtime = $data['etime'][$i];
+		   	$training->trainingtype = $data['traincateg'][$i];
+		   	$training->adviser_id = $id;
 		   	$training->save();
 
 		   	$trainID = $this->getTrainID();
 
-		   	$this->addLecturer($data, $trainID);
+		   	$this->addLecturer($data['speakers'][$i], $trainID);
 
 	    }//for
 
     }// add Training
 
     public function editTraining($data, $id) {
-    	Trainings::where('adviserID', $id)->delete();
+    	Trainings::where('adviser_id', $id)->delete();
 
     	$this->addTraining($data, $id);
 
@@ -409,11 +442,11 @@ class AdvDirectoryController extends Controller {
    	}//public function getTrainID() {
 
    	public function addLecturer($data, $trainID) {
-   		for($ctr = 0 ; $ctr < sizeof($data->speakers) ; $ctr++) {
+   		for($ctr = 0 ; $ctr < sizeof($data['speaker']) ; $ctr++) {
    			$lecturer = new Lecturers;
 
-   			$lecturer->lecturername = $data->speakers[$ctr][0];
-   			$lecturer->trainID = $data->speakers[$ctr][1];
+   			$lecturer->lecturername = $data['speaker'][$ctr];
+   			$lecturer->training_id = $trainID;
 
    			$lecturer->save();
 
@@ -424,7 +457,7 @@ class AdvDirectoryController extends Controller {
    	public function editLecturer($data, $trainID, $id) {
 
    		for ($ctr=0; $ctr < sizeof($trainID) ; $ctr++) { 
-   			Lecturers::where('trainID', $trainID[$ctr])->delete();
+   			Lecturers::where('training_id', $trainID[$ctr])->delete();
 
    			
    		}//for
