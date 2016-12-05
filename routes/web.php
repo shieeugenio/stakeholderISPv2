@@ -31,6 +31,8 @@ Route::get('home', function() {
 
 })->middleware('auth'); //admin
 
+Route::get('home', 'AdvDirectoryController@getRecent')->middleware('auth'); //admin
+
 
 Route::get('home', 'AdvDirectoryController@getRecent'); //admin
 
@@ -44,8 +46,7 @@ Route::get('directory', 'AdvDirectoryController@getList')->middleware('auth');
 
 //TRANSACTION @author: Shie Eugenio
 Route::get('directory/add', 'AdvDirectoryController@index')->middleware('auth');
-Route::post('directory/store', 'ProfileController@store');
-Route::post('directory/getinfo', 'ProfileController@getinfo');
+Route::resource('modalView', 'AdvDirectoryController@getRecordData');
 
 //DROPDOWN @author: Shie Eugenio
 Route::post('dropdown/getsubcateg', 'AdvDirectoryController@getSubCateg');
@@ -138,6 +139,8 @@ Route::post('transaction/addadvisers','ProfileController@store');
 Route::get('transaction/advedt','ProfileController@edit');
 
 
+//smart search [ren]
+Route::get('search', 'SearchController@index');
 
 //login [ren]
 Route::get('login', array('uses' => 'HomeController@index'));
@@ -147,8 +150,3 @@ Route::get('logout', array('uses' => 'HomeController@logout'));
 //registration[ren]
 Route::get('registration', 'RegistrationController@index');
 Route::resource('register', 'RegistrationController@register');
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');

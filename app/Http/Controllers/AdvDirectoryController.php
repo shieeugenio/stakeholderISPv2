@@ -30,6 +30,8 @@ use App\Models\Trainings;
 
 use App\Models\Lecturers;
 
+use DB;
+
 
 
 class AdvDirectoryController extends Controller {
@@ -59,7 +61,7 @@ class AdvDirectoryController extends Controller {
 
 
 
-		/**$data = array(
+		/*$data = array(
 					'ID' => '',
 					'lname' =>'lname',
 					'fname' =>'fname',
@@ -79,8 +81,48 @@ class AdvDirectoryController extends Controller {
 					'advcateg'  => '0',
 					'durstart' => '2016-12-01',
 					'durend' => '2016-12-01',
+					'acposition' => '1',
+					'officename' => 'CC',
+					'officeadd' => 'QC',
+					'acsubcateg' => '1',
+					'acsector' => array('1'),
 					'submit' => 'save'
-				);**/
+				);
+
+				$data = array(
+					'ID' => '',
+					'lname' =>'lname',
+					'fname' =>'fname',
+					'mname' => 'mname',
+					'bdate' => '1996-11-21',
+					'gender' => '1',
+					'street' => 'street',
+					'barangay' => 'barangay',
+					'city' => 'city',
+					'province' => 'province',
+					'mobile' => '890209129012',
+					'landline' => '2345234',
+					'email' => 'shie@yahoo.com',
+					'facebook' => 'shieeugenio',
+					'twitter' => 'shieeugenio',
+					'instagram' => 'shieeugenio',
+					'advcateg'  => '1',
+					'durstart' => '2016-12-01',
+					'durend' => '2016-12-01',
+					'authorder' => 'saudjiqskkpq9',
+					'pnppost' => '1',
+					'suboffice' => '1',
+					'traintitle' => array('T30sjdas','T7sajdk'),
+					'traincateg' => array('Tjdhks1','Tsajdkl2'),
+					'location' => array('T1','T2'),
+					'sdate' => array('2015-11-21','2015-11-21'),
+					'stime' => array('08:00:00', '08:00:00'),
+					'etime' => array('08:00:00', '08:00:00'),
+					'edate' => array('2015-11-21','2015-11-21'),
+					'speaker' => array(array('Shie', 'Mae'), array('Shie', 'Mae')),
+					'org' => array('ORG', 'ORG3'),
+					'submit' => 'save'
+				);*/
 
 		
 
@@ -88,9 +130,8 @@ class AdvDirectoryController extends Controller {
 			$this->addProfile($data);
 
 			$id = $this->getID();
-			//print_r($data['fname']);
 
-			/*if($data->advcateg == 0) {
+			if($data['advcateg'] == 0) {
 				$this->addAC($data, $id);
 
 			} else {
@@ -99,7 +140,7 @@ class AdvDirectoryController extends Controller {
 
 			}//if($data->advcateg == 0) {
 
-			$this->addTraining($data, $id);*/
+			$this->addTraining($data, $id);
 		
 
 		}// if
@@ -142,49 +183,61 @@ class AdvDirectoryController extends Controller {
 	}//view for edit
 
 	public function getRecordData(Request $req) {
-		$id = $req->ID;
+		$id = 1;
 		
 
-		$categ = Advisers::where('ID', $id)->get('category');
+		$categ = DB::table('advisers')->select('category')->where('ID', $id)->get();
 
-		if($categ[0]->ID == 0) {
+
+		if($categ[0]->category == 0) {
 			$recorddata = Advisers::with('advisorycouncil')
-									->with('advtrainings')
-									->with('trainlecturer')
+									->with('training')
 									->where('ID', $id)
 									->get();
 
 
 		} else {
 			$recorddata = Advisers::with('policeadvisory')
-									->with('advtrainings')
-									->with('trainlecturer')
+									->with('training')
 									->where('ID', $id)
 									->get();
 
 		}// if
 
-		return $recorddata;
+		$training = Trainings::with('lecturer')
+					->where('adviser_id', $id)
+					->get();
+
+		return array($recorddata, date('d M Y', strtotime($recorddata[0]->birthdate)), $training);
+		
 	}//get record / modal view
 
 	public function getList() {
-		$directory = Advisers::orderBy('ID', 'desc')
-					->pluck('ID', 'lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline');
+		$directory = DB::table('advisers')
+						->select('ID', 'lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline')
+						->orderBy('ID', 'desc')
+						->get();
+
+		//return $directory;
 
 		return view('module.adviser')->with('directory', $directory);
 	}//public function getList() {
 
 	public function readyPHome() {
-		$directory = Advisers::orderBy('ID', 'desc')
-								->pluck('lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline');
+		$directory = DB::table('advisers')
+						->select('ID', 'lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline')
+						->orderBy('ID', 'desc')
+						->get();
 
 		return view('home.defaultphome')->with('directory', $directory);
 	}//public function getList() {
 
 	public function getRecent() {
-		$recent = Advisers::orderBy('ID', 'desc')
-							->take(50)
-							->pluck('ID', 'lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline');
+		$recent = DB::table('advisers')
+						->select('ID', 'lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline')
+						->orderBy('ID', 'desc')
+						->limit(50)
+						->get();
 
 		//SUMMARY PANE INSERT CODE HERE
 		$all = Advisers::count();
@@ -350,7 +403,7 @@ class AdvDirectoryController extends Controller {
        	$advisory->officename = $data['officename'];
         $advisory->officeaddress = $data['officeadd'];
         $advisory->advisory_position_id = $data['acposition'];
-        $advisory->subcategoryId = $data['acsubcat'];
+        $advisory->subcategoryId = $data['acsubcateg'];
         //$advisory->acsector = $data->acsector;
 
         $advisory->save();
@@ -401,7 +454,7 @@ class AdvDirectoryController extends Controller {
     //Training
 
     public function addTraining($data, $id) {
-    	$count = count($data->traintitle);
+    	$count = count($data['traintitle']);
 
     	for($i=0 ; $i < $count ; $i++){
 		   	$training = new Trainings();
@@ -418,7 +471,7 @@ class AdvDirectoryController extends Controller {
 
 		   	$trainID = $this->getTrainID();
 
-		   	$this->addLecturer($data['speakers'][$i], $trainID);
+		   	$this->addLecturer($data['speaker'][$i], $trainID);
 
 	    }//for
 
@@ -442,10 +495,10 @@ class AdvDirectoryController extends Controller {
    	}//public function getTrainID() {
 
    	public function addLecturer($data, $trainID) {
-   		for($ctr = 0 ; $ctr < sizeof($data['speaker']) ; $ctr++) {
+   		for($ctr = 0 ; $ctr < sizeof($data) ; $ctr++) {
    			$lecturer = new Lecturers;
 
-   			$lecturer->lecturername = $data['speaker'][$ctr];
+   			$lecturer->lecturername = $data[$ctr];
    			$lecturer->training_id = $trainID;
 
    			$lecturer->save();

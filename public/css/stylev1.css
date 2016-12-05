@@ -148,6 +148,7 @@ hr {
 .advdata {
 	float:left;
 	width: 53%;
+	max-width: 100%;
 	height: 90%;
 	margin: 2% 2% 2% 2%;
 	font-family: "Franklin Gothic Book";
@@ -155,6 +156,14 @@ hr {
 
 .name {
 	font-weight: bold;
+}
+
+.p1 {
+	font-family: "Franklin Gothic Book";
+	font-size: 85%;
+	width:100%;
+	max-width: 100%;
+
 }
 
 .grey {
@@ -213,6 +222,11 @@ hr {
 .addbtn {
 	width: 0.25em;
 	height: 0.25em;
+	float: right;
+}
+
+.h3name {
+	float:left;
 }
 
 .tablecon {

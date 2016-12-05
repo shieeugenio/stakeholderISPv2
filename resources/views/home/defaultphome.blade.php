@@ -26,7 +26,7 @@
 									@endif
 
 									<br>
-									$ritem->email | $ritem->contactno | $ritem->landline
+									{{$ritem->email}} <br> {{$ritem->contactno}} | {{$ritem->landline}}
 							</p>
 
 								
