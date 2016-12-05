@@ -10,9 +10,9 @@ class Trainings extends Model
     protected $primaryKey = "ID";
     public $timestamps = false;
 
-    public function adviser()
+    public function police()
     {
-    	return $this->belongsTo('App\Models\Advisers','adviser_id', 'ID');
+    	return $this->belongsTo('App\Models\PoloceAdvisory','police_id', 'ID');
     }
 
 

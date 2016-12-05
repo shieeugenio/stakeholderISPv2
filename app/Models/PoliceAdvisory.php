@@ -15,6 +15,11 @@ class PoliceAdvisory extends Model
     	return $this->belongsTo('App\Models\Advisers', 'ID', 'ID');
     }
 
+    public function police()
+    {
+        return $this->hasMany('App\Models\Trainings', 'police_id');
+    }
+
     public function policeofficetwo()
     {
     	return $this->belongsTo('App\Models\PoliceOfficeSecond', 'policeoffice_id', 'ID');
