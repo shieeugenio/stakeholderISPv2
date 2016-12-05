@@ -119,6 +119,8 @@
 				message: msg,
 				timeout: 2500
 			});
+
+			window.location.href = "{{url('advisorycouncil')}}";
 						
 		}
 

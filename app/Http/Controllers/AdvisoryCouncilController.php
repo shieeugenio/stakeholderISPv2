@@ -14,6 +14,7 @@ use App\Models\AdvisoryPositions;
 use App\Models\PersonnelSector;
 use App\Http\Controllers\Controller;
 use App\Models\ACSectors;
+use App\Http\Requests;
 use DB;
 
 class AdvisoryCouncilController extends Controller
@@ -32,6 +33,21 @@ class AdvisoryCouncilController extends Controller
 
     }
 
+    public function getID($tbl, $field){
+          $stmt = DB::table($tbl)->select($field)->orderBy($field, 'desc')->first();
+
+        if (is_null($stmt)) {
+            $id = 1;
+
+        } else {
+            $id = $stmt->$field + 1;
+
+
+        }//if (is_null($stmt)) {
+
+        return $id;
+
+    }
   
     public function acCRUD(Request $request)
     {
@@ -39,21 +55,22 @@ class AdvisoryCouncilController extends Controller
         $callId = $request->callId;
 
         if($callId==1)
+            
         {
-           $ac = DB::table('Advisers')->select('ID')->orderBy('ID','desc')->first();
-            $acID = $ac.ID;
+
+            $acID = $this->getID('Advisers','ID');
 
             $advisory = new AdvisoryCouncil;
-            $advisory->ID = $acID;
+            $advisory->ID = $acID-1;
             $advisory->officename = $request->acofficenamE;
             $advisory->officeaddress = $request->acofficeadD;
             $advisory->advisory_position_id = $request->positioN;
             $advisory->subcategoryId = $request->subcaT;
             $advisory->save();
-
-            for($i=0;count($request->sectoR);$i++){
+            $count = sizeof($request->sectoR);
+            for($i=0;$i<$count;$i++){
                 $personnel = new PersonnelSector;
-                $personnel->advisory_council_id = $acID;
+                $personnel->advisory_council_id = $acID-1;
                 $personnel->ac_sector_id = $request->sectoR[$i];
                 $personnel->save();
             }
