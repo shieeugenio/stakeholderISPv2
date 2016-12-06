@@ -15,11 +15,6 @@ class Advisers extends Model
     	return $this->hasOne('App\Models\AdvisoryCouncil', 'ID');
     }
 
-    public function training()
-    {
-    	return $this->hasMany('App\Models\Trainings', 'adviser_id');
-    }
-
     public function policeadvisory()
     {
     	return $this->hasMany('App\Models\PoliceAdvisory', 'ID');
