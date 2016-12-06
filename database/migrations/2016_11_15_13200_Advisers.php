@@ -12,7 +12,7 @@ class Advisers extends Migration
         {
             $table->increments('ID');
             $table->string('fname', 45);
-            $table->string('mname', 45);
+            $table->string('mname', 45)->nullable();
             $table->string('lname', 45);
             $table->tinyInteger('gender');
             $table->string('contactno', 15);
