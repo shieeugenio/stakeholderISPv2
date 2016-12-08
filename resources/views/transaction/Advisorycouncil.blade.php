@@ -248,7 +248,7 @@ function CRUD(id, func){
 						document.getElementsByName('acofficename')[0].value = data[0].officename;
 						document.getElementsByName('acofficeadd')[0].value = data[0].officeaddress;
 
-						$('#multipleSelect').multiSelect('refresh'); 
+						console.log($('#multipleSelect').val());
 				}
 			} 
 
