@@ -12,7 +12,7 @@ class ACSubcategory extends Migration
         {
             $table->increments('ID');
             $table->string('subcategoryname', 45)->unique();
-            $table->string('acsubcategorycode', 10)->unique();
+            $table->string('acsubcategorycode', 10)->nullable();
             $table->string('desc', 60)->nullable();
             $table->softDeletes();
             $table->integer('categoryId')->unsigned();
