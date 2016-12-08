@@ -5,7 +5,6 @@
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/semantic.css')}}">
 <script type="text/javascript" src="{{ URL::asset('js/jquery-2.1.4.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/semantic.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('js/jquery.multi-select.js') }}" ></script>
 
 </head>
 <body>
