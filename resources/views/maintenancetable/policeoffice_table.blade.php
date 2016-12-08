@@ -56,7 +56,6 @@
 						<div class = "labelpane">
 							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Code
-									<span class = "asterisk">*</span>
 								</label>
 
 							</div>

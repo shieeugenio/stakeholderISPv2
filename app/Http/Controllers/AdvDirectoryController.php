@@ -136,11 +136,9 @@ class AdvDirectoryController extends Controller {
 
 			} else {
 				$this->addTP($data, $id);
-
+				$this->addTraining($data, $id);
 
 			}//if($data->advcateg == 0) {
-
-			$this->addTraining($data, $id);
 		
 
 		}// if
@@ -161,13 +159,15 @@ class AdvDirectoryController extends Controller {
 
 			} else {
 				$this->editTP($data, $data->ID);
+				
+				$trainID = $this->getTrainIDList($data->ID);
+
+				$this->editLecturer($data, $trainID, $data->ID);
 
 
 			}//if($data->advcateg == 0) {
 
-			$trainID = $this->getTrainIDList($data->ID);
-
-			$this->editLecturer($data, $trainID, $data->ID);
+			
 
 		}// if
 

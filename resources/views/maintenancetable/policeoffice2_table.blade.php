@@ -63,7 +63,6 @@
 
 							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Secondary Office Code
-									<span class = "asterisk">*</span>
 								</label>
 							</div>
 

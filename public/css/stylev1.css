@@ -222,6 +222,11 @@ hr {
 .addbtn {
 	width: 0.25em;
 	height: 0.25em;
+}
+
+.editbtn {
+	width: 0.25em;
+	height: 0.25em;
 	float: right;
 }
 
