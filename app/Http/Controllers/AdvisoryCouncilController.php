@@ -79,28 +79,56 @@ class AdvisoryCouncilController extends Controller
         if($callId==2)
         {
             $id = $request->id;
-            $acsec = ACSectors::find($id);
+            $sector = Array();
+            $acsec = AdvisoryCouncil::find($id);
+            $sector = DB::table('ACSectors')
+                        ->select('ACSectors.ID','ACSectors.sectorname')
+                        ->join('PersonnelSector','ACSectors.ID','=','PersonnelSector.ac_sector_id')
+                        ->join('AdvisoryCouncil','PersonnelSector.advisory_council_id','=', 'AdvisoryCouncil.ID')
+                        ->where('AdvisoryCouncil.ID','=', $id)
+                        ->where('PersonnelSector.advisory_council_id','=', $id)
+                        ->get();
 
-            return $acsec;
+            $sub = DB::table('ACSubcategory')
+                    ->select('ACSubcategory.ID','ACSubcategory.subcategoryname')
+                    ->join('AdvisoryCouncil','ACSubcategory.ID','=','AdvisoryCouncil.subcategoryId')
+                    ->where('AdvisoryCouncil.ID','=', $id)
+                    ->get();
+
+            foreach($sub as $sub){
+                $cat = DB::table('ACCategory')
+                        ->select('ACCategory.ID','ACCategory.categoryname')
+                        ->join('ACSubcategory','ACCategory.ID','=','ACSubcategory.categoryId')
+                        ->get();
+            }
+
+            $post = DB::table('AdvisoryPositions')
+                        ->select('AdvisoryPositions.ID','AdvisoryPositions.acpositionname')
+                        ->join('AdvisoryCouncil','AdvisoryPositions.ID','=','AdvisoryCouncil.advisory_position_id')
+                        ->where('AdvisoryCouncil.ID','=', $id)
+                        ->get();
+
+            return [$acsec,$sector,$post,$cat,$sub];
 
         }
 
         if($callId==3)
         {
+             $acID = $request->id;
 
-            $id = $request->id;
-            $advisory = AdvisoryCouncil::find($id);
+            $advisory = AdvisoryCouncil::find($acID);
             $advisory->officename = $request->acofficenamE;
-            $advisory->officeaddress = $request->acofficeaddD;
+            $advisory->officeaddress = $request->acofficeadD;
             $advisory->advisory_position_id = $request->positioN;
             $advisory->subcategoryId = $request->subcaT;
             $advisory->save();
-
-            $iD = $request->id;
-            $personnel = PersonnelSector::find($iD);
-            $personnel->advisory_council_id = $acID;
-            $personnel->ac_sector_id = $request->sectoR;
-            $personnel->save();
+            $count = sizeof($request->sectoR);
+            for($i=0;$i<$count;$i++){
+                $personnel = new PersonnelSector;
+                $personnel->advisory_council_id = $acID;
+                $personnel->ac_sector_id = $request->sectoR[$i];
+                $personnel->save();
+            }
         }
     }
 
