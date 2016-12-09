@@ -150,3 +150,8 @@ Route::get('logout', array('uses' => 'HomeController@logout'));
 //registration[ren]
 Route::get('registration', 'RegistrationController@index');
 Route::resource('register', 'RegistrationController@register');
+
+
+//testing [ren]
+Route::get('testAdviser','TestController@index');
+Route::get('testAdviserAdd','TestController@addAdviser');
