@@ -11,8 +11,10 @@
 	<form action="javascript:CRUD(0,document.getElementById('dualbutton').value)" method="POST">
 		<fieldset>
 			<input type="hidden" name="_token" id="csrf-token" value="{{Session::token()}}" type="text">
+			<input type="hidden" name="id" id='ID' value="">
 				<label for='acpositionid'>Position ID </label>
 					<select name="position">
+						<option disabled selected value="select">---select--</option>
 						@foreach($positions as $position => $key)
 						<option value='{{$key->ID}}'>
 							{{$key->acpositionname}}
@@ -28,7 +30,7 @@
 
 				<label for='accategoryid'>Category </label>
 					<select name="category" id="cat" >
-						<option disabled selected>Category</option>
+						<option disabled selected value="select">Category</option>
 						@foreach($cat as $key)
 							<option value='{{$key->ID}}'>
 								{{$key->categoryname}}
@@ -50,7 +52,7 @@
 
 
 					<label>AC Sectors</label>
-					<select id="multipleSelect" multiple class="ui selection dropdown" name="sector">
+					<select id="multipleSelect" multiple class="ui selection dropdown" name="sector" placeholder="---Select---">
 							@foreach($ac as $id => $key)
 							<option value="{{$key->ID}}">
 								{{$key->sectorname}}
@@ -98,7 +100,7 @@
 						<!-- <td>{{$res->acsubcategory->subcategoryname}}</td> -->
 						<td></td>
 						<td>{{$res->acsubcategory->subcategoryname}}</td>
-						<td><a href="{{URL::to('transac/' .$res->ID. '/edit')}}" value="edit">EDIT</a></td>
+						<td><button id="{{$res->ID}}" value="2" onclick="CRUD(this.id,2)">EDIT</button></td>
 					</tr>
 					@endforeach
 				</tbody>
@@ -115,10 +117,7 @@
 
 			document.getElementById('dualbutton').value = 1;
 
-			$("#myToast").showToast({
-				message: msg,
-				timeout: 2500
-			});
+			window.location.href = "{{url('advisorycouncil')}}";
 						
 		}
 
@@ -160,16 +159,19 @@ function CRUD(id, func){
 		{
 			if(confirm('Save?')) {
 				data = {
-					'positioN' : document.getElementsByName('acsectorName')[0].value,
-					'acofficenamE' : document.getElementsByName('acsectorCode')[0].value,
-					'acofficeadD' : document.getElementsByName('Desc')[0].value,
+					'id' : document.getElementById('ID').value,
+					'positioN' : document.getElementsByName('position')[0].value,
+					'acofficenamE' : document.getElementsByName('acofficename')[0].value,
+					'acofficeadD' : document.getElementsByName('acofficeadd')[0].value,
 					'categorY' : document.getElementsByName('category')[0].value,
 					'subcaT' : document.getElementsByName('subcat')[0].value,
-					'sectoR' : document.getElementsByName('sector')[0].value,
+					'sectoR' : $('#multipleSelect').val(),
 					'submit': document.getElementsByName("submit")[0].value,
 					'callId' : 3,
 					'_token' : '{{ Session::token() }}'
+				
 				};
+				console.log(data);
 
 			}//if(confirm('Save?')) {
 		}//update
@@ -197,16 +199,56 @@ function CRUD(id, func){
 
 				}//if func
 				else {
-					$('#' + data['ID']).attr('class', 'activerow');
-					$('tr').not("[id = '" + data['ID'] + "']").removeAttr('class');
+					console.log(data);
+					console.log(data[2][0].ID);
 
-					document.getElementsByName('acsectorName')[0].value = data[''];
-					document.getElementsByName('acsectorCode')[0].value = data[''];
-					document.getElementsByName('Desc')[0].value = data[''];
-					document.getElementsByName('category')[0].value = data[''];
-					document.getElementsByName('subcat')[0].value = data[''];
-					document.getElementsByName('sector')[0].value = data[''];
-				
+						document.getElementById('ID').value = data[0].ID;
+
+
+						for(var k=0, opt = document.getElementsByName('position')[0].options; k < opt.length ;++k)
+							{	
+								if( opt[k].value == data[2][0].ID)
+					   			{	
+
+					   				document.getElementsByName('position')[0].options[k].selected = true; 
+					   			   	break;
+					   			}
+							}//set position
+						
+						for(var k=0, opt = document.getElementById('cat').options; k < opt.length ;++k)
+							{	
+								if( opt[k].value == data[3][0].ID)
+					   			{	
+
+					   				document.getElementById('cat').options[k].selected = true; 
+					   			   	break;
+					   			}
+							}//set Category
+						
+						for(var k=0, opt = document.getElementById('sub').options; k < opt.length ;++k)
+							{	
+								if( opt[k].value == data[4].ID)
+					   			{	
+
+					   				document.getElementById('sub').options[k].selected = true; 
+					   			   	break;
+					   			}
+							}//set subcat
+
+						for(var k=0, opt = document.getElementsByName('sector')[0].options; k < opt.length ;++k)
+							{	
+								if( opt[k].value == data[1][k].ID)
+					   			{	
+
+					   				document.getElementsByName('sector')[0].options[k].selected = true;
+					   				
+					   			}
+							}//set sector
+
+						document.getElementsByName('acofficename')[0].value = data[0].officename;
+						document.getElementsByName('acofficeadd')[0].value = data[0].officeaddress;
+
+						console.log($('#multipleSelect').val());
 				}
 			} 
 
@@ -245,4 +287,6 @@ function CRUD(id, func){
 	*/
 
 </script>
+
+
 </html>

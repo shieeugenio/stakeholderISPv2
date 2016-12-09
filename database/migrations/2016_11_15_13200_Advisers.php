@@ -12,7 +12,7 @@ class Advisers extends Migration
         {
             $table->increments('ID');
             $table->string('fname', 45);
-            $table->string('mname', 45);
+            $table->string('mname', 45)->nullable();
             $table->string('lname', 45);
             $table->tinyInteger('gender');
             $table->string('contactno', 15);
@@ -23,7 +23,7 @@ class Advisers extends Migration
             $table->string('province', 45);
             $table->string('email', 65);
             $table->date('startdate');
-            $table->date('enddate');
+            $table->date('enddate')->nullable();
             $table->string('fbuser', 20)->nullable();
             $table->string('twitteruser', 20)->nullable();
             $table->string('iguser', 20)->nullable();
