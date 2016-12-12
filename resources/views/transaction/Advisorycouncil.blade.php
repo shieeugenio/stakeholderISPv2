@@ -172,6 +172,7 @@ function CRUD(id, func){
 				
 				};
 				console.log(data);
+				console.log($('#multipleSelect').val());
 
 			}//if(confirm('Save?')) {
 		}//update
@@ -200,9 +201,12 @@ function CRUD(id, func){
 				}//if func
 				else {
 					console.log(data);
-					console.log(data[2][0].ID);
+					console.log(data[1][0].ID);
 
 						document.getElementById('ID').value = data[0].ID;
+						document.getElementsByName('acofficename')[0].value = data[0].officename;
+						document.getElementsByName('acofficeadd')[0].value = data[0].officeaddress;
+
 
 
 						for(var k=0, opt = document.getElementsByName('position')[0].options; k < opt.length ;++k)
@@ -237,16 +241,14 @@ function CRUD(id, func){
 
 						for(var k=0, opt = document.getElementsByName('sector')[0].options; k < opt.length ;++k)
 							{	
-								if( opt[k].value == data[1][k].ID)
-					   			{	
-
-					   				document.getElementsByName('sector')[0].options[k].selected = true;
-					   				
+								if(data[1][k]){
+									if( opt[k].value == data[1][k].ID)
+						   			{	
+						   				document.getElementsByName('sector')[0].options[k].selected = true;
+						   			}
 					   			}
+					   			else{break;}
 							}//set sector
-
-						document.getElementsByName('acofficename')[0].value = data[0].officename;
-						document.getElementsByName('acofficeadd')[0].value = data[0].officeaddress;
 
 						console.log($('#multipleSelect').val());
 				}
