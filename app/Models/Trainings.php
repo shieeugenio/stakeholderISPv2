@@ -8,7 +8,7 @@ class Trainings extends Model
 {
    	protected $table = "Trainings";
     protected $primaryKey = "ID";
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function police()
     {

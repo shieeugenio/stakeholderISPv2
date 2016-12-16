@@ -8,7 +8,7 @@ class AdvisoryCouncil extends Model
 {
     protected $table = "AdvisoryCouncil";
     protected $primaryKey = "ID";
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function personnelsector()
     {
