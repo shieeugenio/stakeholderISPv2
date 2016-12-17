@@ -8,5 +8,5 @@ class password_resets extends Model
 {
     protected $table = "password_resets";
     protected $primaryKey = "ID";
-    public $timestamps = false;
+    public $timestamps = true;
 }

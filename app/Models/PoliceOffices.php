@@ -8,7 +8,7 @@ class PoliceOffices extends Model
 {
     protected $table = "PoliceOffices";
     protected $primaryKey = "ID";
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function policeofficetwo()
     {

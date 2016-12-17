@@ -8,7 +8,7 @@ class Lecturers extends Model
 {
     protected $table = "Lecturers";
     protected $primaryKey = "ID";
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function lecturer()
     {

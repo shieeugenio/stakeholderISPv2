@@ -8,7 +8,7 @@ class Advisers extends Model
 {
     protected $table = "Advisers";
     protected $primaryKey = "ID";
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function advisorycouncil()
     {
