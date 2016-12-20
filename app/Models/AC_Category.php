@@ -8,7 +8,7 @@ class AC_Category extends Model
 {
     protected $table = "AC_Category";
     protected $primaryKey = "ID";
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function subcat()
     {
