@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Lecturers extends Model
+class Lecturer extends Model
 {
-    protected $table = "Lecturers";
+    protected $table = "Lecturer";
     protected $primaryKey = "ID";
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function lecturer()
     {

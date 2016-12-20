@@ -18,7 +18,17 @@ Route::get('logout', array('uses' => 'HomeController@logout'));
 
 //REGISTRATION @author: Ren Buluran
 Route::get('registration', 'RegistrationController@index');
-Route::resource('register', 'RegistrationController@register');
+//Route::resource('register', 'RegistrationController@register');
+Route::post('register', 'RegistrationController@register');
+
+/*
+	Route::resource('register', 'RegistrationController@register');
+
+	URL           METHOD          FUNCTION
+	register      GET             register
+	register/{id} GET             register
+	register      POST            register
+*/
 
 //MENU @author: Shie Eugenio
 Route::get('/', 'AdvDirectoryController@readyPHome'); //public

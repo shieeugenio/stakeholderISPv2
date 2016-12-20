@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PoliceOffices extends Migration
+class PoliceOffice extends Migration
 {
     public function up()
     {
-        Schema::create('PoliceOffices', function(Blueprint $table)
+        Schema::create('Police_Office', function(Blueprint $table)
         {
             $table->increments('ID');
+            $table->string('policeofficecode', 10)->nullable();
             $table->string('officename', 45)->unique();
             $table->string('police_address', 100);
             $table->string('contactno', 45);
-            $table->string('policeofficecode', 10)->nullable();
             $table->string('desc', 60)->nullable();
             $table->tinyInteger('policestaff');
             $table->softDeletes();
@@ -22,6 +22,6 @@ class PoliceOffices extends Migration
     }
     public function down()
     {
-        Schema::drop('PoliceOffices');
+        Schema::drop('Police_Office');
     }
 }
