@@ -10,11 +10,15 @@ class Training extends Model
     protected $primaryKey = "ID";
     public $timestamps = true;
 
-    public function police()
+    public function advisorytraining()
     {
-    	return $this->belongsTo('App\Models\Poloce_Advisory','police_id', 'ID');
+        return $this->hasMany('App\Models\AC_Training', 'id_training');	
     }
 
+    public function policetraining()
+    {
+        return $this->hasMany('App\Models\Police_Training', 'police_training_id'); 
+    }
 
     public function lecturer()
     {

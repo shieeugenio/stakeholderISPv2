@@ -20,10 +20,12 @@ class PoliceAdvisory extends Migration
             $table->string('email', 65);
             $table->string('authorityorder', 20)->unique();
             $table->text('imagepath');
+            $table->integer('rank_id')->unsigned();
+            $table->foreign('rank_id')->references('id')->on('ranks');
             $table->integer('police_position_id')->unsigned();
-            $table->integer('policeoffice_id')->unsigned();
-            $table->foreign('police_position_id')->references('ID')->on('Police_Position');
-            $table->foreign('policeoffice_id')->references('ID')->on('Police_Office_Second');
+            $table->integer('unit_id')->unsigned();
+            $table->foreign('police_position_id')->references('id')->on('Police_Position');
+            $table->foreign('unit_id')->references('id')->on('unit_offices');
         });
     }
 

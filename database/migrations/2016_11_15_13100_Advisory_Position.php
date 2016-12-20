@@ -14,7 +14,7 @@ class AdvisoryPosition extends Migration
             $table->string('acpositioncode', 10)->nullable();
             $table->string('acpositionname', 45)->unique();
             $table->string('desc', 60)->nullable();
-            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

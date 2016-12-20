@@ -25,4 +25,9 @@ class Advisory_Council extends Model
     {
         return $this->belongsTo('App\Models\Advisory_Position', 'advisory_position_id', 'ID');
     }
+
+    public function actraining(){
+
+        return $this->hasMany('App\Models\AC_Training', 'id_advisory');
+    }
 }
