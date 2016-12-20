@@ -8,11 +8,11 @@ class ACCategory extends Migration
 {
     public function up()
     {
-        Schema::create('ACCategory', function(Blueprint $table)
+        Schema::create('AC_Category', function(Blueprint $table)
         {
             $table->increments('ID');
-            $table->string('categoryname', 45)->unique();
             $table->string('accategorycode', 10)->nullable();
+            $table->string('categoryname', 45)->unique();
             $table->string('desc', 60)->nullable();
             $table->softDeletes();
         });
@@ -20,6 +20,6 @@ class ACCategory extends Migration
 
     public function down()
     {
-        Schema::drop('ACCategory');
+        Schema::drop('AC_Category');
     }
 }

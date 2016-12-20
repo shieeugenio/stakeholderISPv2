@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PoliceOffices extends Model
+class Police_Office extends Model
 {
-    protected $table = "PoliceOffices";
+    protected $table = "Police_Office";
     protected $primaryKey = "ID";
     public $timestamps = true;
 
     public function policeofficetwo()
     {
-    	return $this->hasMany('App\Models\PoliceOfficeSecond', 'police_office_id');
+    	return $this->hasMany('App\Models\Police_Office_Second', 'police_office_id');
     }
 }

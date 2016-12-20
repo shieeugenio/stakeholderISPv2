@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ACSectors extends Model
+class AC_Sector extends Model
 {
-    protected $table = "ACSectors";
+    protected $table = "AC_Sector";
     protected $primaryKey = "ID";
     public $timestamps = false;
 
     public function personnelsector()
     {
-    	return $this->hasMany('App\Models\PersonnelSector', 'ac_sector_id');
+    	return $this->hasMany('App\Models\Personnel_Sector', 'ac_sector_id');
     }
 }

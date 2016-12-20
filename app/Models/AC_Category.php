@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ACCategory extends Model
+class AC_Category extends Model
 {
-    protected $table = "ACCategory";
+    protected $table = "AC_Category";
     protected $primaryKey = "ID";
     public $timestamps = false;
 
     public function subcat()
     {
-    	return $this->hasMany('App\Models\ACSubcategory', 'categoryId');
+    	return $this->hasMany('App\Models\AC_Subcategory', 'categoryId');
     }
 }

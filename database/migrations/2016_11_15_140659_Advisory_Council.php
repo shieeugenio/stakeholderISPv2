@@ -3,24 +3,23 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Advisers extends Migration
+class AdvisoryCouncil extends Migration
 {
     public function up()
 {
 
-    Schema::create('Advisers', function(Blueprint $table)
+    Schema::create('Advisory_Council', function(Blueprint $table)
         {
             $table->increments('ID');
             $table->string('fname', 45);
             $table->string('mname', 45)->nullable();
             $table->string('lname', 45);
+            $table->string('qualifier', 45);
             $table->tinyInteger('gender');
             $table->string('contactno', 15);
             $table->string('landline', 15)->nullable();
-            $table->string('street', 45);
-            $table->string('barangay', 45);
-            $table->string('city', 45);
-            $table->string('province', 45);
+            $table->string('officename', 45);
+            $table->string('officeaddress', 45);
             $table->string('email', 65);
             $table->date('startdate');
             $table->date('enddate')->nullable();
@@ -28,15 +27,17 @@ class Advisers extends Migration
             $table->string('twitteruser', 20)->nullable();
             $table->string('iguser', 20)->nullable();
             $table->date('birthdate');
-            $table->tinyInteger('category');
-            $table->tinyInteger('occupationstat');
             $table->text('imagepath');
+            $table->integer('advisory_position_id')->unsigned();
+            $table->integer('subcategoryId')->unsigned();
+            $table->foreign('advisory_position_id')->references('ID')->on('Advisory_Position');
+            $table->foreign('subcategoryId')->references('ID')->on('AC_Subcategory');
 
         });
 }
 
     public function down()
     {
-        Schema::drop('Advisers');
+        Schema::drop('Advisory_Council');
     }
 }

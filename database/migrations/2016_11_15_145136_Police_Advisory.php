@@ -8,21 +8,27 @@ class PoliceAdvisory extends Migration
 {
     public function up()
     {
-        Schema::create('PoliceAdvisory', function(Blueprint $table)
+        Schema::create('Police_Advisory', function(Blueprint $table)
         {
-            $table->primary('ID');
+            $table->increments('ID');
+            $table->string('fname', 45);
+            $table->string('mname', 45)->nullable();
+            $table->string('lname', 45);
+            $table->string('qualifier', 45);
+            $table->string('assign', 45);
+            $table->string('contactno', 15);
+            $table->string('email', 65);
             $table->string('authorityorder', 20)->unique();
-            $table->integer('ID')->unsigned();
+            $table->text('imagepath');
             $table->integer('police_position_id')->unsigned();
             $table->integer('policeoffice_id')->unsigned();
-            $table->foreign('ID')->references('ID')->on('Advisers');
-            $table->foreign('police_position_id')->references('ID')->on('PolicePositions');
-            $table->foreign('policeoffice_id')->references('ID')->on('PoliceOfficeSecond');
+            $table->foreign('police_position_id')->references('ID')->on('Police_Position');
+            $table->foreign('policeoffice_id')->references('ID')->on('Police_Office_Second');
         });
     }
 
     public function down()
     {
-        Schema::drop('PoliceAdvisory');
+        Schema::drop('Police_Advisory');
     }
 }
