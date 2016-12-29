@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Police_Office_Second extends Model
+class unit_offices extends Model
 {
-    protected $table = "Police_Office_Second";
-    protected $primaryKey = "ID";
+    protected $table = "unit_offices";
+    protected $primaryKey = "id";
     public $timestamps = true;
 
     public function policeadvisory()
@@ -15,8 +15,8 @@ class Police_Office_Second extends Model
     	return $this->hasMany('App\Models\Police_Advisory', 'policeoffice_id');
     }
 
-    public function policeoffice()
+    public function secondary()
     {
-    	return $this->belongsTo('App\Models\Police_Office', 'police_office_id', 'ID');
+    	return $this->hasMany('App\Models\unit_offices', 'UnitOfficeID');
     }
 }

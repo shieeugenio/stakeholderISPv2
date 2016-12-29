@@ -14,7 +14,7 @@ class ACSector extends Migration
             $table->string('sectorcode', 10)->nullable();
             $table->string('sectorname', 45)->unique();
             $table->string('desc', 60)->nullable();
-            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

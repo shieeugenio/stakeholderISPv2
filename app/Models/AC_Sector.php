@@ -8,7 +8,7 @@ class AC_Sector extends Model
 {
     protected $table = "AC_Sector";
     protected $primaryKey = "ID";
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function personnelsector()
     {

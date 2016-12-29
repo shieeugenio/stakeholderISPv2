@@ -10,9 +10,9 @@ class Police_Advisory extends Model
     protected $primaryKey = "ID";
     public $timestamps = true;
 
-    public function police()
+    public function policetraining()
     {
-        return $this->hasMany('App\Models\Training', 'police_id');
+        return $this->hasMany('App\Models\Police_Training', 'police_id');
     }
 
     public function policeofficetwo()
@@ -22,6 +22,11 @@ class Police_Advisory extends Model
 
     public function policeposition()
     {
-    	return $this->belongsTo('App\Models\Police_Position', 'police_position_id', 'ID');
+    	return $this->belongsTo('App\Models\Police_Position', 'police_position_id', 'id');
+    }
+
+    public  function rank()
+    {
+        return $this->belongsTo('App\Models\ranks', 'rank_id', 'id');
     }
 }

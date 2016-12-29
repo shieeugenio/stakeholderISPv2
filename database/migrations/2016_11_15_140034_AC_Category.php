@@ -14,7 +14,7 @@ class ACCategory extends Migration
             $table->string('accategorycode', 10)->nullable();
             $table->string('categoryname', 45)->unique();
             $table->string('desc', 60)->nullable();
-            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
