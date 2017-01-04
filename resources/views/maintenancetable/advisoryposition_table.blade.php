@@ -3,36 +3,6 @@
 @section('mtablesection')
 	<div class = "acccon">
 		<div class = "ui grid">
-			<div class = "ten wide column">
-				<div class = "tablepane">
-					<div class = "mtitle">Advisory Council Position</div>
-
-					<div class = "tablecon">
-						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
-						    <thead>
-						    	<tr>
-						            <th><center>Code</center></th>
-						            <th><center>Name</center></th>
-						            <th><center>Description</center></th> 
-						        </tr>	
-						    </thead>
-						                   
-						    <tbody>
-						    	@foreach ( $positions as $position)
-						    	<tr class = "trow" onclick = "CRUD({{$position->ID}},2)" id = "{{$position->ID}}">
-							    	<td><center>{{$position->acpositioncode}}</center></td>
-							    	<td><center>{{$position->acpositionname}}</center></td>
-							    	<td><center>{{$position->desc}}</center></td>
-						    	</tr>
-						    	@endforeach
-						    </tbody>
-
-						</table>
-						
-					</div>
-					
-				</div>
-			</div>
 
 			<div class = "six wide column">
 				<div class = "formpane">
@@ -47,7 +17,6 @@
 
 							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Code</label>
-								<span class = "asterisk">*</span>
 										
 							</div>
 
@@ -105,6 +74,37 @@
 						</div>
 								
 					</form>
+				</div>
+			</div>
+
+			<div class = "ten wide column">
+				<div class = "tablepane">
+					<div class = "mtitle">Advisory Council Position</div>
+
+					<div class = "tablecon">
+						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
+						    <thead>
+						    	<tr>
+						            <th><center>Code</center></th>
+						            <th><center>Name</center></th>
+						            <th><center>Description</center></th> 
+						        </tr>	
+						    </thead>
+						                   
+						    <tbody>
+						    	@foreach ( $positions as $position)
+						    	<tr class = "trow" onclick = "CRUD({{$position->ID}},2)" id = "{{$position->ID}}">
+							    	<td><center>{{$position->acpositioncode}}</center></td>
+							    	<td><center>{{$position->acpositionname}}</center></td>
+							    	<td><center>{{$position->desc}}</center></td>
+						    	</tr>
+						    	@endforeach
+						    </tbody>
+
+						</table>
+						
+					</div>
+					
 				</div>
 			</div>
 			

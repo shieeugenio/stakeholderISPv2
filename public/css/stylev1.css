@@ -222,6 +222,11 @@ hr {
 .addbtn {
 	width: 0.25em;
 	height: 0.25em;
+}
+
+.editbtn {
+	width: 0.25em;
+	height: 0.25em;
 	float: right;
 }
 
@@ -242,10 +247,10 @@ hr {
 }
 
 .formpane {
-	min-height: 75%;
+	min-height: 70%;
 	max-height: 100%;
 	height: auto;
-	overflow: hidden;
+	overflow: auto;
 	width: 100%;
 	border-top-left-radius: 0.28571429rem;
     border-top-right-radius: 0.28571429rem;
@@ -259,7 +264,7 @@ hr {
 	width: 32%;
 	margin-top: 3%;
 	background-color: #ede8e6;
-	padding: 1% 1% 33% 1%;
+	padding: 1% 1% 42% 1%;
 	float:left;
 }
 

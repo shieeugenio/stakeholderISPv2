@@ -3,41 +3,6 @@
 @section('mtablesection')
 	<div class = "acccon">
 		<div class = "ui grid">
-			<div class = "ten wide column">
-				<div class = "tablepane">
-					<div class = "mtitle">Advisory Council Sub-category</div>
-
-					<div class = "tablecon">
-						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
-						    <thead>
-						    	<tr>
-						    		<th><center>Code</center></th>
-									<th><center>Sub-category</center></th>
-									<th><center>Category</center></th>
-									<th><center>Description</center></th>
-										            
-						        </tr>	
-						    </thead>
-						                   
-						    <tbody>
-						    	@foreach($subcat as $sitem)
-									<tr class = "trow" onclick = "loaddata({{$sitem->ID}})" id = "{{$sitem->ID}}">
-										<td>{{$sitem->acsubcategorycode}}</td>
-										<td>{{$sitem->subcategoryname}}</td>
-										<td>{{$sitem->category->categoryname}} ({{$sitem->category->accategorycode}})</td>
-										<td>{{$sitem->desc}}</td>
-									</tr>
-								@endforeach
-
-
-						    </tbody>
-
-						</table>
-						
-					</div>
-					
-				</div>
-			</div>
 
 			<div class = "six wide column">
 				<div class = "formpane">
@@ -53,7 +18,6 @@
 									
 							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Code
-									<span class = "asterisk">*</span>
 
 								</label>
 
@@ -93,7 +57,7 @@
 										<option class="disabled">Select One</option>
 									  	@foreach($category as $key=>$value)
 											<option value="{{$value->ID}}">
-												{{$value->categoryname}} ({{$value->accategorycode}})
+												{{$value->categoryname}}
 											</option>
 										@endforeach
 									  
@@ -127,6 +91,42 @@
 						</div>
 								
 					</form>
+					
+				</div>
+			</div>
+
+			<div class = "ten wide column">
+				<div class = "tablepane">
+					<div class = "mtitle">Advisory Council Sub-category</div>
+
+					<div class = "tablecon">
+						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
+						    <thead>
+						    	<tr>
+						    		<th><center>Code</center></th>
+									<th><center>Sub-category</center></th>
+									<th><center>Category</center></th>
+									<th><center>Description</center></th>
+										            
+						        </tr>	
+						    </thead>
+						                   
+						    <tbody>
+						    	@foreach($subcat as $sitem)
+									<tr class = "trow" onclick = "loaddata({{$sitem->ID}})" id = "{{$sitem->ID}}">
+										<td>{{$sitem->acsubcategorycode}}</td>
+										<td>{{$sitem->subcategoryname}}</td>
+										<td>{{$sitem->category->categoryname}} ({{$sitem->category->accategorycode}})</td>
+										<td>{{$sitem->desc}}</td>
+									</tr>
+								@endforeach
+
+
+						    </tbody>
+
+						</table>
+						
+					</div>
 					
 				</div>
 			</div>

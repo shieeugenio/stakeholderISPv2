@@ -3,35 +3,6 @@
 @section('mtablesection')
 	<div class = "acccon">
 		<div class = "ui grid">
-			<div class = "ten wide column">
-				<div class = "tablepane">
-					<div class = "mtitle">Advisory Council Sector</div>
-
-					<div class = "tablecon">
-						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
-						    <thead>
-						    	<tr>
-						            <th><center>Code</center></th>
-						            <th><center>Name</center></th>
-						            <th><center>Description</center></th> 
-						        </tr>	
-						    </thead>
-						                   
-						    <tbody>
-						    @foreach ($sector as $sec) 
-						       	<tr class = "trow" onclick = "CRUD({{$sec->ID}},2)" id = "{{$sec->ID}}">
-						    		<td><center>{{$sec->sectorcode}}</center></td>
-						    		<td><center>{{$sec->sectorname}}</center></td>
-						    		<td><center>{{$sec->desc}}</center></td>
-						    	</tr>  
-						                               
-						   @endforeach 
-						    </tbody>
-						</table>						
-					</div>
-					
-				</div>
-			</div>
 
 			<div class = "six wide column">
 				<div class = "formpane">
@@ -46,7 +17,6 @@
 						<div class = "labelpane">
 						<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Code
-									<span class = "asterisk">*</span>
 								</label>
 						</div>
 
@@ -107,6 +77,36 @@
 						</div>
 								
 					</form>
+					
+				</div>
+			</div>
+
+			<div class = "ten wide column">
+				<div class = "tablepane">
+					<div class = "mtitle">Advisory Council Sector</div>
+
+					<div class = "tablecon">
+						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
+						    <thead>
+						    	<tr>
+						            <th><center>Code</center></th>
+						            <th><center>Name</center></th>
+						            <th><center>Description</center></th> 
+						        </tr>	
+						    </thead>
+						                   
+						    <tbody>
+						    @foreach ($sector as $sec) 
+						       	<tr class = "trow" onclick = "CRUD({{$sec->ID}},2)" id = "{{$sec->ID}}">
+						    		<td><center>{{$sec->sectorcode}}</center></td>
+						    		<td><center>{{$sec->sectorname}}</center></td>
+						    		<td><center>{{$sec->desc}}</center></td>
+						    	</tr>  
+						                               
+						   @endforeach 
+						    </tbody>
+						</table>						
+					</div>
 					
 				</div>
 			</div>

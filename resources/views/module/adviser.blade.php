@@ -71,7 +71,7 @@
 				@foreach ($directory as $ritem)
 					<div class = "five1 wide column colheight">
 						<div class = "cardstyle" onclick = "loadModal({{$ritem->ID}})">
-							<img class = "advphoto" src="{{$ritem->imagepath}}"/>
+							<img class = "advphoto" src="{{URL::asset($ritem->imagepath)}}"/>
 
 							<div class = "advdata">
 								<h4 class = "name">{{$ritem->lname}}, {{$ritem->fname}} {{$ritem->mname}}</h4>
