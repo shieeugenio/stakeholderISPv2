@@ -94,7 +94,7 @@
 
 									Save
 								</button>
-								<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button">
+								<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button cancelbtnstyle">
 									Cancel
 
 								</button></center>

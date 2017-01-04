@@ -4,7 +4,7 @@
 		<title>PNP Advisory Council</title>
 
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=yes">
+		<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1, maximum-scale=1,user-scalable=yes">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<link rel="shortcut icon" type="image/png" href="{{URL::asset('images/Philippine-National-Police.png')}}"> <!--LOGO-->
 
@@ -14,7 +14,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/icon.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/toast.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/multipletextinput.css')}}">
-
+		<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/res.css')}}">
 
 		<!-- JS -->
 		<script type="text/javascript" src="{{ URL::asset('js/jquery-2.1.4.js') }}"></script>
