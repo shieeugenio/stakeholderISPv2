@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class unit_office_qauternaries extends Model
+class unit_office_quaternaries extends Model
 {
-    protected $table = "unit_office_qauternaries";
+    protected $table = "unit_office_quaternaries";
     protected $primaryKey = "id";
     public $timestamps = true;
 

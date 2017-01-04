@@ -78,7 +78,7 @@
 						@foreach($recent as $ritem)
 							<div class = "five1 wide column colheight">
 								<div class = "cardstyle" onclick = "loadModal({{$ritem->ID}})">
-									<img class = "advphoto" src="{{$ritem->imagepath}}"/>
+									<img class = "advphoto" src="{{URL::asset($ritem->imagepath)}}"/>
 
 									<div class = "advdata">
 										<h5 class = "name">{{$ritem->lname}}, {{$ritem->fname}} {{$ritem->mname}}</h5>
@@ -124,7 +124,7 @@
 	        <div class = "header mtitle">
 
 	        	<h3 class = "h3name" name = "name"></h3>
-	            <div class = "ui icon addbtn button tiny" name="edit" title = "edit">
+	            <div class = "ui icon editbtn button tiny" name="edit" title = "edit">
 					<i class="edit icon topmargin"></i>
 							
 				</div>
@@ -138,7 +138,7 @@
 					<div class="item" id = "tab2"  data-tab="work">
 					    Advisory Council
 					</div>
-					<div class="item" id = "tab3" data-tab = "train">
+					<div class="item" id = "tab3" style="display:none" data-tab = "train">
 					    Training
 					</div>
 				</div>
@@ -452,7 +452,7 @@
 		        			
 
 					</div>
-					<div class="ui tab" data-tab="train">
+					<div class="ui tab" id = "trainingview" style="display:none" data-tab="train">
 						<table class = "viewtable ui celled padding table">
 							<thead>
 								<tr>
@@ -501,12 +501,18 @@
 		function showacview() {
 			document.getElementsByName('acview')[0].style.display = "block";
 			document.getElementsByName('tpview')[0].style.display = "none";
+			document.getElementById('tab3').style.display = "none";
+			document.getElementById('trainingview').style.display ="none";
 
 		}//function showacview() {
 
 		function showtpview() {
 			document.getElementsByName('acview')[0].style.display = "none";
 			document.getElementsByName('tpview')[0].style.display = "block";
+			document.getElementsByName('tab3').style.display = "block";
+			document.getElementById('trainingview').style.display ="none";
+
+
 
 		}//function showacview() {
 

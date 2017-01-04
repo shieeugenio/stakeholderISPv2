@@ -10,7 +10,7 @@ class unit_office_tertiaries extends Model
     protected $primaryKey = "id";
     public $timestamps = true;
 
-    public function sercond()
+    public function second()
     {
     	return $this->belongsTo('App\Models\unit_office_secondaries', 'UnitOfficeSecondaryID', 'id');
     }

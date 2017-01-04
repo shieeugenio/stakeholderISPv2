@@ -8,7 +8,7 @@
 </head>
 <body>
 @if(session('message'))
-		<p>{{session('message')}}</p>
+	<p>{{session('message')}}</p>
 @endif
 
 <form action="login" method="POST">

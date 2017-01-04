@@ -52,8 +52,6 @@ class AdvDirectoryController extends Controller {
  										 ->with('pnppost', $pnpposition)
  										 ->with('primaryoffice', $primaryoffice);
 
- 		//return $pnpposition;
-
  	} //select dropdowns
 
 	public function addadviser(Request $req) {
@@ -136,16 +134,12 @@ class AdvDirectoryController extends Controller {
 
 			} else {
 				$this->addTP($data, $id);
-
+				$this->addTraining($data, $id);
 
 			}//if($data->advcateg == 0) {
-
-			$this->addTraining($data, $id);
 		
 
 		}// if
-
-
 
 	}//add - WHOLE
 
@@ -157,17 +151,19 @@ class AdvDirectoryController extends Controller {
 
 
 			if($data->advcateg == 0) {
-				$this->editAC($data, $data->ID);
+				$this->editAC($data);
 
 			} else {
-				$this->editTP($data, $data->ID);
+				$this->editTP($data);
+				
+				$trainID = $this->getTrainIDList($data->ID);
+
+				$this->editLecturer($data, $trainID);
 
 
 			}//if($data->advcateg == 0) {
 
-			$trainID = $this->getTrainIDList($data->ID);
-
-			$this->editLecturer($data, $trainID, $data->ID);
+			
 
 		}// if
 
@@ -337,7 +333,6 @@ class AdvDirectoryController extends Controller {
 	 	$adv->gender =  $data['gender'];
 	 	$adv->category = $data['advcateg'];
 	 	$adv->startdate = $data['durstart'];
-        $adv->enddate = $data['durend'];
         $adv->occupationstat = 0;
 	 	//$adv->imagepath = $req->img;
 	 	/*$image = $req->img;
@@ -404,15 +399,31 @@ class AdvDirectoryController extends Controller {
         $advisory->officeaddress = $data['officeadd'];
         $advisory->advisory_position_id = $data['acposition'];
         $advisory->subcategoryId = $data['acsubcateg'];
-        //$advisory->acsector = $data->acsector;
-
         $advisory->save();
 
-        //return redirect('advisorycouncil');
-        
+        $this->addSector($data['sector'], $id);
     } // add AC
 
-    public function editAC(Request $request){
+    public function addSector($sector, $acid) {
+
+    	for($ctr = 0 ; $ctr < sizeof($sector) ; $ctr++) {
+    		$acsector = new ACSectors;
+    		$acsector->advisory_council_id = $acid;
+    		$acsector->ac_sector_id = $sector[$ctr];
+    		$acsector->save();
+
+
+    	}//for
+
+    }//public function addSector() {
+
+    public function editSector($data) {
+    	ACSectors::where('advisory_council_id', $data['ID'])->delete();
+    	$this->addSector($data, $data['ID']);
+
+    }//public function editSector($id) {
+
+    public function editAC($data){
 
     	$advisory = AdvisoryCouncil::find($data['ID']);
         $advisory->officename = $data['officename'];
@@ -421,8 +432,9 @@ class AdvDirectoryController extends Controller {
         $advisory->enddate = $data['durend'];
         $advisory->advisory_position_id = $data['acposition'];
         $advisory->subcategoryId = $data['acsubcat'];
-        //$advisory->acsector = $data['acsector'];
 	    $adv->save();
+
+	    $this->editSector($data);
 
     } // update AC
 
@@ -466,7 +478,7 @@ class AdvDirectoryController extends Controller {
 		   	$training->starttime = $data['stime'][$i];
 		   	$training->endtime = $data['etime'][$i];
 		   	$training->trainingtype = $data['traincateg'][$i];
-		   	$training->adviser_id = $id;
+		   	$training->police_id = $id;
 		   	$training->save();
 
 		   	$trainID = $this->getTrainID();
@@ -477,10 +489,10 @@ class AdvDirectoryController extends Controller {
 
     }// add Training
 
-    public function editTraining($data, $id) {
-    	Trainings::where('adviser_id', $id)->delete();
+    public function editTraining($data) {
+    	Trainings::where('police_id', $data['ID'])->delete();
 
-    	$this->addTraining($data, $id);
+    	$this->addTraining($data, $data['ID']);
 
     }// update Training
 
@@ -507,7 +519,7 @@ class AdvDirectoryController extends Controller {
    	}//public function addLecturer($data, $trainID) {
 
    	//call
-   	public function editLecturer($data, $trainID, $id) {
+   	public function editLecturer($data, $trainID) {
 
    		for ($ctr=0; $ctr < sizeof($trainID) ; $ctr++) { 
    			Lecturers::where('training_id', $trainID[$ctr])->delete();
@@ -515,7 +527,7 @@ class AdvDirectoryController extends Controller {
    			
    		}//for
    										
-   		$this->editTraining($data, $id);
+   		$this->editTraining($data);
 
    	}//public function editLecturer($data, $trainID) {
 
