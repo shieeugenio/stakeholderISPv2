@@ -8,18 +8,17 @@ class PersonnelSector extends Migration
 {
     public function up()
     {
-        Schema::create('PersonnelSector', function(Blueprint $table)
+        Schema::create('Personnel_Sector', function(Blueprint $table)
         {
             $table->increments('ID');
-            // $table->primary(array('advisory_council_id', 'ac_sector_id'));
             $table->integer('advisory_council_id')->unsigned();
             $table->integer('ac_sector_id')->unsigned();
-            $table->foreign('advisory_council_id')->references('ID')->on('AdvisoryCouncil');
-            $table->foreign('ac_sector_id')->references('ID')->on('ACSectors');
+            $table->foreign('advisory_council_id')->references('ID')->on('Advisory_Council');
+            $table->foreign('ac_sector_id')->references('ID')->on('AC_Sector');
         });
     }
     public function down()
     {
-        Schema::drop('PersonnelSector');
+        Schema::drop('Personnel_Sector');
     }
 }

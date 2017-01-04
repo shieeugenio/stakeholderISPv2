@@ -4,11 +4,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Trainings extends Migration
+class Training extends Migration
 {
     public function up()
     {
-        Schema::create('Trainings', function(Blueprint $table)
+        Schema::create('Training', function(Blueprint $table)
         {
             $table->increments('ID');
             $table->string('trainingname', 100);
@@ -19,13 +19,11 @@ class Trainings extends Migration
             $table->time('starttime');
             $table->time('endtime');
             $table->string('trainingtype', 45);
-            $table->integer('adviser_id')->unsigned();
-            $table->foreign('adviser_id')->references('ID')->on('Advisers');
         });
     }
 
     public function down()
     {
-        Schema::drop('Trainings');
+        Schema::drop('Training');
     }
 }
