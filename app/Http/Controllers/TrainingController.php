@@ -29,7 +29,6 @@ class TrainingController extends Controller
     		$count = count($req->tname);
     		for($i=0 ; $i<$count ; $i++){
     		$adviserid = $req->adviserid;
-   			$ptraining = array();
     		for($i=0;$i<$count;$i++){
 		    	$training = new Trainings();
 		    	$training->trainingname = $req->tname[$i];
