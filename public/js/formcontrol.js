@@ -639,11 +639,11 @@ function addrow() {
 
 //DROPDOWNS
 
-function populatedropdown(id, selname, code, desc) {
+function populatedropdown(id, selname, desc) {
 	var item = document.createElement('option');
 	item.setAttribute('value',  id);
 	document.getElementsByName(selname)[0].appendChild(item);
-	document.getElementsByName(selname)[0].lastChild.appendChild(document.createTextNode(desc + ' (' + code + ')'));
+	document.getElementsByName(selname)[0].lastChild.appendChild(document.createTextNode(desc));
 
 
 }//function populatedropdown() {

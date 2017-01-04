@@ -3,38 +3,6 @@
 @section('mtablesection')
 	<div class = "acccon">
 		<div class = "ui grid">
-			<div class = "ten wide column">
-				<div class = "tablepane">
-					<div class = "mtitle">Advisory Council Category</div>
-
-					<div class = "tablecon">
-						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
-						    <thead>
-						    	<tr>
-						            <th><center>Code</center></th>
-						            <th><center>Name</center></th>
-						            <th><center>Description</center></th>
-
-						        </tr>	
-						    </thead>
-						                   
-						    <tbody>
-
-						    	@foreach($category as $citem)
-						    		<tr class = "trow" onclick = "loaddata({{$citem->ID}})" id = "{{$citem->ID}}">
-							    		<td><center>{{$citem->accategorycode}}</center></td>
-							    		<td><center>{{$citem->categoryname}}</center></td>
-							    		<td><center>{{$citem->desc}}</center></td>
-
-							    	</tr>
-						    	@endforeach
-
-						    </tbody>
-						</table>						
-					</div>
-					
-				</div>
-			</div>
 
 			<div class = "six wide column">
 				<div class = "formpane">
@@ -104,6 +72,39 @@
 						</div>
 								
 					</form>
+					
+				</div>
+			</div>
+
+			<div class = "ten wide column">
+				<div class = "tablepane">
+					<div class = "mtitle">Advisory Council Category</div>
+
+					<div class = "tablecon">
+						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
+						    <thead>
+						    	<tr>
+						            <th><center>Code</center></th>
+						            <th><center>Name</center></th>
+						            <th><center>Description</center></th>
+
+						        </tr>	
+						    </thead>
+						                   
+						    <tbody>
+
+						    	@foreach($category as $citem)
+						    		<tr class = "trow" onclick = "loaddata({{$citem->ID}})" id = "{{$citem->ID}}">
+							    		<td><center>{{$citem->accategorycode}}</center></td>
+							    		<td><center>{{$citem->categoryname}}</center></td>
+							    		<td><center>{{$citem->desc}}</center></td>
+
+							    	</tr>
+						    	@endforeach
+
+						    </tbody>
+						</table>						
+					</div>
 					
 				</div>
 			</div>

@@ -3,45 +3,6 @@
 @section('mtablesection')
 	<div class = "acccon">
 		<div class = "ui grid">
-			<div class = "ten wide column">
-				<div class = "tablepane">
-					<div class = "mtitle">Primary Unit/Office
-					</div>
-
-					<div class = "tablecon">
-						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
-						    <thead>
-						    	<tr>
-						            <th><center>Code</center></th>
-						            <th><center>Name</center></th>
-						            <th><center>Staff</center></th>
-						            <th><center>Description</center></th>
-						            <th><center>Address</center></th> 
-						            <th><center>Contact No.</center></th> 
-						        </tr>	
-						    </thead>
-						                   
-						    <tbody>
-						    	@for($ctr = 0 ; $ctr < sizeof($offices) ; $ctr++)
-						    		<tr class = "trow" onclick = "loaddata({{$offices[$ctr]->ID}})" id = "{{$offices[$ctr]->ID}}">
-							    		<td><center>{{$offices[$ctr]->policeofficecode}}</center></td>
-							    		<td><center>{{$offices[$ctr]->officename}}</center></td>
-							    		<td><center>{{$staffdesc[$ctr]}}</center></td>
-							    		<td><center>{{$offices[$ctr]->desc}}</center></td>
-							    		<td><center>{{$offices[$ctr]->police_address}}</center></td>
-							    		<td><center>{{$offices[$ctr]->contactno}}</center></td>
-
-							    	</tr>
-						    	@endfor
-
-						    </tbody>
-
-						</table>
-						
-					</div>
-					
-				</div>
-			</div>
 
 			<div class = "six wide column">
 				<div class = "formpane">
@@ -65,14 +26,7 @@
 									<span class = "asterisk">*</span>
 								</label>
 
-							</div>
-
-							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Office Staff
-									<span class = "asterisk">*</span>
-								</label>
-
-							</div>							
+							</div>					
 
 							<div class = "twelve wide column bspacing10">
 								<label class = "formlabel">Description
@@ -99,24 +53,13 @@
 
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input field formfield">
-									<input type="text" name="code" placeholder="e.g. PRO">
+									<input type="text" name="code" placeholder="e.g. DST">
 								</div>
 							</div>
 
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input field formfield">
-									<input type="text" name="name" placeholder="e.g. Police Regional Office">
-								</div>
-							</div>
-
-							<div class = "twelve wide column bspacing2">
-								<div class="ui radio">
-									<input type="radio" name="staff" value="0" checked="" tabindex="0" class="hidden">
-									<label>D-staff</label>
-								</div>
-								<div class="ui radio">
-									<input type="radio" name="staff" value="1"  tabindex="0" class="hidden">
-									<label>P-staff</label>
+									<input type="text" name="name" placeholder="e.g. D-Staff">
 								</div>
 							</div>
 
@@ -137,7 +80,6 @@
 								  <input type='tel' value='' name='contact' placeholder="+639********"/>
 								</div>
 							</div>
-						</div>
 
 							<div class = "twelve wide column bspacing2">
 								<center><button type = "submit" name="submit" 
@@ -155,6 +97,44 @@
 						</div>
 								
 					</form>
+					
+				</div>
+			</div>
+
+			<div class = "ten wide column">
+				<div class = "tablepane">
+					<div class = "mtitle">Primary Unit/Office
+					</div>
+
+					<div class = "tablecon">
+						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
+						    <thead>
+						    	<tr>
+						            <th><center>Code</center></th>
+						            <th><center>Name</center></th>
+						            <th><center>Description</center></th>
+						            <th><center>Address</center></th> 
+						            <th><center>Contact No.</center></th> 
+						        </tr>	
+						    </thead>
+						                   
+						    <tbody>
+						    	@for($ctr = 0 ; $ctr < sizeof($offices) ; $ctr++)
+						    		<tr class = "trow" onclick = "loaddata({{$offices[$ctr]->ID}})" id = "{{$offices[$ctr]->ID}}">
+							    		<td><center>{{$offices[$ctr]->policeofficecode}}</center></td>
+							    		<td><center>{{$offices[$ctr]->officename}}</center></td>
+							    		<td><center>{{$offices[$ctr]->desc}}</center></td>
+							    		<td><center>{{$offices[$ctr]->police_address}}</center></td>
+							    		<td><center>{{$offices[$ctr]->contactno}}</center></td>
+
+							    	</tr>
+						    	@endfor
+
+						    </tbody>
+
+						</table>
+						
+					</div>
 					
 				</div>
 			</div>
@@ -212,7 +192,6 @@
 			   		document.getElementsByName('officeid')[0].value = data['ID'];
 			   		document.getElementsByName('name')[0].value = data['officename'];
 			   		document.getElementsByName('code')[0].value = data['policeofficecode'];
-			   		$("input[name='staff'][value='" + data['policestaff'] + "']").prop("checked", 'true');
 			   		document.getElementsByName('desc')[0].value = data['desc'];
 			   		document.getElementsByName('address')[0].value = data['police_address'];
 			   		document.getElementsByName('contact')[0].value = data['contactno'];
@@ -227,7 +206,6 @@
 			var data = {
 				'name' : document.getElementsByName("name")[0].value,
 				'code' : document.getElementsByName("code")[0].value,
-				'staff' : $("input[name='staff']:checked").val(),
 				'desc' : document.getElementsByName("desc")[0].value,
 				'add' : document.getElementsByName("address")[0].value,
 				'contact' : document.getElementsByName("contact")[0].value,
@@ -256,7 +234,6 @@
 				'policeID' : document.getElementsByName('officeid')[0].value,
 				'name' : document.getElementsByName("name")[0].value,
 				'code' : document.getElementsByName("code")[0].value,
-				'staff' : $("input[name='staff']:checked").val(),
 				'desc' : document.getElementsByName("desc")[0].value,
 				'add' : document.getElementsByName("address")[0].value,
 				'contact' : document.getElementsByName("contact")[0].value,
@@ -281,6 +258,7 @@
 
 		}//
 
+	// ADJUST BACK-END (CONTROLLER) REMOVE STAFF
 	</script>
 
 @stop

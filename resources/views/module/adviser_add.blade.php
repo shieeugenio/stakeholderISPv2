@@ -9,7 +9,7 @@
 			</div>
 
 			<div class = "tablecon">
-				<form enctype="multipart/form-data" action = "javascript:controlaction()" class = "ui form" id = "form">
+				<form action = "javascript:controlaction()" class = "ui form" id = "form">
 
 					<input type="hidden" value="" name="advid"/>
 
@@ -178,7 +178,7 @@
 										</div>
 
 										<div class = "ui input sixteen wide field">
-											<input type = "file" accept="image/jpeg, image/png" name = "upphoto"/>
+											<input type = "file" accept="image/*" name = "upphoto"/>
 											
 										</div>
 										
@@ -239,8 +239,8 @@
 										</div>
 									</div>
 
-									<div class = "field">
-										<label>End Date <span class="asterisk">*</span></label>
+									<div class = "field" id = "enddate" style="display:none">
+										<label>End Date </label>
 
 										<div class = "ui input field">
 											<input type="date" name = "durationedate">
@@ -445,6 +445,9 @@
 			var etime = new Array();
 			var speaker = new Array();
 			var org = new Array();
+			var photo = new Blob(document.getElementsByName('upphoto')[0].files);
+
+			console.log(photo.type);
 
 			for(var count = 0 ; count <= rowcount ; count++) {
 				var initspk = new Array();
@@ -499,7 +502,6 @@
 					'instagram' : document.getElementsByName('instagram')[0].value,
 					'advcateg' : slctdtype,
 					'durstart' : document.getElementsByName('durationsdate')[0].value,
-					'durend' : document.getElementsByName('durationedate')[0].value,
 					'acposition' : document.getElementsByName('acposition')[0].value,
 					'officename' : document.getElementsByName('officename')[0].value,
 					'officeadd' : document.getElementsByName('officeadd')[0].value,
@@ -529,7 +531,6 @@
 					'instagram' : document.getElementsByName('instagram')[0].value,
 					'advcateg' : slctdtype,
 					'durstart' : document.getElementsByName('durationsdate')[0].value,
-					'durend' : document.getElementsByName('durationedate')[0].value,
 					'authorder' : document.getElementsByName('authorder')[0].value,
 					'pnppost' : document.getElementsByName('position')[0].value,
 					'suboffice' : document.getElementsByName('secondary')[0].value,
@@ -560,7 +561,7 @@
 			}//if(action == 0) {**/
 
 
-			$.ajax({
+			/**$.ajax({
 				type: "POST",
 				url: "{{url('adviser/add')}}",
 				data: data,
@@ -568,9 +569,7 @@
 			   		window.location = "{{URL('adviser')}}";
 			   	
 			   	}//success : function() {
-			});
-
-			//console.log( document.getElementsByName('upphoto')[0].files[0]);
+			});**/
 
 			
 		}//function controlaction() {
@@ -588,7 +587,7 @@
 
 		function populateacc() {
 			@foreach($accateg as $catitem)
-				populatedropdown('{{$catitem->ID}}', 'accateg' , '{{$catitem->accategorycode}}', '{{$catitem->categoryname}}');
+				populatedropdown('{{$catitem->ID}}', 'accateg' , '{{$catitem->categoryname}}');
 
 			@endforeach
 
@@ -596,7 +595,7 @@
 
 		function populateacs() {
 			@foreach($acsector as $secitem)
-				populatedropdown('{{$secitem->ID}}', 'acsector' , '{{$secitem->sectorcode}}', '{{$secitem->sectorname}}');
+				populatedropdown('{{$secitem->ID}}', 'acsector' , '{{$secitem->sectorname}}');
 
 				
 			@endforeach
@@ -605,7 +604,7 @@
 
 		function populatepp() {
 			@foreach($pnppost as $ppitem)
-				populatedropdown('{{$ppitem->ID}}', 'position' , '{{$ppitem->policepositioncode}}', '{{$ppitem->positionname}}');
+				populatedropdown('{{$ppitem->ID}}', 'position', '{{$ppitem->positionname}}');
 
 				
 			@endforeach
@@ -614,7 +613,7 @@
 
 		function populatepo() {
 			@foreach($primaryoffice as $poitem)
-				populatedropdown('{{$poitem->ID}}', 'primary' , '{{$poitem->policeofficecode}}', '{{$poitem->officename}}');
+				populatedropdown('{{$poitem->ID}}', 'primary' , '{{$poitem->officename}}');
 
 				
 			@endforeach
