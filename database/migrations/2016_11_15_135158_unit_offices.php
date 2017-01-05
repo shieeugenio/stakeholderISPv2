@@ -12,7 +12,7 @@ class UnitOffices extends Migration
         {
             $table->increments('id');
             $table->string('UnitOfficeName', 45)->unique();
-            $table->string('UnitOfficeHasField', 45)->unique();
+            $table->string('UnitOfficeHasField', 45);
             $table->timestamps();
         });
     }
