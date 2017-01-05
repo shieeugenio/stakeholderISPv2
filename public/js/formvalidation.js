@@ -5,9 +5,6 @@ $('#form')
 		fields: {
 			categcode: {
 				rules: [{
-					type : "empty"
-				},
-				{
 					type : "regExp",
 					value : /^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}$/
 
@@ -26,9 +23,6 @@ $('#form')
 
 			sub_code: {
 				rules: [{
-					type : "empty"
-				},
-				{
 					type : "regExp",
 					value : /^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}$/
 
@@ -54,9 +48,6 @@ $('#form')
 
 			positioncode: {
 				rules: [{
-					type : "empty"
-				},
-				{
 					type : "regExp",
 					value : /^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}$/
 
@@ -75,9 +66,6 @@ $('#form')
 
 			acpositioncode: {
 				rules: [{
-					type : "empty"
-				},
-				{
 					type : "regExp",
 					value : /^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}$/
 
@@ -96,9 +84,6 @@ $('#form')
 
 			acsectorCode: {
 				rules: [{
-					type : "empty"
-				},
-				{
 					type : "regExp",
 					value : /^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}$/
 
@@ -117,9 +102,6 @@ $('#form')
 
 			code: {
 				rules: [{
-					type : "empty"
-				},
-				{
 					type : "regExp",
 					value : /^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}$/
 

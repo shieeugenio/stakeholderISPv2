@@ -44,24 +44,29 @@
 
 											<hr class = "hr1">
 										</div>
-										<form class = "ui form">
+										<form action="{{url('validatelogin')}}" method="POST" class = "ui form">
+	`										<input type="hidden" name="_token" id="csrf-token" value="{{Session::token()}}" type="text">
+											
 											<div class = "logcontent">
+
+												<span class ="asterisk" id="message"></span>
+
 												<div class ="twelve wide column  bspacing8">
 													<div class="ui input logfield">
-														<input type="text" placeholder="Username">
+														<input type="text" name = "username" placeholder="Username">
 													</div>
 													
 												</div>
 
 												<div class ="twelve wide column  bspacing8">
 													<div class="ui input logfield">
-														<input type="password" placeholder="Password">
+														<input type="password" name = "password" placeholder="Password">
 													</div>
 													
 												</div>
 
 												<div class ="ten wide column  bspacing8 centerbtn">
-													<button class="ui medium button">
+													<button type="submit" name="submit" class="ui medium button">
 															Sign in
 													</button>
 												</div>
@@ -108,4 +113,28 @@
 		</div>
 
 	</body>
+
+	<script type="text/javascript">
+
+
+		/**function login() {
+			var data = {
+				'username' : document.getElementsByName("username")[0].value,
+				'password' : document.getElementsByName("password")[0].value,
+				'submit': document.getElementsByName("submit")[0].value,
+				'_token' : '{{ Session::token() }}'
+			};
+
+			$.ajax({
+				type: "POST",
+				url: "{{url('validatelogin')}}",
+				data: data,
+			   	success : function(msg) {
+			   		document.getElementById('message').innerHTML = msg;
+			   	}
+			});
+
+		}//function login() {**/
+	</script>
+
 </html>

@@ -23,13 +23,18 @@
 							</div>
 
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Secondary Office Code
+								<label class = "formlabel">Secondary Office
+									<span class = "asterisk">*</span>
 								</label>
 							</div>
 
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Secondary Office
-									<span class = "asterisk">*</span>
+								<label class = "formlabel">Tertiary Office Code
+								</label>
+							</div>
+
+							<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Tertiary Office
 								</label>
 							</div>
 
@@ -56,14 +61,10 @@
 
 							<div class = "twelve wide column bspacing2">
 								<div class = "field">
-									<select class="modified ui selection dropdown selectstyle2" name="office" id = "select">
+									<select class="modified ui selection dropdown selectstyle2" name="office" id = "select1">
 									  <option class = "disabled">Select One</option>
 									  
-									  @foreach($offices as $sitem)
-
-									  	<option value = '{{$sitem->ID}}'>{{$sitem->officename}}</option>
-
-									  @endforeach
+									   <!-- POPULATE DROPDOWN OFFICE 1-->
 									  	
 
 									</select>
@@ -73,14 +74,27 @@
 							</div>
 
 							<div class = "twelve wide column bspacing2">
+								<div class = "field">
+									<select class="modified ui selection dropdown selectstyle2" name="office2" id = "select2">
+									  <option class = "disabled">Select One</option>
+									  <!-- POPULATE DROPDOWN OFFICE 2-->
+									 
+
+									</select>
+									
+								</div>
+								
+							</div>
+
+							<div class = "twelve wide column bspacing2">
 								<div class="ui input field formfield">
-									<input type="text" name="code" placeholder="e.g. PRO">
+									<input type="text" name="code" placeholder="e.g. REG">
 								</div>
 							</div>
 
 							<div class = "twelve wide column bspacing5">
 								<div class="ui input field formfield">
-									<input type="text" name="name" placeholder="e.g. Police Regional Office">
+									<input type="text" name="name" placeholder="e.g. Regional">
 								</div>
 							</div>
 
@@ -153,8 +167,9 @@
 						    <thead>
 						    	<tr>
 						            <th><center>Primary Office</center></th>
-						            <th><center>Secondary Office Code</center></th>
 						            <th><center>Secondary Office</center></th>
+						        	<th><center>Tertiary Office Code</center></th>
+						            <th><center>Tertiary Office</center></th>
 						            <th><center>Description</center></th>
 						            <th><center>Address</center></th> 
 						            <th><center>Contact No.</center></th> 
@@ -162,16 +177,7 @@
 						    </thead>
 						                   
 						    <tbody>
-						    	@foreach($suboffices as $key)
-						    		<tr class = "trow" onclick = "loaddata({{$key->ID}})" id = "{{$key->ID}}">
-						    			<td>{{$key->policeoffice->policeofficecode}}: {{$key->policeoffice->officename}}</td>
-						    			<td>{{$key->officename}}</td>
-						    			<td>{{$key->policeofficecode2}}</td>
-						    			<td>{{$key->desc}}</td>
-						    			<td>{{$key->street}}, {{$key->barangay}}, {{$key->city}}, {{$key->province}}</td>
-						    			<td>{{$key->contactno}}</td>
-						    		</tr>
-						    	@endforeach
+						    	
 
 						    </tbody>
 
@@ -233,7 +239,9 @@
 
 			   		console.log(data);
 			   		document.getElementsByName('subid')[0].value = data['ID'];
-			   		$('#select').dropdown('set selected', data['police_office_id']);
+			   		$('#select1').dropdown('set selected', data['police_office_id']); //office 1
+			   		$('#select2').dropdown('set selected', data['police_office_id']); // office 2
+
 			   		document.getElementsByName('name')[0].value = data['officename'];
 			   		document.getElementsByName('code')[0].value = data['policeofficecode2'];
 			   		document.getElementsByName('desc')[0].value = data['desc'];
@@ -252,7 +260,7 @@
 		function addData() {
 			var data = {
 				'name' : document.getElementsByName("name")[0].value,
-				'office' : document.getElementsByName("office")[0].value,
+				'office2' : document.getElementsByName("office2")[0].value,
 				'code' : document.getElementsByName("code")[0].value,
 				'desc' : document.getElementsByName("desc")[0].value,
 				'street' : document.getElementsByName("street")[0].value,
@@ -284,7 +292,7 @@
 		function editData() {
 			var data = {
 				'subID' : document.getElementsByName('subid')[0].value,
-				'office' : document.getElementsByName("office")[0].value,
+				'office2' : document.getElementsByName("office2")[0].value,
 				'name' : document.getElementsByName("name")[0].value,
 				'code' : document.getElementsByName("code")[0].value,
 				'desc' : document.getElementsByName("desc")[0].value,
@@ -315,6 +323,12 @@
 
 		}//
 
+	//POPULATE OFFICE 1 DROPDOWN
+	//POPULATE OFFICE 2 DROPDOWN
+	//REVISE $('#select2').dropdown('set selected', data['police_office_id']); LINE CHANGE DATA SOURCE
+	//CONTROLLER
+
+	
 	</script>
 
 @stop

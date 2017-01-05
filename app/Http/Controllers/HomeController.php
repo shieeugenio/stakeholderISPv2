@@ -34,6 +34,7 @@ class HomeController extends Controller
                 'username' => 'required',
                 'password' => 'required|alphaNum|min:3'
             );
+        
         $validate = Validator::make($req->all(), $protocol);
         if ($validate->fails()) {
             return Redirect::to('login')->withErrors($validate)
@@ -46,9 +47,11 @@ class HomeController extends Controller
                 
                 
             }else{
-                $message = "Email or password is incorrect!";
+                $message = "Incorrect username or password";
                 
-                return Redirect::to('login')->with('message',$message);
+                return Redirect::to('/')->with('message',$message);
+
+                //return $message;
             }
         }
 
@@ -56,6 +59,8 @@ class HomeController extends Controller
 
     public function logout(){
         Auth::logout();
+
+        return Redirect::to('/')->with('message','');
     }
 
 

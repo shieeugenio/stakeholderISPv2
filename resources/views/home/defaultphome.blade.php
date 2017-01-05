@@ -9,10 +9,10 @@
 			@foreach($directory as $ritem)
 				<div class = "four wide column colheight1">
 					<div class = "cardstyleportrait">
-						<img class = "advphoto1" src="{{$ritem->imagepath}}"/>
+						<img class = "advphoto1" src="{{URL::asset($ritem->imagepath)}}"/>
 
 						<div class = "advdata1">
-							<h4 class = "name">{{$ritem->lname}}, {{$ritem->fname}} {{$ritem->mname}}</h4>
+							<h5 class = "name">{{$ritem->lname}}, {{$ritem->fname}} {{$ritem->mname}}</h5>
 							<p>@if($ritem->category == 0)
 										Advisory Council
 

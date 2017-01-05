@@ -45,7 +45,7 @@
 						<div class = "row rightrow">
 							<div class = "ucon">
 								<img class="ui avatar image profile" src="{{URL::asset('objects/Logo/InitProfile.png')}}">
-									<span>Username </span><a class = "outlink" href="#">(LOG OUT)</a>
+									<span>Username </span><a class = "outlink" href="{{url('logout')}}">(LOG OUT)</a>
 							</div>
 						</div>
 							

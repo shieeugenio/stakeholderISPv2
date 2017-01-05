@@ -4,19 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ACSubcategory extends Model
+class AC_Subcategory extends Model
 {
-    protected $table = "ACSubcategory";
+    protected $table = "AC_Subcategory";
     protected $primaryKey = "ID";
     public $timestamps = true;
 
     public function category()
     {
-    	return $this->belongsTo('App\Models\ACCategory', 'categoryId', 'ID');
+    	return $this->belongsTo('App\Models\AC_Category', 'categoryId', 'ID');
     }
 
     public function advisorycouncil()
     {
-    	return $this->hasMany('App\Models\AdvisoryCouncil', 'categoryId');
+    	return $this->hasMany('App\Models\Advisory_Council', 'subcategoryId');
     }
 }

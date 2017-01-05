@@ -4,22 +4,22 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PolicePositions extends Migration
+class ACSector extends Migration
 {
     public function up()
     {
-        Schema::create('PolicePositions', function(Blueprint $table)
+        Schema::create('AC_Sector', function(Blueprint $table)
         {
             $table->increments('ID');
-            $table->string('positionname', 45)->unique();
-            $table->string('policepositioncode', 10)->nullable();
+            $table->string('sectorcode', 10)->nullable();
+            $table->string('sectorname', 45)->unique();
             $table->string('desc', 60)->nullable();
-            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::drop('PolicePositions');
+        Schema::drop('AC_Sector');
     }
 }
