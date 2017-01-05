@@ -17,7 +17,43 @@
 			</div>
 									
 								
+<<<<<<< HEAD
 		</div>
+=======
+						</div>
+
+						<input type="hidden" value="" name="categid"/>
+						<div class = "fieldpane">
+							<div class = "twelve wide column bspacing2">
+								<div class="ui input field formfield">
+								  <input type="text" name = "categcode" placeholder="e.g. REG">
+								</div>
+							</div>
+
+							<div class = "twelve wide column bspacing2">
+								<div class="ui input field formfield">
+								  <input type="text" name = "categname" placeholder="e.g. Regional">
+								</div>
+							</div>
+
+							<div class = "twelve wide column bspacing2">
+								<div class="field">
+									<textarea  name = "description" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
+								</div>
+							</div>
+
+							<div class = "twelve wide column bspacing2">
+								<center><button type = "submit" name="submit" 
+												class="ui tiny button submit savebtnstyle">
+
+									Save
+								</button>
+								<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button cancelbtnstyle">
+									Cancel
+
+								</button></center>
+							</div>
+>>>>>>> c058e3a465e17408e9db3571bffdcac375029b46
 
 		<input type="hidden" value="" name="categid"/>
 		<div class = "fieldpane">

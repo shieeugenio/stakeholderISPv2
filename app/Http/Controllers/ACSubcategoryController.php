@@ -37,6 +37,9 @@ class ACSubcategoryController extends Controller
     public function update(Request $req){
         if (isset($_POST['submit'])) {
             $cat = AC_Subcategory::find($req->subcatID);
+
+            $cat->acsubcategorycode = $req->subcatcode;
+
             $cat->subcategoryname = $req->name;
             $cat->categoryid = $req->catID;
             $cat->desc = $req->desc;

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Advisers;
+use App\Models\Advisory_Council;
 use Response;
 
 class SearchController extends Controller

@@ -6,27 +6,27 @@ use Illuminate\Http\Request;
 
 use Carbon\Carbon;
 
-use App\Models\AdvisoryCouncil;
+use App\Models\Advisory_Council;
 
-use App\Models\PoliceAdvisory;
+use App\Models\Police_Advisory;
 
-use App\Models\PolicePositions;
+use App\Models\Police_Position;
 
-use App\Models\PoliceOffices;
+use App\Models\unit_offices;
 
-use App\Models\PoliceOfficeSecond;
+use App\Models\unit_office_secondaries;
 
-use App\Models\AdvisoryPositions;
+use App\Models\Advisory_Position;
 
-use App\Models\ACCategory;
+use App\Models\AC_Category;
 
-use App\Models\ACSubcategory;
+use App\Models\AC_Subcategory;
 
-use App\Models\ACSectors;
+use App\Models\AC_Sector;
 
-use App\Models\Trainings;
+use App\Models\Training;
 
-use App\Models\Lecturers;
+use App\Models\Lecturer;
 
 use DB;
 
@@ -38,11 +38,11 @@ class AdvDirectoryController extends Controller {
  		/*$profile = Advisers::all();
  		return View ('module/adviser_add')->with('profile', $profile);*/
 
- 		$acposition = AdvisoryPositions::all();
- 		$accateg = ACCategory::all();
- 		$acsector = ACSectors::all();
- 		$pnpposition = PolicePositions::all();
- 		$primaryoffice = PoliceOffices::all();
+ 		$acposition = Advisory_Position::all();
+ 		$accateg = AC_Category::all();
+ 		$acsector = AC_Sector::all();
+ 		$pnpposition = Police_Position::all();
+ 		$primaryoffice = unit_offices::all();
 
  		return view('module.adviser_add')->with('acposition', $acposition)
  										 ->with('accateg', $accateg)
@@ -184,21 +184,21 @@ class AdvDirectoryController extends Controller {
 
 
 		if($categ[0]->category == 0) {
-			$recorddata = Advisers::with('advisorycouncil')
+			$recorddata = Advisory_Council::with('advisorycouncil')
 									->with('training')
 									->where('ID', $id)
 									->get();
 
 
 		} else {
-			$recorddata = Advisers::with('policeadvisory')
+			$recorddata =Advisory_Council::with('policeadvisory')
 									->with('training')
 									->where('ID', $id)
 									->get();
 
 		}// if
 
-		$training = Trainings::with('lecturer')
+		$training = Training::with('lecturer')
 					->where('adviser_id', $id)
 					->get();
 
@@ -238,10 +238,10 @@ class AdvDirectoryController extends Controller {
 						->get();
 
 		//SUMMARY PANE INSERT CODE HERE
-		$all = Advisers::count();
-		$ac = Advisers::where('category', '=', 0)->count();
-	    $twg = Advisers::where('category', '=', 1)->count();
-	    $psmu = Advisers::where('category', '=', 2)->count();
+		$all = Advisory_Council::count();
+		$ac = Advisory_Council::where('category', '=', 0)->count();
+	    $twg = Advisory_Council::where('category', '=', 1)->count();
+	    $psmu = Advisory_Council::where('category', '=', 2)->count();
 	    $pac = 0;
 	    $ptwg = 0;
 	    $ppsmu = 0;
@@ -267,7 +267,7 @@ class AdvDirectoryController extends Controller {
 	}//public function getRecent() {
 
 	public function getID() {
-		$getid = Advisers::orderBy('ID', 'desc')->take(1)->get();
+		$getid = Advisory_Council::orderBy('ID', 'desc')->take(1)->get();
 
 		foreach ($getid as $key => $id) {
             return $id->ID;
@@ -277,7 +277,7 @@ class AdvDirectoryController extends Controller {
 	}//public function getID() {
 
 	public function getTrainIDList($id) {
-		$getid = Trainings::where('training_id', $id)->pluck('ID');
+		$getid = Training::where('training_id', $id)->pluck('ID');
 
 		$trainID = array();
 		foreach($getid as $key=> $item) {
@@ -293,7 +293,7 @@ class AdvDirectoryController extends Controller {
 	public function getSubCateg(Request $req) {
 		$categID = $req->categID;
 
-		$subcategory = ACSubcategory::where('categoryId', $categID)->get();
+		$subcategory = AC_Subcategory::where('categoryId', $categID)->get();
 
 		return $subcategory;
 
@@ -302,7 +302,7 @@ class AdvDirectoryController extends Controller {
 	public function getSecOffice(Request $req) {
 		$primary = $req->poID;
 
-		$secoffice = PoliceOfficeSecond::where('police_office_id', $primary)->get();
+		$secoffice = unit_office_secondaries::where('police_office_id', $primary)->get();
 
 		return $secoffice;
 	}//public function getSecOffice(Request $req) {
@@ -310,7 +310,7 @@ class AdvDirectoryController extends Controller {
 
  	public function edit(Request $req){
 	 	$id = $req->ID;
-	 	$advisers = Advisers::find($id);
+	 	$advisers = Advisory_Council::find($id);
 	 	return $advisers;
 
 	 } // retrieve for edit
@@ -319,7 +319,7 @@ class AdvDirectoryController extends Controller {
 	//Profile
 	public function addProfile($data){
 		
-	 	$adv = new Advisers;
+	 	$adv = new Advisory_Council;
 	 	$adv->fname = $data['fname'];
 	 	$adv->lname = $data['lname'];
 	 	$adv->mname = $data['mname'];
@@ -357,7 +357,7 @@ class AdvDirectoryController extends Controller {
 
 	public function editProfile($data) {
 	 	
-	    $adv = Advisers::find($data['ID']);
+	    $adv = Advisory_Council::find($data['ID']);
 	    $adv->fname = $data['fname'];
 		$adv->lname = $data['lname'];
 		$adv->mname = $data['mname'];
@@ -397,7 +397,7 @@ class AdvDirectoryController extends Controller {
 	//AC
 
 	public function addAC($data, $id){
-        $advisory = new AdvisoryCouncil;
+        $advisory = new Advisory_Council;
         $advisory->ID = $id;
        	$advisory->officename = $data['officename'];
         $advisory->officeaddress = $data['officeadd'];
@@ -411,7 +411,7 @@ class AdvDirectoryController extends Controller {
     public function addSector($sector, $acid) {
 
     	for($ctr = 0 ; $ctr < sizeof($sector) ; $ctr++) {
-    		$acsector = new ACSectors;
+    		$acsector = new AC_Sector;
     		$acsector->advisory_council_id = $acid;
     		$acsector->ac_sector_id = $sector[$ctr];
     		$acsector->save();
@@ -422,14 +422,14 @@ class AdvDirectoryController extends Controller {
     }//public function addSector() {
 
     public function editSector($data) {
-    	ACSectors::where('advisory_council_id', $data['ID'])->delete();
+    	AC_Sector::where('advisory_council_id', $data['ID'])->delete();
     	$this->addSector($data, $data['ID']);
 
     }//public function editSector($id) {
 
     public function editAC($data){
 
-    	$advisory = AdvisoryCouncil::find($data['ID']);
+    	$advisory = Advisory_Council::find($data['ID']);
         $advisory->officename = $data['officename'];
         $advisory->officeaddress = $data['officeadd'];
         $advisory->startdate = $data['durstart'];
@@ -446,7 +446,7 @@ class AdvDirectoryController extends Controller {
 
    	public function addTP($data, $id){
     
-    	$advisory = new PoliceAdvisory;
+    	$advisory = new Police_Advisory;
     	$advisory->ID = $id;
     	$advisory->police_position_id = $data['pnppost'];
     	$advisory->policeoffice_id = $data['suboffice'];
@@ -459,7 +459,7 @@ class AdvDirectoryController extends Controller {
 	}// add TP
 
 	 public function editTP($data){
-    	$advisory = PoliceAdvisory::find($data['ID']);
+    	$advisory = Police_Advisory::find($data['ID']);
     	$advisory->police_position_id = $data['pnppost'];
     	$advisory->policeoffice_id = $data['suboffice'];
     	$advisory->authorityorder = $data['authorder'];
@@ -473,7 +473,7 @@ class AdvDirectoryController extends Controller {
     	$count = count($data['traintitle']);
 
     	for($i=0 ; $i < $count ; $i++){
-		   	$training = new Trainings();
+		   	$training = new Training();
 		   	$training->trainingname = $data['traintitle'][$i];
 		   	$training->startdate = $data['sdate'][$i];
 		   	$training->enddate = $data['edate'][$i];
@@ -494,14 +494,14 @@ class AdvDirectoryController extends Controller {
     }// add Training
 
     public function editTraining($data) {
-    	Trainings::where('police_id', $data['ID'])->delete();
+    	Training::where('police_id', $data['ID'])->delete();
 
     	$this->addTraining($data, $data['ID']);
 
     }// update Training
 
    	public function getTrainID() {
-   		$getid = Trainings::orderBy('ID', 'desc')->take(1)->get();
+   		$getid = Training::orderBy('ID', 'desc')->take(1)->get();
 
 		foreach ($getid as $key => $id) {
             return $id->ID;
@@ -512,7 +512,7 @@ class AdvDirectoryController extends Controller {
 
    	public function addLecturer($data, $trainID) {
    		for($ctr = 0 ; $ctr < sizeof($data) ; $ctr++) {
-   			$lecturer = new Lecturers;
+   			$lecturer = new Lecturer;
 
    			$lecturer->lecturername = $data[$ctr];
    			$lecturer->training_id = $trainID;
@@ -526,7 +526,7 @@ class AdvDirectoryController extends Controller {
    	public function editLecturer($data, $trainID) {
 
    		for ($ctr=0; $ctr < sizeof($trainID) ; $ctr++) { 
-   			Lecturers::where('training_id', $trainID[$ctr])->delete();
+   			Lecturer::where('training_id', $trainID[$ctr])->delete();
 
    			
    		}//for

@@ -9,7 +9,7 @@ use App\Models;
 class PoliceOfficesController extends Controller
 {
     public function index(){
-    	$office = App\Models\PoliceOffices::all();
+    	$office = App\Models\unit_offices::all();
 
         $staffdesc = $this->getstaffdesc($office);
 
@@ -49,7 +49,7 @@ class PoliceOfficesController extends Controller
 
     public function add(Request $request){
         if(isset($_POST['submit'])){
-            $office = new App\Models\PoliceOffices;
+            $office = new App\Models\unit_offices;
             $office->policeofficecode = $request->input('code');
             $office->officename = $request->input('name');
             $office->policestaff = $request->input('staff');
@@ -63,13 +63,13 @@ class PoliceOfficesController extends Controller
 
     public function find(Request $request){
         $police=$request->id;
-    	$id = App\Models\PoliceOffices::find($police);
+    	$id = App\Models\unit_offices::find($police);
     	return $id;
     }
 
     public function edit(Request $request){
     	if(isset($_POST['submit'])){
-    		$id = App\Models\PoliceOffices::find($request->policeID);
+    		$id = App\Models\unit_offices::find($request->policeID);
 
     		$id->policeofficecode = $request->code;
     		$id->officename = $request->name;

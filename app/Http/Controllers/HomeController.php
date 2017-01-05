@@ -3,20 +3,9 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Auth\LoginController;
 
-use Illuminate\Http\Request;
-use Redirect;
-use Input;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
-
-use DB;
-
 class HomeController extends Controller
 {
     public function index(){
-
-        /*$data = Advisers::all();
-        return View ('transaction.login')->with('adviser', $data);*/
 
     }
     // for future use use Auth::check in if statement 

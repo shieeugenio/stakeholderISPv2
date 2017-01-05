@@ -5,17 +5,17 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Trainings;
+use App\Models\Training;
 use App\Http\Requests;
-use App\Models\Advisers;
-use App\Models\PersonTraining;
+use App\Models\Advisory_Council;
+use App\Models\Police_Training;
 
 
 class TrainingController extends Controller
 {
     public function index()
     {
-    	$info= DB::table('Trainings')->get();
+    	$info= DB::table('Training')->get();
     	return view('maintenance/trainingsample')->with('info', $info);
     }
 
@@ -30,7 +30,7 @@ class TrainingController extends Controller
     		for($i=0 ; $i<$count ; $i++){
     		$adviserid = $req->adviserid;
     		for($i=0;$i<$count;$i++){
-		    	$training = new Trainings();
+		    	$training = new Training();
 		    	$training->trainingname = $req->tname[$i];
 		    	$training->startdate = $req->startdate[$i];
 		    	$training->enddate = $req->enddate[$i];
@@ -41,7 +41,7 @@ class TrainingController extends Controller
 		    	$training->trainingtype = $req->trainingtype[$i];
 		    	$training->save();
 
-		    	$ptraining = DB::table('Trainings')->select('ID')->orderBy('ID', 'desc')->first();
+		    	$ptraining = DB::table('Training')->select('ID')->orderBy('ID', 'desc')->first();
 		    	$this->addPersonTraining($adviserid,$ptraining);
 	    	}
 	    	}
@@ -53,11 +53,11 @@ class TrainingController extends Controller
     	if($callId==2)
     	{
     		$adviserid = $req->adviserid;
-    		$select = DB::table('Advisers')
-    				 ->join('PersonTraining','PersonTraining.adviser_id','=','Advisers.ID')
-    				 ->join('Trainings','Trainings.ID','=','PersonTraining.training_id')
-    				 ->select('Trainings.ID','Trainings.trainingname','Trainings.startdate','Trainings.enddate','Trainings.location','Trainings.organizer','Trainings.starttime','Trainings.endtime','Trainings.trainingtype')
-    				 ->where('Advisers.ID','=',$adviserid)
+    		$select = DB::table('Advisory_Council')
+    				 ->join('PersonTraining','PersonTraining.adviser_id','=','Advisory_Council.ID')
+    				 ->join('Training','Training.ID','=','Police_Training.training_id')
+    				 ->select('Training.ID','Training.trainingname','Training.startdate','Training.enddate','Training.location','Training.organizer','Training.starttime','Training.endtime','Training.trainingtype')
+    				 ->where('Advisory_Council.ID','=',$adviserid)
     				 ->get();
 	    	return $select;
     	}
@@ -66,7 +66,7 @@ class TrainingController extends Controller
     	{
     		$count = count($req->tname);
     		for ($i=0 ; $i<$count ; $i++){
-	    		$training = Trainings::find($req->id[$i]);
+	    		$training = Training::find($req->id[$i]);
 		    	$training->trainingname = $req->tname[$i];
 		    	$training->startdate = $req->startdate[$i];
 		    	$training->enddate = $req->enddate[$i];
@@ -84,7 +84,7 @@ class TrainingController extends Controller
     public function addPersonTraining($adviserid,$ptraining)
     {
     	
-    	$persontraining = new PersonTraining();
+    	$persontraining = new Police_Training();
     	$persontraining->adviser_id = $adviserid;
     	$persontraining->training_id = $ptraining;
     	$persontraining->save();

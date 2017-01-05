@@ -21,6 +21,7 @@ class ACCategoryController extends Controller
     public function confirm(Request $req){
         if(isset($_POST['submit'])){
             $cat = new AC_Category;
+            $cat->accategorycode = $req->code;
             $cat->categoryname = $req->name;
             $cat->desc = $req->desc;
 
