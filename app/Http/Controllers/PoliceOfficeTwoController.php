@@ -9,15 +9,15 @@ use App\Models;
 class PoliceOfficeTwoController extends Controller
 {
     public function index(){
-    	$suboffice = App\Models\PoliceOfficeSecond::with('policeoffice')->get();
-    	$office = App\Models\PoliceOffices::all();
+    	$suboffice = App\Models\unit_office_secondaries::with('policeoffice')->get();
+    	$office = App\Models\unit_offices::all();
 
     	return view('maintenancetable.policeoffice2_table')->with('offices', $office)->with('suboffices', $suboffice);
     }
 
     public function add(Request $request){
         if(isset($_POST['submit'])){
-            $policeoffice = new App\Models\PoliceOfficeSecond;
+            $policeoffice = new App\Models\unit_office_secondaries;
 
     	    $policeoffice->police_office_id = $request->office;
     	    $policeoffice->officename = $request->name;
@@ -36,7 +36,7 @@ class PoliceOfficeTwoController extends Controller
 
     public function find(Request $request){
         $police = $request->id;
-    	$id = App\Models\PoliceOfficeSecond::find($police);
+    	$id = App\Models\unit_office_secondaries::find($police);
     	return $id;
     }
 
@@ -44,7 +44,7 @@ class PoliceOfficeTwoController extends Controller
     	if(isset($_POST['submit']))
     	{
 
-    		$id = App\Models\PoliceOfficeSecond::find($request->subID);
+    		$id = App\Models\unit_office_secondaries::find($request->subID);
     		
     		$id->police_office_id = $request->office;
   		  	$id->officename = $request->name;

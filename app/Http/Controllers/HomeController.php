@@ -21,7 +21,7 @@ class HomeController extends Controller
 {
     public function index(){
 
-        $data = Advisers::all();
+        $data = Advisory_Council::all();
         return View ('transaction.login')->with('adviser', $data);
 
     }

@@ -5,21 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Controllers\Controller;
-use App\Models\Advisers;
+use App\Models\Advisory_Council;
 use App\Http\Requests;
 
 class ProfileController extends Controller
 {
    
  public function index(){
- 		$profile = Advisers::all();
+ 		$profile = Advisory_Council::all();
  		return View ('module/adviser_add')->with('profile', $profile);
  }  
 
 
  public function store(Request $req){
  	
- 		$adv = new Advisers;
+ 		$adv = new Advisory_Council;
  		$adv->fname = $req->fname;
  		$adv->lname = $req->lname;
  		$adv->mname = $req->mname;
@@ -55,14 +55,14 @@ class ProfileController extends Controller
 
  public function edit(Request $req){
  	$id = $req->ID;
- 	$advisers = Advisers::find($id);
+ 	$advisers = Advisory_Council::find($id);
  	return $advisers;
 
  }
 
  public function update(Request $req){
  	if (isset($_POST['submit'])) {
-            $adv = Advisers::find($req->ID);
+            $adv = Advisory_Council::find($req->ID);
             $adv->fname = $req->fname;
 	 		$adv->lname = $req->lname;
 	 		$adv->mname = $req->mname;

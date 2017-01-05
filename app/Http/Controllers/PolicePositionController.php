@@ -12,7 +12,7 @@ class PolicePositionController extends Controller
 {
     public function index_policeposition()
 	{
-        $positions = DB::table('PolicePositions')->get();
+        $positions = DB::table('Police_Position')->get();
 		return view('maintenancetable/policeposition_table', compact('positions'));
         //->with('sql', $sql);
 	}
@@ -23,7 +23,7 @@ class PolicePositionController extends Controller
 
         if($callId == 1)
         {
-            $position = new PolicePositions;
+            $position = new Police_Position;
             $position->positionname=$request->ppname;
             $position->policepositioncode=$request->ppcode;
             $position->desc=$request->ppdesc;
@@ -33,7 +33,7 @@ class PolicePositionController extends Controller
         if($callId == 2)
         {
             $id = $request->id;
-            $position = PolicePositions::find($id);
+            $position = Police_Position::find($id);
 
             return $position;
         }
@@ -41,7 +41,7 @@ class PolicePositionController extends Controller
         if($callId == 3)
         {
             $id = $request->id;
-            $position=PolicePositions::find($id);
+            $position=Police_Position::find($id);
             $position->positionname=$request->ppname;
             $position->policepositioncode=$request->ppcode;
             $position->desc=$request->ppdesc;

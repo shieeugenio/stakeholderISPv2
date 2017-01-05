@@ -8,24 +8,24 @@ use App\Models;
 use Carbon\Carbon;
 use App\Models\Advisers;
 use App\Models\AdvisoryCouncil;
-use App\Models\ACSubcategory;
-use App\Models\ACCategory;
-use App\Models\AdvisoryPositions;
-use App\Models\PersonnelSector;
+use App\Models\AC_Subcategory;
+use App\Models\AC_Category;
+use App\Models\Advisory_Position;
+use App\Models\Personnel_Sector;
 use App\Http\Controllers\Controller;
-use App\Models\ACSectors;
+use App\Models\AC_Sector;
 use App\Http\Requests;
 use DB;
 
 class AdvisoryCouncilController extends Controller
 {
     public function index(){
-        $advisory = AdvisoryCouncil::with('advisoryposition')->with('acsubcategory')->get();
-        $subcat = ACSubcategory::all();
-        $category = ACCategory::orderBy('categoryname')->get();
-        $position = AdvisoryPositions::all();
-        $personnel = PersonnelSector::all();
-        $acsector = ACSectors::all();    
+        $advisory = Advisory_Council::with('advisoryposition')->with('acsubcategory')->get();
+        $subcat = AC_Subcategory::all();
+        $category = AC_Category::orderBy('categoryname')->get();
+        $position = Advisory_Position::all();
+        $personnel = Personnel_Sector::all();
+        $acsector = AC_Sector::all();    
       
     	return view('transaction.Advisorycouncil')->with('council', $advisory)->with('subcat', $subcat)
                     ->with('cat', $category)->with('positions', $position)->with('sector', $personnel)
@@ -60,7 +60,7 @@ class AdvisoryCouncilController extends Controller
 
             $acID = $this->getID('Advisers','ID');
 
-            $advisory = new AdvisoryCouncil;
+            $advisory = new Advisory_Council;
             $advisory->ID = $acID-1;
             $advisory->officename = $request->acofficenamE;
             $advisory->officeaddress = $request->acofficeadD;
@@ -69,7 +69,7 @@ class AdvisoryCouncilController extends Controller
             $advisory->save();
             $count = sizeof($request->sectoR);
             for($i=0;$i<$count;$i++){
-                $personnel = new PersonnelSector;
+                $personnel = new Personnel_Sector;
                 $personnel->advisory_council_id = $acID-1;
                 $personnel->ac_sector_id = $request->sectoR[$i];
                 $personnel->save();
@@ -80,32 +80,32 @@ class AdvisoryCouncilController extends Controller
         {
             $id = $request->id;
             $sector = Array();
-            $acsec = AdvisoryCouncil::find($id);
-            $sector = DB::table('ACSectors')
-                        ->select('ACSectors.ID','ACSectors.sectorname')
-                        ->join('PersonnelSector','ACSectors.ID','=','PersonnelSector.ac_sector_id')
-                        ->join('AdvisoryCouncil','PersonnelSector.advisory_council_id','=', 'AdvisoryCouncil.ID')
-                        ->where('AdvisoryCouncil.ID','=', $id)
-                        ->where('PersonnelSector.advisory_council_id','=', $id)
+            $acsec = Advisory_Council::find($id);
+            $sector = DB::table('AC_Sector')
+                        ->select('AC_Sector.ID','AC_Sector.sectorname')
+                        ->join('Personnel_Sector','AC_Sector.ID','=','Personnel_Sector.ac_sector_id')
+                        ->join('Advisory_Council','Personnel_Sector.advisory_council_id','=', 'Advisory_Council.ID')
+                        ->where('Advisory_Council.ID','=', $id)
+                        ->where('Personnel_Sector.advisory_council_id','=', $id)
                         ->get();
 
-            $sub = DB::table('ACSubcategory')
-                    ->select('ACSubcategory.ID','ACSubcategory.subcategoryname')
-                    ->join('AdvisoryCouncil','ACSubcategory.ID','=','AdvisoryCouncil.subcategoryId')
-                    ->where('AdvisoryCouncil.ID','=', $id)
+            $sub = DB::table('AC_Subcategory')
+                    ->select('AC_Subcategory.ID','AC_Subcategory.subcategoryname')
+                    ->join('Advisory_Council','AC_Subcategory.ID','=','Advisory_Council.subcategoryId')
+                    ->where('Advisory_Council.ID','=', $id)
                     ->get();
 
             foreach($sub as $sub){
-                $cat = DB::table('ACCategory')
-                        ->select('ACCategory.ID','ACCategory.categoryname')
-                        ->join('ACSubcategory','ACCategory.ID','=','ACSubcategory.categoryId')
+                $cat = DB::table('AC_Category')
+                        ->select('AC_Category.ID','AC_Category.categoryname')
+                        ->join('AC_Subcategory','AC_Category.ID','=','AC_Subcategory.categoryId')
                         ->get();
             }
 
-            $post = DB::table('AdvisoryPositions')
-                        ->select('AdvisoryPositions.ID','AdvisoryPositions.acpositionname')
-                        ->join('AdvisoryCouncil','AdvisoryPositions.ID','=','AdvisoryCouncil.advisory_position_id')
-                        ->where('AdvisoryCouncil.ID','=', $id)
+            $post = DB::table('Advisory_Position')
+                        ->select('Advisory_Position.ID','Advisory_Position.acpositionname')
+                        ->join('Advisory_Council','Advisory_Position.ID','=','Advisory_Council.advisory_position_id')
+                        ->where('Advisory_Council.ID','=', $id)
                         ->get();
 
             return [$acsec,$sector,$post,$cat,$sub];
@@ -116,7 +116,7 @@ class AdvisoryCouncilController extends Controller
         {
              $acID = $request->id;
 
-            $advisory = AdvisoryCouncil::find($acID);
+            $advisory = Advisory_Council::find($acID);
             $advisory->officename = $request->acofficenamE;
             $advisory->officeaddress = $request->acofficeadD;
             $advisory->advisory_position_id = $request->positioN;
@@ -124,7 +124,7 @@ class AdvisoryCouncilController extends Controller
             $advisory->save();
             $count = sizeof($request->sectoR);
             for($i=0;$i<$count;$i++){
-                $personnel = new PersonnelSector;
+                $personnel = new Personnel_Sector;
                 $personnel->advisory_council_id = $acID;
                 $personnel->ac_sector_id = $request->sectoR[$i];
                 $personnel->save();
@@ -135,7 +135,7 @@ class AdvisoryCouncilController extends Controller
     public function getsub(Request $req){
 
         $id = $req->id;
-        $subcat = DB::table('ACSubcategory')->select('ID','subcategoryname')->where('categoryId','=',$id)->get();
+        $subcat = DB::table('AC_Subcategory')->select('ID','subcategoryname')->where('categoryId','=',$id)->get();
 
         return $subcat;
     }
