@@ -18,14 +18,12 @@
 							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Code
 								</label>
-
 							</div>
 									
 							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Name
 									<span class = "asterisk">*</span>
 								</label>
-
 							</div>					
 
 							<div class = "twelve wide column bspacing10">
@@ -35,16 +33,8 @@
 							</div>
 
 							<div class = "twelve wide column bspacing3">
-								<label class = "formlabel">Address</label>
-								<span class = "asterisk">*</span>										
+								<label class = "formlabel">Has Secondary</label>								
 							</div>
-
-
-							<div class = "twelve wide column bspacing3">
-								<label class = "formlabel">Contact No.</label>
-								<span class = "asterisk">*</span>		
-							</div>
-									
 								
 						</div>
 
@@ -70,14 +60,8 @@
 							</div>
 							
 							<div class = "twelve wide column bspacing2">
-								<div class="field">
-									<textarea class = "areastyle" name="address" rows = "4" placeholder="Street Address, Barangay, City"></textarea>
-								</div>
-							</div>
-						
-							<div class = "twelve wide column bspacing2">
 								<div class="ui input field formfield">
-								  <input type='tel' value='' name='contact' placeholder="+639********"/>
+									<input type="checkbox" name="throughput" checked="checked">
 								</div>
 							</div>
 

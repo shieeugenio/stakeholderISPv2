@@ -11,47 +11,50 @@
 								Summary
 						</div>
 
-						<div class = "summcontent">
+						<script>
+						/*<div class = "summcontent">
 							<div class ="twelve wide column  bspacing8">
-								<label class="formlabel">% of AC: <span class = "labeldesc">{{$pac}}%</span></label>
+								<label class="formlabel">% of AC: <span class = "labeldesc">%</span></label>
 										
 							</div>
 
 							<div class ="twelve wide column  bspacing8">
-								<label class="formlabel">No. of AC: <span class = "labeldesc">{{$ac}}</span></label>
+								<label class="formlabel">No. of AC: <span class = "labeldesc"></span></label>
 											
 							</div>
 
 							<div class ="twelve wide column  bspacing8">
-								<label class="formlabel">% of PSMU: <span class = "labeldesc">{{$ppsmu}}%</span></label>
+								<label class="formlabel">% of PSMU: <span class = "labeldesc">%</span></label>
 											
 							</div>
 
 							<div class ="twelve wide column  bspacing8">
-								<label class="formlabel">No. of PSMU: <span class = "labeldesc">{{$psmu}}</span></label>
+								<label class="formlabel">No. of PSMU: <span class = "labeldesc"></span></label>
 										
 							</div>
 
 							<div class ="twelve wide column  bspacing8">
-								<label class="formlabel">% of TWG: <span class = "labeldesc">{{$ptwg}}%</span></label>
+								<label class="formlabel">% of TWG: <span class = "labeldesc">%</span></label>
 											
 							</div>
 
 							<div class ="twelve wide column  bspacing8">
-								<label class="formlabel">No. of TWG: <span class = "labeldesc">{{$twg}}</span></label>
+								<label class="formlabel">No. of TWG: <span class = "labeldesc"></span></label>
 											
 							</div>
 
 							<!--<div class ="twelve wide column  bspacing8">
 								<label class="formlabel">No. of Recently Added: <span class = "labeldesc"></span></label>
 											
-							</div>-->
+							</div>
 							<br>
 
 							<div class ="twelve wide column bspacing8">
-								<label class="formlabel">Total No. of Adviser: <span class = "labeldesc">{{$all}}</span></label>
+								<label class="formlabel">Total No. of Adviser: <span class = "labeldesc"></span></label>
 											
-							</div>
+							</div>*/
+
+							</script>
 										
 						</div>
 											
@@ -74,37 +77,21 @@
 
 					<div class = "ui doubling grid cardlist2">
 
-
-						@foreach($recent as $ritem)
+					
 							<div class = "five1 wide column colheight">
-								<div class = "cardstyle" onclick = "loadModal({{$ritem->ID}})">
-									<img class = "advphoto" src="{{URL::asset($ritem->imagepath)}}"/>
+								<div class = "cardstyle" onclick = "loadModal()">
+									<img class = "advphoto" src=""/>
 
 									<div class = "advdata">
-										<h5 class = "name">{{$ritem->lname}}, {{$ritem->fname}} {{$ritem->mname}}</h5>
+										<h5 class = "name"></h5>
 										<p class = "p1">
-											@if($ritem->category == 0)
-												Advisory Council
-
-											@elseif($ritem->category == 1)
-												Technical Worker Group
-
-
-											@elseif($ritem->category == 2)
-												Police Strategy Management Unit
-
-											@endif
-
-											<br>
-											{{$ritem->email}} <br> {{$ritem->contactno}} | {{$ritem->landline}}
-
+											
 										</p>
 										
 									</div>
 								</div>
 
 							</div>
-						@endforeach
 
 					</div>
 

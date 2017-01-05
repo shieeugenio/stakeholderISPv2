@@ -16,7 +16,6 @@
 
 //REGISTRATION @author: Ren Buluran
 Route::get('registration', 'RegistrationController@index');
-//Route::resource('register', 'RegistrationController@register');
 Route::post('register', 'RegistrationController@register');
 
 /*

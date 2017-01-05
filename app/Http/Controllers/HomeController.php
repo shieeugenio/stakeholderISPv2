@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Auth\LoginController;
 
-use App\Models\Advisers;
 use Illuminate\Http\Request;
 use Redirect;
 use Input;

@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Advisers;
-
 use Carbon\Carbon;
 
 use App\Models\AdvisoryCouncil;
@@ -220,16 +218,18 @@ class AdvDirectoryController extends Controller {
 	}//public function getList() {
 
 	public function readyPHome() {
-		$directory = DB::table('advisers')
+		/*$directory = DB::table('advisers')
 						->select('ID', 'lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline')
 						->orderBy('ID', 'desc')
 						->get();
 
-		return view('home.defaultphome')->with('directory', $directory);
+		return view('home.defaultphome')->with('directory', $directory);*/
+
+		return view('home.defaultphome');
 	}//public function getList() {
 
 	public function getRecent() {
-		$recent = DB::table('advisers')
+		/*$recent = DB::table('advisers')
 						->select('ID', 'lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline')
 						->orderBy('ID', 'desc')
 						->limit(50)
@@ -258,7 +258,9 @@ class AdvDirectoryController extends Controller {
 									   ->with('psmu', $psmu)
 									   ->with('pac', $pac)
 									   ->with('ptwg', $ptwg)
-									   ->with('ppsmu', $ppsmu);
+									   ->with('ppsmu', $ppsmu);*/
+
+		return view('home.defaulthome');
 
 	}//public function getRecent() {
 
