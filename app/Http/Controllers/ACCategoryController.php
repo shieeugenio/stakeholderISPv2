@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\ACCategory;
+use App\Models\AC_Category;
 use App\Http\Requests;
 
 
 class ACCategoryController extends Controller
 {
     public function index(){
-    	$cat = ACCategory::all();
+    	$cat = AC_Category::all();
 
     	return View ('maintenancetable.accateg_table')->with('category',$cat);
 
@@ -20,8 +20,7 @@ class ACCategoryController extends Controller
 
     public function confirm(Request $req){
         if(isset($_POST['submit'])){
-            $cat = new ACCategory;
-            $cat->accategorycode = $req->code;
+            $cat = new AC_Category;
             $cat->categoryname = $req->name;
             $cat->desc = $req->desc;
 
@@ -32,15 +31,14 @@ class ACCategoryController extends Controller
 
     public function edit(Request $req){
         $id = $req->id;
-        $cat = ACCategory::find($id);
+        $cat = AC_Category::find($id);
         return $cat;
     }
 
     public function update(Request $req){
         if (isset($_POST['submit'])) {
-            $cat = ACCategory::find($req->catID);
+            $cat = AC_Category::find($req->catID);
             $cat->categoryname = $req->name;
-            $cat->accategorycode = $req->code;
             $cat->desc = $req->desc;
             $cat->save();
         }

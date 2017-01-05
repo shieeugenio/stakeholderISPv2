@@ -153,3 +153,17 @@ Route::get('transaction/advedt','ProfileController@edit');
 
 //smart search [ren]
 Route::get('search', 'SearchController@index');
+
+//login [ren]
+Route::get('login', array('uses' => 'HomeController@index'));
+Route::post('login', array('uses' => 'HomeController@login'));
+Route::get('logout', array('uses' => 'HomeController@logout'));
+
+//registration[ren]
+Route::get('registration', 'RegistrationController@index');
+Route::resource('register', 'RegistrationController@register');
+
+
+//testing [ren]
+Route::get('testAdviser','TestController@index');
+Route::get('testAdviserAdd','TestController@addAdviser');
