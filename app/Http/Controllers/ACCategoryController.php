@@ -32,7 +32,7 @@ class ACCategoryController extends Controller
 
     public function edit(Request $req){
         $id = $req->id;
-        $cat = ACCategory::find($id);
+        $cat = AC_Category::find($id);
         return $cat;
     }
 
@@ -40,7 +40,6 @@ class ACCategoryController extends Controller
         if (isset($_POST['submit'])) {
             $cat = AC_Category::find($req->catID);
             $cat->categoryname = $req->name;
-            $cat->accategorycode = $req->code;
             $cat->desc = $req->desc;
             $cat->save();
         }

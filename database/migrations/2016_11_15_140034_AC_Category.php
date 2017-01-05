@@ -11,7 +11,6 @@ class ACCategory extends Migration
         Schema::create('AC_Category', function(Blueprint $table)
         {
             $table->increments('ID');
-            $table->string('accategorycode', 10)->nullable();
             $table->string('categoryname', 45)->unique();
             $table->string('desc', 60)->nullable();
             $table->timestamps();
