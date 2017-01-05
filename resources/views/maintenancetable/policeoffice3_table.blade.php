@@ -28,10 +28,6 @@
 								</label>
 							</div>
 
-							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Tertiary Office Code
-								</label>
-							</div>
 
 							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Tertiary Office
@@ -43,17 +39,10 @@
 								</label>
 							</div>
 
-							<div class = "twelve wide column bspacing6">
-								<label class = "formlabel">Address</label>	
-								<span class = "asterisk">*</span>
+							<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Has Quarternary</label>								
 							</div>
 
-							
-
-							<div class = "twelve wide column bspacing7">
-								<label class = "formlabel">Contact No.</label>
-								<span class = "asterisk">*</span>
-							</div>
 						</div>	
 
 						<input type="hidden" value="" name="subid"/>
@@ -84,12 +73,6 @@
 									
 								</div>
 								
-							</div>
-
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-									<input type="text" name="code" placeholder="e.g. REG">
-								</div>
 							</div>
 
 							<div class = "twelve wide column bspacing5">

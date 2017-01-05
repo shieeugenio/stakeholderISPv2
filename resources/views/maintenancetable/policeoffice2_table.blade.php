@@ -23,11 +23,6 @@
 							</div>
 
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Secondary Office Code
-								</label>
-							</div>
-
-							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Secondary Office
 									<span class = "asterisk">*</span>
 								</label>
@@ -38,17 +33,11 @@
 								</label>
 							</div>
 
-							<div class = "twelve wide column bspacing6">
-								<label class = "formlabel">Address</label>	
-								<span class = "asterisk">*</span>
+							<div class = "twelve wide column bspacing3">
+								<label class = "formlabel">Has Tertiary</label>								
 							</div>
 
 							
-
-							<div class = "twelve wide column bspacing7">
-								<label class = "formlabel">Contact No.</label>
-								<span class = "asterisk">*</span>
-							</div>
 						</div>	
 
 						<input type="hidden" value="" name="subid"/>
@@ -92,32 +81,7 @@
 							
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input field formfield">
-									<input type="text" name="street" placeholder="Street">
-								</div>
-							</div>
-							
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-									<input type="text" name="barangay" placeholder="Barangay">
-								</div>
-							</div>				
-
-						
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-									<input type="text" name="city" placeholder="City">
-								</div>
-							</div>
-
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-									<input type="text" name="prov" placeholder="Province">
-								</div>
-							</div>		
-						
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-								  <input type='tel' value='' name='contact' placeholder="+639*********"/>
+									<input type="checkbox" name="throughput" checked="checked">
 								</div>
 							</div>
 

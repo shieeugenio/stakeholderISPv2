@@ -16,11 +16,6 @@
 						<div class = "labelpane">
 
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Code</label>
-										
-							</div>
-
-							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Name</label>
 								<span class = "asterisk">*</span>
 										
@@ -35,12 +30,7 @@
 
 						<div class = "fieldpane">
 							<input type="hidden" id="ID" value=""/>
-							
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field form formfield">
-								  <input type="text" id="acpositioncode" name = "acpositioncode" placeholder="e.g. P">
-								</div>
-							</div>
+						
 
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input field form formfield">
@@ -85,7 +75,6 @@
 						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
 						    <thead>
 						    	<tr>
-						            <th><center>Code</center></th>
 						            <th><center>Name</center></th>
 						            <th><center>Description</center></th> 
 						        </tr>	
@@ -94,7 +83,6 @@
 						    <tbody>
 						    	@foreach ( $positions as $position)
 						    	<tr class = "trow" onclick = "CRUD({{$position->ID}},2)" id = "{{$position->ID}}">
-							    	<td><center>{{$position->acpositioncode}}</center></td>
 							    	<td><center>{{$position->acpositionname}}</center></td>
 							    	<td><center>{{$position->desc}}</center></td>
 						    	</tr>
@@ -137,7 +125,6 @@ function CRUD(id, func){
 		if(confirm('Save?')) {
 			data = {
 			'acpname' : document.getElementsByName('acpositionname')[0].value,
-			'acpcode' : document.getElementsByName('acpositioncode')[0].value,
 			'acpdesc' : document.getElementsByName('description')[0].value,
 			'submit': document.getElementsByName("submit")[0].value,
 			'callId' : 1,
@@ -166,7 +153,6 @@ function CRUD(id, func){
 			data = {
 			'id' : document.getElementById('ID').value,
 			'acpname' : document.getElementsByName('acpositionname')[0].value,
-			'acpcode' : document.getElementsByName('acpositioncode')[0].value,
 			'acpdesc' : document.getElementsByName('description')[0].value,
 			'submit': document.getElementsByName("submit")[0].value,
 			'callId' : 3,
@@ -211,7 +197,6 @@ function exec(data, func) {
 
 					document.getElementById('ID').value = data['ID'];
 					document.getElementsByName('acpositionname')[0].value = data['acpositionname'];
-					document.getElementsByName('acpositioncode')[0].value = data['acpositioncode'];
 					document.getElementsByName('description')[0].value = data['desc'];
 				}
 			} 

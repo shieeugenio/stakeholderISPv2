@@ -15,10 +15,6 @@
 					<form class = "ui form" id = "form" action = "javascript:controlaction()">
 							
 						<div class = "labelpane">
-							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Code
-								</label>
-							</div>
 									
 							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Name
@@ -40,12 +36,6 @@
 
 						<input type="hidden" value="" name="officeid"/>
 						<div class = "fieldpane">
-
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-									<input type="text" name="code" placeholder="e.g. DST">
-								</div>
-							</div>
 
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input field formfield">

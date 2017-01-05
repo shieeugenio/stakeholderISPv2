@@ -34,11 +34,6 @@
 							</div>
 
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Quarternary Office Code
-								</label>
-							</div>
-
-							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Quarternary Office
 								</label>
 							</div>
@@ -48,17 +43,6 @@
 								</label>
 							</div>
 
-							<div class = "twelve wide column bspacing6">
-								<label class = "formlabel">Address</label>	
-								<span class = "asterisk">*</span>
-							</div>
-
-							
-
-							<div class = "twelve wide column bspacing7">
-								<label class = "formlabel">Contact No.</label>
-								<span class = "asterisk">*</span>
-							</div>
 						</div>	
 
 						<input type="hidden" value="" name="subid"/>
@@ -104,12 +88,6 @@
 								
 							</div>
 
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-									<input type="text" name="code" placeholder="e.g. REG">
-								</div>
-							</div>
-
 							<div class = "twelve wide column bspacing5">
 								<div class="ui input field formfield">
 									<input type="text" name="name" placeholder="e.g. Regional">
@@ -121,38 +99,6 @@
 									<textarea  id = "description" name = "desc" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
 								</div>
 							</div>
-							
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-									<input type="text" name="street" placeholder="Street">
-								</div>
-							</div>
-							
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-									<input type="text" name="barangay" placeholder="Barangay">
-								</div>
-							</div>				
-
-						
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-									<input type="text" name="city" placeholder="City">
-								</div>
-							</div>
-
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-									<input type="text" name="prov" placeholder="Province">
-								</div>
-							</div>		
-						
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-								  <input type='tel' value='' name='contact' placeholder="+639*********"/>
-								</div>
-							</div>
-
 
 							<div class = "twelve wide column bspacing2">
 								<center><button type = "submit" name="submit" 

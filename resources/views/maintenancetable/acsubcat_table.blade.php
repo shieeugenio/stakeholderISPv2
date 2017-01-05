@@ -15,13 +15,6 @@
 					<form class = "ui form" id = "form" action = "javascript:controlaction()">
 							
 						<div class = "labelpane">
-									
-							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Code
-
-								</label>
-
-							</div>
 
 							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Name </label>
@@ -41,11 +34,7 @@
 
 						<div class = "fieldpane">
 							<input type="hidden" value="" name="subid"/>
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-								  <input type="text" name="sub_code" placeholder="e.g. NME">
-								</div>
-							</div>
+							
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input field formfield">
 								  <input type="text" name="sub_name" placeholder="e.g. Name">
@@ -103,7 +92,6 @@
 						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
 						    <thead>
 						    	<tr>
-						    		<th><center>Code</center></th>
 									<th><center>Sub-category</center></th>
 									<th><center>Category</center></th>
 									<th><center>Description</center></th>
@@ -114,7 +102,6 @@
 						    <tbody>
 						    	@foreach($subcat as $sitem)
 									<tr class = "trow" onclick = "loaddata({{$sitem->ID}})" id = "{{$sitem->ID}}">
-										<td>{{$sitem->acsubcategorycode}}</td>
 										<td>{{$sitem->subcategoryname}}</td>
 										<td>{{$sitem->category->categoryname}} ({{$sitem->category->accategorycode}})</td>
 										<td>{{$sitem->desc}}</td>
@@ -183,7 +170,6 @@
 			   		
 			   		document.getElementsByName('subid')[0].value = data['ID'];
 			   		document.getElementsByName('sub_name')[0].value = data['subcategoryname'];
-			   		document.getElementsByName('sub_code')[0].value = data['acsubcategorycode'];
 			   		document.getElementsByName('description')[0].value = data['desc'];
 			   		$('#select').dropdown('set selected', data['categoryId']);
 
@@ -196,7 +182,6 @@
 		function addData() {
 			var data = {
 				'subcat' : document.getElementsByName("sub_name")[0].value,
-				'subcatcode' : document.getElementsByName("sub_code")[0].value,
 				'category': document.getElementsByName("category")[0].value,
 				'desc' : document.getElementsByName("description")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
@@ -222,7 +207,6 @@
 			var data = {
 				'subcatID' : document.getElementsByName('subid')[0].value,
 				'name' : document.getElementsByName("sub_name")[0].value,
-				'subcatcode' : document.getElementsByName("sub_code")[0].value,
 				'catID' : document.getElementsByName("category")[0].value,
 				'desc' : document.getElementsByName("description")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,

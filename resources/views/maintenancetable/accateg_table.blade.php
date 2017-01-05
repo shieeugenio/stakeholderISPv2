@@ -17,12 +17,6 @@
 						<div class = "labelpane">
 
 							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Code</label>
-								
-										
-							</div>
-
-							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Name</label>
 								<span class = "asterisk">*</span>
 										
@@ -38,11 +32,6 @@
 
 						<input type="hidden" value="" name="categid"/>
 						<div class = "fieldpane">
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-								  <input type="text" name = "categcode" placeholder="e.g. REG">
-								</div>
-							</div>
 
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input field formfield">
@@ -84,7 +73,6 @@
 						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
 						    <thead>
 						    	<tr>
-						            <th><center>Code</center></th>
 						            <th><center>Name</center></th>
 						            <th><center>Description</center></th>
 
@@ -95,7 +83,6 @@
 
 						    	@foreach($category as $citem)
 						    		<tr class = "trow" onclick = "loaddata({{$citem->ID}})" id = "{{$citem->ID}}">
-							    		<td><center>{{$citem->accategorycode}}</center></td>
 							    		<td><center>{{$citem->categoryname}}</center></td>
 							    		<td><center>{{$citem->desc}}</center></td>
 
@@ -164,7 +151,6 @@
 
 			   		document.getElementsByName('categid')[0].value = data['ID'];
 			   		document.getElementsByName('categname')[0].value = data['categoryname'];
-			   		document.getElementsByName('categcode')[0].value = data['accategorycode'];
 			   		document.getElementsByName('description')[0].value = data['desc'];
 
 			   	}//success : function() {
@@ -176,7 +162,6 @@
 		function addData() {
 			var data = {
 				'name' : document.getElementsByName("categname")[0].value,
-				'code' : document.getElementsByName("categcode")[0].value,
 				'desc' : document.getElementsByName("description")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'
@@ -201,7 +186,6 @@
 			var data = {
 				'catID' : document.getElementsByName('categid')[0].value,
 				'name' : document.getElementsByName("categname")[0].value,
-				'code' : document.getElementsByName("categcode")[0].value,
 				'desc' : document.getElementsByName("description")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'

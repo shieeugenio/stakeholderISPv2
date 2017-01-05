@@ -3,13 +3,6 @@
 $('#form')
 	.form({
 		fields: {
-			categcode: {
-				rules: [{
-					type : "regExp",
-					value : /^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}$/
-
-				}]
-			},
 
 			categname: {
 				rules: [{
@@ -19,15 +12,6 @@ $('#form')
 					type : "regExp",
 					value : /^(?=.*(\d|\w))[A-Za-z0-9 ]{3,35}$/
 				}]
-			},
-
-			sub_code: {
-				rules: [{
-					type : "regExp",
-					value : /^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}$/
-
-				}]
-
 			},
 
 			sub_name: {
@@ -46,13 +30,6 @@ $('#form')
 				}]
 			},
 
-			positioncode: {
-				rules: [{
-					type : "regExp",
-					value : /^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}$/
-
-				}]
-			},
 
 			positionname: {
 				rules: [{
@@ -61,14 +38,6 @@ $('#form')
 				{
 					type : "regExp",
 					value : /^(?=.*(\d|\w))[A-Za-z0-9 ]{3,35}$/
-				}]
-			},
-
-			acpositioncode: {
-				rules: [{
-					type : "regExp",
-					value : /^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}$/
-
 				}]
 			},
 
@@ -82,14 +51,6 @@ $('#form')
 				}]
 			},
 
-			acsectorCode: {
-				rules: [{
-					type : "regExp",
-					value : /^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}$/
-
-				}]
-			},
-
 			acsectorName: {
 				rules: [{
 					type : "empty"
@@ -97,14 +58,6 @@ $('#form')
 				{
 					type : "regExp",
 					value : /^(?=.*(\d|\w))[A-Za-z0-9 ]{3,35}$/
-				}]
-			},
-
-			code: {
-				rules: [{
-					type : "regExp",
-					value : /^(?=.*(\d|\w))[A-Za-z0-9 ]{1,10}$/
-
 				}]
 			},
 

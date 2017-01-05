@@ -15,21 +15,17 @@
 					<form class = "ui form" id = "form" action="javascript:CRUD(0,document.getElementById('dualbutton').value)">	
 					
 						<div class = "labelpane">
-						<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Code
-								</label>
-						</div>
 
-						<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Name
-									<span class = "asterisk">*</span>
-								</label>
-						</div>
+							<div class = "twelve wide column bspacing">
+									<label class = "formlabel">Name
+										<span class = "asterisk">*</span>
+									</label>
+							</div>
 
-						<div class = "twelve wide column bspacing">
-							<label class = "formlabel">Description
-							</label>
-						</div>
+							<div class = "twelve wide column bspacing">
+								<label class = "formlabel">Description
+								</label>
+							</div>
 													
 								
 						</div>
@@ -37,12 +33,6 @@
 						
 						<div class = "fieldpane">
 							<input name="acsectorID" id="acsectorID" type="hidden" value="">					
-
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-								  <input type="text" name="acsectorCode"  id="acsectorCode" placeholder="e.g. LGU">
-								</div>
-							</div>
 
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input field formfield">
@@ -89,7 +79,6 @@
 						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
 						    <thead>
 						    	<tr>
-						            <th><center>Code</center></th>
 						            <th><center>Name</center></th>
 						            <th><center>Description</center></th> 
 						        </tr>	
@@ -98,7 +87,6 @@
 						    <tbody>
 						    @foreach ($sector as $sec) 
 						       	<tr class = "trow" onclick = "CRUD({{$sec->ID}},2)" id = "{{$sec->ID}}">
-						    		<td><center>{{$sec->sectorcode}}</center></td>
 						    		<td><center>{{$sec->sectorname}}</center></td>
 						    		<td><center>{{$sec->desc}}</center></td>
 						    	</tr>  
@@ -141,7 +129,6 @@
 			if(confirm('Save?')) {
 				data = {
 				'secname' : document.getElementsByName('acsectorName')[0].value,
-				'seccode' : document.getElementsByName('acsectorCode')[0].value,
 				'secdesc' : document.getElementsByName('Desc')[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'callId' : 1,
@@ -170,7 +157,6 @@
 			if(confirm('Save?')) {
 				data = {
 					'id' : document.getElementById('acsectorID').value,
-					'seccode' : document.getElementsByName('acsectorCode')[0].value,
 					'secname' : document.getElementsByName('acsectorName')[0].value,
 					'secdesc' : document.getElementsByName('Desc')[0].value,
 					'submit': document.getElementsByName("submit")[0].value,
@@ -213,7 +199,6 @@
 					$('tr').not("[id = '" + data['ID'] + "']").removeAttr('class');
 
 					document.getElementById('acsectorID').value = data['ID'];
-					document.getElementsByName('acsectorCode')[0].value = data['sectorcode'];
 					document.getElementsByName('acsectorName')[0].value = data['sectorname'];
 					document.getElementsByName('Desc')[0].value = data['desc'];
 				}

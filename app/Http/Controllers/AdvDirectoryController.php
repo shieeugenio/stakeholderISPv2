@@ -207,14 +207,16 @@ class AdvDirectoryController extends Controller {
 	}//get record / modal view
 
 	public function getList() {
-		$directory = DB::table('advisers')
+		/**$directory = DB::table('advisers')
 						->select('ID', 'lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline')
 						->orderBy('ID', 'desc')
 						->get();
 
 		//return $directory;
 
-		return view('module.adviser')->with('directory', $directory);
+		return view('module.adviser')->with('directory', $directory);**/
+
+		return view('module.adviser');
 	}//public function getList() {
 
 	public function readyPHome() {

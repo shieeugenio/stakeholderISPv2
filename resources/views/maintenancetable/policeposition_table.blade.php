@@ -15,13 +15,6 @@
 					<form class = "ui form" id = "form" action="javascript:CRUD(0,document.getElementById('dualbutton').value)">
 							
 						<div class = "labelpane">
-									
-							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Code
-
-								</label>
-
-							</div>
 
 							<div class = "twelve wide column bspacing">
 								<label class = "formlabel">Name</label>
@@ -38,11 +31,6 @@
 						<div class = "fieldpane">
 							<input type="hidden" id="ID" value=""/>
 
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-								  <input type="text" name="positioncode" placeholder = "e.g. DD" value="" />
-								</div>
-							</div>
 							<div class = "twelve wide column bspacing2">
 								<div class="ui input field formfield">
 									<input type="text" name="positionname" value = "" placeholder="e.g. Deputy Director"/>
@@ -90,7 +78,6 @@
 						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
 						    <thead>
 						    	<tr>
-						            <th><center>Code</center></th>
 						            <th><center>Name</center></th>
 						            <th><center>Description</center></th> 
 						        </tr>	
@@ -99,7 +86,6 @@
 						    <tbody>
 						    	@foreach ($positions as $position)
 						    	<tr class = "trow" onclick="CRUD({{$position->ID}},2)" id = "{{$position->ID}}">
-						    		<td><center>{{$position->policepositioncode}}</center></td>
 						    		<td><center>{{$position->positionname}}</center></td>
 						    		<td><center>{{$position->desc}}</center></td>
 						    	</tr>
@@ -141,7 +127,6 @@
 				if(confirm('Save?')) {
 					data = {
 								'ppname' : document.getElementsByName('positionname')[0].value,
-								'ppcode' : document.getElementsByName('positioncode')[0].value,
 								'ppdesc' : document.getElementsByName('description')[0].value,
 								'callId' : 1,
 								'submit' : document.getElementsByName('submit')[0].value,
@@ -173,7 +158,6 @@
 					data = {
 								'id' : document.getElementById('ID').value,
 								'ppname' : document.getElementsByName('positionname')[0].value,
-								'ppcode' : document.getElementsByName('positioncode')[0].value,
 								'ppdesc' : document.getElementsByName('description')[0].value,
 								'callId' : 3,
 								'submit' : document.getElementsByName('submit')[0].value,
@@ -216,7 +200,6 @@
 
 							document.getElementById('ID').value = data['ID'];
 							document.getElementsByName('positionname')[0].value = data['positionname'];
-							document.getElementsByName('positioncode')[0].value = data['policepositioncode'];
 							document.getElementsByName('description')[0].value = data['desc'];
 							
 							console.log(data);
