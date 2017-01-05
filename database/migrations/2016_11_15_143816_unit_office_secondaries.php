@@ -25,4 +25,5 @@ class UnitOfficeSecondaries extends Migration
     {
         Schema::drop('unit_office_secondaries');
     }
+
 }

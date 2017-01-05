@@ -6,7 +6,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\PolicePositions;
+use App\Models\Police_Position;
 
 class PolicePositionController extends Controller
 {
@@ -25,7 +25,6 @@ class PolicePositionController extends Controller
         {
             $position = new Police_Position;
             $position->positionname=$request->ppname;
-            $position->policepositioncode=$request->ppcode;
             $position->desc=$request->ppdesc;
             $position->save();
         }
@@ -43,7 +42,6 @@ class PolicePositionController extends Controller
             $id = $request->id;
             $position=Police_Position::find($id);
             $position->positionname=$request->ppname;
-            $position->policepositioncode=$request->ppcode;
             $position->desc=$request->ppdesc;
             $position->save();   
         }

@@ -28,7 +28,6 @@ class ACPositionController extends Controller
         {
             $positionname = new Advisory_Position;
             $positionname->acpositionname=$request->acpname;
-            $positionname->acpositioncode=$request->acpcode;
             $positionname->desc=$request->acpdesc;
             $positionname->save();
 
@@ -48,7 +47,6 @@ class ACPositionController extends Controller
             $id = $request->id;
             $positionname=Advisory_Position::find($id);
             $positionname->acpositionname=$request->acpname;
-            $positionname->acpositioncode=$request->acpcode;
             $positionname->desc=$request->acpdesc;
             $positionname->save();
         }

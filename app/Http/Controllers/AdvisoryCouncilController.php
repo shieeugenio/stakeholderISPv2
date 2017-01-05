@@ -79,6 +79,7 @@ class AdvisoryCouncilController extends Controller
         if($callId==2)
         {
             $id = $request->id;
+<<<<<<< HEAD
             $sector = Array();
             $acsec = Advisory_Council::find($id);
             $sector = DB::table('AC_Sector')
@@ -87,6 +88,15 @@ class AdvisoryCouncilController extends Controller
                         ->join('Advisory_Council','Personnel_Sector.advisory_council_id','=', 'Advisory_Council.ID')
                         ->where('Advisory_Council.ID','=', $id)
                         ->where('Personnel_Sector.advisory_council_id','=', $id)
+=======
+            $acsec = AdvisoryCouncil::find($id);
+            $sector = DB::table('ACSectors')
+                        ->select('ACSectors.ID','ACSectors.sectorname')
+                        ->join('PersonnelSector','ACSectors.ID','=','PersonnelSector.ac_sector_id')
+                        ->join('AdvisoryCouncil','PersonnelSector.advisory_council_id','=', 'AdvisoryCouncil.ID')
+                        ->where('AdvisoryCouncil.ID','=', $id)
+                        ->where('PersonnelSector.advisory_council_id','=', $id)
+>>>>>>> 31f75ed3334cbf0e4fa7065eb267f414cb77078a
                         ->get();
 
             $sub = DB::table('AC_Subcategory')
@@ -96,9 +106,17 @@ class AdvisoryCouncilController extends Controller
                     ->get();
 
             foreach($sub as $sub){
+<<<<<<< HEAD
                 $cat = DB::table('AC_Category')
                         ->select('AC_Category.ID','AC_Category.categoryname')
                         ->join('AC_Subcategory','AC_Category.ID','=','AC_Subcategory.categoryId')
+=======
+                $cat = DB::table('ACCategory')
+                        ->select('ACCategory.ID','ACCategory.categoryname')
+                        ->join('ACSubcategory','ACCategory.ID','=','ACSubcategory.categoryId')
+                        ->join('AdvisoryCouncil','ACSubcategory.ID','=','AdvisoryCouncil.subcategoryId')
+                        ->where('AdvisoryCouncil.ID','=', $id)
+>>>>>>> 31f75ed3334cbf0e4fa7065eb267f414cb77078a
                         ->get();
             }
 
@@ -124,6 +142,7 @@ class AdvisoryCouncilController extends Controller
             $advisory->save();
             $count = sizeof($request->sectoR);
             for($i=0;$i<$count;$i++){
+<<<<<<< HEAD
                 $personnel = new Personnel_Sector;
                 $personnel->advisory_council_id = $acID;
                 $personnel->ac_sector_id = $request->sectoR[$i];
@@ -131,6 +150,43 @@ class AdvisoryCouncilController extends Controller
             }
         }
     }
+=======
+                $personnels = DB::table('PersonnelSector')
+                            ->select('ID')
+                            ->where('advisory_council_id','=', $acID)
+                            ->where('ac_sector_id','=', $request->sectoR[$i])
+                            ->get();
+
+                if(count($personnels) == 0) {
+                    $personnel = new PersonnelSector;
+                    $personnel->advisory_council_id = $acID;
+                    $personnel->ac_sector_id = $request->sectoR[$i];
+                    $personnel->save();   
+                }
+                else{
+                    foreach ($personnels as $current){
+                        $personnel = PersonnelSector::find($current->ID);
+                        $personnel->ac_sector_id = $request->sectoR[$i];
+                        $personnel->save();
+                    }
+                }
+            }//for loop set personnelsector
+            $unselected = DB::table('PersonnelSector')
+                            ->select('ID')
+                            ->where('advisory_council_id','=', $acID)
+                            ->get();
+            $countps = sizeof($unselected);
+            $newcount = $countps - $count;
+            for($i=0;$i<$countps;$i++){
+                DB::table('PersonnelSector')
+                            ->where('advisory_council_id','=', $acID)
+                            ->where('ac_sector_id','<>', $request->sectoR[$newcount-$i])
+                            ->delete();
+                            
+            }//for loop delete unselected
+        }//callID == 3
+    }//acCRUD
+>>>>>>> 31f75ed3334cbf0e4fa7065eb267f414cb77078a
 
     public function getsub(Request $req){
 
