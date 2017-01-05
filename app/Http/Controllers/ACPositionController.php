@@ -6,14 +6,14 @@ use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\AdvisoryPositions;
+use App\Models\Advisory_Position;
 
 
 class ACPositionController extends Controller
 {
 	public function index_acposition()
 	{
-        $positions = DB::table('AdvisoryPositions')->get();
+        $positions = DB::table('Advisory_Position')->get();
 		return view('maintenancetable/advisoryposition_table', compact('positions'));
         //->with('sql', $sql);
 	}
@@ -26,9 +26,8 @@ class ACPositionController extends Controller
 
         if($callId==1)
         {
-            $positionname = new AdvisoryPositions;
+            $positionname = new Advisory_Position;
             $positionname->acpositionname=$request->acpname;
-            $positionname->acpositioncode=$request->acpcode;
             $positionname->desc=$request->acpdesc;
             $positionname->save();
 
@@ -37,7 +36,7 @@ class ACPositionController extends Controller
         if($callId==2)
         {
             $id = $request->id;
-            $positionname = AdvisoryPositions::find($id);
+            $positionname = Advisory_Position::find($id);
 
             return $positionname;
 
@@ -46,9 +45,8 @@ class ACPositionController extends Controller
         if($callId==3)
         {
             $id = $request->id;
-            $positionname=AdvisoryPositions::find($id);
+            $positionname=Advisory_Position::find($id);
             $positionname->acpositionname=$request->acpname;
-            $positionname->acpositioncode=$request->acpcode;
             $positionname->desc=$request->acpdesc;
             $positionname->save();
         }
