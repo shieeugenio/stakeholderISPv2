@@ -63,7 +63,7 @@ Route::post('dropdown/getsecoffice', 'AdvDirectoryController@getSecOffice');
 //MAINTENANCE @author: Shie Eugenio
 Route::get('maintenance/accategory', 'ACCategoryController@index')->middleware('auth');
 Route::get('maintenance/acsubcategory','ACSubcategoryController@index')->middleware('auth');
-Route::get('maintenance/acposition','ACPositionController@index_acposition')->middleware('auth');
+Route::get('maintenance/acposition','ACPositionController@index_acposition');
 Route::get('maintenance/acsector','acsectorController@index_acsectors')->middleware('auth');
 Route::get('maintenance/primaryoffice', 'PoliceOfficesController@index')->middleware('auth');
 Route::get('maintenance/secondaryoffice', 'PoliceOfficeTwoController@index')->middleware('auth');
