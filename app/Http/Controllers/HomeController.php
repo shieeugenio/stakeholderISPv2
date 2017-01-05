@@ -8,20 +8,15 @@ use Redirect;
 use Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-//use Illuminate\Foundation\BusDispatchesJobs;
-//use IlluminateRoutingController as BaseController;
-//use IlluminateFoundationValidationValidatesRequests;
-//use IlluminateFoundationAuthAccessAuthorizesRequests;
-//use IlluminateFoundationAuthAccessAuthorizesResources;
-//use IlluminateHtmlHtmlServiceProvider;
+
 use DB;
 
 class HomeController extends Controller
 {
     public function index(){
 
-        $data = Advisers::all();
-        return View ('transaction.login')->with('adviser', $data);
+        /*$data = Advisers::all();
+        return View ('transaction.login')->with('adviser', $data);*/
 
     }
     // for future use use Auth::check in if statement 

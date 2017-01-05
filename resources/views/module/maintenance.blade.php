@@ -43,7 +43,29 @@
 
 			<div class = "thirteen wide column">
 				<div class = "mcontent">
-					@yield('mtablesection')
+					<div class = "ui grid">
+
+						<div class = "six wide column">
+							<div class = "formpane">
+								<div class = "mhead">
+									<div id="myToast" class="toast-popup"></div>
+									<i class="write square big icon"></i>
+								</div>
+
+								@yield('mfillformsection')
+								
+							</div>
+						</div>
+
+						<div class = "ten wide column">
+							<div class = "tablepane">
+								@yield('mtablesection')
+								
+							</div>
+						</div>
+						
+						
+					</div>
 					
 				</div>
 					

@@ -1,109 +1,86 @@
 @extends('module.maintenance')
 
-@section('mtablesection')
-	<div class = "acccon">
-		<div class = "ui grid">
-
-			<div class = "six wide column">
-				<div class = "formpane">
-					<div class = "mhead">
-						<div id="myToast" class="toast-popup"></div>
-						<i class="write square big icon"></i>
-					</div>
-
+@section('mfillformtable')
+	<form class = "ui form" id = "form" action="javascript:CRUD(0,document.getElementById('dualbutton').value)">	
 					
-					<form class = "ui form" id = "form" action="javascript:CRUD(0,document.getElementById('dualbutton').value)">	
-					
-						<div class = "labelpane">
+		<div class = "labelpane">
 
-							<div class = "twelve wide column bspacing">
-									<label class = "formlabel">Name
-										<span class = "asterisk">*</span>
-									</label>
-							</div>
+			<div class = "twelve wide column bspacing">
+				<label class = "formlabel">Name
+					<span class = "asterisk">*</span>
+				</label>
+			</div>
 
-							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Description
-								</label>
-							</div>
+			<div class = "twelve wide column bspacing">
+				<label class = "formlabel">Description
+				</label>
+			</div>
 													
 								
-						</div>
+		</div>
 
 						
-						<div class = "fieldpane">
-							<input name="acsectorID" id="acsectorID" type="hidden" value="">					
+		<div class = "fieldpane">
+			<input name="acsectorID" id="acsectorID" type="hidden" value="">					
 
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-								  <input type="text" name="acsectorName"  id="acsectorName" placeholder="e.g. Local Government Unit">
-								</div>
-							</div>
+			<div class = "twelve wide column bspacing2">
+				<div class="ui input field formfield">
+					<input type="text" name="acsectorName"  id="acsectorName" placeholder="e.g. Local Government Unit">
+				</div>
+			</div>
 
-							<div class = "twelve wide column bspacing2">
-								<div class="field">
-									<textarea id="Desc" name = "Desc" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
-								</div>
-							</div>												
+			<div class = "twelve wide column bspacing2">
+				<div class="field">
+					<textarea id="Desc" name = "Desc" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
+				</div>
+			</div>												
 
-							<div class = "twelve wide column bspacing2">
-								<center>
-								<button class="ui tiny button submit savebtnstyle"
-									id="dualbutton"
-									type="submit"
-									name="submit" 
-									value = '1'; 
-		     					>
+			<div class = "twelve wide column bspacing2">
+				<center>
+					<button class="ui tiny button submit savebtnstyle"
+							id="dualbutton"
+							type="submit"
+							name="submit" 
+							value = '1'>
 									
-									Save
-								</button>
+							Save
+					</button>
 
-								<button class="ui tiny button"  
-								type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" >
-									Cancel
-								</button>					
-								</center>
-							</div>								
-						</div>
-								
-					</form>
-					
-				</div>
-			</div>
-
-			<div class = "ten wide column">
-				<div class = "tablepane">
-					<div class = "mtitle">Advisory Council Sector</div>
-
-					<div class = "tablecon">
-						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
-						    <thead>
-						    	<tr>
-						            <th><center>Name</center></th>
-						            <th><center>Description</center></th> 
-						        </tr>	
-						    </thead>
-						                   
-						    <tbody>
-						    @foreach ($sector as $sec) 
-						       	<tr class = "trow" onclick = "CRUD({{$sec->ID}},2)" id = "{{$sec->ID}}">
-						    		<td><center>{{$sec->sectorname}}</center></td>
-						    		<td><center>{{$sec->desc}}</center></td>
-						    	</tr>  
-						                               
-						   @endforeach 
-						    </tbody>
-						</table>						
-					</div>
-					
-				</div>
-			</div>
-			
-			
+					<button class="ui tiny button"  
+							type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" >
+							Cancel
+					</button>					
+				</center>
+			</div>								
 		</div>
-		
-	</div>
+								
+	</form>
 
+@endsection
+
+@section('mtablesection')
+	<div class = "mtitle">Advisory Council Sector</div>
+
+	<div class = "tablecon">
+		<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
+		    <thead>
+		    	<tr>
+		            <th><center>Name</center></th>
+		            <th><center>Description</center></th> 
+		        </tr>	
+		    </thead>
+				                   
+		    <tbody>
+			    @foreach ($sector as $sec) 
+			       	<tr class = "trow" onclick = "CRUD({{$sec->ID}},2)" id = "{{$sec->ID}}">
+			    		<td><center>{{$sec->sectorname}}</center></td>
+			    		<td><center>{{$sec->desc}}</center></td>
+			    	</tr>  
+					                               
+			   @endforeach 
+		    </tbody>
+		</table>						
+	</div>
 
 <script type="text/javascript">
 	$('#m4').attr('class', 'item active');

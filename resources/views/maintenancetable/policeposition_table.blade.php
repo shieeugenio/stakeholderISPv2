@@ -1,107 +1,82 @@
 @extends('module.maintenance')
 
-@section('mtablesection')
-	<div class = "acccon">
-		<div class = "ui grid">
-
-			<div class = "six wide column">
-				<div class = "formpane">
-					<div class = "mhead">
-						<div id="myToast" class="toast-popup"></div>
-						<i class="write square big icon"></i>
-					</div>
-
-					
-					<form class = "ui form" id = "form" action="javascript:CRUD(0,document.getElementById('dualbutton').value)">
+@section('mfillformsection')
+	<form class = "ui form" id = "form" action="javascript:CRUD(0,document.getElementById('dualbutton').value)">
 							
-						<div class = "labelpane">
+		<div class = "labelpane">
+			<div class = "twelve wide column bspacing">
+				<label class = "formlabel">Name</label>
+				<span class = "asterisk">*</span>		
+			</div>
 
-							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Name</label>
-								<span class = "asterisk">*</span>		
-							</div>
-
-
-							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Description</label>	
-							</div>
+			<div class = "twelve wide column bspacing">
+				<label class = "formlabel">Description</label>	
+			</div>
 									
 								
-						</div>
-						<div class = "fieldpane">
-							<input type="hidden" id="ID" value=""/>
-
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-									<input type="text" name="positionname" value = "" placeholder="e.g. Deputy Director"/>
-								</div>
-							</div>
-
-							<div class = "twelve wide column bspacing2">
-								<div class="field">
-									<textarea  id = "description" name = "description" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
-								</div>
-							</div>
-
-
-
-							<div class = "twelve wide column bspacing2">
-								<button id="dualbutton"
-												name="submit" 
-												type="submit"
-												class="ui tiny button submit savebtnstyle"
-												value = '1';
-												>
-
-									Save
-								</button>
-								<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button">
-									Cancel
-
-								</button>
-							</div>
-
-								
-						</div>
-								
-					</form>
-					
-				</div>
-			</div>
-
-			<div class = "ten wide column">
-				<div class = "tablepane">
-					<div class = "mtitle">PNP Position
-					</div>
-
-					<div class = "tablecon">
-						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
-						    <thead>
-						    	<tr>
-						            <th><center>Name</center></th>
-						            <th><center>Description</center></th> 
-						        </tr>	
-						    </thead>
-						                   
-						    <tbody>
-						    	@foreach ($positions as $position)
-						    	<tr class = "trow" onclick="CRUD({{$position->ID}},2)" id = "{{$position->ID}}">
-						    		<td><center>{{$position->positionname}}</center></td>
-						    		<td><center>{{$position->desc}}</center></td>
-						    	</tr>
-						    	@endforeach
-						    </tbody>
-
-						</table>
-						
-					</div>
-					
-				</div>
-			</div>
-			
-			
 		</div>
 		
+		<div class = "fieldpane">
+			<input type="hidden" id="ID" value=""/>
+
+			<div class = "twelve wide column bspacing2">
+				<div class="ui input field formfield">
+					<input type="text" name="positionname" value = "" placeholder="e.g. Deputy Director"/>
+				</div>
+			</div>
+
+			<div class = "twelve wide column bspacing2">
+				<div class="field">
+					<textarea  id = "description" name = "description" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
+				</div>
+			</div>
+
+			<div class = "twelve wide column bspacing2">
+				<center><button id="dualbutton"
+							name="submit" 
+							type="submit"
+							class="ui tiny button submit savebtnstyle"
+							value = '1'>
+
+							Save
+				</button>
+								
+				<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button">
+						Cancel
+
+				</button></center>
+			</div>
+
+								
+		</div>
+								
+	</form>
+
+@endsection
+
+@section('mtablesection')
+	<div class = "mtitle">PNP Position</div>
+
+	<div class = "tablecon">
+		<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
+		    <thead>
+		    	<tr>
+		            <th><center>Name</center></th>
+		            <th><center>Description</center></th> 
+		        </tr>	
+		    </thead>
+					                   
+		    <tbody>
+		    	@foreach ($positions as $position)
+			    	<tr class = "trow" onclick="CRUD({{$position->ID}},2)" id = "{{$position->ID}}">
+			    		<td><center>{{$position->positionname}}</center></td>
+			    		<td><center>{{$position->desc}}</center></td>
+			    	</tr>
+		    	@endforeach
+		    </tbody>
+
+		</table>
+						
 	</div>
 
 	<script type="text/javascript">

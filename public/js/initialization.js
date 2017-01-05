@@ -4,6 +4,9 @@ function init() {
 
 	$('.ui.dropdown').dropdown();
 
+	$('.ui.checkbox').checkbox();
+
+
 
 	$(document).ready(function() {
 		$('#datatable').DataTable();

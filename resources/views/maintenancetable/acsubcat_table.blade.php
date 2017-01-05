@@ -1,127 +1,105 @@
 @extends('module.maintenance')
 
-@section('mtablesection')
-	<div class = "acccon">
-		<div class = "ui grid">
-
-			<div class = "six wide column">
-				<div class = "formpane">
-					<div class = "mhead">
-						<div id="myToast" class="toast-popup"></div>
-						<i class="write square big icon"></i>
-					</div>
-
-					
-					<form class = "ui form" id = "form" action = "javascript:controlaction()">
+@section('mfillformsection')
+	<form class = "ui form" id = "form" action = "javascript:controlaction()">
 							
-						<div class = "labelpane">
+		<div class = "labelpane">
 
-							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Name </label>
-								<span class = "asterisk">*</span>		
-							</div>
-
-							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Sub-category </label>
-								<span class = "asterisk">*</span>		
-							</div>
-
-							<div class = "twelve wide column bspacing">
-								<label class = "formlabel">Description </label>	
-							</div>
-
-						</div>
-
-						<div class = "fieldpane">
-							<input type="hidden" value="" name="subid"/>
-							
-							<div class = "twelve wide column bspacing2">
-								<div class="ui input field formfield">
-								  <input type="text" name="sub_name" placeholder="e.g. Name">
-								</div>
-							</div>
-							<div class = "twelve wide column bspacing2">
-								<div class = "field">
-									<select class="modified ui selection dropdown selectstyle" name="category" id = "select">
-										<option class="disabled">Select One</option>
-									  	@foreach($category as $key=>$value)
-											<option value="{{$value->ID}}">
-												{{$value->categoryname}}
-											</option>
-										@endforeach
-									  
-									</select>
-									
-								</div>
-								
-							</div>
-
-							<div class = "twelve wide column bspacing2">
-								<div class="field">
-									<textarea  name = "description" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
-								</div>
-							</div>
-							
-
-							<div class = "twelve wide column bspacing2">
-								<center><button type = "submit" name="submit" 
-												class="ui tiny button submit savebtnstyle"
-												>
-
-									Save
-								</button>
-								<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button">
-									Cancel
-
-								</button></center>
-							</div>
-
-								
-						</div>
-								
-					</form>
-					
-				</div>
+			<div class = "twelve wide column bspacing">
+				<label class = "formlabel">Name </label>
+				<span class = "asterisk">*</span>		
 			</div>
 
-			<div class = "ten wide column">
-				<div class = "tablepane">
-					<div class = "mtitle">Advisory Council Sub-category</div>
-
-					<div class = "tablecon">
-						<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
-						    <thead>
-						    	<tr>
-									<th><center>Sub-category</center></th>
-									<th><center>Category</center></th>
-									<th><center>Description</center></th>
-										            
-						        </tr>	
-						    </thead>
-						                   
-						    <tbody>
-						    	@foreach($subcat as $sitem)
-									<tr class = "trow" onclick = "loaddata({{$sitem->ID}})" id = "{{$sitem->ID}}">
-										<td>{{$sitem->subcategoryname}}</td>
-										<td>{{$sitem->category->categoryname}} ({{$sitem->category->accategorycode}})</td>
-										<td>{{$sitem->desc}}</td>
-									</tr>
-								@endforeach
-
-
-						    </tbody>
-
-						</table>
-						
-					</div>
-					
-				</div>
+			<div class = "twelve wide column bspacing">
+				<label class = "formlabel">Sub-category </label>
+				<span class = "asterisk">*</span>		
 			</div>
-			
-			
+
+			<div class = "twelve wide column bspacing">
+				<label class = "formlabel">Description </label>	
+			</div>
+
 		</div>
-		
+
+		<div class = "fieldpane">
+			<input type="hidden" value="" name="subid"/>
+						
+			<div class = "twelve wide column bspacing2">
+				<div class="ui input field formfield">
+					<input type="text" name="sub_name" placeholder="e.g. Name">
+				</div>
+			</div>
+			
+			<div class = "twelve wide column bspacing2">
+				<div class = "field">
+					<select class="modified ui selection dropdown selectstyle" name="category" id = "select">
+							<option class="disabled">Select One</option>
+						  	@foreach($category as $key=>$value)
+								<option value="{{$value->ID}}">
+											{{$value->categoryname}}
+								</option>
+							@endforeach
+									  
+					</select>
+									
+				</div>
+								
+			</div>
+
+			<div class = "twelve wide column bspacing2">
+				<div class="field">
+					<textarea  name = "description" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
+				</div>
+			</div>
+							
+
+			<div class = "twelve wide column bspacing2">
+				<center><button type = "submit" name="submit" 
+								class="ui tiny button submit savebtnstyle">
+
+								Save
+						</button>
+						
+						<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button">
+								Cancel
+
+						</button></center>
+			</div>
+
+								
+		</div>
+								
+	</form>
+
+@endsection
+
+@section('mtablesection')
+	<div class = "mtitle">Advisory Council Sub-category</div>
+
+	<div class = "tablecon">
+		<table id="datatable" class="ui celled table" cellspacing="0" width="100%">
+		    <thead>
+		    	<tr>
+					<th><center>Sub-category</center></th>
+					<th><center>Category</center></th>
+					<th><center>Description</center></th>
+									            
+		        </tr>	
+		    </thead>
+					                   
+		    <tbody>
+		    	@foreach($subcat as $sitem)
+					<tr class = "trow" onclick = "loaddata({{$sitem->ID}})" id = "{{$sitem->ID}}">
+						<td>{{$sitem->subcategoryname}}</td>
+						<td>{{$sitem->category->categoryname}} ({{$sitem->category->accategorycode}})</td>
+						<td>{{$sitem->desc}}</td>
+					</tr>
+				@endforeach
+		    </tbody>
+		</table>
+					
 	</div>
+					
 
 	<script type="text/javascript">
 		$('#m2').attr('class', 'item active');
