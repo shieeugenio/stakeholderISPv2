@@ -137,7 +137,6 @@ function CRUD(id, func){
 		if(confirm('Save?')) {
 			data = {
 			'acpname' : document.getElementsByName('acpositionname')[0].value,
-			'acpcode' : document.getElementsByName('acpositioncode')[0].value,
 			'acpdesc' : document.getElementsByName('description')[0].value,
 			'submit': document.getElementsByName("submit")[0].value,
 			'callId' : 1,
@@ -166,7 +165,6 @@ function CRUD(id, func){
 			data = {
 			'id' : document.getElementById('ID').value,
 			'acpname' : document.getElementsByName('acpositionname')[0].value,
-			'acpcode' : document.getElementsByName('acpositioncode')[0].value,
 			'acpdesc' : document.getElementsByName('description')[0].value,
 			'submit': document.getElementsByName("submit")[0].value,
 			'callId' : 3,
@@ -211,7 +209,6 @@ function exec(data, func) {
 
 					document.getElementById('ID').value = data['ID'];
 					document.getElementsByName('acpositionname')[0].value = data['acpositionname'];
-					document.getElementsByName('acpositioncode')[0].value = data['acpositioncode'];
 					document.getElementsByName('description')[0].value = data['desc'];
 				}
 			} 

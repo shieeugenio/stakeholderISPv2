@@ -141,7 +141,6 @@
 				if(confirm('Save?')) {
 					data = {
 								'ppname' : document.getElementsByName('positionname')[0].value,
-								'ppcode' : document.getElementsByName('positioncode')[0].value,
 								'ppdesc' : document.getElementsByName('description')[0].value,
 								'callId' : 1,
 								'submit' : document.getElementsByName('submit')[0].value,
@@ -173,7 +172,6 @@
 					data = {
 								'id' : document.getElementById('ID').value,
 								'ppname' : document.getElementsByName('positionname')[0].value,
-								'ppcode' : document.getElementsByName('positioncode')[0].value,
 								'ppdesc' : document.getElementsByName('description')[0].value,
 								'callId' : 3,
 								'submit' : document.getElementsByName('submit')[0].value,
@@ -216,7 +214,6 @@
 
 							document.getElementById('ID').value = data['ID'];
 							document.getElementsByName('positionname')[0].value = data['positionname'];
-							document.getElementsByName('positioncode')[0].value = data['policepositioncode'];
 							document.getElementsByName('description')[0].value = data['desc'];
 							
 							console.log(data);
