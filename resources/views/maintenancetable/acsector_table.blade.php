@@ -141,7 +141,6 @@
 			if(confirm('Save?')) {
 				data = {
 				'secname' : document.getElementsByName('acsectorName')[0].value,
-				'seccode' : document.getElementsByName('acsectorCode')[0].value,
 				'secdesc' : document.getElementsByName('Desc')[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'callId' : 1,
@@ -170,7 +169,6 @@
 			if(confirm('Save?')) {
 				data = {
 					'id' : document.getElementById('acsectorID').value,
-					'seccode' : document.getElementsByName('acsectorCode')[0].value,
 					'secname' : document.getElementsByName('acsectorName')[0].value,
 					'secdesc' : document.getElementsByName('Desc')[0].value,
 					'submit': document.getElementsByName("submit")[0].value,
@@ -213,7 +211,6 @@
 					$('tr').not("[id = '" + data['ID'] + "']").removeAttr('class');
 
 					document.getElementById('acsectorID').value = data['ID'];
-					document.getElementsByName('acsectorCode')[0].value = data['sectorcode'];
 					document.getElementsByName('acsectorName')[0].value = data['sectorname'];
 					document.getElementsByName('Desc')[0].value = data['desc'];
 				}

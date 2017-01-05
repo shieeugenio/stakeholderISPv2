@@ -31,7 +31,6 @@ class acsectorController extends Controller
             $acsec = new AC_Sector;
               $acsec->sectorname = $request->secname;
               $acsec->desc = $request->secdesc;
-              $acsec->sectorcode = $request->seccode;
             $acsec->save();
 
         }
@@ -50,7 +49,6 @@ class acsectorController extends Controller
             $id = $request->id;
             $acsec= AC_Sector::find($id);
             $acsec->sectorname = $request->secname;
-            $acsec->sectorcode = $request->seccode;
             $acsec->desc = $request->secdesc;
             $acsec->save();
         }
