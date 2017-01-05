@@ -11,7 +11,6 @@ class ACSector extends Migration
         Schema::create('AC_Sector', function(Blueprint $table)
         {
             $table->increments('ID');
-            $table->string('sectorcode', 10)->nullable();
             $table->string('sectorname', 45)->unique();
             $table->string('desc', 60)->nullable();
             $table->timestamps();
