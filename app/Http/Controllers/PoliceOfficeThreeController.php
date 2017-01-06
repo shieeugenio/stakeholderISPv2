@@ -5,18 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\unit_office_tertiaries;
+use App\Models\unit_office_secondaries;
 use DB;
 use App\Http\Controllers\Controller;
 
-class PO3Controller extends Controller
+class PoliceOfficeThreeController extends Controller
 {
    
     public function index_PO3(){
+      $potwo = DB::table('unit_office_secondaries')->get();  
       $pothree = DB::table('unit_office_tertiaries')
       ->orderBy('unit_office_tertiaries.id','DESC')
       ->get();
-      return view('maintenancetable.PO3_table')
-      ->with('pothree', $pothree);
+      return view('maintenancetable.policeoffice3_table')
+      ->with('pothree', $pothree)
+      ->with('potwo', $potwo);
       
     }
 
@@ -28,15 +31,13 @@ class PO3Controller extends Controller
 
         if($callId==1)
         {
-            $potwo = new unit_office_secondaries;
-            $potwo->save();
-            $potwoID = $potwo->id; 
-
+          
             $potri = new unit_office_tertiaries;
-            $potri->UnitOfficeTertiaryName = $request->;
-            $potri->UnitOfficeHasQuaternary = $request->;
-            $potri->UnitOfficeSecondaryID = $potwoID;
+            $potri->UnitOfficeTertiaryName = $request->tername;
+            $potri->UnitOfficeHasQuaternary = $request->hasquart;
+            $potri->UnitOfficeSecondaryID = $request->officE2;
             $potri->save();
+            var_dump($request);
 
         }
 
@@ -45,7 +46,7 @@ class PO3Controller extends Controller
             $id = $request->id;
             $potri = unit_office_tertiaries::find($id);
 
-            return $acsec;
+            return $potri;
 
         }
 
@@ -53,9 +54,9 @@ class PO3Controller extends Controller
         {
             $id = $request->id;
             $potri= unit_office_tertiaries::find($id);
-            $potri->UnitOfficeTertiaryName = $request->;
-            $potri->UnitOfficeHasQuaternary = $request->;
-            $potri->UnitOfficeSecondaryID = $potwoID;
+            $potri->UnitOfficeTertiaryName = $request->tername;
+            $potri->UnitOfficeHasQuaternary = $request->hasquart;
+            $potri->UnitOfficeSecondaryID = $request->officE2;
             $potri->save();
         }
     }

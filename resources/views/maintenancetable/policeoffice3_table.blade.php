@@ -1,7 +1,7 @@
 @extends('module.maintenance')
 
 @section('mfillformsection')
-	<form class = "ui form" id = "form" action="javascript:controlaction()">
+	<form class = "ui form" id = "form" action="javascript:CRUD(0,document.getElementById('dualbutton').value)">
 							
 		<div class = "labelpane2">
 								
@@ -30,7 +30,8 @@
 
 		</div>	
 
-		<input type="hidden" value="" name="subid"/>
+		<input type="hidden" value="" name="ID" id='ID'/>
+
 			<div class = "fieldpane2">
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
@@ -48,11 +49,13 @@
 
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
-						<select class="modified ui selection dropdown selectstyle2" name="office2" id = "select2">
-				    		<option class = "disabled">Select One</option>
-									  <!-- POPULATE DROPDOWN OFFICE 2-->
-									 
+						<select class="modified ui selection dropdown selectstyle2" name="officE2" id = "officE2">
+						<option value="- Select One -">- Select One -</option>
 
+						@foreach($potwo as $rs1)
+				        <option name='officE2' id='officE2' value="{{$rs1->id}}">{{$rs1->UnitOfficeSecondaryName}}</option>
+						@endforeach
+				    		
 						</select>
 									
 					</div>
@@ -61,7 +64,7 @@
 
 				<div class = "twelve wide column bspacing2">
 					<div class="ui input field formfield">
-						<input type="text" name="name" placeholder="e.g. Regional">
+						<input type="text" name="terName" id='terName' placeholder="e.g. Regional">
 					</div>
 				</div>
 
@@ -73,24 +76,29 @@
 							
 							
 				<div class = "twelve wide column bspacing2">
-					<div class="ui checkbox">
-						<input type="checkbox" name="hasquar">
-						<label class = "boollabel">Has Quarternary</label>
-					</div>
+				<div class="ui checkbox">
+					<input type="checkbox" id='hasQuart' name='hasQuart'
+					value='false' >
+					<label class = "boollabel">Has Quarternary</label>
+				</div>
 				</div> <br>
 
 
 				<div class = "twelve wide column bspacing2">
-					<center><button type = "submit" name="submit" 
-									class="ui tiny button submit savebtnstyle">
+				<center><button class="ui tiny button submit savebtnstyle"
+							id="dualbutton"
+							type="submit"
+							name="submit" 
+							value = '1'>
+									
+							Save
+					</button>
 
-									Save
-							</button>
-							<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button">
-									Cancel
-
-							</button></center>
-				</div>
+					<button class="ui tiny button"  
+							type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" >
+							Cancel
+					</button></center>
+			</div>	
 			</div>	
 							
 								
@@ -112,6 +120,15 @@
 		    </thead>
 					                   
 		    <tbody>
+		     @foreach ($pothree as $tri) 
+			       	<tr class = "trow" onclick = "CRUD({{$tri->id}},2)" id = "{{$tri->id}}">
+			       		<td><center></center></td>
+			       		<td><center>{{$tri->UnitOfficeSecondaryID}}</center></td>
+			    		<td><center>{{$tri->UnitOfficeTertiaryName}}</center></td>
+			    		<td><center></center></td>
+			    	</tr>  
+					                               
+			   @endforeach 
 						    	
 		    </tbody>
 
@@ -119,126 +136,115 @@
 						
 	</div>
 
-
 	<script type="text/javascript">
-		$('#m7').attr('class', 'item active');
-		var flag = 0;
+	$('#m4').attr('class', 'item active');
 
-		function controlaction() {
-			if(confirm('Save?')) {
-				if(flag == 1) {
-					editData();
+	function resetflag(msg){
 
-				} else if(flag == 0) {
-					addData();
+		document.getElementById('dualbutton').value = 1;
 
-				}//if(flag == 1) {
-			}//if(confirm('Save?')) {
-		}//function controlaction() {
-
-		function resetflag(msg) {
-			flag = 0;
-
-			$("#myToast").showToast({
-				message: msg,
-				timeout: 2500
-			});
-
-		}//function resetflag() {
-
-		function loaddata(id) {
-
-			flag = 1;
-			$('#' + id).attr('class', 'activerow');
-			$('tr').not("[id = '" + id + "']").removeAttr('class');
-
-			var data = {
-				'id' : id,
-				'_token' : '{{ Session::token() }}'
-			};
-
-			$.ajax({
-				type: "POST",
-				url: "{{url('maintenance/subpoliceview')}}",
-				data: data,
-			   	dataType: "JSON",
-			   	success : function(data) {
-
-			   		console.log(data);
-			   		document.getElementsByName('subid')[0].value = data['ID'];
-			   		$('#select1').dropdown('set selected', data['police_office_id']); //office 1
-			   		$('#select2').dropdown('set selected', data['police_office_id']); // office 2
-
-			   		document.getElementsByName('name')[0].value = data['officename'];
-			   		document.getElementsByName('desc')[0].value = data['desc'];
-
-
-			   	}//success : function() {
-			});
-
-
-		}//function loaddata() {
-
-		function addData() {
-			var data = {
-				'name' : document.getElementsByName("name")[0].value,
-				'office2' : document.getElementsByName("office2")[0].value,
-				'desc' : document.getElementsByName("desc")[0].value,
-				'submit': document.getElementsByName("submit")[0].value,
-				'_token' : '{{ Session::token() }}'
-			};
-
-			$.ajax({
-				type: "POST",
-				url: "{{url('confirmpolice')}}",
-				data: data,
-			   	success : function() {
-			   		resetflag('Saved!');
-
-
-			   	}
-			});
-
-			setTimeout(function(){
-				location.reload();
-			}, 2600);
-
-		}//function addData(){
-
-		function editData() {
-			var data = {
-				'subID' : document.getElementsByName('subid')[0].value,
-				'office2' : document.getElementsByName("office2")[0].value,
-				'name' : document.getElementsByName("name")[0].value,
-				'desc' : document.getElementsByName("desc")[0].value,
-				'submit': document.getElementsByName("submit")[0].value,
-				'_token' : '{{ Session::token() }}'
-			};
-
-			$.ajax({
-				type: "POST",
-				url: "{{url('maintenance/editsubpolice')}}",
-				data: data,
-			   	success : function() {
-			   		resetflag('Updated!');
-
-
-			   	}//success : function() {
-			});
-
-			setTimeout(function(){
-				location.reload();
-			}, 2600);
-
-
-		}//
-
-	//POPULATE OFFICE 1 DROPDOWN
-	//POPULATE OFFICE 2 DROPDOWN
-	//REVISE $('#select2').dropdown('set selected', data['police_office_id']); LINE CHANGE DATA SOURCE
-	//CONTROLLER
+		$("#myToast").showToast({
+			message: msg,
+			timeout: 2500
+		});
+		
+		
+	}
 
 	
-	</script>
+
+	function CRUD(id, func){
+
+		var data;
+
+		if(func == 1)
+		{
+			if(confirm('Save?')) {
+
+			data = {
+				'tername' : document.getElementsByName('terName')[0].value,
+				'hasquart' : document.getElementsByName('hasQuart')[0].value,
+				'office2' : document.getElementsByName('officE2')[0].value,
+				'submit': document.getElementsByName("submit")[0].value,
+				'callId' : 1,
+				'_token' : '{{ Session::token() }}'
+				};
+
+				exec(data, func);
+			}//if(confirm('Save?')) {
+		}//add
+
+		if(func == 2)
+		{
+			data = {
+			'id' : id,
+			'callId' : 2,
+			'_token' : '{{ Session::token() }}'};
+			document.getElementById('dualbutton').value = 3;
+
+			exec(data, func);
+			
+
+		}//view
+
+		if(func == 3)
+		{
+			if(confirm('Update?')) {
+				data = {
+					'id' : document.getElementById('ID').value,
+					'tername' : document.getElementsByName('terName')[0].value,
+					'hasquart' : document.getElementsByName('hasQuart')[0].value,
+					'office2' : document.getElementsByName('officE2')[0].value,
+					'submit': document.getElementsByName("submit")[0].value,
+					'callId' : 3,
+					'_token' : '{{ Session::token() }}'
+					};
+
+				exec(data, func);
+
+			}//if(confirm('Save?')) {
+		}//update
+
+			
+	}
+
+	function exec(data, func) {
+		$.ajax({
+
+			type: "POST",
+			url: "{{url('maintenancetable/PO3CRUD')}}",
+			data: data,
+			dataype: "JSON",
+			success:function(data){
+				if(  func == 1 || func == 3){ 
+					
+					if(func == 1) {
+						msg = "Saved!";
+					} else {
+						msg = "Updated!";
+					}//if(func == 1) {
+
+					resetflag(msg);
+					setTimeout(function(){
+						location.reload();
+					}, 2600);
+
+				}//if func
+				else {
+					$('#' + data['id']).attr('class', 'activerow');
+					$('tr').not("[id = '" + data['id'] + "']").removeAttr('class');
+
+		document.getElementById('ID').value = data['id'];
+		document.getElementsByName('terName')[0].value = data['UnitOfficeTertiaryName'];
+		document.getElementsByName('hasQuart')[0].value = data['UnitOfficeHasQuaternary'];
+		document.getElementById('officE2').value = data['UnitOfficeSecondaryID'];
+				}
+			} 
+
+		});
+	}//function exec() {
+
+</script>
+
 
 @stop
