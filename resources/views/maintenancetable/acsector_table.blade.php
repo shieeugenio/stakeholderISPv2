@@ -1,7 +1,7 @@
 @extends('module.maintenance')
 
 @section('mfillformtable')
-	<form class = "ui form" id = "form" action="javascript:CRUD(0,document.getElementById('dualbutton').value)">	
+	<form class = "ui form" id = "form" action="javascript:loadCModal()">	
 					
 		<div class = "labelpane">
 
@@ -47,7 +47,7 @@
 					</button>
 
 					<button class="ui tiny button"  
-							type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" >
+							type="button" onclick = "$('#cancelmodal').modal('show');" >
 							Cancel
 					</button>					
 				</center>
@@ -84,6 +84,7 @@
 
 <script type="text/javascript">
 	$('#m4').attr('class', 'item active');
+	var flag = 0;
 
 	function resetflag(msg){
 
@@ -97,14 +98,21 @@
 		
 	}
 
+	function controlaction() {
+		var id = 0;
+		var func = document.getElementById('dualbutton').value;
+
+		CRUD(id, func);
+
+	}//function controlaction() {
+
 	function CRUD(id, func){
 
 		var data;
 
 		if(func == 1)
 		{
-			if(confirm('Save?')) {
-				data = {
+			data = {
 				'secname' : document.getElementsByName('acsectorName')[0].value,
 				'secdesc' : document.getElementsByName('Desc')[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
@@ -112,8 +120,7 @@
 				'_token' : '{{ Session::token() }}'
 				};
 
-				exec(data, func);
-			}//if(confirm('Save?')) {
+			exec(data, func);
 		}//add
 
 		if(func == 2)
@@ -123,6 +130,7 @@
 			'callId' : 2,
 			'_token' : '{{ Session::token() }}'};
 			document.getElementById('dualbutton').value = 3;
+			flag = 1;
 
 			exec(data, func);
 			
@@ -131,19 +139,17 @@
 
 		if(func == 3)
 		{
-			if(confirm('Save?')) {
-				data = {
-					'id' : document.getElementById('acsectorID').value,
-					'secname' : document.getElementsByName('acsectorName')[0].value,
-					'secdesc' : document.getElementsByName('Desc')[0].value,
-					'submit': document.getElementsByName("submit")[0].value,
-					'callId' : 3,
-					'_token' : '{{ Session::token() }}'
-					};
+			data = {
+				'id' : document.getElementById('acsectorID').value,
+				'secname' : document.getElementsByName('acsectorName')[0].value,
+				'secdesc' : document.getElementsByName('Desc')[0].value,
+				'submit': document.getElementsByName("submit")[0].value,
+				'callId' : 3,
+				'_token' : '{{ Session::token() }}'
+				};
 
-				exec(data, func);
+			exec(data, func);
 
-			}//if(confirm('Save?')) {
 		}//update
 
 			
