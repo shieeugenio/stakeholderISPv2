@@ -12,7 +12,8 @@ use Redirect;
 class RegistrationController extends Controller
 {
     public function index(){
-        return View('transaction.registration');
+        $users = users::where('status', '=', '0')->get();
+        return View('transaction.registration')->with('users',$users);
     }
 
     public function register(Request $req){
@@ -21,7 +22,7 @@ class RegistrationController extends Controller
             $user = new users;
             $user->name = $req->name;
             $user->email = $req->username;
-            $user->type = $req->type;
+            $user->admintype = $req->type;
             $user->status = 0;
             $user->created_at = date('Y-m-d H:i:s');
             $user->password = bcrypt($req->password);
@@ -35,16 +36,21 @@ class RegistrationController extends Controller
         }
     }
 
-    public function approvalSuccess(Request $req){
-            $user = users::find($req->id);
+    public function approvalSuccess($id){
+            $user = users::find($id);
             $user->status = 1;
             $user->save();
+            $message = "Account Approved";
+            return Redirect::to('registration')->with('message',$message);
+
     }
 
-    public function approvalCancel(Request $req){
-            $user = users::find($req->id);
+    public function approvalCancel($id){
+            $user = users::find($id);
             $user->status = 2;
             $user->save();
+            $message = "Account denied!";
+            return Redirect::to('registration')->with('message',$message);
     }
     
 

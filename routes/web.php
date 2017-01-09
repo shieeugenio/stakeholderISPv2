@@ -69,8 +69,7 @@ Route::get('maintenance/secondaryoffice', 'PoliceOfficeTwoController@index')->mi
 Route::get('maintenance/tertiaryoffice', function() { 
 											return view('maintenancetable.policeoffice3_table');
 										});
-Route::get('maintenance/quarternaryoffice', function() { 
-											return view('maintenancetable.policeoffice4_table');});
+Route::get('maintenance/quarternaryoffice', 'PoliceOfficeFourController@index');
 
 Route::get('maintenance/policeposition','PolicePositionController@index_policeposition')->middleware('auth');
 
@@ -107,7 +106,11 @@ Route::post('maintenance/editsubpolice', 'PoliceOfficeTwoController@edit');
 //POLICE POSITION @author: Lester Acula
 Route::post('maintenance/policepositioncrud','PolicePositionController@policepositioncrud');
 
-//TRANSACTION
+//QUATERNARY OFFICE OFFICE @author: Lester
+Route::post('maintenance/add', 'PoliceOfficeFourController@add');
+Route::post('maintenance/policefourview', 'PoliceOfficeFourController@find');
+Route::post('maintenance/editpolicefour', 'PoliceOfficeFourController@edit');
+Route::post('maintenance/populate', 'PoliceOfficeFourController@populate');
 
 //ADD ADVISER @author: Shie Eugenio
 Route::post('adviser/add', 'AdvDirectoryController@addadviser');
@@ -163,8 +166,17 @@ Route::get('logout', array('uses' => 'HomeController@logout'));
 //registration[ren]
 Route::get('registration', 'RegistrationController@index');
 Route::resource('register', 'RegistrationController@register');
+Route::get('Accountapproved/{id}', 'RegistrationController@approvalSuccess');
+Route::get('Accountdisapproved/{id}','RegistrationController@approvalCancel');
 
+/* admin type 1-Super Admin, 0-Regular Admin 
+	approval 0 - default value , 1 - approved, 2-disapproved
 
+*/
 //testing [ren]
 Route::get('testAdviser','TestController@index');
+
 Route::get('testAdviserAdd','TestController@addAdviser');
+
+
+//Police Office Four : Resutaa
