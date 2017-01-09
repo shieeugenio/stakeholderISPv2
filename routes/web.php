@@ -176,11 +176,17 @@ Route::get('logout', array('uses' => 'HomeController@logout'));
 //registration[ren]
 Route::get('registration', 'RegistrationController@index');
 Route::resource('register', 'RegistrationController@register');
+Route::get('Accountapproved/{id}', 'RegistrationController@approvalSuccess');
+Route::get('Accountdisapproved/{id}','RegistrationController@approvalCancel');
 
+/* admin type 1-Super Admin, 0-Regular Admin 
+	approval 0 - default value , 1 - approved, 2-disapproved
 
+*/
 //testing [ren]
 Route::get('testAdviser','TestController@index');
+
 Route::get('testAdviserAdd','TestController@addAdviser');
 
-//Police Office Four : Resutaa
 
+//Police Office Four : Resutaa
