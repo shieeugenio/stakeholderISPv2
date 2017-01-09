@@ -35,11 +35,14 @@
 			<div class = "fieldpane2">
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
-						<select class="modified ui selection dropdown selectstyle2" name="office" id = "select1">
-							<option class = "disabled">Select One</option>
-									  
-									   <!-- POPULATE DROPDOWN OFFICE 1-->
-									  	
+						<select class="modified ui selection dropdown selectstyle2" name="select_officE1" id = "officE1"
+						onchange="Select_Office();">
+							<option value='- Select One -'>- Select One -</option>
+
+							@foreach($poOne as $rs1)
+					        <option value="{{$rs1->id}}">{{$rs1->UnitOfficeName}}</option>
+							@endforeach
+							 
 
 						</select>
 									
@@ -49,13 +52,10 @@
 
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
-						<select class="modified ui selection dropdown selectstyle2" name="officE2" id = "officE2">
-						<option value="- Select One -">- Select One -</option>
+						<select class="modified ui selection dropdown selectstyle2" name="select_officE2" id = "officE2" disabled>
 
-						@foreach($potwo as $rs1)
-				        <option name='officE2' id='officE2' value="{{$rs1->id}}">{{$rs1->UnitOfficeSecondaryName}}</option>
-						@endforeach
-				    		
+						<option value='- Select One -' >- Select One -</option>
+													    		
 						</select>
 									
 					</div>
@@ -77,8 +77,7 @@
 							
 				<div class = "twelve wide column bspacing2">
 				<div class="ui checkbox">
-					<input type="checkbox" id='hasQuart' name='hasQuart'
-					value='false' >
+					<input type="checkbox" id='hasQuart' name='hasQuart' >
 					<label class = "boollabel">Has Quarternary</label>
 				</div>
 				</div> <br>
@@ -121,10 +120,13 @@
 					                   
 		    <tbody>
 		     @foreach ($pothree as $tri) 
-			       	<tr class = "trow" onclick = "CRUD({{$tri->id}},2)" id = "{{$tri->id}}">
+			       	<tr class = "trow" onclick = "CRUD({{$tri->id}},2)" 
+			       	id = "{{$tri->id}}">
 			       		<td><center></center></td>
-			       		<td><center>{{$tri->UnitOfficeSecondaryID}}</center></td>
-			    		<td><center>{{$tri->UnitOfficeTertiaryName}}</center></td>
+			       		<td id="{{$tri->id}}">
+			       		<center>{{$tri->UnitOfficeSecondaryID}}</center></td>
+			    		<td id="{{$tri->id}}">
+			    		<center>{{$tri->UnitOfficeTertiaryName}}</center></td>
 			    		<td><center></center></td>
 			    	</tr>  
 					                               
@@ -137,8 +139,9 @@
 	</div>
 
 	<script type="text/javascript">
-	$('#m4').attr('class', 'item active');
 
+	$('#m7').attr('class', 'item active');
+		
 	function resetflag(msg){
 
 		document.getElementById('dualbutton').value = 1;
@@ -147,11 +150,9 @@
 			message: msg,
 			timeout: 2500
 		});
-		
-		
+				
 	}
 
-	
 
 	function CRUD(id, func){
 
@@ -163,13 +164,13 @@
 
 			data = {
 				'tername' : document.getElementsByName('terName')[0].value,
-				'hasquart' : document.getElementsByName('hasQuart')[0].value,
-				'office2' : document.getElementsByName('officE2')[0].value,
+				'hasquart' : $('#hasQuart').is(":checked"),  
+				'office2' : document.getElementsByName('select_officE2')[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'callId' : 1,
 				'_token' : '{{ Session::token() }}'
 				};
-
+				
 				exec(data, func);
 			}//if(confirm('Save?')) {
 		}//add
@@ -194,7 +195,7 @@
 					'id' : document.getElementById('ID').value,
 					'tername' : document.getElementsByName('terName')[0].value,
 					'hasquart' : document.getElementsByName('hasQuart')[0].value,
-					'office2' : document.getElementsByName('officE2')[0].value,
+					'office2' : document.getElementsByName('select_ officE2')[0].value,
 					'submit': document.getElementsByName("submit")[0].value,
 					'callId' : 3,
 					'_token' : '{{ Session::token() }}'
@@ -243,6 +244,47 @@
 
 		});
 	}//function exec() {
+
+
+	
+function Select_Office() {
+
+	var $unit_offices_ID = document.getElementById('officE1').value;
+	var dataString = "id=" + $unit_offices_ID;
+	var token = '{{ Session::token() }}';
+	
+		$.ajax({
+
+			type: "post",
+			headers: {'X-CSRF-TOKEN': token},
+			url: "selectOffice",
+			data: dataString,
+			datatype: 'json',
+			cache: false,
+			success: function(data){
+
+				var parse_data = JSON.parse(data);
+
+				document.getElementsByName('select_officE2').disabled = false;
+
+				document.getElementById('officE2').innerHTML = "<option>- Select One -</option>";
+
+				for (var i = 0; i < parse_data.length; i = i + 2) {
+						
+					var j = i + 1;
+
+					document.getElementById('officE2').innerHTML += "<option value=" + parse_data[i] + ">"+ parse_data[j] + "</option>"; 
+
+				}
+				
+			}
+
+		});
+
+		return false;
+	}// end office 1
+
+	
 
 </script>
 

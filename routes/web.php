@@ -91,7 +91,11 @@ Route::post('maintenance/acpositioncrud','ACPositionController@acpositioncrud');
 
 //AC SECTOR @author: Christine Amper
 Route::post('maintenancetable/acsectorCRUD','acsectorController@acsectorCRUD');
+
+//TERTIARY OFFICE @author: Christine Amper
 Route::post('maintenancetable/PO3CRUD','PoliceOfficeThreeController@PO3CRUD');
+Route::post('maintenance/selectOffice','PoliceOfficeThreeController@selectOffice');
+Route::post('maintenance/selectOfficeSec','PoliceOfficeThreeController@selectOfficeSec');
 
 //PRIMARY OFFICE @author: Joanne Dasig
 Route::post('/buttonsPoliceOffice', 'PoliceOfficesController@add');
