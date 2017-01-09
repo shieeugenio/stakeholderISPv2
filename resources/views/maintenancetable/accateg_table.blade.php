@@ -17,9 +17,9 @@
 			</div>
 									
 								
-<<<<<<< HEAD
+
 		</div>
-=======
+
 						</div>
 
 						<input type="hidden" value="" name="categid"/>
@@ -53,7 +53,7 @@
 
 								</button></center>
 							</div>
->>>>>>> c058e3a465e17408e9db3571bffdcac375029b46
+
 
 		<input type="hidden" value="" name="categid"/>
 		<div class = "fieldpane">

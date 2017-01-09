@@ -52,7 +52,7 @@
 
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
-						<select class="modified ui selection dropdown selectstyle2" name="select_officE2" id = "officE2" disabled>
+						<select class="modified ui selection dropdown selectstyle2" name="select_officE2" id = "officE2" onchange="Select_Office2();" disabled>
 
 						<option value='- Select One -' >- Select One -</option>
 													    		
@@ -264,7 +264,7 @@ function Select_Office() {
 			success: function(data){
 
 				var parse_data = JSON.parse(data);
-
+				document.getElementsByName('select_officE2').setAttribute('disabled', 'false');
 				document.getElementsByName('select_officE2').disabled = false;
 
 				document.getElementById('officE2').innerHTML = "<option>- Select One -</option>";
@@ -284,7 +284,35 @@ function Select_Office() {
 		return false;
 	}// end office 1
 
-	
+	function Select_Office2() {
+
+	var SelOfficE2 = document.getElementById('officE2').value;
+
+		var dataString = "id=" + SelOfficE2;
+
+		var token = '{{ Session::token() }}';
+		
+			$.ajax({
+
+				type: "post",
+				headers: {'X-CSRF-TOKEN': token},
+				url: "selectOfficeSec",
+				data: dataString,
+				datatype: 'json',
+				cache: false,
+				success: function(data){
+
+					alert('success!!!');
+
+					}
+					
+			});
+
+			return false;
+		
+	}//end office TWO
+
+
 
 </script>
 
