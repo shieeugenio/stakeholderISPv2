@@ -18,6 +18,7 @@ class PoliceAdvisory extends Migration
             $table->string('assign', 45);
             $table->string('contactno', 15);
             $table->string('email', 65);
+            $table->tinyInteger('policetype');
             $table->string('authorityorder', 20)->unique();
             $table->text('imagepath');
             $table->integer('rank_id')->unsigned();

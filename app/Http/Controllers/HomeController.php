@@ -3,6 +3,20 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Auth\LoginController;
 
+use App\Models\Advisory_Council;
+use Illuminate\Http\Request;
+use Redirect;
+use Input;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+//use Illuminate\Foundation\BusDispatchesJobs;
+//use IlluminateRoutingController as BaseController;
+//use IlluminateFoundationValidationValidatesRequests;
+//use IlluminateFoundationAuthAccessAuthorizesRequests;
+//use IlluminateFoundationAuthAccessAuthorizesResources;
+//use IlluminateHtmlHtmlServiceProvider;
+use DB;
+
 class HomeController extends Controller
 {
     public function index(){

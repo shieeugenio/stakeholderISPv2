@@ -1,7 +1,7 @@
 @extends('module.maintenance')
 
 @section('mfillformsection')
-	<form class = "ui form" id = "form" action = "javascript:controlaction()">
+	<form class = "ui form" id = "form" action = "javascript:controlaction()" onsubmit="validationCheckbox(this)">
 							
 		<div class = "labelpane">
 								
@@ -35,7 +35,7 @@
 							
 			<div class = "twelve wide column bspacing2">
 				<div class="ui checkbox">
-					<input type="checkbox" name="hassec">
+					<input type="checkbox" name="hassec"  id="hasfield">
 					<label class = "boollabel">Has Secondary</label>
 				</div>
 			</div> <br>
@@ -67,15 +67,15 @@
 		    <thead>
 		    	<tr>
 		            <th><center>Name</center></th>
-		            <th><center>Description</center></th>
+		            <th><center>Has Field</center></th>
 		        </tr>	
 		    </thead>
 						                   
 		    <tbody>
 		    	@for($ctr = 0 ; $ctr < sizeof($offices) ; $ctr++)
-		    		<tr class = "trow" onclick = "loaddata({{$offices[$ctr]->ID}})" id = "{{$offices[$ctr]->ID}}">
-			    		<td><center>{{$offices[$ctr]->officename}}</center></td>
-			    		<td><center>{{$offices[$ctr]->desc}}</center></td>
+		    		<tr class = "trow" onclick = "loaddata({{$offices[$ctr]->id}})" id = "{{$offices[$ctr]->id}}">
+			    		<td><center>{{$offices[$ctr]->UnitOfficeName}}</center></td>
+			    		<td><center>{{$offices[$ctr]->UnitOfficeHasField}}</center></td>
 
 
 			    	</tr>
@@ -132,9 +132,9 @@
 			   	dataType: "JSON",
 			   	success : function(data) {
 
-			   		document.getElementsByName('officeid')[0].value = data['ID'];
-			   		document.getElementsByName('name')[0].value = data['officename'];
-			   		document.getElementsByName('desc')[0].value = data['desc'];
+			   		document.getElementsByName('officeid')[0].value = data['id'];
+			   		document.getElementsByName('name')[0].value = data['UnitOfficeName'];
+			   		document.getElementsByName('hassec')[0].value = data['UnitOfficeHasField'];
 
 			   	}//success : function() {
 			});
@@ -145,7 +145,7 @@
 		function addData() {
 			var data = {
 				'name' : document.getElementsByName("name")[0].value,
-				'desc' : document.getElementsByName("desc")[0].value,
+				'hassec' : document.getElementsByName("hassec")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'
 			};
@@ -170,7 +170,7 @@
 			var data = {
 				'policeID' : document.getElementsByName('officeid')[0].value,
 				'name' : document.getElementsByName("name")[0].value,
-				'desc' : document.getElementsByName("desc")[0].value,
+				'hassec' : document.getElementsByName("hassec")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'
 			};
@@ -191,6 +191,16 @@
 
 
 		}//
+
+		function validationCheckbox(hascheck){
+			if(hascheck.hassec.checked == true){
+				document.getElementById('hasfield').value = "True"
+			}
+			else{
+				document.getElementById('hasfield').value = "False"	
+			}
+
+		}
 
 	// ADJUST BACK-END (CONTROLLER) REMOVE STAFF
 	</script>

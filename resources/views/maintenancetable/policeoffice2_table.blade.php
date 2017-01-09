@@ -1,7 +1,7 @@
 @extends('module.maintenance')
 
 @section('mfillformsection')
-	<form class = "ui form" id = "form" action="javascript:controlaction()">
+	<form class = "ui form" id = "form" action="javascript:controlaction()" onsubmit="validationCheckbox(this)">
 							
 		<div class = "labelpane2">
 									
@@ -18,7 +18,7 @@
 			</div>
 
 			<div class = "twelve wide column bspacing">
-				<label class = "formlabel">Description
+				<label class = "formlabel">Has Tertiary
 				</label>
 			</div>
 
@@ -34,7 +34,7 @@
 									  
 								@foreach($offices as $sitem)
 
-									<option value = '{{$sitem->ID}}'>{{$sitem->officename}}</option>
+									<option value = '{{$sitem->id}}'>{{$sitem->UnitOfficeName}}</option>
 
 								@endforeach
 									  	
@@ -45,11 +45,11 @@
 								
 				</div>
 
-				<div class = "twelve wide column bspacing2">
+				<!-- <div class = "twelve wide column bspacing2">
 					<div class="ui input field formfield">
 						<input type="text" name="code" placeholder="e.g. PRO">
 					</div>
-				</div>
+				</div> -->
 	
 				<div class = "twelve wide column bspacing5">
 					<div class="ui input field formfield">
@@ -57,15 +57,15 @@
 					</div>
 				</div>
 
-				<div class = "twelve wide column bspacing2">
+				<!-- <div class = "twelve wide column bspacing2">
 					<div class="field">
 						<textarea  id = "description" name = "desc" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
 					</div>
-				</div>
+				</div> -->
 						
 				<div class = "twelve wide column bspacing2">
 					<div class="ui checkbox">
-						<input type="checkbox" name="haster">
+						<input type="checkbox" name="haster" id="has">
 						<label class = "boollabel">Has Tertiary</label>
 					</div>
 				</div> <br>
@@ -97,16 +97,16 @@
 		    	<tr>
 		            <th><center>Primary Office</center></th>
 		            <th><center>Secondary Office</center></th>
-		            <th><center>Description</center></th>
+		            <th><center>Has Tertiary</center></th>
 		        </tr>	
 		    </thead>
 					                   
 		    <tbody>
 		    	@foreach($suboffices as $key)
-		    		<tr class = "trow" onclick = "loaddata({{$key->ID}})" id = "{{$key->ID}}">
-		    			<td>{{$key->policeoffice->officename}}</td>
-			    			<td>{{$key->officename}}</td>
-			    			<td>{{$key->desc}}</td>
+		    		<tr class = "trow" onclick = "loaddata({{$key->id}})" id = "{{$key->ID}}">
+		    				<td>{{$key->unitoffice->UnitOfficeName}}</td>
+			    			<td>{{$key->UnitOfficeSecondaryName}}</td>
+			    			<td>{{$key->UnitOfficeHasTertiary}}</td>
 			    			
 			 	@endforeach
 
@@ -161,10 +161,10 @@
 			   	success : function(data) {
 
 			   		console.log(data);
-			   		document.getElementsByName('subid')[0].value = data['ID'];
-			   		$('#select').dropdown('set selected', data['police_office_id']);
-			   		document.getElementsByName('name')[0].value = data['officename'];
-			   		document.getElementsByName('desc')[0].value = data['desc'];
+			   		document.getElementsByName('subid')[0].value = data['id'];
+			   		$('#select').dropdown('set selected', data['UnitOfficeID']);
+			   		document.getElementsByName('name')[0].value = data['UnitOfficeSecondaryName'];
+			   		document.getElementsByName('haster')[0].value = data['UnitOfficeHasTertiary'];
 
 			   	}//success : function() {
 			});
@@ -176,7 +176,7 @@
 			var data = {
 				'name' : document.getElementsByName("name")[0].value,
 				'office' : document.getElementsByName("office")[0].value,
-				'desc' : document.getElementsByName("desc")[0].value,
+				'haster' : document.getElementsByName("haster")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'
 			};
@@ -203,7 +203,7 @@
 				'subID' : document.getElementsByName('subid')[0].value,
 				'office' : document.getElementsByName("office")[0].value,
 				'name' : document.getElementsByName("name")[0].value,
-				'desc' : document.getElementsByName("desc")[0].value,
+				'haster' : document.getElementsByName("haster")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'
 			};
@@ -225,6 +225,16 @@
 
 
 		}//
+
+		function validationCheckbox(check){
+			if(check.haster.checked == true){
+				document.getElementById('has').value = "True"
+			}
+			else{
+				document.getElementById('has').value = "False"	
+			}
+
+		}
 
 	</script>
 

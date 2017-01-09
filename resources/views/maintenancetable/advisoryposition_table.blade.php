@@ -1,7 +1,7 @@
 @extends('module.maintenance')
 
 @section('mfillformsection')
-	<form class = "ui form" id = "form" action="javascript:CRUD(0,document.getElementById('dualbutton').value)">			
+	<form class = "ui form" id = "form" action="javascript:loadCModal()">			
 		<div class = "labelpane">
 
 			<div class = "twelve wide column bspacing">
@@ -43,7 +43,7 @@
 								Save
 						</button>
 						
-						<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button">
+						<button type="button" onclick = "$('#cancelmodal').modal('show');" class="ui tiny button">
 								Cancel
 
 						</button></center>
@@ -83,6 +83,7 @@
 <script type="text/javascript">
 		
 $('#m3').attr('class', 'item active');
+var flag = 0;
 
 function resetflag(msg){
 
@@ -94,6 +95,15 @@ function resetflag(msg){
 	});
 }
 
+function controlaction() {
+	var id = 0;
+	var func = document.getElementById('dualbutton').value;
+
+	CRUD(id, func);
+
+}//function controlaction() {
+
+
 function CRUD(id, func){
 
 	
@@ -101,8 +111,7 @@ function CRUD(id, func){
 
 	if(func == 1)
 	{
-		if(confirm('Save?')) {
-			data = {
+		data = {
 			'acpname' : document.getElementsByName('acpositionname')[0].value,
 			'acpdesc' : document.getElementsByName('description')[0].value,
 			'submit': document.getElementsByName("submit")[0].value,
@@ -111,7 +120,6 @@ function CRUD(id, func){
 			};
 
 			exec(data, func);
-		}//if(confirm('Save?')) {
 	}//add
 
 	if(func == 2)
@@ -122,14 +130,14 @@ function CRUD(id, func){
 			'_token' : '{{ Session::token() }}'
 		};
 		document.getElementById('dualbutton').value = 3;
+		flag = 1;
 
 		exec(data, func);
 	}//view
 
 	if(func == 3)
 	{
-		if(confirm('Save?')) {
-			data = {
+		data = {
 			'id' : document.getElementById('ID').value,
 			'acpname' : document.getElementsByName('acpositionname')[0].value,
 			'acpdesc' : document.getElementsByName('description')[0].value,
@@ -139,7 +147,6 @@ function CRUD(id, func){
 			};
 
 			exec(data, func);
-		}//if(confirm('Save?')) {
 	}//update
 			
 }
