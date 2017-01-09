@@ -36,13 +36,12 @@
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
 						<select class="modified ui selection dropdown selectstyle2" name="select_officE1" id = "officE1"
-						onchange="Select_Office();">
-							<option value='- Select One -'>- Select One -</option>
+						onchange="Select_Office(1,this.value)">
+							<option value='- Select One -' selected>- Select One -</option>
 
 							@foreach($poOne as $rs1)
 					        <option value="{{$rs1->id}}">{{$rs1->UnitOfficeName}}</option>
-							@endforeach
-							 
+							@endforeach												 
 
 						</select>
 									
@@ -52,9 +51,10 @@
 
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
-						<select class="modified ui selection dropdown selectstyle2" name="select_officE2" id = "officE2" onchange="Select_Office2();" disabled>
+						<select class="modified ui selection dropdown selectstyle2" name="select_officE2" id = "officE2" >
 
-						<option value='- Select One -' >- Select One -</option>
+						<option >- Select One -</option>
+
 													    		
 						</select>
 									
@@ -120,13 +120,10 @@
 					                   
 		    <tbody>
 		     @foreach ($pothree as $tri) 
-			       	<tr class = "trow" onclick = "CRUD({{$tri->id}},2)" 
-			       	id = "{{$tri->id}}">
-			       		<td><center></center></td>
-			       		<td id="{{$tri->id}}">
-			       		<center>{{$tri->UnitOfficeSecondaryID}}</center></td>
-			    		<td id="{{$tri->id}}">
-			    		<center>{{$tri->UnitOfficeTertiaryName}}</center></td>
+			    <tr onclick = "loaddata({{$tri->id}})"  id = "{{$tri->id}}">
+			       		<td><center>{{$tri->UnitOfficeName}}</center></td>
+			       		<td><center>{{$tri->UnitOfficeSecondaryName}}</center></td>
+			    		<td><center>{{$tri->UnitOfficeTertiaryName}}</center></td>
 			    		<td><center></center></td>
 			    	</tr>  
 					                               
@@ -141,6 +138,7 @@
 	<script type="text/javascript">
 
 	$('#m7').attr('class', 'item active');
+	var flag = 0;
 		
 	function resetflag(msg){
 
@@ -165,7 +163,7 @@
 			data = {
 				'tername' : document.getElementsByName('terName')[0].value,
 				'hasquart' : $('#hasQuart').is(":checked"),  
-				'office2' : document.getElementsByName('select_officE2')[0].value,
+				'office2' : $('#officE2').val(),
 				'submit': document.getElementsByName("submit")[0].value,
 				'callId' : 1,
 				'_token' : '{{ Session::token() }}'
@@ -175,18 +173,7 @@
 			}//if(confirm('Save?')) {
 		}//add
 
-		if(func == 2)
-		{
-			data = {
-			'id' : id,
-			'callId' : 2,
-			'_token' : '{{ Session::token() }}'};
-			document.getElementById('dualbutton').value = 3;
-
-			exec(data, func);
-			
-
-		}//view
+		
 
 		if(func == 3)
 		{
@@ -195,7 +182,7 @@
 					'id' : document.getElementById('ID').value,
 					'tername' : document.getElementsByName('terName')[0].value,
 					'hasquart' : document.getElementsByName('hasQuart')[0].value,
-					'office2' : document.getElementsByName('select_ officE2')[0].value,
+					'office2' : document.getElementsByName('select_officE2')[0].value,
 					'submit': document.getElementsByName("submit")[0].value,
 					'callId' : 3,
 					'_token' : '{{ Session::token() }}'
@@ -245,72 +232,83 @@
 		});
 	}//function exec() {
 
+	function removeOption(selectbox){
 
-	
-function Select_Office() {
-
-	var $unit_offices_ID = document.getElementById('officE1').value;
-	var dataString = "id=" + $unit_offices_ID;
-	var token = '{{ Session::token() }}';
-	
-		$.ajax({
-
-			type: "post",
-			headers: {'X-CSRF-TOKEN': token},
-			url: "selectOffice",
-			data: dataString,
-			datatype: 'json',
-			cache: false,
-			success: function(data){
-
-				var parse_data = JSON.parse(data);
-				document.getElementsByName('select_officE2').setAttribute('disabled', 'false');
-				document.getElementsByName('select_officE2').disabled = false;
-
-				document.getElementById('officE2').innerHTML = "<option>- Select One -</option>";
-
-				for (var i = 0; i < parse_data.length; i = i + 2) {
-						
-					var j = i + 1;
-
-					document.getElementById('officE2').innerHTML += "<option value=" + parse_data[i] + ">"+ parse_data[j] + "</option>"; 
-
-				}
-				
+			for(i=selectbox.options.length;i>0;i--){
+				selectbox.remove(i);
 			}
+		}
 
-		});
 
-		return false;
-	}// end office 1
+	function Select_Office(func,id){
 
-	function Select_Office2() {
+			if(func == 1){
 
-	var SelOfficE2 = document.getElementById('officE2').value;
+				removeOption(document.getElementById('officE2'));
 
-		var dataString = "id=" + SelOfficE2;
-
-		var token = '{{ Session::token() }}';
+				var data = {
+					'id' : id,
+					'callid' : 1,
+					'_token' : '{{ Session::token() }}' 
+				};
+			}
 		
 			$.ajax({
+				type: "POST",
+				url: "{{url('maintenance/selOffice')}}",
+				data: data,
+				dataType: "JSON",
+				success:function(data){
+					//console.log(data[0]['id']);
 
-				type: "post",
-				headers: {'X-CSRF-TOKEN': token},
-				url: "selectOfficeSec",
-				data: dataString,
-				datatype: 'json',
-				cache: false,
-				success: function(data){
+					if(func == 1){
+						selectbox = document.getElementById('officE2');
+						for(var i =data.length-1;i>=0;i--){
+							selectbox.options[i+1] = new Option(data[i]['UnitOfficeSecondaryName'],data[i]['id']);
+						}
+						
+					}//populate secondary
 
-					alert('success!!!');
+					console.log(data);
+				} //success : function
+			});//ajax
 
-					}
-					
+		}//end
+
+
+		function loaddata(id) {
+
+			flag = 1;
+			$('#' + id).attr('class', 'activerow');
+			$('tr').not("[id = '" + id + "']").removeAttr('class');
+
+			var data = {
+				'id' : id,
+				'_token' : '{{ Session::token() }}'
+			};
+			
+
+			$.ajax({
+				type: "POST",
+				url: "{{url('maintenancetable/retrieveData')}}",
+				data: data,
+				dataType: "JSON",
+			   	success : function(data) {
+
+			   		document.getElementsByName('ID')[0].value = data[0]['id'];
+			   		document.getElementsByName('terName')[0].value = data[0]['UnitOfficeTertiaryName'];
+			   		
+			   		// $('#select2').val(data[2]['id']).change();
+			   		Select_Office(flag,data[1]['id']); //display secondary office
+
+					$('#officE1').dropdown('set selected', data[1]['id']); //office 1   		
+			   		$('#officE2').dropdown('set selected', data[2]['id']); //office 2
+
+
+			   	}//success : function() {
 			});
 
-			return false;
-		
-	}//end office TWO
+		}//function loaddata() {
 
 
 

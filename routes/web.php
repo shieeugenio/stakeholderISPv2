@@ -67,16 +67,13 @@ Route::get('maintenance/acsector','acsectorController@index_acsectors');
 //->middleware('auth');
 Route::get('maintenance/primaryoffice', 'PoliceOfficesController@index')->middleware('auth');
 Route::get('maintenance/secondaryoffice', 'PoliceOfficeTwoController@index')->middleware('auth');
-<<<<<<< HEAD
+
 Route::get('maintenance/tertiaryoffice', 'PoliceOfficeThreeController@index_PO3');
 Route::get('maintenance/quarternaryoffice', function() { 
 											return view('maintenancetable.policeoffice4_table');});
-=======
-Route::get('maintenance/tertiaryoffice', function() { 
-											return view('maintenancetable.policeoffice3_table');
-										});
+
 Route::get('maintenance/quarternaryoffice', 'PoliceOfficeFourController@index');
->>>>>>> fa3d790b55c7df8e7731eef060e24a93ed96ca14
+
 
 Route::get('maintenance/policeposition','PolicePositionController@index_policeposition')->middleware('auth');
 
@@ -101,8 +98,10 @@ Route::post('maintenancetable/acsectorCRUD','acsectorController@acsectorCRUD');
 
 //TERTIARY OFFICE @author: Christine Amper
 Route::post('maintenancetable/PO3CRUD','PoliceOfficeThreeController@PO3CRUD');
-Route::post('maintenance/selectOffice','PoliceOfficeThreeController@selectOffice');
 Route::post('maintenance/selectOfficeSec','PoliceOfficeThreeController@selectOfficeSec');
+Route::post('maintenance/selOffice','PoliceOfficeThreeController@selOffice');
+Route::post('maintenancetable/retrieveData','PoliceOfficeThreeController@retrieveData');
+
 
 //PRIMARY OFFICE @author: Joanne Dasig
 Route::post('/buttonsPoliceOffice', 'PoliceOfficesController@add');
