@@ -1,7 +1,7 @@
 @extends('module.maintenance')
 
 @section('mfillformsection')
-	<form class = "ui form" id = "form" action = "javascript:controlaction()">
+	<form class = "ui form" id = "form" action = "javascript:loadCModal()">
 							
 		<div class = "labelpane">
 
@@ -60,7 +60,7 @@
 								Save
 						</button>
 						
-						<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button">
+						<button type="button" onclick = "$('#cancelmodal').modal('show');" class="ui tiny button">
 								Cancel
 
 						</button></center>
@@ -107,15 +107,13 @@
 
 		function controlaction() {
 
-			if(confirm('Save?')) {
-				if(flag == 1) {
-					editData();
+			if(flag == 1) {
+				editData();
 
-				} else if(flag == 0) {
-					addData();
+			} else if(flag == 0) {
+				addData();
+			}//if(flag == 1) {
 
-				}//if(flag == 1) {
-			}//if(confirm('Save?')) {
 		}//function controlaction() {
 
 		function resetflag(msg) {

@@ -11,8 +11,7 @@
 								Summary
 						</div>
 
-						<script>
-						/*<div class = "summcontent">
+						<div class = "summcontent">
 							<div class ="twelve wide column  bspacing8">
 								<label class="formlabel">% of AC: <span class = "labeldesc">%</span></label>
 										
@@ -43,18 +42,12 @@
 											
 							</div>
 
-							<!--<div class ="twelve wide column  bspacing8">
-								<label class="formlabel">No. of Recently Added: <span class = "labeldesc"></span></label>
-											
-							</div>
 							<br>
 
 							<div class ="twelve wide column bspacing8">
 								<label class="formlabel">Total No. of Adviser: <span class = "labeldesc"></span></label>
 											
-							</div>*/
-
-							</script>
+							</div>
 										
 						</div>
 											

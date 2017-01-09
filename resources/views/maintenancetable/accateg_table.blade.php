@@ -1,7 +1,6 @@
 @extends('module.maintenance')
-
 @section('mfillformsection')
-	<form class = "ui form" id = "form" action = "javascript:controlaction()">
+	<form class = "ui form" id = "form" action = "javascript:loadCModal()">
 							
 		<div class = "labelpane">
 
@@ -15,6 +14,7 @@
 				<label class = "formlabel">Description</label>
 										
 			</div>
+
 									
 								
 
@@ -55,6 +55,10 @@
 							</div>
 
 
+		</div>
+
+
+
 		<input type="hidden" value="" name="categid"/>
 		<div class = "fieldpane">
 
@@ -71,7 +75,7 @@
 			</div>
 
 			<div class = "twelve wide column bspacing2">
-				<center><button type = "submit" name="submit" 
+				<center><button type = "submit" name="submit"
 						class="ui tiny button submit savebtnstyle">
 					Save
 				</button>
@@ -122,16 +126,13 @@
 
 		function controlaction() {
 
-			if(confirm('Save?')) {
-				if(flag == 1) {
-					editData();
+			if(flag == 1) {
+				editData();
 
-				} else if(flag == 0) {
-					addData();
+			} else if(flag == 0) {
+				addData();
 
-				}//if(flag == 1) {
-
-			}//if(confirm('Save?')) {
+			}//if(flag == 1) {
 			
 		}//function controlaction() {
 

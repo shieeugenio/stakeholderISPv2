@@ -34,13 +34,16 @@
 
 		</div>	
 
-		<input type="hidden" value="" name="subid"/>
+		<input type="hidden" value="" name="ID"/>
 		<div class = "fieldpane2">
 
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
-					<select class="modified ui selection dropdown selectstyle2" name="office" id = "select1">
-						<option class = "disabled">Select One</option>
+					<select onchange="populate(1,this.value)" class="modified ui selection dropdown selectstyle2" name="office" id = "select1">
+						<option class = "disabled" value="0" selected>Select One</option>
+						@foreach ( $office as $office )
+							<option value="{{$office->id}}">{{$office->UnitOfficeName}}</option>
+						@endforeach
 									  
 									  <!-- POPULATE DROPDOWN OFFICE 1-->
 									  	
@@ -53,8 +56,12 @@
 
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
-					<select class="modified ui selection dropdown selectstyle2" name="office2" id = "select2">
-						<option class = "disabled">Select One</option>
+					<select  onchange="populate(2,this.value)" class="modified ui selection dropdown selectstyle2" name="office2" id = "select2">
+						<option class = "disabled" value="0" selected>Select One</option>
+						<!-- @foreach ($office2 as $office2)
+							<option value="{{$office2->id}}">{{$office2->UnitOfficeSecondaryName}}</option>
+						@endforeach
+						 --> 
 						    <!-- POPULATE DROPDOWN OFFICE 2-->
 									 
 
@@ -67,8 +74,11 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select class="modified ui selection dropdown selectstyle2" name="office3" id = "select3">
-						<option class = "disabled">Select One</option>
-						  <!-- POPULATE DROPDOWN OFFICE 3-->
+						<option class = "disabled" value="0" selected>Select One</option>
+					<!-- 	@foreach ($office3 as $office3)
+							<option value="{{$office3->id}}">{{$office3->UnitOfficeTertiaryName}}</option>
+						@endforeach
+						 -->  <!-- POPULATE DROPDOWN OFFICE 3-->
 									 
 
 					</select>
@@ -79,7 +89,7 @@
 
 			<div class = "twelve wide column bspacing5">
 				<div class="ui input field formfield">
-					<input type="text" name="name" placeholder="e.g. Regional">
+					<input type="text" id="name" name="name" placeholder="e.g. Regional">
 				</div>
 			</div>
 
@@ -92,6 +102,7 @@
 			<div class = "twelve wide column bspacing2">
 				<center><button type = "submit" name="submit" 
 								class="ui tiny button submit savebtnstyle">
+
 
 									Save
 								</button>
@@ -124,7 +135,19 @@
 						       
 				</tr>	
 		    </thead>
-						                   
+		    @foreach ( $office4 as $offices)
+		    	<tr onclick="loaddata({{$offices->id}})" id="{{$offices->id}}">
+		    		
+		    		
+		    		<td><center>{{$offices->UnitOfficeName}}</center></td>
+		    		<td><center>{{$offices->UnitOfficeSecondaryName}}</center></td>
+		    		<td><center>{{$offices->UnitOfficeTertiaryName}}</center></td>
+		    		<td><center>{{$offices->UnitOfficeQuaternaryName}}</center></td>
+		    		<td><center></center></td>
+		    		
+		    		
+		    	</tr>
+		    @endforeach                   
 		    <tbody>
 						    	
 
@@ -137,8 +160,80 @@
 		$('#m6').attr('class', 'item active');
 		var flag = 0;
 
+		function removeOption(selectbox){
+
+			for(i=selectbox.options.length;i>0;i--){
+				selectbox.remove(i);
+			}
+
+		}
+
+		function populate(func,id){
+
+			if(func == 1){
+
+				removeOption(document.getElementById('select2'));
+				removeOption(document.getElementById('select3'));
+
+				var data = {
+					'id' : id,
+					'callid' : 1,
+					'_token' : '{{ Session::token() }}' 
+				};
+			}
+
+			if(func == 2){
+
+				if(document.getElementById('select2').options[0].selected == true){
+
+					alert('Select Office');
+					return;
+				}
+				else{
+					removeOption(document.getElementById('select3'));
+				}
+
+				var data = {
+					'id' : id,
+					'callid' : 2,
+					'_token' : '{{ Session::token() }}' 
+				};
+			}
+
+			$.ajax({
+				type: "POST",
+				url: "{{url('maintenance/populate')}}",
+				data: data,
+				dataType: "JSON",
+				success:function(data){
+					//console.log(data[0]['id']);
+
+					if(func == 1){
+						selectbox = document.getElementById('select2');
+						for(var i =data.length-1;i>=0;i--){
+							selectbox.options[i+1] = new Option(data[i]['UnitOfficeSecondaryName'],data[i]['id']);
+						}
+						
+					}//populate secondary
+
+					if(func == 2){
+						selectbox = document.getElementById('select3');
+						for(var i =data.length-1;i>=0;i--){
+							selectbox.options[i+1] = new Option(data[i]['UnitOfficeTertiaryName'],data[i]['id']);
+							
+						}
+						
+					}//populate tertiary
+					console.log(data);
+				} //success : function
+			});//ajax
+
+		}//populatetertiary
+
 		function controlaction() {
+			
 			if(confirm('Save?')) {
+
 				if(flag == 1) {
 					editData();
 
@@ -169,46 +264,98 @@
 				'id' : id,
 				'_token' : '{{ Session::token() }}'
 			};
+			console.log(data);
 
 			$.ajax({
 				type: "POST",
-				url: "{{url('maintenance/subpoliceview')}}",
+				url: "{{url('maintenance/policefourview')}}",
 				data: data,
-			   	dataType: "JSON",
+				dataType: "JSON",
 			   	success : function(data) {
 
 			   		console.log(data);
-			   		document.getElementsByName('subid')[0].value = data['ID'];
-			   		$('#select1').dropdown('set selected', data['police_office_id']); //office 1
-			   		$('#select2').dropdown('set selected', data['police_office_id']); // office 2
-			   		$('#select3').dropdown('set selected', data['police_office_id']); // office 3
+			   		document.getElementsByName('ID')[0].value = data[0]['id'];
+			   		document.getElementsByName('name')[0].value = data[0]['UnitOfficeQuaternaryName'];
+
+			   		
+			   		// $('#select2').val(data[2]['id']).change();
+			   		populate(flag,data[1]['id']); //display secondary office
+			   		populate(2,data[2]['id']);
+
+					$('#select1').dropdown('set selected', data[1]['id']); //office 1
+			   		
+			   		//$('#select2').val(data[2]['id']).change();
+			   		$('#select2').dropdown('set selected', data[2]['id']); //office 2
+			   		console.log(document.getElementById('select2').options);
+			   		//populate(2,data[2]['id']); // display tertiary office
+			   		//$('#select3').val(data[3]['id']).change();
+			   		$('#select3').dropdown('set selected', data[3]['id']); // office 3
 
 
-			   		document.getElementsByName('name')[0].value = data['officename'];
-			   		document.getElementsByName('desc')[0].value = data['desc'];
+			   		
+			  //  		for(var k=0, opt = document.getElementById('select1').options; k < opt.length ;++k)
+			  //  		{
+					// 		console.log(opt, opt.length ,opt[k].value,k);
+					// 			if( opt[k].value === data[1]['id'])
+					//    			{
+					//    				alert(opt[k].value);
+					//    			   	document.getElementById('select1').options[k].selected = true; 
+					//    			   	alert(opt[k].value);
+					//    			   	break;
+					//    			}
+							
+					// }
 
+			  //  		for(var k=0, opt = document.getElementById('select2').options; k < opt.length ;++k)
+			  //  		{
+					// 		console.log(opt, opt.length ,opt[k].value,k);
+					// 			if( opt[k].value == data[1]['id'])
+					//    			{
+					//    				alert(opt[k].value);
+					//    			   	document.getElementById('select2').options[k].selected = true; 
+					//    			   	break;
+					//    			}
+							
+					// }
+
+					// populate(flag,data[2]['id']); // display tertiary
+			   		
+					// for(var k=0, opt = document.getElementById('select3').options; k < opt.length ;++k)
+			  //  		{
+					// 		console.log(opt, opt.length ,opt[k].value,k);
+					// 			if( opt[k].value == data[1]['id'])
+					//    			{
+					//    				alert(opt[k].value);
+					//    			   	document.getElementById('select3').options[k].selected = true; 
+					//    			   	break;
+					//    			}
+							
+					// }
+
+			   		console.log(document.getElementById('select2').selected);
+			   		console.log(document.getElementById('select3').selected);
+					
 			   	}//success : function() {
 			});
-
 
 		}//function loaddata() {
 
 		function addData() {
 			var data = {
-				'name' : document.getElementsByName("name")[0].value,
-				'office3' : document.getElementsByName("office3")[0].value,
+				'name' : $('#name').val(),
+				'office3' : $('#select3').val(),
 				'desc' : document.getElementsByName("desc")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'
 			};
-
+			
 			$.ajax({
 				type: "POST",
-				url: "{{url('confirmpolice')}}",
+				url: "{{url('maintenance/add')}}",
 				data: data,
+				dataType: "JSON",
 			   	success : function() {
 			   		resetflag('Saved!');
-
 
 			   	}
 			});
@@ -216,13 +363,16 @@
 			setTimeout(function(){
 				location.reload();
 			}, 2600);
+			
 
 		}//function addData(){
 
 		function editData() {
+
+			console.log($('#select3').val());
 			var data = {
-				'subID' : document.getElementsByName('subid')[0].value,
-				'office3' : document.getElementsByName("office3")[0].value,
+				'subID' : document.getElementsByName('ID')[0].value,
+				'office3' : $('#select3').val(),
 				'name' : document.getElementsByName("name")[0].value,
 				'desc' : document.getElementsByName("desc")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
@@ -231,7 +381,7 @@
 
 			$.ajax({
 				type: "POST",
-				url: "{{url('maintenance/editsubpolice')}}",
+				url: "{{url('maintenance/editpolicefour')}}",
 				data: data,
 			   	success : function() {
 			   		resetflag('Updated!');
@@ -239,6 +389,7 @@
 
 			   	}//success : function() {
 			});
+
 
 			setTimeout(function(){
 				location.reload();

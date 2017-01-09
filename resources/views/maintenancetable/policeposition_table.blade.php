@@ -1,7 +1,7 @@
 @extends('module.maintenance')
 
 @section('mfillformsection')
-	<form class = "ui form" id = "form" action="javascript:CRUD(0,document.getElementById('dualbutton').value)">
+	<form class = "ui form" id = "form" action="javascript:loadCModal()">
 							
 		<div class = "labelpane">
 			<div class = "twelve wide column bspacing">
@@ -41,7 +41,7 @@
 							Save
 				</button>
 								
-				<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button">
+				<button type="button" onclick = "$('#cancelmodal').modal('show');" class="ui tiny button">
 						Cancel
 
 				</button></center>
@@ -82,6 +82,8 @@
 	<script type="text/javascript">
 		$('#m9').attr('class', 'item active');
 
+		var flag = 0;
+
 		function resetflag(msg)
 		{
 			document.getElementById('dualbutton').value = 1;
@@ -92,6 +94,15 @@
 			});
 		}
 
+		function controlaction() {
+			var id = 0;
+			var func = document.getElementById('dualbutton').value;
+
+			CRUD(id, func);
+
+		}//function controlaction() {
+
+
 		function CRUD(id,func)
 		{
 
@@ -99,18 +110,15 @@
 			var data;
 			if(func == 1)
 			{
-				if(confirm('Save?')) {
-					data = {
-								'ppname' : document.getElementsByName('positionname')[0].value,
-								'ppdesc' : document.getElementsByName('description')[0].value,
-								'callId' : 1,
-								'submit' : document.getElementsByName('submit')[0].value,
-								'_token' : '{{ Session::token()}}'
-						   };
-
-					exec(data, func);
-
-				}//if(confirm('Save?')) {
+				data = {
+						'ppname' : document.getElementsByName('positionname')[0].value,
+						'ppdesc' : document.getElementsByName('description')[0].value,
+						'callId' : 1,
+						'submit' : document.getElementsByName('submit')[0].value,
+						'_token' : '{{ Session::token()}}'
+				  };
+					
+				exec(data, func);
 
 			}
 
@@ -123,24 +131,24 @@
 						};
 						   
 				document.getElementById('dualbutton').value = 3;
+				flag = 1;
+
 				exec(data, func);
 
 			}
 
 			if(func == 3)
 			{
-				if(confirm('Save?')) {
-					data = {
-								'id' : document.getElementById('ID').value,
-								'ppname' : document.getElementsByName('positionname')[0].value,
-								'ppdesc' : document.getElementsByName('description')[0].value,
-								'callId' : 3,
-								'submit' : document.getElementsByName('submit')[0].value,
-								'_token' : '{{ Session::token()}}'
-						   };
-					exec(data, func);
+				data = {
+						'id' : document.getElementById('ID').value,
+						'ppname' : document.getElementsByName('positionname')[0].value,
+						'ppdesc' : document.getElementsByName('description')[0].value,
+						'callId' : 3,
+						'submit' : document.getElementsByName('submit')[0].value,
+						'_token' : '{{ Session::token()}}'
+					   };
+				exec(data, func);
 
-				}//if(confirm('Save?')) {
 			}
 
 		}

@@ -74,8 +74,61 @@
 		</div>
 	</div>
 
+	<div class = "modal">
+		<div class="ui basic modal" id = "confirmmodal">
+			<div class="ui icon header">
+				<i class="help circle icon"></i>
+		    		<div name = "modalmessage"></div>
+			</div>
+			
+			<div class="actions">
+		    	<div class="ui basic cancel inverted button">
+		      			No
+		   		</div>
+		    	<div onclick = "controlaction()" class="ui basic ok inverted button">
+		      		Yes
+		    	</div>
+		  	</div>
+		</div>
+
+		<div class="ui basic modal" id = "cancelmodal">
+			<div class="ui icon header">
+				<i class="help circle icon"></i>
+		    		<div name = "modalmessage">Cancel?</div>
+			</div>
+			
+			<div class="actions">
+		    	<div class="ui basic cancel inverted button">
+		      			No
+		   		</div>
+		    	<div onclick = "document.getElementById('form').reset(); resetflag('Cancelled!');" class="ui basic ok inverted button">
+		      		Yes
+		    	</div>
+		  	</div>
+		</div>
+
+
+
+	</div>
+
 	<script type="text/javascript">
 		$('#tab2').attr('class', 'mlink item active');
+
+		function loadCModal() {
+			var message = "";
+
+			if (flag == 1) {
+				message = "Save Changes?";
+
+			} else if (flag == 0) {
+				message = "Save Record?";
+
+			}//if (flag == 1) {
+
+			document.getElementsByName('modalmessage')[0].innerHTML = message;
+			$('#confirmmodal').modal('show');
+
+		}//function loadCModal() {
 
 	</script>
 

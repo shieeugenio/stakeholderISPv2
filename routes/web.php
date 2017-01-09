@@ -67,9 +67,16 @@ Route::get('maintenance/acsector','acsectorController@index_acsectors');
 //->middleware('auth');
 Route::get('maintenance/primaryoffice', 'PoliceOfficesController@index')->middleware('auth');
 Route::get('maintenance/secondaryoffice', 'PoliceOfficeTwoController@index')->middleware('auth');
+<<<<<<< HEAD
 Route::get('maintenance/tertiaryoffice', 'PoliceOfficeThreeController@index_PO3');
 Route::get('maintenance/quarternaryoffice', function() { 
 											return view('maintenancetable.policeoffice4_table');});
+=======
+Route::get('maintenance/tertiaryoffice', function() { 
+											return view('maintenancetable.policeoffice3_table');
+										});
+Route::get('maintenance/quarternaryoffice', 'PoliceOfficeFourController@index');
+>>>>>>> fa3d790b55c7df8e7731eef060e24a93ed96ca14
 
 Route::get('maintenance/policeposition','PolicePositionController@index_policeposition')->middleware('auth');
 
@@ -110,7 +117,11 @@ Route::post('maintenance/editsubpolice', 'PoliceOfficeTwoController@edit');
 //POLICE POSITION @author: Lester Acula
 Route::post('maintenance/policepositioncrud','PolicePositionController@policepositioncrud');
 
-//TRANSACTION
+//QUATERNARY OFFICE OFFICE @author: Lester
+Route::post('maintenance/add', 'PoliceOfficeFourController@add');
+Route::post('maintenance/policefourview', 'PoliceOfficeFourController@find');
+Route::post('maintenance/editpolicefour', 'PoliceOfficeFourController@edit');
+Route::post('maintenance/populate', 'PoliceOfficeFourController@populate');
 
 //ADD ADVISER @author: Shie Eugenio
 Route::post('adviser/add', 'AdvDirectoryController@addadviser');
@@ -171,3 +182,6 @@ Route::resource('register', 'RegistrationController@register');
 //testing [ren]
 Route::get('testAdviser','TestController@index');
 Route::get('testAdviserAdd','TestController@addAdviser');
+
+//Police Office Four : Resutaa
+
