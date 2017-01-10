@@ -100,7 +100,7 @@ Route::post('maintenancetable/acsectorCRUD','acsectorController@acsectorCRUD');
 Route::post('maintenancetable/PO3CRUD','PoliceOfficeThreeController@PO3CRUD');
 Route::post('maintenance/selectOfficeSec','PoliceOfficeThreeController@selectOfficeSec');
 Route::post('maintenance/selOffice','PoliceOfficeThreeController@selOffice');
-Route::post('maintenancetable/retrieveData','PoliceOfficeThreeController@retrieveData');
+Route::resource('maintenancetable/retrieveData','PoliceOfficeThreeController@retrieveData');
 
 
 //PRIMARY OFFICE @author: Joanne Dasig

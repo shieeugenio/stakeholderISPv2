@@ -53,7 +53,7 @@
 					<div class = "field">
 						<select class="modified ui selection dropdown selectstyle2" name="select_officE2" id = "officE2" >
 
-						<option >- Select One -</option>
+						<option selected='selected'>- Select One -</option>
 
 													    		
 						</select>
@@ -262,6 +262,7 @@
 					//console.log(data[0]['id']);
 
 					if(func == 1){
+
 						selectbox = document.getElementById('officE2');
 						for(var i =data.length-1;i>=0;i--){
 							selectbox.options[i+1] = new Option(data[i]['UnitOfficeSecondaryName'],data[i]['id']);
@@ -296,12 +297,29 @@
 			   	success : function(data) {
 
 			   		document.getElementsByName('ID')[0].value = data[0]['id'];
-			   		document.getElementsByName('terName')[0].value = data[0]['UnitOfficeTertiaryName'];
+			   		alert
+			   		document.getElementsByName('terName')[0].value = data[0]['UnitOfficeTertiaryName'];   		
+					   		if (data[0]['UnitOfficeHasQuaternary'] == 'true')
+							{
+								
+							    document.getElementById('hasQuart').checked = true;
+							}
+							else
+							{
+							    $( "#hasQuart").prop('checked', false);
+							}
+			   		document.getElementsByName('select_officE2')[0].value = data[0]['UnitOfficeSecondaryID'];
+			   		alert($('#officE2').val());
+			   		console.log(data);
+			   		// var dat =  $('#officE2').val();
+			   		// var haha = document.getElementById('officE2').value = dat;
+    				// document.getElementById("officE2").innerHTML = dat;
+    				
+			   		// alert(haha);
+			   		// console.log(document.getElementById("officE2").options);
 			   		
-			   		// $('#select2').val(data[2]['id']).change();
 			   		Select_Office(flag,data[1]['id']); //display secondary office
-
-					$('#officE1').dropdown('set selected', data[1]['id']); //office 1   		
+					$('#officE1').dropdown('set selected', data[1]['id']); //office 1
 			   		$('#officE2').dropdown('set selected', data[2]['id']); //office 2
 
 

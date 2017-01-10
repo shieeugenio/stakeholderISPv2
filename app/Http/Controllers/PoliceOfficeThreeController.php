@@ -62,8 +62,8 @@ class PoliceOfficeThreeController extends Controller
     public function selOffice(Request $req){
         $callid = $req->callid;
         $id = $req->id;    
-            $secondOffice = DB::table('unit_office_secondaries')->where('UnitOfficeID','=',$id)->get();
-            return $secondOffice;
+        $secondOffice = DB::table('unit_office_secondaries')->where('UnitOfficeID','=',$id)->get();
+        return $secondOffice;
        
     }
 
@@ -75,12 +75,12 @@ class PoliceOfficeThreeController extends Controller
             $potwo = DB::table('unit_office_secondaries')->find($idTwo);
             $idOne = $potwo->UnitOfficeID;
             $poOne = DB::table('unit_offices')->find($idOne);
-            return [$potri,$potwo,$poOne];
+
+            $drop = DB::table('unit_office_tertiaries')->where('id','=',$id)->get();
+
+            return [$potri,$potwo,$poOne,$drop];
             
         }
    
-
-
-
 }//ENDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 
 
