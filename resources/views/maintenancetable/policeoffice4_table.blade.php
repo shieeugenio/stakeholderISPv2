@@ -58,10 +58,7 @@
 				<div class = "field">
 					<select  onchange="populate(2,this.value)" class="modified ui selection dropdown selectstyle2" name="office2" id = "select2">
 						<option class = "disabled" value="0" selected>Select One</option>
-						<!-- @foreach ($office2 as $office2)
-							<option value="{{$office2->id}}">{{$office2->UnitOfficeSecondaryName}}</option>
-						@endforeach
-						 --> 
+						
 						    <!-- POPULATE DROPDOWN OFFICE 2-->
 									 
 
@@ -75,10 +72,7 @@
 				<div class = "field">
 					<select class="modified ui selection dropdown selectstyle2" name="office3" id = "select3">
 						<option class = "disabled" value="0" selected>Select One</option>
-					<!-- 	@foreach ($office3 as $office3)
-							<option value="{{$office3->id}}">{{$office3->UnitOfficeTertiaryName}}</option>
-						@endforeach
-						 -->  <!-- POPULATE DROPDOWN OFFICE 3-->
+					  <!-- POPULATE DROPDOWN OFFICE 3-->
 									 
 
 					</select>
@@ -184,14 +178,14 @@
 
 			if(func == 2){
 
-				if(document.getElementById('select2').options[0].selected == true){
+				// if(document.getElementById('select2').options[0].selected == true){
 
-					alert('Select Office');
-					return;
-				}
-				else{
+				// 	alert('Select Office');
+				// 	return;
+				// }
+				// else{
 					removeOption(document.getElementById('select3'));
-				}
+				// }
 
 				var data = {
 					'id' : id,
@@ -220,7 +214,7 @@
 						selectbox = document.getElementById('select3');
 						for(var i =data.length-1;i>=0;i--){
 							selectbox.options[i+1] = new Option(data[i]['UnitOfficeTertiaryName'],data[i]['id']);
-							
+							//validate();			
 						}
 						
 					}//populate tertiary
@@ -229,6 +223,15 @@
 			});//ajax
 
 		}//populatetertiary
+
+		function validate(){
+
+			if(document.getElementById('select2').options[0].selected == true){
+
+					alert('Select Office');
+					return;
+				}
+		}
 
 		function controlaction() {
 			
@@ -279,28 +282,20 @@
 
 			   		
 			   		// $('#select2').val(data[2]['id']).change();
-			   		populate(flag,data[1]['id']); //display secondary office
-			   		populate(2,data[2]['id']);
-
-					$('#select1').dropdown('set selected', data[1]['id']); //office 1
 			   		
-			   		//$('#select2').val(data[2]['id']).change();
-			   		$('#select2').dropdown('set selected', data[2]['id']); //office 2
-			   		console.log(document.getElementById('select2').options);
-			   		//populate(2,data[2]['id']); // display tertiary office
-			   		//$('#select3').val(data[3]['id']).change();
-			   		$('#select3').dropdown('set selected', data[3]['id']); // office 3
+
+			   		$('#select1').dropdown("set selected", data[1]['id']); //office 1
+			   		$('#select2').dropdown("set selected", data[2]['id']); //office 2
+			   		$('#select3').dropdown("set selected", data[3]['id']); // office 3
 
 
 			   		
 			  //  		for(var k=0, opt = document.getElementById('select1').options; k < opt.length ;++k)
 			  //  		{
-					// 		console.log(opt, opt.length ,opt[k].value,k);
-					// 			if( opt[k].value === data[1]['id'])
+					// 		alert(opt, opt.length ,opt[k].value,k,opt[k].value,data[1]['id']);
+					// 			if( opt[k].value == data[1]['id'])
 					//    			{
-					//    				alert(opt[k].value);
-					//    			   	document.getElementById('select1').options[k].selected = true; 
-					//    			   	alert(opt[k].value);
+					//    				document.getElementById('select1').options[k].selected = true; 
 					//    			   	break;
 					//    			}
 							
@@ -308,7 +303,7 @@
 
 			  //  		for(var k=0, opt = document.getElementById('select2').options; k < opt.length ;++k)
 			  //  		{
-					// 		console.log(opt, opt.length ,opt[k].value,k);
+					// 		console.log(document.getElementById('select1').options, opt.length ,opt[k].value,k);
 					// 			if( opt[k].value == data[1]['id'])
 					//    			{
 					//    				alert(opt[k].value);
@@ -331,9 +326,10 @@
 					//    			}
 							
 					// }
+					//validate();
 
-			   		console.log(document.getElementById('select2').selected);
-			   		console.log(document.getElementById('select3').selected);
+			   		console.log(document.getElementById('select2').options);
+			   		console.log(document.getElementById('select3').options);
 					
 			   	}//success : function() {
 			});
