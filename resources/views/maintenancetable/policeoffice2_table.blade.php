@@ -164,7 +164,13 @@
 			   		document.getElementsByName('subid')[0].value = data['id'];
 			   		$('#select').dropdown('set selected', data['UnitOfficeID']);
 			   		document.getElementsByName('name')[0].value = data['UnitOfficeSecondaryName'];
-			   		document.getElementsByName('haster')[0].value = data['UnitOfficeHasTertiary'];
+			   		// document.getElementsByName('haster')[0].value = data['UnitOfficeHasTertiary'];
+			   		if(data['UnitOfficeHasTertiary'] == "True"){
+			   			document.getElementById('has').checked = true;
+			   		}
+			   		else{
+			   			$("#has").prop('checked', false);
+			   		}
 
 			   	}//success : function() {
 			});
