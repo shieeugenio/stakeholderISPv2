@@ -23,11 +23,7 @@
 				<span class = "asterisk">*</span>
 			</div>
 
-			<div class = "twelve wide column bspacing">
-				<label class = "formlabel">Description
-				</label>
-			</div>
-
+			
 		</div>	
 
 		<input type="hidden" value="" name="ID" id='ID'/>
@@ -36,7 +32,7 @@
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
 						<select class="modified ui selection dropdown selectstyle2" name="select_officE1" id = "officE1"
-						onchange="Select_Office(1,this.value)">
+						onchange="Select_Office()">
 							<option value='- Select One -' selected>- Select One -</option>
 
 							@foreach($poOne as $rs1)
@@ -68,13 +64,7 @@
 					</div>
 				</div>
 
-				<div class = "twelve wide column bspacing2">
-					<div class="field">
-						<textarea  id = "description" name = "desc" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
-					</div>
-				</div>
-							
-							
+				
 				<div class = "twelve wide column bspacing2">
 				<div class="ui checkbox">
 					<input type="checkbox" id='hasQuart' name='hasQuart' >
@@ -113,8 +103,7 @@
 		    	<tr>
 		            <th><center>Primary Office</center></th>
 		            <th><center>Secondary Office</center></th>
-		            <th><center>Tertiary Office</center></th>
-		            <th><center>Description</center></th>
+		            <th><center>Tertiary Office</center></th>		            
 		        </tr>	
 		    </thead>
 					                   
@@ -124,7 +113,6 @@
 			       		<td><center>{{$tri->UnitOfficeName}}</center></td>
 			       		<td><center>{{$tri->UnitOfficeSecondaryName}}</center></td>
 			    		<td><center>{{$tri->UnitOfficeTertiaryName}}</center></td>
-			    		<td><center></center></td>
 			    	</tr>  
 					                               
 			   @endforeach 
@@ -242,16 +230,14 @@
 
 	function Select_Office(func,id){
 
-			if(func == 1){
-
-				removeOption(document.getElementById('officE2'));
+			removeOption(document.getElementById('officE2'));
 
 				var data = {
 					'id' : id,
 					'callid' : 1,
 					'_token' : '{{ Session::token() }}' 
 				};
-			}
+			
 		
 			$.ajax({
 				type: "POST",
@@ -261,14 +247,11 @@
 				success:function(data){
 					//console.log(data[0]['id']);
 
-					if(func == 1){
-
+						alert('selOffice function');	
 						selectbox = document.getElementById('officE2');
 						for(var i =data.length-1;i>=0;i--){
 							selectbox.options[i+1] = new Option(data[i]['UnitOfficeSecondaryName'],data[i]['id']);
-						}
-						
-					}//populate secondary
+						}//END FOR LOOP
 
 					console.log(data);
 				} //success : function
@@ -298,18 +281,18 @@
 
 			   		document.getElementsByName('ID')[0].value = data[0]['id'];
 			   		alert
-			   		document.getElementsByName('terName')[0].value = data[0]['UnitOfficeTertiaryName'];   		
-					   		if (data[0]['UnitOfficeHasQuaternary'] == 'true')
-							{
-								
-							    document.getElementById('hasQuart').checked = true;
-							}
-							else
-							{
-							    $( "#hasQuart").prop('checked', false);
-							}
+			   		document.getElementsByName('terName')[0].value = data[0]['UnitOfficeTertiaryName'];   	
 			   		document.getElementsByName('select_officE2')[0].value = data[0]['UnitOfficeSecondaryID'];
 			   		alert($('#officE2').val());
+			   			
+					   		if (data[0]['UnitOfficeHasQuaternary'] == 'true')
+							{								
+							    document.getElementById('hasQuart').checked = true;
+							  }
+								else
+								{
+							    	$( "#hasQuart").prop('checked', false);
+								  }
 			   		console.log(data);
 			   		// var dat =  $('#officE2').val();
 			   		// var haha = document.getElementById('officE2').value = dat;
@@ -329,8 +312,9 @@
 		}//function loaddata() {
 
 
-
+///Shie - tinanggal ko na yung description na field sa table at input
 </script>
 
 
 @stop
+
