@@ -1,6 +1,6 @@
 @extends('module.maintenance')
 
-@section('mfillformtable')
+@section('mfillformsection')
 	<form class = "ui form" id = "form" action="javascript:loadCModal()">	
 					
 		<div class = "labelpane">

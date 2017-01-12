@@ -63,13 +63,17 @@ Route::post('dropdown/getsecoffice', 'AdvDirectoryController@getSecOffice');
 Route::get('maintenance/accategory', 'ACCategoryController@index')->middleware('auth');
 Route::get('maintenance/acsubcategory','ACSubcategoryController@index')->middleware('auth');
 Route::get('maintenance/acposition','ACPositionController@index_acposition')->middleware('auth');
-Route::get('maintenance/acsector','acsectorController@index_acsectors')->middleware('auth');
+Route::get('maintenance/acsector','acsectorController@index_acsectors');
+//->middleware('auth');
 Route::get('maintenance/primaryoffice', 'PoliceOfficesController@index')->middleware('auth');
 Route::get('maintenance/secondaryoffice', 'PoliceOfficeTwoController@index')->middleware('auth');
-Route::get('maintenance/tertiaryoffice', function() { 
-											return view('maintenancetable.policeoffice3_table');
-										});
+
+Route::get('maintenance/tertiaryoffice', 'PoliceOfficeThreeController@index_PO3');
+Route::get('maintenance/quarternaryoffice', function() { 
+											return view('maintenancetable.policeoffice4_table');});
+
 Route::get('maintenance/quarternaryoffice', 'PoliceOfficeFourController@index');
+
 
 Route::get('maintenance/policeposition','PolicePositionController@index_policeposition')->middleware('auth');
 
@@ -91,7 +95,13 @@ Route::post('maintenance/acpositioncrud','ACPositionController@acpositioncrud');
 
 //AC SECTOR @author: Christine Amper
 Route::post('maintenancetable/acsectorCRUD','acsectorController@acsectorCRUD');
-Route::post('maintenancetable/PO3CRUD','PO3Controller@PO3CRUD');
+
+//TERTIARY OFFICE @author: Christine Amper
+Route::post('maintenancetable/PO3CRUD','PoliceOfficeThreeController@PO3CRUD');
+Route::post('maintenance/selectOfficeSec','PoliceOfficeThreeController@selectOfficeSec');
+Route::post('maintenance/selOffice','PoliceOfficeThreeController@selOffice');
+Route::resource('maintenancetable/retrieveData','PoliceOfficeThreeController@retrieveData');
+
 
 //PRIMARY OFFICE @author: Joanne Dasig
 Route::post('/buttonsPoliceOffice', 'PoliceOfficesController@add');
@@ -166,11 +176,17 @@ Route::get('logout', array('uses' => 'HomeController@logout'));
 //registration[ren]
 Route::get('registration', 'RegistrationController@index');
 Route::resource('register', 'RegistrationController@register');
+Route::get('Accountapproved/{id}', 'RegistrationController@approvalSuccess');
+Route::get('Accountdisapproved/{id}','RegistrationController@approvalCancel');
 
+/* admin type 1-Super Admin, 0-Regular Admin 
+	approval 0 - default value , 1 - approved, 2-disapproved
 
+*/
 //testing [ren]
 Route::get('testAdviser','TestController@index');
+
 Route::get('testAdviserAdd','TestController@addAdviser');
 
-//Police Office Four : Resutaa
 
+//Police Office Four : Resutaa
