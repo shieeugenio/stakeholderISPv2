@@ -48,7 +48,7 @@
 					<div class = "field">
 						<select class="modified ui selection dropdown selectstyle2" name="select_office2" id = "office2" >
 
-							<option class = "disabled" value = "disitem" selected='selected'>Select One</option>
+							<option class = "disabled" value = "disitem">Select One</option>
 
 													    		
 						</select>
@@ -73,7 +73,7 @@
 				<div class = "twelve wide column bspacing2">
 				<div class="ui checkbox">
 					<input type="checkbox" id='hasQuart' name='hasQuart' >
-					<label class = "boollabel">Has Quarternary</label>
+					<label class = "boollabel">Has Quaternary</label>
 				</div>
 				</div> <br>
 
@@ -109,7 +109,7 @@
 		            <th><center>Primary Office</center></th>
 		            <th><center>Secondary Office</center></th>
 		            <th><center>Tertiary Office</center></th>
-		            <th><center>Has Quarternary</center></th>
+		            <th><center>Has Quaternary</center></th>
 		        </tr>	
 		    </thead>
 					                   
@@ -120,7 +120,7 @@
 			       	<td><center>{{$tri->UnitOfficeSecondaryName}}</center></td>
 			    	<td><center>{{$tri->UnitOfficeTertiaryName}}</center></td>
 			    	<td><center>
-			    		@if($tri->UnitOfficeHasQuarternary == "True")
+			    		@if($tri->UnitOfficeHasQuaternary == "True")
 
 				    		<i class="ui green large checkmark icon"></i>
 
@@ -246,7 +246,6 @@
 	function Select_Office(func,id){
 
 			if(func == 1){
-
 				$("select [id='office2'] option").not("[value='disitem']").remove();
 
 				var data = {
