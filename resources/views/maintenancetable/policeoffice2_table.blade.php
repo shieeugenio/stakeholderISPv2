@@ -1,7 +1,7 @@
 @extends('module.maintenance')
 
 @section('mfillformsection')
-	<form class = "ui form" id = "form" action="javascript:controlaction()" onsubmit="validationCheckbox(this)">
+	<form class = "ui form" id = "form" action = "javascript:loadCModal()" onsubmit="validationCheckbox(this)">
 							
 		<div class = "labelpane2">
 									
@@ -16,12 +16,6 @@
 					<span class = "asterisk">*</span>
 				</label>
 			</div>
-
-			<div class = "twelve wide column bspacing">
-				<label class = "formlabel">Has Tertiary
-				</label>
-			</div>
-
 							
 		</div>	
 
@@ -45,23 +39,11 @@
 								
 				</div>
 
-				<!-- <div class = "twelve wide column bspacing2">
-					<div class="ui input field formfield">
-						<input type="text" name="code" placeholder="e.g. PRO">
-					</div>
-				</div> -->
-	
-				<div class = "twelve wide column bspacing5">
+				<div class = "twelve wide column bspacing2">
 					<div class="ui input field formfield">
 						<input type="text" name="name" placeholder="e.g. Police Regional Office">
 					</div>
 				</div>
-
-				<!-- <div class = "twelve wide column bspacing2">
-					<div class="field">
-						<textarea  id = "description" name = "desc" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
-					</div>
-				</div> -->
 						
 				<div class = "twelve wide column bspacing2">
 					<div class="ui checkbox">
@@ -76,7 +58,7 @@
 
 									Save
 							</button>
-							<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button">
+							<button type="button" onclick = "$('#cancelmodal').modal('show');" class="ui tiny button">
 									Cancel
 
 							</button></center>
@@ -104,9 +86,24 @@
 		    <tbody>
 		    	@foreach($suboffices as $key)
 		    		<tr class = "trow" onclick = "loaddata({{$key->id}})" id = "{{$key->ID}}">
-		    				<td>{{$key->unitoffice->UnitOfficeName}}</td>
-			    			<td>{{$key->UnitOfficeSecondaryName}}</td>
-			    			<td>{{$key->UnitOfficeHasTertiary}}</td>
+		    			<td><center>{{$key->unitoffice->UnitOfficeName}}</center></td>
+			    		<td><center>{{$key->UnitOfficeSecondaryName}}</center></td>
+			    		<td><center>
+			    			@if($key->UnitOfficeHasTertiary == "True")
+
+				    			<i class="ui green large checkmark icon"></i>
+
+				    		@else
+
+				    			<i class="ui red large remove icon"></i>
+				    			
+
+				    		@endif
+
+
+
+
+			    		</center></td>
 			    			
 			 	@endforeach
 
@@ -121,15 +118,13 @@
 		var flag = 0;
 
 		function controlaction() {
-			if(confirm('Save?')) {
-				if(flag == 1) {
-					editData();
+			if(flag == 1) {
+				editData();
 
-				} else if(flag == 0) {
-					addData();
+			} else if(flag == 0) {
+				addData();
 
-				}//if(flag == 1) {
-			}//if(confirm('Save?')) {
+			}//if(flag == 1) {
 		}//function controlaction() {
 
 		function resetflag(msg) {

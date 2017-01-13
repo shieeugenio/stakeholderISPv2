@@ -1,7 +1,7 @@
 @extends('module.maintenance')
 
 @section('mfillformsection')
-	<form class = "ui form" id = "form" action="javascript:CRUD(0,document.getElementById('dualbutton').value)">
+	<form class = "ui form" id = "form" action = "javascript:loadCModal()">
 							
 		<div class = "labelpane2">
 								
@@ -23,11 +23,6 @@
 				<span class = "asterisk">*</span>
 			</div>
 
-			<div class = "twelve wide column bspacing">
-				<label class = "formlabel">Description
-				</label>
-			</div>
-
 		</div>	
 
 		<input type="hidden" value="" name="ID" id='ID'/>
@@ -35,12 +30,12 @@
 			<div class = "fieldpane2">
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
-						<select class="modified ui selection dropdown selectstyle2" name="select_officE1" id = "officE1"
-						onchange="Select_Office(1,this.value)">
-							<option value='- Select One -' selected>- Select One -</option>
+						<select class="modified ui selection dropdown selectstyle2" name="select_office1" id = "office1"
+						onchange="Select_Office(1 , this.value)">
+							<option value = "disitem" class = "disabled" selected>Select One</option>
 
 							@foreach($poOne as $rs1)
-					        <option value="{{$rs1->id}}">{{$rs1->UnitOfficeName}}</option>
+					       		<option value="{{$rs1->id}}">{{$rs1->UnitOfficeName}}</option>
 							@endforeach												 
 
 						</select>
@@ -51,9 +46,9 @@
 
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
-						<select class="modified ui selection dropdown selectstyle2" name="select_officE2" id = "officE2" >
+						<select class="modified ui selection dropdown selectstyle2" name="select_office2" id = "office2" >
 
-						<option selected='selected'>- Select One -</option>
+							<option class = "disabled" value = "disitem">Select One</option>
 
 													    		
 						</select>
@@ -78,7 +73,7 @@
 				<div class = "twelve wide column bspacing2">
 				<div class="ui checkbox">
 					<input type="checkbox" id='hasQuart' name='hasQuart' >
-					<label class = "boollabel">Has Quarternary</label>
+					<label class = "boollabel">Has Quaternary</label>
 				</div>
 				</div> <br>
 
@@ -94,7 +89,7 @@
 					</button>
 
 					<button class="ui tiny button"  
-							type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" >
+							type="button" onclick = "$('#cancelmodal').modal('show');">
 							Cancel
 					</button></center>
 			</div>	
@@ -114,18 +109,30 @@
 		            <th><center>Primary Office</center></th>
 		            <th><center>Secondary Office</center></th>
 		            <th><center>Tertiary Office</center></th>
-		            <th><center>Description</center></th>
+		            <th><center>Has Quaternary</center></th>
 		        </tr>	
 		    </thead>
 					                   
 		    <tbody>
 		     @foreach ($pothree as $tri) 
 			    <tr onclick = "loaddata({{$tri->id}})"  id = "{{$tri->id}}">
-			       		<td><center>{{$tri->UnitOfficeName}}</center></td>
-			       		<td><center>{{$tri->UnitOfficeSecondaryName}}</center></td>
-			    		<td><center>{{$tri->UnitOfficeTertiaryName}}</center></td>
-			    		<td><center></center></td>
-			    	</tr>  
+			       	<td><center>{{$tri->UnitOfficeName}}</center></td>
+			       	<td><center>{{$tri->UnitOfficeSecondaryName}}</center></td>
+			    	<td><center>{{$tri->UnitOfficeTertiaryName}}</center></td>
+			    	<td><center>
+			    		@if($tri->UnitOfficeHasQuaternary == "True")
+
+				    		<i class="ui green large checkmark icon"></i>
+
+				    	@else
+
+				    		<i class="ui red large remove icon"></i>
+				    			
+
+				    	@endif
+
+			    	</center></td>
+			    </tr>  
 					                               
 			   @endforeach 
 						    	
@@ -151,6 +158,15 @@
 				
 	}
 
+	function controlaction() {
+		var id = 0;
+		var func = document.getElementById('dualbutton').value;
+
+		CRUD(id, func);
+
+	}//function controlaction() {
+
+
 
 	function CRUD(id, func){
 
@@ -158,31 +174,27 @@
 
 		if(func == 1)
 		{
-			if(confirm('Save?')) {
-
 			data = {
 				'tername' : document.getElementsByName('terName')[0].value,
 				'hasquart' : $('#hasQuart').is(":checked"),  
-				'office2' : $('#officE2').val(),
+				'office2' : $('#office2').val(),
 				'submit': document.getElementsByName("submit")[0].value,
 				'callId' : 1,
 				'_token' : '{{ Session::token() }}'
 				};
 				
 				exec(data, func);
-			}//if(confirm('Save?')) {
 		}//add
 
 		
 
 		if(func == 3)
 		{
-			if(confirm('Update?')) {
 				data = {
 					'id' : document.getElementById('ID').value,
 					'tername' : document.getElementsByName('terName')[0].value,
 					'hasquart' : document.getElementsByName('hasQuart')[0].value,
-					'office2' : document.getElementsByName('select_officE2')[0].value,
+					'office2' : document.getElementsByName('select_office2')[0].value,
 					'submit': document.getElementsByName("submit")[0].value,
 					'callId' : 3,
 					'_token' : '{{ Session::token() }}'
@@ -190,7 +202,6 @@
 
 				exec(data, func);
 
-			}//if(confirm('Save?')) {
 		}//update
 
 			
@@ -222,36 +233,27 @@
 					$('#' + data['id']).attr('class', 'activerow');
 					$('tr').not("[id = '" + data['id'] + "']").removeAttr('class');
 
-		document.getElementById('ID').value = data['id'];
-		document.getElementsByName('terName')[0].value = data['UnitOfficeTertiaryName'];
-		document.getElementsByName('hasQuart')[0].value = data['UnitOfficeHasQuaternary'];
-		document.getElementById('officE2').value = data['UnitOfficeSecondaryID'];
+					document.getElementById('ID').value = data['id'];
+					document.getElementsByName('terName')[0].value = data['UnitOfficeTertiaryName'];
+					document.getElementsByName('hasQuart')[0].value = data['UnitOfficeHasQuaternary'];
+					document.getElementById('office2').value = data['UnitOfficeSecondaryID'];
 				}
 			} 
 
 		});
 	}//function exec() {
 
-	function removeOption(selectbox){
-
-			for(i=selectbox.options.length;i>0;i--){
-				selectbox.remove(i);
-			}
-		}
-
-
 	function Select_Office(func,id){
 
 			if(func == 1){
-
-				removeOption(document.getElementById('officE2'));
+				$("select [id='office2'] option").not("[value='disitem']").remove();
 
 				var data = {
 					'id' : id,
 					'callid' : 1,
 					'_token' : '{{ Session::token() }}' 
 				};
-			}
+			}//if
 		
 			$.ajax({
 				type: "POST",
@@ -259,18 +261,10 @@
 				data: data,
 				dataType: "JSON",
 				success:function(data){
-					//console.log(data[0]['id']);
 
-					if(func == 1){
-
-						selectbox = document.getElementById('officE2');
-						for(var i =data.length-1;i>=0;i--){
-							selectbox.options[i+1] = new Option(data[i]['UnitOfficeSecondaryName'],data[i]['id']);
-						}
-						
-					}//populate secondary
-
-					console.log(data);
+					for(var i= 0 ; i < data.length; i++){
+						populatedropdown(data[i]['id'], 'select_office2', data[i]['UnitOfficeSecondaryName']);
+					}//for
 				} //success : function
 			});//ajax
 
@@ -308,19 +302,10 @@
 							{
 							    $( "#hasQuart").prop('checked', false);
 							}
-			   		document.getElementsByName('select_officE2')[0].value = data[0]['UnitOfficeSecondaryID'];
-			   		alert($('#officE2').val());
-			   		console.log(data);
-			   		// var dat =  $('#officE2').val();
-			   		// var haha = document.getElementById('officE2').value = dat;
-    				// document.getElementById("officE2").innerHTML = dat;
-    				
-			   		// alert(haha);
-			   		// console.log(document.getElementById("officE2").options);
-			   		
+			   		document.getElementsByName('select_office2')[0].value = data[0]['UnitOfficeSecondaryID'];
 			   		Select_Office(flag,data[1]['id']); //display secondary office
-					$('#officE1').dropdown('set selected', data[1]['id']); //office 1
-			   		$('#officE2').dropdown('set selected', data[2]['id']); //office 2
+					$('#office1').dropdown('set selected', data[1]['id']); //office 1
+			   		$('#office2').dropdown('set selected', data[2]['id']); //office 2
 
 
 			   	}//success : function() {
