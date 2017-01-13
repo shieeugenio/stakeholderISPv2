@@ -66,11 +66,11 @@
 			    		<td><center>{{$offices[$ctr]->UnitOfficeName}}</center></td>
 			    		<td><center>
 
-			    		@if($offices[$ctr]->UnitOfficeHasField == "True")
+			    		@if(strtolower($offices[$ctr]->UnitOfficeHasField) == "true")
 
 			    			<i class="ui green large checkmark icon"></i>
 
-			    		@else
+			    		@else if(strtolower($offices[$ctr]->UnitOfficeHasField) == "false")
 
 			    			<i class="ui red large remove icon"></i>
 			    			

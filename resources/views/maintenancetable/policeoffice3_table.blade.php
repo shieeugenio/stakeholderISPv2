@@ -4,6 +4,7 @@
 	<form class = "ui form" id = "form" action = "javascript:loadCModal()">
 							
 		<div class = "labelpane2">
+
 								
 			<div class = "twelve wide column bspacing">
 				<label class = "formlabel">Primary Office
@@ -31,8 +32,8 @@
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
 						<select class="modified ui selection dropdown selectstyle2" name="select_office1" id = "office1"
-						onchange="Select_Office(1 , this.value)">
-							<option value = "disitem" class = "disabled" selected>Select One</option>
+						onchange="Select_Office(this.value)">
+							<option value = "disitem" class = "disabled">Select One</option>
 
 							@foreach($poOne as $rs1)
 					       		<option value="{{$rs1->id}}">{{$rs1->UnitOfficeName}}</option>
@@ -63,18 +64,12 @@
 					</div>
 				</div>
 
+							
 				<div class = "twelve wide column bspacing2">
-					<div class="field">
-						<textarea  id = "description" name = "desc" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
+					<div class="ui checkbox">
+						<input type="checkbox" id='hasQuart' name='hasQuart' >
+						<label class = "boollabel">Has Quaternary</label>
 					</div>
-				</div>
-							
-							
-				<div class = "twelve wide column bspacing2">
-				<div class="ui checkbox">
-					<input type="checkbox" id='hasQuart' name='hasQuart' >
-					<label class = "boollabel">Has Quaternary</label>
-				</div>
 				</div> <br>
 
 
@@ -120,11 +115,11 @@
 			       	<td><center>{{$tri->UnitOfficeSecondaryName}}</center></td>
 			    	<td><center>{{$tri->UnitOfficeTertiaryName}}</center></td>
 			    	<td><center>
-			    		@if($tri->UnitOfficeHasQuaternary == "True")
+			    		@if(strtolower($tri->UnitOfficeHasQuaternary) == "true")
 
 				    		<i class="ui green large checkmark icon"></i>
 
-				    	@else
+				    	@else if(strtolower($tri->UnitOfficeHasQuaternary) == "false")
 
 				    		<i class="ui red large remove icon"></i>
 				    			
@@ -190,17 +185,18 @@
 
 		if(func == 3)
 		{
-				data = {
-					'id' : document.getElementById('ID').value,
-					'tername' : document.getElementsByName('terName')[0].value,
-					'hasquart' : document.getElementsByName('hasQuart')[0].value,
-					'office2' : document.getElementsByName('select_office2')[0].value,
-					'submit': document.getElementsByName("submit")[0].value,
-					'callId' : 3,
-					'_token' : '{{ Session::token() }}'
-					};
+			data = {
+				'id' : document.getElementById('ID').value,
+				'tername' : document.getElementsByName('terName')[0].value,
+				'hasquart' : document.getElementsByName('hasQuart')[0].value,
+				'office2' : document.getElementsByName('select_office2')[0].value,
+				'submit': document.getElementsByName("submit")[0].value,
+				'callId' : 3,
+				'_token' : '{{ Session::token() }}'
+				};
 
-				exec(data, func);
+				console.log(data);
+				//exec(data, func);
 
 		}//update
 
@@ -243,17 +239,14 @@
 		});
 	}//function exec() {
 
-	function Select_Office(func,id){
+	function Select_Office(id){
+			$("select[id='office2'] option").not("[value='disitem']").remove();
 
-			if(func == 1){
-				$("select [id='office2'] option").not("[value='disitem']").remove();
-
-				var data = {
-					'id' : id,
-					'callid' : 1,
-					'_token' : '{{ Session::token() }}' 
-				};
-			}//if
+			var data = {
+				'id' : id,
+				'callid' : 1,
+				'_token' : '{{ Session::token() }}' 
+			};
 		
 			$.ajax({
 				type: "POST",
@@ -276,6 +269,7 @@
 			flag = 1;
 			$('#' + id).attr('class', 'activerow');
 			$('tr').not("[id = '" + id + "']").removeAttr('class');
+			document.getElementById('dualbutton').value = 3;
 
 			var data = {
 				'id' : id,
@@ -291,7 +285,6 @@
 			   	success : function(data) {
 
 			   		document.getElementsByName('ID')[0].value = data[0]['id'];
-			   		alert
 			   		document.getElementsByName('terName')[0].value = data[0]['UnitOfficeTertiaryName'];   		
 					   		if (data[0]['UnitOfficeHasQuaternary'] == 'true')
 							{
@@ -303,11 +296,11 @@
 							    $( "#hasQuart").prop('checked', false);
 							}
 			   		document.getElementsByName('select_office2')[0].value = data[0]['UnitOfficeSecondaryID'];
-			   		Select_Office(flag,data[1]['id']); //display secondary office
+			   		Select_Office(data[1]['id']); //display secondary office
 					$('#office1').dropdown('set selected', data[1]['id']); //office 1
 			   		$('#office2').dropdown('set selected', data[2]['id']); //office 2
 
-
+			   		//console.log($( "#office2 option:selected" ).text());
 			   	}//success : function() {
 			});
 

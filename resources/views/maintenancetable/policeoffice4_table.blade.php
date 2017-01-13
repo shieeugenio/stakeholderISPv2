@@ -24,7 +24,7 @@
 			</div>
 
 			<div class = "twelve wide column bspacing">
-				<label class = "formlabel">Quarternary Office
+				<label class = "formlabel">Quaternary Office
 					<span class = "asterisk">*</span>
 				</label>
 			</div>
@@ -74,17 +74,12 @@
 								
 			</div>
 
-			<div class = "twelve wide column bspacing5">
+			<div class = "twelve wide column bspacing2">
 				<div class="ui input field formfield">
 					<input type="text" id="name" name="name" placeholder="e.g. Regional">
 				</div>
 			</div>
 
-			<div class = "twelve wide column bspacing2">
-				<div class="field">
-					<textarea  id = "description" name = "desc" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
-				</div>
-			</div>
 
 			<div class = "twelve wide column bspacing2">
 				<center><button type = "submit" name="submit" 
@@ -106,7 +101,7 @@
 @endsection
 
 @section('mtablesection')
-	<div class = "mtitle">Quarternary Unit/Office
+	<div class = "mtitle">Quaternary Unit/Office
 						
 	</div>
 
@@ -117,7 +112,7 @@
 		            <th><center>Primary Office</center></th>
 		            <th><center>Secondary Office</center></th>
 		            <th><center>Tertiary Office</center></th>
-		            <th><center>Quarternary Office</center></th>
+		            <th><center>Quaternary Office</center></th>
 						       
 				</tr>	
 		    </thead>
