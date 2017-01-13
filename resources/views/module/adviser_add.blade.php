@@ -578,7 +578,7 @@
 
 		function populateacp() {
 			@foreach($acposition as $acpitem)
-				populatedropdown('{{$acpitem->ID}}', 'acposition' , '{{$acpitem->acpositioncode}}', '{{$acpitem->acpositionname}}');
+				populatedropdown('{{$acpitem->ID}}', 'acposition' , '{{$acpitem->acpositionname}}');
 			
 			@endforeach
 
@@ -637,7 +637,7 @@
 			   		$("select[name='acsubcateg'] option").not("[value='disitem']").remove();
 
 			   		for (var ctr = 0 ; ctr < subcategory.length ; ctr++) {
-			   			populatedropdown(subcategory[ctr]['ID'], 'acsubcateg', subcategory[ctr]['acsubcategorycode'], subcategory[ctr]['subcategoryname']);
+			   			populatedropdown(subcategory[ctr]['ID'], 'acsubcateg', subcategory[ctr]['subcategoryname']);
 			   			
 			   		};
 
@@ -667,7 +667,7 @@
 			   		$("select[name='secondary'] option").not("[value='disitem']").remove();
 
 			   		for (var ctr = 0 ; ctr < secoffice.length ; ctr++) {
-			   			populatedropdown(secoffice[ctr]['ID'], 'secondary', secoffice[ctr]['policeofficecode2'], secoffice[ctr]['officename']);
+			   			populatedropdown(secoffice[ctr]['ID'], 'secondary', secoffice[ctr]['officename']);
 			   			
 			   		};
 
