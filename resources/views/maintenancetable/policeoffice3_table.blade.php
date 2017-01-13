@@ -267,11 +267,7 @@
 				success:function(data){
 				//console.log(data[0]['id']);
 						
-						selectbox = document.getElementById('officE2');
-						for(var i =data.length-1;i>=0;i--){
-							selectbox.options[i+1] = new Option(data[i]['UnitOfficeSecondaryName'],data[i]['id']);
-						}//END FOR LOOP
-
+					
 					console.log(data);
 
 					for(var i= 0 ; i < data.length; i++){
@@ -304,7 +300,8 @@
 				dataType: "JSON",
 			   	success : function(data) {
 
-			   		document.getElementsByName('ID')[0].value = data[0]['id'];
+			   		console.log(data);
+			   		document.getElementById('ID').value = data[0]['id'];
 			   		document.getElementsByName('terName')[0].value = data[0]['UnitOfficeTertiaryName'];   		
 					   		if (data[0]['UnitOfficeHasQuaternary'] == 'true')
 								{								
