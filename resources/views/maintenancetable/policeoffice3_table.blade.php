@@ -122,7 +122,7 @@
 
 				    		<i class="ui green large checkmark icon"></i>
 
-				    	@else if(strtolower($tri->UnitOfficeHasQuaternary) == "false")
+				    	@elseif(strtolower($tri->UnitOfficeHasQuaternary) == "false")
 
 				    		<i class="ui red large remove icon"></i>
 				    			
@@ -206,8 +206,9 @@
 
 		}//update
 
-			
-	}
+	  }//if(func == 3)
+		
+   }//end of CRUD
 
 	function exec(data, func) {
 		$.ajax({
@@ -248,7 +249,7 @@
 	function Select_Office(id){
 			$("select[id='office2'] option").not("[value='disitem']").remove();
 
-			removeOption(document.getElementById('officE2'));
+			//removeOption(document.getElementById('officE2'));
 
 				var data = {
 					'id' : id,
@@ -306,14 +307,13 @@
 			   		document.getElementsByName('ID')[0].value = data[0]['id'];
 			   		document.getElementsByName('terName')[0].value = data[0]['UnitOfficeTertiaryName'];   		
 					   		if (data[0]['UnitOfficeHasQuaternary'] == 'true')
-							{
-								
-							    document.getElementById('hasQuart').checked = true;
-							}
+								{								
+							      document.getElementById('hasQuart').checked = true;
+								}
 							else
-							{
-							    $( "#hasQuart").prop('checked', false);
-							}
+								{
+							      $('#hasQuart').prop('checked', false);
+								}
 			   		document.getElementsByName('select_office2')[0].value = data[0]['UnitOfficeSecondaryID'];
 			   		Select_Office(data[1]['id']); //display secondary office
 					$('#office1').dropdown('set selected', data[1]['id']); //office 1
@@ -323,10 +323,10 @@
 			   	}//success : function() {
 			});
 
+
 		}//function loaddata() {
 
 
-///Shie - tinanggal ko na yung description na field sa table at input
 </script>
 
 
