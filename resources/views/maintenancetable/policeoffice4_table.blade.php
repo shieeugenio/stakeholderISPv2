@@ -182,7 +182,7 @@
 				dataType: "JSON",
 				success:function(data){
 					if(func == 1){
-						for(var i =data.length-1;i>=0;i--){
+						for(var i= 0 ; i < data.length; i++){
 							populatedropdown(data[i]['id'], 'office2', data[i]['UnitOfficeSecondaryName']);
 							
 
@@ -191,7 +191,7 @@
 					}//populate secondary
 
 					if(func == 2){
-						for(var i =data.length-1;i>=0;i--){
+						for(var i= 0 ; i < data.length; i++){
 							populatedropdown(data[i]['id'], 'office3', data[i]['UnitOfficeTertiaryName']);
 						}//for
 						

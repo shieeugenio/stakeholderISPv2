@@ -133,6 +133,8 @@
 	</script>
 
 	<script type="text/javascript" src = "{{ URL::asset('js/formvalidation.js') }}"></script>
+	<script type="text/javascript" src = "{{ URL::asset('js/formcontrol.js') }}"></script>
+
 
 
 

@@ -31,7 +31,7 @@
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
 						<select class="modified ui selection dropdown selectstyle2" name="select_office1" id = "office1"
-						onchange="Select_Office(1,this.value)">
+						onchange="Select_Office(1 , this.value)">
 							<option value = "disitem" class = "disabled" selected>Select One</option>
 
 							@foreach($poOne as $rs1)
@@ -263,7 +263,7 @@
 				dataType: "JSON",
 				success:function(data){
 
-					for(var i= 0 ; i < data.length-1; i++){
+					for(var i= 0 ; i < data.length; i++){
 						populatedropdown(data[i]['id'], 'select_office2', data[i]['UnitOfficeSecondaryName']);
 					}//for
 				} //success : function
@@ -303,7 +303,7 @@
 							{
 							    $( "#hasQuart").prop('checked', false);
 							}
-			   		document.getElementsByName('select_officE2')[0].value = data[0]['UnitOfficeSecondaryID'];
+			   		document.getElementsByName('select_office2')[0].value = data[0]['UnitOfficeSecondaryID'];
 			   		Select_Office(flag,data[1]['id']); //display secondary office
 					$('#office1').dropdown('set selected', data[1]['id']); //office 1
 			   		$('#office2').dropdown('set selected', data[2]['id']); //office 2
