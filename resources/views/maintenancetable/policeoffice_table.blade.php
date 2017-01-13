@@ -134,7 +134,13 @@
 
 			   		document.getElementsByName('officeid')[0].value = data['id'];
 			   		document.getElementsByName('name')[0].value = data['UnitOfficeName'];
-			   		document.getElementsByName('hassec')[0].value = data['UnitOfficeHasField'];
+			   		// alert($('#hasfield').val());
+			   		if(data['UnitOfficeHasField'] == 'True'){
+			   			document.getElementById('hasfield').checked = true;
+			   		}
+			   		else{
+			   			$( "#hasfield").prop('checked', false);
+			   		}
 
 			   	}//success : function() {
 			});
