@@ -1,35 +1,24 @@
 @extends('module.maintenance')
 
 @section('mfillformsection')
-	<form class = "ui form" id = "form" action = "javascript:controlaction()" onsubmit="validationCheckbox(this)">
+	<form class = "ui form" id = "form" action = "javascript:loadCModal()" onsubmit="validationCheckbox(this)">
 							
-		<div class = "labelpane">
+		<div class = "labelpane2">
 								
 			<div class = "twelve wide column bspacing">
-				<label class = "formlabel">Name
+				<label class = "formlabel">Primary Office
 					<span class = "asterisk">*</span>
 				</label>
 			</div>					
-
-			<div class = "twelve wide column bspacing10">
-				<label class = "formlabel">Description</label>
-
-			</div>
 								
 		</div>
 
 		<input type="hidden" value="" name="officeid"/>
-		<div class = "fieldpane">
+		<div class = "fieldpane2">
 
 			<div class = "twelve wide column bspacing2">
 				<div class="ui input field formfield">
 					<input type="text" name="name" placeholder="e.g. D-Staff">
-				</div>
-			</div>
-
-			<div class = "twelve wide column bspacing2">
-				<div class="ui input formfield">
-					<textarea class = "areastyle" name="desc" rows = "4" placeholder="Type here..."></textarea>
 				</div>
 			</div>
 							
@@ -46,7 +35,7 @@
 
 								Save
 						</button>
-						<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button">
+						<button  type="button" onclick = "$('#cancelmodal').modal('show');" class="ui tiny button">
 								Cancel
 
 						</button></center>
@@ -67,7 +56,7 @@
 		    <thead>
 		    	<tr>
 		            <th><center>Name</center></th>
-		            <th><center>Has Field</center></th>
+		            <th><center>Has Secondary</center></th>
 		        </tr>	
 		    </thead>
 						                   
@@ -75,7 +64,20 @@
 		    	@for($ctr = 0 ; $ctr < sizeof($offices) ; $ctr++)
 		    		<tr class = "trow" onclick = "loaddata({{$offices[$ctr]->id}})" id = "{{$offices[$ctr]->id}}">
 			    		<td><center>{{$offices[$ctr]->UnitOfficeName}}</center></td>
-			    		<td><center>{{$offices[$ctr]->UnitOfficeHasField}}</center></td>
+			    		<td><center>
+
+			    		@if(strtolower($offices[$ctr]->UnitOfficeHasField) == "true")
+
+			    			<i class="ui green large checkmark icon"></i>
+
+			    		@else if(strtolower($offices[$ctr]->UnitOfficeHasField) == "false")
+
+			    			<i class="ui red large remove icon"></i>
+			    			
+
+			    		@endif
+
+			    		</center></td>
 
 
 			    	</tr>
@@ -93,15 +95,13 @@
 
 		function controlaction() {
 
-			if(confirm('Save?')) {
-				if(flag == 1) {
-					editData();
+			if(flag == 1) {
+				editData();
 
-				} else if(flag == 0) {
-					addData();
+			} else if(flag == 0) {
+				addData();
 
-				}//if(flag == 1) {
-			}//if(confirm('Save?')) {
+			}//if(flag == 1) {
 		}//function controlaction() {
 
 		function resetflag(msg) {
@@ -134,7 +134,13 @@
 
 			   		document.getElementsByName('officeid')[0].value = data['id'];
 			   		document.getElementsByName('name')[0].value = data['UnitOfficeName'];
-			   		document.getElementsByName('hassec')[0].value = data['UnitOfficeHasField'];
+			   		// alert($('#hasfield').val());
+			   		if(data['UnitOfficeHasField'] == 'True'){
+			   			document.getElementById('hasfield').checked = true;
+			   		}
+			   		else{
+			   			$( "#hasfield").prop('checked', false);
+			   		}
 
 			   	}//success : function() {
 			});

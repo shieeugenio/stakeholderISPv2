@@ -1,7 +1,7 @@
 @extends('module.maintenance')
 
 @section('mfillformsection')
-	<form class = "ui form" id = "form" action="javascript:controlaction()">
+	<form class = "ui form" id = "form" action="javascript:loadCModal()">
 							
 		<div class = "labelpane2">
 					
@@ -19,16 +19,13 @@
 
 			<div class = "twelve wide column bspacing">
 				<label class = "formlabel">Tertiary Office
+					<span class = "asterisk">*</span>
 				</label>
 			</div>
 
 			<div class = "twelve wide column bspacing">
-				<label class = "formlabel">Quarternary Office
-				</label>
-			</div>
-
-			<div class = "twelve wide column bspacing">
-				<label class = "formlabel">Description
+				<label class = "formlabel">Quaternary Office
+					<span class = "asterisk">*</span>
 				</label>
 			</div>
 
@@ -40,7 +37,11 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select onchange="populate(1,this.value)" class="modified ui selection dropdown selectstyle2" name="office" id = "select1">
+<<<<<<< HEAD
 						<option class = "disabled" selected>Select One</option>
+=======
+						<option class = "disabled" value="disitem" selected>Select One</option>
+>>>>>>> 5ac6cf4d389b5b4b3ad81de0ec8a8e90d55e1477
 						@foreach ( $office as $office )
 							<option value="{{$office->id}}">{{$office->UnitOfficeName}}</option>
 						@endforeach
@@ -57,9 +58,13 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select  onchange="populate(2,this.value)" class="modified ui selection dropdown selectstyle2" name="office2" id = "select2">
+<<<<<<< HEAD
 						<option class = "disabled" selected>Select One</option>
 						
 						    <!-- POPULATE DROPDOWN OFFICE 2-->
+=======
+						<option class = "disabled" value="disitem">Select One</option>
+>>>>>>> 5ac6cf4d389b5b4b3ad81de0ec8a8e90d55e1477
 									 
 
 					</select>
@@ -71,9 +76,13 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select class="modified ui selection dropdown selectstyle2" name="office3" id = "select3">
+<<<<<<< HEAD
 						<option class = "disabled" selected>Select One</option>
 					  <!-- POPULATE DROPDOWN OFFICE 3-->
 									 
+=======
+						<option class = "disabled" value="disitem">Select One</option>			 
+>>>>>>> 5ac6cf4d389b5b4b3ad81de0ec8a8e90d55e1477
 
 					</select>
 									
@@ -81,17 +90,12 @@
 								
 			</div>
 
-			<div class = "twelve wide column bspacing5">
+			<div class = "twelve wide column bspacing2">
 				<div class="ui input field formfield">
 					<input type="text" id="name" name="name" placeholder="e.g. Regional">
 				</div>
 			</div>
 
-			<div class = "twelve wide column bspacing2">
-				<div class="field">
-					<textarea  id = "description" name = "desc" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
-				</div>
-			</div>
 
 			<div class = "twelve wide column bspacing2">
 				<center><button type = "submit" name="submit" 
@@ -113,7 +117,7 @@
 @endsection
 
 @section('mtablesection')
-	<div class = "mtitle">Quarternary Unit/Office
+	<div class = "mtitle">Quaternary Unit/Office
 						
 	</div>
 
@@ -124,8 +128,7 @@
 		            <th><center>Primary Office</center></th>
 		            <th><center>Secondary Office</center></th>
 		            <th><center>Tertiary Office</center></th>
-		            <th><center>Quarternary Office</center></th>
-					<th><center>Description</center></th>
+		            <th><center>Quaternary Office</center></th>
 						       
 				</tr>	
 		    </thead>
@@ -137,7 +140,6 @@
 		    		<td><center>{{$offices->UnitOfficeSecondaryName}}</center></td>
 		    		<td><center>{{$offices->UnitOfficeTertiaryName}}</center></td>
 		    		<td><center>{{$offices->UnitOfficeQuaternaryName}}</center></td>
-		    		<td><center></center></td>
 		    		
 		    		
 		    	</tr>
@@ -154,20 +156,12 @@
 		$('#m6').attr('class', 'item active');
 		var flag = 0;
 
-		function removeOption(selectbox){
-
-			for(i=selectbox.options.length;i>0;i--){
-				selectbox.remove(i);
-			}
-
-		}
-
 		function populate(func,id){
 
 			if(func == 1){
 
-				removeOption(document.getElementById('select2'));
-				removeOption(document.getElementById('select3'));
+				$("select [id='select2'] option").not("[value='disitem']").remove();
+				$("select [id='select3'] option").not("[value='disitem']").remove();
 
 				var data = {
 					'id' : id,
@@ -178,6 +172,7 @@
 
 			if(func == 2){
 
+<<<<<<< HEAD
 				// if(document.getElementById('select2').options[0].selected == true){
 
 				// 	alert('Select Office');
@@ -186,6 +181,14 @@
 				// else{
 					removeOption(document.getElementById('select3'));
 				// }
+=======
+				/*if(document.getElementById('select2').options[0].selected == true){
+					return;
+				} else{
+					removeOption(document.getElementById('select3'));
+				}//if*/
+				$("select [id='select3'] option").not("[value='disitem']").remove();
+>>>>>>> 5ac6cf4d389b5b4b3ad81de0ec8a8e90d55e1477
 
 				var data = {
 					'id' : id,
@@ -200,25 +203,36 @@
 				data: data,
 				dataType: "JSON",
 				success:function(data){
-					//console.log(data[0]['id']);
-
 					if(func == 1){
+<<<<<<< HEAD
 						selectbox = document.getElementById('select2');
 						for(var i =data.length-1;i>=0;i--){
 							selectbox.options[i+1] = new Option(data[i]['UnitOfficeSecondaryName'],data[i]['id']);
 					}
+=======
+						for(var i= 0 ; i < data.length; i++){
+							populatedropdown(data[i]['id'], 'office2', data[i]['UnitOfficeSecondaryName']);
+							
+
+						}//for
+>>>>>>> 5ac6cf4d389b5b4b3ad81de0ec8a8e90d55e1477
 						
 					}//populate secondary
 
 					if(func == 2){
+<<<<<<< HEAD
 						selectbox = document.getElementById('select3');
 						for(var i =data.length-1;i>=0;i--){
 							selectbox.options[i+1] = new Option(data[i]['UnitOfficeTertiaryName'],data[i]['id']);
 							//validate();			
 						}
+=======
+						for(var i= 0 ; i < data.length; i++){
+							populatedropdown(data[i]['id'], 'office3', data[i]['UnitOfficeTertiaryName']);
+						}//for
+>>>>>>> 5ac6cf4d389b5b4b3ad81de0ec8a8e90d55e1477
 						
 					}//populate tertiary
-					console.log(data);
 				} //success : function
 			});//ajax
 
@@ -235,16 +249,13 @@
 
 		function controlaction() {
 			
-			if(confirm('Save?')) {
-
-				if(flag == 1) {
+			if(flag == 1) {
 					editData();
 
-				} else if(flag == 0) {
-					addData();
+			} else if(flag == 0) {
+				addData();
 
-				}//if(flag == 1) {
-			}//if(confirm('Save?')) {
+			}//if(flag == 1) {
 		}//function controlaction() {
 
 		function resetflag(msg) {
@@ -379,7 +390,7 @@
 
 		function editData() {
 
-			console.log($('#select3').val());
+			//console.log($('#select3').val());
 			var data = {
 				'subID' : document.getElementsByName('ID')[0].value,
 				'office3' : $('#select3').val(),

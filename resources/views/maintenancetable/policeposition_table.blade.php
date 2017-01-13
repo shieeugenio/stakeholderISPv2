@@ -68,8 +68,8 @@
 					                   
 		    <tbody>
 		    	@foreach ($positions as $position)
-			    	<tr class = "trow" onclick="CRUD({{$position->ID}},2)" id = "{{$position->ID}}">
-			    		<td><center>{{$position->positionname}}</center></td>
+			    	<tr class = "trow" onclick="CRUD({{$position->id}},2)" id = "{{$position->id}}">
+			    		<td><center>{{$position->PositionName}}</center></td>
 			    		<td><center>{{$position->desc}}</center></td>
 			    	</tr>
 		    	@endforeach
