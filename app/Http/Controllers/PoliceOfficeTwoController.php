@@ -10,7 +10,7 @@ class PoliceOfficeTwoController extends Controller
 {
     public function index(){
     	$suboffice = App\Models\unit_office_secondaries::with('unitoffice')->get();
-    	$office = App\Models\unit_offices::all();
+    	$office = App\Models\unit_offices::where('UnitOfficeHasField', '=', 'True')->get();
 
     	return view('maintenancetable.policeoffice2_table')->with('offices', $office)->with('suboffices', $suboffice);
     }

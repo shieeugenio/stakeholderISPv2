@@ -79,6 +79,8 @@ class PoliceOfficeThreeController extends Controller
             $drop = DB::table('unit_office_tertiaries')->where('id','=',$id)->get();
 
             return [$potri,$potwo,$poOne,$drop];
+
+
             
         }
    
