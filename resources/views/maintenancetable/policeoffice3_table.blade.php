@@ -1,6 +1,7 @@
 @extends('module.maintenance')
 
 @section('mfillformsection')
+
 	<form class = "ui form" id = "form" action="javascript:CRUD(0,document.getElementById('dualbutton').value)">
 							
 		<div class = "labelpane2">
@@ -32,7 +33,7 @@
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
 						<select class="modified ui selection dropdown selectstyle2" name="select_officE1" id = "officE1"
-						onchange="Select_Office()">
+						onchange="Select_Office(1,this.value)">
 							<option value='- Select One -' selected>- Select One -</option>
 
 							@foreach($poOne as $rs1)
@@ -48,10 +49,9 @@
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
 						<select class="modified ui selection dropdown selectstyle2" name="select_officE2" id = "officE2" >
-
+							
 						<option selected='selected'>- Select One -</option>
 
-													    		
 						</select>
 									
 					</div>
@@ -170,7 +170,7 @@
 					'id' : document.getElementById('ID').value,
 					'tername' : document.getElementsByName('terName')[0].value,
 					'hasquart' : document.getElementsByName('hasQuart')[0].value,
-					'office2' : document.getElementsByName('select_officE2')[0].value,
+					'office2' : $('#officE2').val(),
 					'submit': document.getElementsByName("submit")[0].value,
 					'callId' : 3,
 					'_token' : '{{ Session::token() }}'
@@ -247,7 +247,7 @@
 				success:function(data){
 					//console.log(data[0]['id']);
 
-						alert('selOffice function');	
+						
 						selectbox = document.getElementById('officE2');
 						for(var i =data.length-1;i>=0;i--){
 							selectbox.options[i+1] = new Option(data[i]['UnitOfficeSecondaryName'],data[i]['id']);
@@ -270,6 +270,7 @@
 				'id' : id,
 				'_token' : '{{ Session::token() }}'
 			};
+			document.getElementById('dualbutton').value = 3;
 			
 
 			$.ajax({
@@ -280,7 +281,6 @@
 			   	success : function(data) {
 
 			   		document.getElementsByName('ID')[0].value = data[0]['id'];
-			   		alert
 			   		document.getElementsByName('terName')[0].value = data[0]['UnitOfficeTertiaryName'];   	
 			   		document.getElementsByName('select_officE2')[0].value = data[0]['UnitOfficeSecondaryID'];
 			   		alert($('#officE2').val());
@@ -293,7 +293,6 @@
 								{
 							    	$( "#hasQuart").prop('checked', false);
 								  }
-			   		console.log(data);
 			   		// var dat =  $('#officE2').val();
 			   		// var haha = document.getElementById('officE2').value = dat;
     				// document.getElementById("officE2").innerHTML = dat;
@@ -304,7 +303,6 @@
 			   		Select_Office(flag,data[1]['id']); //display secondary office
 					$('#officE1').dropdown('set selected', data[1]['id']); //office 1
 			   		$('#officE2').dropdown('set selected', data[2]['id']); //office 2
-
 
 			   	}//success : function() {
 			});

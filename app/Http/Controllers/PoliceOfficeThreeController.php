@@ -15,7 +15,7 @@ class PoliceOfficeThreeController extends Controller
     public function index_PO3(){
       $poOne = DB::table('unit_offices')->get();
       $potwo = DB::table('unit_office_secondaries')->get();  
-      $pothree = DB::table('unit_office_tertiaries')->select('unit_office_tertiaries.id','unit_office_tertiaries.UnitOfficeTertiaryName','unit_office_secondaries.UnitOfficeSecondaryName','unit_offices.UnitOfficeName')
+      $pothree = DB::table('unit_office_tertiaries')->select('*')
             ->join('unit_office_secondaries','unit_office_tertiaries.UnitOfficeSecondaryID','=','unit_office_secondaries.id')
             ->join('unit_offices','unit_office_secondaries.UnitOfficeID','=','unit_offices.id')
             ->get();
