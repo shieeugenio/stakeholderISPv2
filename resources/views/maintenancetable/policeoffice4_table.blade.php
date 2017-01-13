@@ -40,7 +40,7 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select onchange="populate(1,this.value)" class="modified ui selection dropdown selectstyle2" name="office" id = "select1">
-						<option class = "disabled" value="0" selected>Select One</option>
+						<option class = "disabled" selected>Select One</option>
 						@foreach ( $office as $office )
 							<option value="{{$office->id}}">{{$office->UnitOfficeName}}</option>
 						@endforeach
@@ -57,7 +57,7 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select  onchange="populate(2,this.value)" class="modified ui selection dropdown selectstyle2" name="office2" id = "select2">
-						<option class = "disabled" value="0" selected>Select One</option>
+						<option class = "disabled" selected>Select One</option>
 						
 						    <!-- POPULATE DROPDOWN OFFICE 2-->
 									 
@@ -71,7 +71,7 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select class="modified ui selection dropdown selectstyle2" name="office3" id = "select3">
-						<option class = "disabled" value="0" selected>Select One</option>
+						<option class = "disabled" selected>Select One</option>
 					  <!-- POPULATE DROPDOWN OFFICE 3-->
 									 
 
@@ -206,7 +206,7 @@
 						selectbox = document.getElementById('select2');
 						for(var i =data.length-1;i>=0;i--){
 							selectbox.options[i+1] = new Option(data[i]['UnitOfficeSecondaryName'],data[i]['id']);
-						}
+					}
 						
 					}//populate secondary
 
@@ -283,10 +283,24 @@
 			   		
 			   		// $('#select2').val(data[2]['id']).change();
 			   		
-
 			   		$('#select1').dropdown("set selected", data[1]['id']); //office 1
-			   		$('#select2').dropdown("set selected", data[2]['id']); //office 2
-			   		$('#select3').dropdown("set selected", data[3]['id']); // office 3
+
+
+					$('#select2').dropdown('refresh');
+					if (data[2]['id'])
+					setTimeout(function () {
+					$('#select2').dropdown("set selected", data[2]['id']);
+					}, 1);
+			   		
+			   		 //office 2
+			   		$('#select3').dropdown('refresh');
+					if (data[2]['id'])
+					setTimeout(function () {
+					$('#select3').dropdown("set selected", data[2]['id']);
+					}, 1);
+
+			   		//populate(2,data[2]['id']);
+			   		//$('#select3').dropdown("set selected", data[3]['id']); // office 3
 
 
 			   		
