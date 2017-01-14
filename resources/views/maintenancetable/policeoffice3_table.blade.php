@@ -119,7 +119,7 @@
 
 				    		<i class="ui green large checkmark icon"></i>
 
-				    	@else if(strtolower($tri->UnitOfficeHasQuaternary) == "false")
+				    	@elseif(strtolower($tri->UnitOfficeHasQuaternary) == "false")
 
 				    		<i class="ui red large remove icon"></i>
 				    			

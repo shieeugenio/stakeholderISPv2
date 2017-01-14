@@ -71,6 +71,7 @@ class PoliceOfficeThreeController extends Controller
         {
             $id = $req->id;
             $potri = unit_office_tertiaries::find($id);
+
             $idTwo = $potri->UnitOfficeSecondaryID;
             $potwo = DB::table('unit_office_secondaries')->find($idTwo);
             $idOne = $potwo->UnitOfficeID;
