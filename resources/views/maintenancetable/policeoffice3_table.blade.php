@@ -1,7 +1,9 @@
 @extends('module.maintenance')
 
 @section('mfillformsection')
+
 	<form class = "ui form" id = "form" action = "javascript:loadCModal()">
+
 							
 		<div class = "labelpane2">
 
@@ -47,11 +49,11 @@
 
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
+
 						<select class="modified ui selection dropdown selectstyle2" name="select_office2" id = "office2" >
 
 							<option class = "disabled" value = "disitem">Select One</option>
 
-													    		
 						</select>
 									
 					</div>
@@ -64,7 +66,7 @@
 					</div>
 				</div>
 
-							
+
 				<div class = "twelve wide column bspacing2">
 					<div class="ui checkbox">
 						<input type="checkbox" id='hasQuart' name='hasQuart' >
@@ -111,6 +113,7 @@
 		    <tbody>
 		     @foreach ($pothree as $tri) 
 			    <tr onclick = "loaddata({{$tri->id}})"  id = "{{$tri->id}}">
+
 			       	<td><center>{{$tri->UnitOfficeName}}</center></td>
 			       	<td><center>{{$tri->UnitOfficeSecondaryName}}</center></td>
 			    	<td><center>{{$tri->UnitOfficeTertiaryName}}</center></td>
@@ -128,6 +131,7 @@
 
 			    	</center></td>
 			    </tr>  
+
 					                               
 			   @endforeach 
 						    	
@@ -185,6 +189,9 @@
 
 		if(func == 3)
 		{
+
+			if(confirm('Update?')) {
+	
 			data = {
 				'id' : document.getElementById('ID').value,
 				'tername' : document.getElementsByName('terName')[0].value,
@@ -194,14 +201,14 @@
 				'callId' : 3,
 				'_token' : '{{ Session::token() }}'
 				};
-
 				console.log(data);
 				//exec(data, func);
 
 		}//update
 
-			
-	}
+	  }//if(func == 3)
+		
+   }//end of CRUD
 
 	function exec(data, func) {
 		$.ajax({
@@ -242,11 +249,15 @@
 	function Select_Office(id){
 			$("select[id='office2'] option").not("[value='disitem']").remove();
 
-			var data = {
-				'id' : id,
-				'callid' : 1,
-				'_token' : '{{ Session::token() }}' 
-			};
+			//removeOption(document.getElementById('officE2'));
+
+				var data = {
+					'id' : id,
+					'callid' : 1,
+					'_token' : '{{ Session::token() }}' 
+				};
+			
+
 		
 			$.ajax({
 				type: "POST",
@@ -254,6 +265,10 @@
 				data: data,
 				dataType: "JSON",
 				success:function(data){
+				//console.log(data[0]['id']);
+						
+					
+					console.log(data);
 
 					for(var i= 0 ; i < data.length; i++){
 						populatedropdown(data[i]['id'], 'select_office2', data[i]['UnitOfficeSecondaryName']);
@@ -275,6 +290,7 @@
 				'id' : id,
 				'_token' : '{{ Session::token() }}'
 			};
+			document.getElementById('dualbutton').value = 3;
 			
 
 			$.ajax({
@@ -284,17 +300,17 @@
 				dataType: "JSON",
 			   	success : function(data) {
 
-			   		document.getElementsByName('ID')[0].value = data[0]['id'];
+			   		console.log(data);
+			   		document.getElementById('ID').value = data[0]['id'];
 			   		document.getElementsByName('terName')[0].value = data[0]['UnitOfficeTertiaryName'];   		
 					   		if (data[0]['UnitOfficeHasQuaternary'] == 'true')
-							{
-								
-							    document.getElementById('hasQuart').checked = true;
-							}
+								{								
+							      document.getElementById('hasQuart').checked = true;
+								}
 							else
-							{
-							    $( "#hasQuart").prop('checked', false);
-							}
+								{
+							      $('#hasQuart').prop('checked', false);
+								}
 			   		document.getElementsByName('select_office2')[0].value = data[0]['UnitOfficeSecondaryID'];
 			   		Select_Office(data[1]['id']); //display secondary office
 					$('#office1').dropdown('set selected', data[1]['id']); //office 1
@@ -304,11 +320,12 @@
 			   	}//success : function() {
 			});
 
-		}//function loaddata() {
 
+		}//function loaddata() {
 
 
 </script>
 
 
 @stop
+
