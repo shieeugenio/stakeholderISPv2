@@ -192,8 +192,6 @@
 		if(func == 3)
 		{
 
-			if(confirm('Update?')) {
-	
 			data = {
 				'id' : document.getElementById('ID').value,
 				'tername' : document.getElementsByName('terName')[0].value,
@@ -204,10 +202,9 @@
 				'_token' : '{{ Session::token() }}'
 				};
 				console.log(data);
-				//exec(data, func);
+				exec(data, func);
 
-		}//update
-
+		
 	  }//if(func == 3)
 		
    }//end of CRUD
@@ -303,7 +300,7 @@
 				data: data,
 				dataType: "JSON",
 			   	success : function(data) {	
-			   		
+
 			   		document.getElementById('ID').value = data[0]['id'];
 			   		document.getElementsByName('terName')[0].value = data[0]['UnitOfficeTertiaryName'];  
 			   
