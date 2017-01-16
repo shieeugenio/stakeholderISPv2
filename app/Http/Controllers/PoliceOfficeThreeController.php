@@ -62,13 +62,13 @@ class PoliceOfficeThreeController extends Controller
     
     
 
-    public function selOffice(Request $req){
-        $callid = $req->callid;
-        $id = $req->id;    
-        $secondOffice = DB::table('unit_office_secondaries')->where('UnitOfficeID','=',$id)->get();
-        return $secondOffice;
+    // public function selOffice(Request $req){
+    //     $callid = $req->callid;
+    //     $id = $req->id;    
+    //     $secondOffice = DB::table('unit_office_secondaries')->where('UnitOfficeID','=',$id)->get();
+    //     return $secondOffice;
        
-    }
+    // }
 
     public function retrieveData(Request $req)
         {
@@ -82,6 +82,33 @@ class PoliceOfficeThreeController extends Controller
            return [$potri,$potwo,$poOne];
             
         }
+
+       public function selOffice(Request $request) {
+       
+        $office1_ID = $request->id;
+        
+       // $params = array($office1_ID);
+
+       // $stmt = DB::table('unit_office_secondaries')->select('*')->where('UnitOfficeID','=', $params)->first();
+        $stmt = unit_office_secondaries::where('UnitOfficeID','=', $office1_ID)->get();
+
+        $array_Result = array();
+        var_dump($stmt);    
+        foreach ($stmt as $key => $rs) {
+            
+            $office2_ID = $rs->id;
+            $office2_name = $rs->UnitOfficeSecondaryName;
+            
+            array_push($array_Result, $office2_ID);
+            array_push($array_Result, $office2_name);
+            
+        }   
+
+        return json_encode($array_Result);
+
+    }//End Of Select Building
+
+   
    
 }//ENDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 
 

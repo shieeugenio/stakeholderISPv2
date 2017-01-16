@@ -29,6 +29,7 @@
 		</div>	
 
 		<input type="hidden" value="" name="ID" id='ID'/>
+		<input type="hidden" name="_token" id="csrf-token" value="{{Session::token()}}">
 
 			<div class = "fieldpane2">
 				<div class = "twelve wide column bspacing2">
@@ -245,7 +246,7 @@
 
 		});
 	}//function exec() {
-
+/*
 	function Select_Office(id){
 			$("select[id='office2'] option").not("[value='disitem']").remove();
 
@@ -277,7 +278,7 @@
 			});//ajax
 
 		}//end
-
+ */
 
 		function loaddata(id) {
 
@@ -321,7 +322,48 @@
 			});
 
 
-		}//function loaddata() {
+		}//function loaddata() 
+
+		function Select_Office(id) {
+			
+			var office1_ID = document.getElementById('office1').value;
+
+			var dataString = "id=" + office1_ID;
+
+			var token = document.getElementById('csrf-token').value;
+	
+		$.ajax({
+
+			type: "post",
+			headers: {'X-CSRF-TOKEN': token},
+			url: "selOffice",
+			data: dataString,
+			datatype: 'json',
+			cache: false,
+			success: function(data){
+
+				//var parse_data = JSON.parse(data);
+				var parse_data = data;
+				for (var i = 0; i < parse_data.length; i = i + 2) {
+						
+					var j = i + 1;
+
+					document.getElementById('office2').innerHTML += "<option value=" + parse_data[i] + ">"+ parse_data[j] + "</option>";
+
+
+					// for(var i= 0 ; i < data.length; i++){
+					// 	populatedropdown(data[i]['id'], 'select_office2', data[i]['UnitOfficeSecondaryName']);
+					// }//for
+
+				}
+				
+			}
+
+		});
+
+		return false;
+
+}//End Of Select 
 
 
 </script>
