@@ -93,7 +93,7 @@
 
 				    			<i class="ui green large checkmark icon"></i>
 
-				    		@else if(strtolower($key->UnitOfficeHasTertiary) == "false")
+				    		@elseif(strtolower($key->UnitOfficeHasTertiary) == "false")
 
 				    			<i class="ui red large remove icon"></i>
 				    			
@@ -121,7 +121,7 @@
 			if(flag == 1) {
 				editData();
 
-			} else if(flag == 0) {
+			} elseif(flag == 0) {
 				addData();
 
 			}//if(flag == 1) {

@@ -265,6 +265,7 @@
 			   		// $('#select2').val(data[2]['id']).change();
 			   		//populate(flag,data[1]['id']);
 			   		
+<<<<<<< HEAD
 			   		$('#select1').dropdown("set exactly", data[1]['id']); //office 1
 			   		console.log(document.getElementById('select2').options);
 			   		// $('#select2').dropdown("set selected", data[2]['id']);
@@ -293,6 +294,14 @@
 
 			   		//populate(2,data[2]['id']);
 			   		//$('#select3').dropdown("set selected", data[3]['id']); // office 3
+=======
+			   		//$('#select2').val(data[2]['id']).change();
+			   		// $('#select2').dropdown('set selected', data[2]['id']); //office 2
+			   		// console.log(document.getElementById('select2').options);
+			   		// //populate(2,data[2]['id']); // display tertiary office
+			   		// //$('#select3').val(data[3]['id']).change();
+			   		// $('#select3').dropdown('set selected', data[3]['id']); // office 3
+>>>>>>> 34a41c50e28e8dde281db3344874a7819d32870b
 
 
 			   		
