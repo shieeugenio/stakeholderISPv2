@@ -145,6 +145,7 @@
 	<script type="text/javascript">
 
 	$('#m7').attr('class', 'item active');
+	$('.ui.dropdown').dropdown();
 	var flag = 0;
 		
 	function resetflag(msg){
@@ -196,8 +197,8 @@
 			data = {
 				'id' : document.getElementById('ID').value,
 				'tername' : document.getElementsByName('terName')[0].value,
-				'hasquart' : document.getElementsByName('hasQuart')[0].value,
-				'office2' : document.getElementsByName('select_office2')[0].value,
+				'hasquart' : $('#hasQuart').is(":checked"), 
+				'office2' : $('#office2').val(),
 				'submit': document.getElementsByName("submit")[0].value,
 				'callId' : 3,
 				'_token' : '{{ Session::token() }}'
@@ -246,18 +247,26 @@
 
 		});
 	}//function exec() {
-/*
-	function Select_Office(id){
-			$("select[id='office2'] option").not("[value='disitem']").remove();
 
-			//removeOption(document.getElementById('officE2'));
+	function removeOption(selectbox){
+
+			for(i=selectbox.options.length;i>0;i--){
+				selectbox.remove(i);
+			}
+		}
+
+
+	function Select_Office(id){
+			//$("select[id='office2'] option").not("[value='disitem']").remove();
+
+			removeOption(document.getElementById('office2'));
+			$('#office2').dropdown('restore defaults');
 
 				var data = {
 					'id' : id,
 					'callid' : 1,
 					'_token' : '{{ Session::token() }}' 
-				};
-			
+				};			
 
 		
 			$.ajax({
@@ -266,10 +275,6 @@
 				data: data,
 				dataType: "JSON",
 				success:function(data){
-				//console.log(data[0]['id']);
-						
-					
-					console.log(data);
 
 					for(var i= 0 ; i < data.length; i++){
 						populatedropdown(data[i]['id'], 'select_office2', data[i]['UnitOfficeSecondaryName']);
@@ -278,32 +283,32 @@
 			});//ajax
 
 		}//end
- */
-
+ 
 		function loaddata(id) {
 
-			flag = 1;
 			$('#' + id).attr('class', 'activerow');
 			$('tr').not("[id = '" + id + "']").removeAttr('class');
-			document.getElementById('dualbutton').value = 3;
 
 			var data = {
 				'id' : id,
 				'_token' : '{{ Session::token() }}'
 			};
 			document.getElementById('dualbutton').value = 3;
-			
+			flag = 1;
+
 
 			$.ajax({
 				type: "POST",
 				url: "{{url('maintenancetable/retrieveData')}}",
 				data: data,
 				dataType: "JSON",
-			   	success : function(data) {
-
+			   	success : function(data) {	
 			   		console.log(data);
+
 			   		document.getElementById('ID').value = data[0]['id'];
-			   		document.getElementsByName('terName')[0].value = data[0]['UnitOfficeTertiaryName'];   		
+			   		document.getElementsByName('terName')[0].value = data[0]['UnitOfficeTertiaryName'];  
+			   
+
 					   		if (data[0]['UnitOfficeHasQuaternary'] == 'true')
 								{								
 							      document.getElementById('hasQuart').checked = true;
@@ -312,10 +317,16 @@
 								{
 							      $('#hasQuart').prop('checked', false);
 								}
-			   		document.getElementsByName('select_office2')[0].value = data[0]['UnitOfficeSecondaryID'];
-			   		Select_Office(data[1]['id']); //display secondary office
-					$('#office1').dropdown('set selected', data[1]['id']); //office 1
-			   		$('#office2').dropdown('set selected', data[2]['id']); //office 2
+
+			   		
+			   	//	Select_Office(data[1]['id']); //display secondary office
+					$('#office1').dropdown("set selected", data[2]['id']); //office 1
+					console.log(document.getElementById('office2').options);
+			   	//	$('#office2').dropdown('set selected', data[2]['id']); //office 2
+
+			   		setTimeout(function(){
+					    changeValue('#office2',data[1]['id']);
+					},2000);
 
 			   		//console.log($( "#office2 option:selected" ).text());
 			   	}//success : function() {
@@ -324,46 +335,20 @@
 
 		}//function loaddata() 
 
-		function Select_Office(id) {
-			
-			var office1_ID = document.getElementById('office1').value;
+		function changeValue(dropdownID,value){
+ 			$('.ui.dropdown').has(dropdownID).dropdown('set selected',value);
+		}
 
-			var dataString = "id=" + office1_ID;
+		function validate(){
 
-			var token = document.getElementById('csrf-token').value;
-	
-		$.ajax({
+			if(document.getElementById('officE2').options[0].selected == true){
 
-			type: "post",
-			headers: {'X-CSRF-TOKEN': token},
-			url: "selOffice",
-			data: dataString,
-			datatype: 'json',
-			cache: false,
-			success: function(data){
-
-				//var parse_data = JSON.parse(data);
-				var parse_data = data;
-				for (var i = 0; i < parse_data.length; i = i + 2) {
-						
-					var j = i + 1;
-
-					document.getElementById('office2').innerHTML += "<option value=" + parse_data[i] + ">"+ parse_data[j] + "</option>";
-
-
-					// for(var i= 0 ; i < data.length; i++){
-					// 	populatedropdown(data[i]['id'], 'select_office2', data[i]['UnitOfficeSecondaryName']);
-					// }//for
-
+					alert('Select Office');
+					return;
 				}
-				
-			}
+		}
 
-		});
-
-		return false;
-
-}//End Of Select 
+		
 
 
 </script>
