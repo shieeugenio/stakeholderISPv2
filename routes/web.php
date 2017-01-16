@@ -189,3 +189,9 @@ Route::get('testAdviserAdd','TestController@addAdviser');
 
 
 //Police Office Four : Resutaa
+
+
+// Audit Trail Controller[ren]
+Route::get('AuditTrail', 'AuditTrailController@index');
+Route::get('AuditTrailFilter', 'AuditTrailController@filter');
+
