@@ -89,11 +89,11 @@
 		    			<td><center>{{$key->unitoffice->UnitOfficeName}}</center></td>
 			    		<td><center>{{$key->UnitOfficeSecondaryName}}</center></td>
 			    		<td><center>
-			    			@if($key->UnitOfficeHasTertiary == "True")
+			    			@if(strtolower($key->UnitOfficeHasTertiary) == "true")
 
 				    			<i class="ui green large checkmark icon"></i>
 
-				    		@else
+				    		@elseif(strtolower($key->UnitOfficeHasTertiary) == "false")
 
 				    			<i class="ui red large remove icon"></i>
 				    			
@@ -121,7 +121,7 @@
 			if(flag == 1) {
 				editData();
 
-			} else if(flag == 0) {
+			} elseif(flag == 0) {
 				addData();
 
 			}//if(flag == 1) {

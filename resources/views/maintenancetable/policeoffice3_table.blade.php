@@ -1,9 +1,12 @@
 @extends('module.maintenance')
 
 @section('mfillformsection')
+
 	<form class = "ui form" id = "form" action = "javascript:loadCModal()">
+
 							
 		<div class = "labelpane2">
+
 								
 			<div class = "twelve wide column bspacing">
 				<label class = "formlabel">Primary Office
@@ -31,8 +34,8 @@
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
 						<select class="modified ui selection dropdown selectstyle2" name="select_office1" id = "office1"
-						onchange="Select_Office(1 , this.value)">
-							<option value = "disitem" class = "disabled" selected>Select One</option>
+						onchange="Select_Office(this.value)">
+							<option value = "disitem" class = "disabled">Select One</option>
 
 							@foreach($poOne as $rs1)
 					       		<option value="{{$rs1->id}}">{{$rs1->UnitOfficeName}}</option>
@@ -46,11 +49,11 @@
 
 				<div class = "twelve wide column bspacing2">
 					<div class = "field">
+
 						<select class="modified ui selection dropdown selectstyle2" name="select_office2" id = "office2" >
 
 							<option class = "disabled" value = "disitem">Select One</option>
 
-													    		
 						</select>
 									
 					</div>
@@ -63,18 +66,12 @@
 					</div>
 				</div>
 
+
 				<div class = "twelve wide column bspacing2">
-					<div class="field">
-						<textarea  id = "description" name = "desc" class = "areastyle" rows = "4" placeholder="Type here..."></textarea>
+					<div class="ui checkbox">
+						<input type="checkbox" id='hasQuart' name='hasQuart' >
+						<label class = "boollabel">Has Quaternary</label>
 					</div>
-				</div>
-							
-							
-				<div class = "twelve wide column bspacing2">
-				<div class="ui checkbox">
-					<input type="checkbox" id='hasQuart' name='hasQuart' >
-					<label class = "boollabel">Has Quaternary</label>
-				</div>
 				</div> <br>
 
 
@@ -116,15 +113,16 @@
 		    <tbody>
 		     @foreach ($pothree as $tri) 
 			    <tr onclick = "loaddata({{$tri->id}})"  id = "{{$tri->id}}">
+
 			       	<td><center>{{$tri->UnitOfficeName}}</center></td>
 			       	<td><center>{{$tri->UnitOfficeSecondaryName}}</center></td>
 			    	<td><center>{{$tri->UnitOfficeTertiaryName}}</center></td>
 			    	<td><center>
-			    		@if($tri->UnitOfficeHasQuaternary == "True")
+			    		@if(strtolower($tri->UnitOfficeHasQuaternary) == "true")
 
 				    		<i class="ui green large checkmark icon"></i>
 
-				    	@else
+				    	@elseif(strtolower($tri->UnitOfficeHasQuaternary) == "false")
 
 				    		<i class="ui red large remove icon"></i>
 				    			
@@ -133,6 +131,7 @@
 
 			    	</center></td>
 			    </tr>  
+
 					                               
 			   @endforeach 
 						    	
@@ -190,22 +189,26 @@
 
 		if(func == 3)
 		{
-				data = {
-					'id' : document.getElementById('ID').value,
-					'tername' : document.getElementsByName('terName')[0].value,
-					'hasquart' : document.getElementsByName('hasQuart')[0].value,
-					'office2' : document.getElementsByName('select_office2')[0].value,
-					'submit': document.getElementsByName("submit")[0].value,
-					'callId' : 3,
-					'_token' : '{{ Session::token() }}'
-					};
 
-				exec(data, func);
+			if(confirm('Update?')) {
+	
+			data = {
+				'id' : document.getElementById('ID').value,
+				'tername' : document.getElementsByName('terName')[0].value,
+				'hasquart' : document.getElementsByName('hasQuart')[0].value,
+				'office2' : document.getElementsByName('select_office2')[0].value,
+				'submit': document.getElementsByName("submit")[0].value,
+				'callId' : 3,
+				'_token' : '{{ Session::token() }}'
+				};
+				console.log(data);
+				//exec(data, func);
 
 		}//update
 
-			
-	}
+	  }//if(func == 3)
+		
+   }//end of CRUD
 
 	function exec(data, func) {
 		$.ajax({
@@ -243,17 +246,18 @@
 		});
 	}//function exec() {
 
-	function Select_Office(func,id){
+	function Select_Office(id){
+			$("select[id='office2'] option").not("[value='disitem']").remove();
 
-			if(func == 1){
-				$("select [id='office2'] option").not("[value='disitem']").remove();
+			//removeOption(document.getElementById('officE2'));
 
 				var data = {
 					'id' : id,
 					'callid' : 1,
 					'_token' : '{{ Session::token() }}' 
 				};
-			}//if
+			
+
 		
 			$.ajax({
 				type: "POST",
@@ -261,6 +265,10 @@
 				data: data,
 				dataType: "JSON",
 				success:function(data){
+				//console.log(data[0]['id']);
+						
+					
+					console.log(data);
 
 					for(var i= 0 ; i < data.length; i++){
 						populatedropdown(data[i]['id'], 'select_office2', data[i]['UnitOfficeSecondaryName']);
@@ -276,11 +284,13 @@
 			flag = 1;
 			$('#' + id).attr('class', 'activerow');
 			$('tr').not("[id = '" + id + "']").removeAttr('class');
+			document.getElementById('dualbutton').value = 3;
 
 			var data = {
 				'id' : id,
 				'_token' : '{{ Session::token() }}'
 			};
+			document.getElementById('dualbutton').value = 3;
 			
 
 			$.ajax({
@@ -290,32 +300,32 @@
 				dataType: "JSON",
 			   	success : function(data) {
 
-			   		document.getElementsByName('ID')[0].value = data[0]['id'];
-			   		alert
+			   		console.log(data);
+			   		document.getElementById('ID').value = data[0]['id'];
 			   		document.getElementsByName('terName')[0].value = data[0]['UnitOfficeTertiaryName'];   		
 					   		if (data[0]['UnitOfficeHasQuaternary'] == 'true')
-							{
-								
-							    document.getElementById('hasQuart').checked = true;
-							}
+								{								
+							      document.getElementById('hasQuart').checked = true;
+								}
 							else
-							{
-							    $( "#hasQuart").prop('checked', false);
-							}
+								{
+							      $('#hasQuart').prop('checked', false);
+								}
 			   		document.getElementsByName('select_office2')[0].value = data[0]['UnitOfficeSecondaryID'];
-			   		Select_Office(flag,data[1]['id']); //display secondary office
+			   		Select_Office(data[1]['id']); //display secondary office
 					$('#office1').dropdown('set selected', data[1]['id']); //office 1
 			   		$('#office2').dropdown('set selected', data[2]['id']); //office 2
 
-
+			   		//console.log($( "#office2 option:selected" ).text());
 			   	}//success : function() {
 			});
 
-		}//function loaddata() {
 
+		}//function loaddata() {
 
 
 </script>
 
 
 @stop
+
