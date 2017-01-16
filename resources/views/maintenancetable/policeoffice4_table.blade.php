@@ -37,11 +37,7 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select onchange="populate(1,this.value)" class="modified ui selection dropdown selectstyle2" name="office" id = "select1">
-<<<<<<< HEAD
-						<option class = "disabled" selected>Select One</option>
-=======
 						<option class = "disabled" value="disitem" selected>Select One</option>
->>>>>>> 5ac6cf4d389b5b4b3ad81de0ec8a8e90d55e1477
 						@foreach ( $office as $office )
 							<option value="{{$office->id}}">{{$office->UnitOfficeName}}</option>
 						@endforeach
@@ -58,15 +54,11 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select  onchange="populate(2,this.value)" class="modified ui selection dropdown selectstyle2" name="office2" id = "select2">
-<<<<<<< HEAD
-						<option class = "disabled" selected>Select One</option>
-						
-						    <!-- POPULATE DROPDOWN OFFICE 2-->
-=======
 						<option class = "disabled" value="disitem">Select One</option>
->>>>>>> 5ac6cf4d389b5b4b3ad81de0ec8a8e90d55e1477
-									 
-
+						<!--  @foreach ($office2 as $office2)
+							<option value="{{$office2->id}}">{{$office2->UnitOfficeSecondaryName}}</option>
+						@endforeach
+						 -->
 					</select>
 									
 				</div>
@@ -76,14 +68,11 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select class="modified ui selection dropdown selectstyle2" name="office3" id = "select3">
-<<<<<<< HEAD
-						<option class = "disabled" selected>Select One</option>
-					  <!-- POPULATE DROPDOWN OFFICE 3-->
-									 
-=======
 						<option class = "disabled" value="disitem">Select One</option>			 
->>>>>>> 5ac6cf4d389b5b4b3ad81de0ec8a8e90d55e1477
-
+					<!-- 	@foreach ($office3 as $office3)
+							<option value="{{$office3->id}}">{{$office3->UnitOfficeTertiaryName}}</option>
+						@endforeach
+						 -->					
 					</select>
 									
 				</div>
@@ -154,14 +143,29 @@
 
 	<script type="text/javascript">
 		$('#m6').attr('class', 'item active');
+		$('.ui.dropdown').dropdown();
+
 		var flag = 0;
+
+		function removeOption(selectbox){
+
+			for(i=selectbox.options.length;i>0;i--){
+				selectbox.remove(i);
+			}
+
+		}
+
 
 		function populate(func,id){
 
 			if(func == 1){
 
-				$("select [id='select2'] option").not("[value='disitem']").remove();
-				$("select [id='select3'] option").not("[value='disitem']").remove();
+				// $("select [id='select2'] option").not("[value='disitem']").remove();
+				// $("select [id='select3'] option").not("[value='disitem']").remove();
+				removeOption(document.getElementById('select2'));
+				removeOption(document.getElementById('select3'));
+				$('#select2').dropdown('restore defaults');
+				$('#select3').dropdown('restore defaults');
 
 				var data = {
 					'id' : id,
@@ -171,25 +175,9 @@
 			}
 
 			if(func == 2){
-
-<<<<<<< HEAD
-				// if(document.getElementById('select2').options[0].selected == true){
-
-				// 	alert('Select Office');
-				// 	return;
-				// }
-				// else{
-					removeOption(document.getElementById('select3'));
-				// }
-=======
-				/*if(document.getElementById('select2').options[0].selected == true){
-					return;
-				} else{
-					removeOption(document.getElementById('select3'));
-				}//if*/
-				$("select [id='select3'] option").not("[value='disitem']").remove();
->>>>>>> 5ac6cf4d389b5b4b3ad81de0ec8a8e90d55e1477
-
+//				$("select [id='select3'] option").not("[value='disitem']").remove();
+				removeOption(document.getElementById('select3'));
+				$('#select3').dropdown('restore defaults');
 				var data = {
 					'id' : id,
 					'callid' : 2,
@@ -204,33 +192,16 @@
 				dataType: "JSON",
 				success:function(data){
 					if(func == 1){
-<<<<<<< HEAD
-						selectbox = document.getElementById('select2');
-						for(var i =data.length-1;i>=0;i--){
-							selectbox.options[i+1] = new Option(data[i]['UnitOfficeSecondaryName'],data[i]['id']);
-					}
-=======
 						for(var i= 0 ; i < data.length; i++){
 							populatedropdown(data[i]['id'], 'office2', data[i]['UnitOfficeSecondaryName']);
-							
-
+				
 						}//for
->>>>>>> 5ac6cf4d389b5b4b3ad81de0ec8a8e90d55e1477
-						
 					}//populate secondary
 
 					if(func == 2){
-<<<<<<< HEAD
-						selectbox = document.getElementById('select3');
-						for(var i =data.length-1;i>=0;i--){
-							selectbox.options[i+1] = new Option(data[i]['UnitOfficeTertiaryName'],data[i]['id']);
-							//validate();			
-						}
-=======
 						for(var i= 0 ; i < data.length; i++){
 							populatedropdown(data[i]['id'], 'office3', data[i]['UnitOfficeTertiaryName']);
 						}//for
->>>>>>> 5ac6cf4d389b5b4b3ad81de0ec8a8e90d55e1477
 						
 					}//populate tertiary
 				} //success : function
@@ -287,28 +258,38 @@
 				dataType: "JSON",
 			   	success : function(data) {
 
-			   		console.log(data);
 			   		document.getElementsByName('ID')[0].value = data[0]['id'];
 			   		document.getElementsByName('name')[0].value = data[0]['UnitOfficeQuaternaryName'];
 
 			   		
 			   		// $('#select2').val(data[2]['id']).change();
+			   		//populate(flag,data[1]['id']);
 			   		
-			   		$('#select1').dropdown("set selected", data[1]['id']); //office 1
+			   		$('#select1').dropdown("set exactly", data[1]['id']); //office 1
+			   		console.log(document.getElementById('select2').options);
+			   		// $('#select2').dropdown("set selected", data[2]['id']);
+			   		// //populate(flag+1,data[2]['id']);
+			   		// $('#select3').dropdown("set selected", data[3]['id']);
 
-
-					$('#select2').dropdown('refresh');
-					if (data[2]['id'])
-					setTimeout(function () {
-					$('#select2').dropdown("set selected", data[2]['id']);
-					}, 1);
+			   		setTimeout(function(){
+					    changeValue('#select2',data[2]['id']);
+					},1500);
+					
+					setTimeout(function(){
+				   		changeValue('#select3',data[3]['id']);
+					},3500);
+					// $('#select2').dropdown('refresh');
+					// if (data[2]['id'])
+					// setTimeout(function () {
+					// $('#select2').dropdown("set selected", data[2]['id']);
+					// }, 1);
 			   		
-			   		 //office 2
-			   		$('#select3').dropdown('refresh');
-					if (data[2]['id'])
-					setTimeout(function () {
-					$('#select3').dropdown("set selected", data[2]['id']);
-					}, 1);
+			  //  		 //office 2
+			  //  		$('#select3').dropdown('refresh');
+					// if (data[3]['id'])
+					// setTimeout(function () {
+					// $('#select3').dropdown("set selected", data[3]['id']);
+					// }, 1);
 
 			   		//populate(2,data[2]['id']);
 			   		//$('#select3').dropdown("set selected", data[3]['id']); // office 3
@@ -352,20 +333,20 @@
 							
 					// }
 					//validate();
-
-			   		console.log(document.getElementById('select2').options);
-			   		console.log(document.getElementById('select3').options);
-					
+			   		
 			   	}//success : function() {
 			});
 
 		}//function loaddata() {
 
+		function changeValue(dropdownID,value){
+ 			$('.ui.dropdown').has(dropdownID).dropdown('set selected',value);
+		}
+
 		function addData() {
 			var data = {
 				'name' : $('#name').val(),
 				'office3' : $('#select3').val(),
-				'desc' : document.getElementsByName("desc")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'
 			};
@@ -395,7 +376,6 @@
 				'subID' : document.getElementsByName('ID')[0].value,
 				'office3' : $('#select3').val(),
 				'name' : document.getElementsByName("name")[0].value,
-				'desc' : document.getElementsByName("desc")[0].value,
 				'submit': document.getElementsByName("submit")[0].value,
 				'_token' : '{{ Session::token() }}'
 			};
