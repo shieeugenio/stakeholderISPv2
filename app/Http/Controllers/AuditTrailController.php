@@ -51,8 +51,8 @@ class AuditTrailController extends Controller
     	}else{
     		$selection = DB::table('audit_trail')
     					 ->join('users','audit_trail.user_id', '=', 'users.id')
-    					 ->where('name','=', $name)
-    					 ->orWhere('date(date_time)','=', $date)
+    					 ->whereDate('date_time','=', date('Y-m-d',strtotime($date)))
+                         ->orWhere('name','=', $name)
     					 ->orWhere('admintype','=', $type)
     					 ->orderBy('date_time','asc')
     					 ->get(array('audit_trail.id','date_time','description','name','admintype'))->toArray();
