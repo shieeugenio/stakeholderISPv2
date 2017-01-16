@@ -303,8 +303,7 @@
 				data: data,
 				dataType: "JSON",
 			   	success : function(data) {	
-			   		console.log(data);
-
+			   		
 			   		document.getElementById('ID').value = data[0]['id'];
 			   		document.getElementsByName('terName')[0].value = data[0]['UnitOfficeTertiaryName'];  
 			   
