@@ -12,7 +12,7 @@ class unit_offices extends Model
 
     public function policeadvisory()
     {
-    	return $this->hasMany('App\Models\Police_Advisory', 'policeoffice_id');
+    	return $this->hasMany('App\Models\Police_Advisory', 'unit_id');
     }
 
     public function secondary()
