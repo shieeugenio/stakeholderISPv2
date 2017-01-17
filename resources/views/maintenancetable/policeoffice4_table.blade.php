@@ -55,10 +55,7 @@
 				<div class = "field">
 					<select  onchange="populate(2,this.value)" class="modified ui selection dropdown selectstyle2" name="office2" id = "select2">
 						<option class = "disabled" value="disitem">Select One</option>
-						<!--  @foreach ($office2 as $office2)
-							<option value="{{$office2->id}}">{{$office2->UnitOfficeSecondaryName}}</option>
-						@endforeach
-						 -->
+						
 					</select>
 									
 				</div>
@@ -69,10 +66,7 @@
 				<div class = "field">
 					<select class="modified ui selection dropdown selectstyle2" name="office3" id = "select3">
 						<option class = "disabled" value="disitem">Select One</option>			 
-					<!-- 	@foreach ($office3 as $office3)
-							<option value="{{$office3->id}}">{{$office3->UnitOfficeTertiaryName}}</option>
-						@endforeach
-						 -->					
+						
 					</select>
 									
 				</div>
@@ -262,11 +256,11 @@
 			   		
 			   		setTimeout(function(){
 					    changeValue('#select2',data[2]['id']);
-					},1500);
+					},2000);
 					
 					setTimeout(function(){
 				   		changeValue('#select3',data[3]['id']);
-					},3500);
+					},4000);
 			   		
 			   	}//success : function() {
 			});
