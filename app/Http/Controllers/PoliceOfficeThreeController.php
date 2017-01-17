@@ -14,8 +14,8 @@ class PoliceOfficeThreeController extends Controller
 {
    
     public function index_PO3(){
-      $poOne = DB::table('unit_offices')->get();
-      $potwo = DB::table('unit_office_secondaries')->get();  
+      $poOne = unit_offices::where('UnitOfficeHasField', '=', 'True')->get();
+      $potwo = unit_office_secondaries::where('UnitOfficeHasTertiary', '=', 'True')->get(); 
       $pothree = DB::table('unit_office_tertiaries')->select('unit_office_tertiaries.UnitOfficeHasQuaternary','unit_office_tertiaries.UnitOfficeSecondaryID',
         'unit_office_tertiaries.UnitOfficeTertiaryName','unit_office_tertiaries.id','unit_office_secondaries.UnitOfficeSecondaryName','unit_offices.UnitOfficeName')
             ->join('unit_office_secondaries','unit_office_tertiaries.UnitOfficeSecondaryID','=','unit_office_secondaries.id')
@@ -82,6 +82,10 @@ class PoliceOfficeThreeController extends Controller
            return [$potri,$potwo,$poOne];
             
         }
+
+      
+
+   
    
 }//ENDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 
 
