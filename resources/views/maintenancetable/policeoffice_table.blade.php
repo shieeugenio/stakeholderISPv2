@@ -70,7 +70,7 @@
 
 			    			<i class="ui green large checkmark icon"></i>
 
-			    		@else if(strtolower($offices[$ctr]->UnitOfficeHasField) == "false")
+			    		@elseif(strtolower($offices[$ctr]->UnitOfficeHasField) == "false")
 
 			    			<i class="ui red large remove icon"></i>
 			    			

@@ -116,9 +116,8 @@
 						       
 				</tr>	
 		    </thead>
-		    @foreach ( $office4 as $offices)
+		    @foreach ($office4 as $offices)
 		    	<tr onclick="loaddata({{$offices->id}})" id="{{$offices->id}}">
-		    		
 		    		
 		    		<td><center>{{$offices->UnitOfficeName}}</center></td>
 		    		<td><center>{{$offices->UnitOfficeSecondaryName}}</center></td>
@@ -137,7 +136,7 @@
 	</div>
 
 	<script type="text/javascript">
-		$('#m6').attr('class', 'item active');
+		$('#m8').attr('class', 'item active');
 		var flag = 0;
 
 		function populate(func,id){

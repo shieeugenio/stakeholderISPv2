@@ -19,10 +19,12 @@ class PoliceOfficeThreeController extends Controller
             ->join('unit_office_secondaries','unit_office_tertiaries.UnitOfficeSecondaryID','=','unit_office_secondaries.id')
             ->join('unit_offices','unit_office_secondaries.UnitOfficeID','=','unit_offices.id')
             ->get();
-      return view('maintenancetable.policeoffice3_table')
+      /**return view('maintenancetable.policeoffice3_table')
       ->with('pothree', $pothree)
       ->with('potwo', $potwo)
-      ->with('poOne', $poOne);
+      ->with('poOne', $poOne);**/
+
+      return $pothree;
       
     }
 

@@ -68,36 +68,20 @@
 			<hr>
 
 			<div class = "ui doubling grid cardlist">
-				@foreach ($directory as $ritem)
 					<div class = "five1 wide column colheight">
-						<div class = "cardstyle" onclick = "loadModal({{$ritem->ID}})">
-							<img class = "advphoto" src="{{URL::asset($ritem->imagepath)}}"/>
+						<div class = "cardstyle" onclick = "loadModal()">
+							<img class = "advphoto" src=""/>
 
 							<div class = "advdata">
-								<h4 class = "name">{{$ritem->lname}}, {{$ritem->fname}} {{$ritem->mname}}</h4>
+								<h4 class = "name"></h4>
 								<p>
-									@if($ritem->category == 0)
-										Advisory Council
-
-									@elseif($ritem->category == 1)
-										Technical Worker Group
-
-
-									@elseif($ritem->category == 2)
-										Police Strategy Management Unit
-
-									@endif
-
-									<br>
-									{{$ritem->email}} <br> {{$ritem->contactno}} | {{$ritem->landline}}
-
+									
 								</p>
 								
 							</div>
 						</div>
 
 					</div>
-				@endforeach
 				
 			</div>
 			
