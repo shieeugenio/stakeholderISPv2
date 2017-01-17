@@ -18,9 +18,9 @@ class PoliceOfficeFourController extends Controller
     public function index(){
     	//$tertiaryid = $office4['UnitOfficeTertiaryID'];
     	//$tertiarydata = DB::table('unit_office_tertiaries')->find($tertiaryid);
-    	$office = DB::table('unit_offices')->get();
-    	$office2 = DB::table('unit_office_secondaries')->get();
-    	$office3 = DB::table('unit_office_tertiaries')->get();
+    	$office = DB::table('unit_offices')->where('UnitOfficeHasField','=','true')->get();
+    	$office2 = DB::table('unit_office_secondaries')->where('UnitOfficeHasTertiary','=','true')->get();
+    	$office3 = DB::table('unit_office_tertiaries')->where('UnitOfficeHasQuaternary','=','true')->get();
     	$office4 = DB::table('unit_office_quaternaries')->select('unit_office_quaternaries.id','unit_office_quaternaries.UnitOfficeQuaternaryName','unit_office_tertiaries.UnitOfficeTertiaryName','unit_office_secondaries.UnitOfficeSecondaryName','unit_offices.UnitOfficeName')
     		->join('unit_office_tertiaries','unit_office_quaternaries.UnitOfficeTertiaryID','=','unit_office_tertiaries.id')
     		->join('unit_office_secondaries','unit_office_tertiaries.UnitOfficeSecondaryID','=','unit_office_secondaries.id')
