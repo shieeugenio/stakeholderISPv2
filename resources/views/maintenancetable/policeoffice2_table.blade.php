@@ -121,7 +121,7 @@
 			if(flag == 1) {
 				editData();
 
-			} else if(flag == 0) {
+			} elseif(flag == 0) {
 				addData();
 
 			}//if(flag == 1) {

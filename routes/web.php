@@ -63,12 +63,11 @@ Route::post('dropdown/getsecoffice', 'AdvDirectoryController@getSecOffice');
 Route::get('maintenance/accategory', 'ACCategoryController@index')->middleware('auth');
 Route::get('maintenance/acsubcategory','ACSubcategoryController@index')->middleware('auth');
 Route::get('maintenance/acposition','ACPositionController@index_acposition')->middleware('auth');
-Route::get('maintenance/acsector','acsectorController@index_acsectors');
-//->middleware('auth');
+Route::get('maintenance/acsector','acsectorController@index_acsectors')->middleware('auth');
 Route::get('maintenance/primaryoffice', 'PoliceOfficesController@index')->middleware('auth');
 Route::get('maintenance/secondaryoffice', 'PoliceOfficeTwoController@index')->middleware('auth');
 
-Route::get('maintenance/tertiaryoffice', 'PoliceOfficeThreeController@index_PO3');
+Route::get('maintenance/tertiaryoffice', 'PoliceOfficeThreeController@index_PO3')->middleware('auth');
 Route::get('maintenance/quarternaryoffice', function() { 
 											return view('maintenancetable.policeoffice4_table');});
 
@@ -190,3 +189,9 @@ Route::get('testAdviserAdd','TestController@addAdviser');
 
 
 //Police Office Four : Resutaa
+
+
+// Audit Trail Controller[ren]
+Route::get('AuditTrail', 'AuditTrailController@index');
+Route::get('AuditTrailFilter', 'AuditTrailController@filter');
+
