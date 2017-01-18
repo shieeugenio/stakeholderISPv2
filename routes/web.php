@@ -192,10 +192,18 @@ Route::get('testAdviserAdd','TestController@addAdviser');
 Route::get('AuditTrail', 'AuditTrailController@index');
 Route::get('AuditTrailFilter', 'AuditTrailController@filter');
 
-// Blob Testing @author Shie
 
 Route::get('photoupload', function() {
 	return view('photoupload');
 });
 
 Route::post('testupload', 'TestUpController@loadphoto');
+
+/*
+Filters for the directory. returning json values
+[ren william lucas buluran]
+*/
+Route::get('FilterAC', 'FilterController@FilterAC');
+Route::get('FilterAll', 'FilterController@FilterAll');
+Route::get('FilterTWG', 'FilterController@FilterTWG');
+Route::get('FilterPSMU', 'FilterController@FilterPSMU');

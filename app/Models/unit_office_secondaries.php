@@ -19,4 +19,9 @@ class unit_office_secondaries extends Model
     {
         return $this->hasMany('App\Models\unit_office_tertiaries', 'UnitOfficeSecondaryID');
     }
+
+    public function policeadv()
+    {
+        return $this->hasMany('App\Models\Police_Advisory', 'second_id');
+    }
 }

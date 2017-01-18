@@ -14,4 +14,9 @@ class unit_office_quaternaries extends Model
     {
     	return $this->belongsTo('App\Models\unit_office_tertiaries', 'UnitOfficeTertiaryID', 'id');
     }
+
+    public function policeadv()
+    {
+    	$this->hasMany('App\Models\Police_Advisory', 'quaternary_id');
+    }
 }
