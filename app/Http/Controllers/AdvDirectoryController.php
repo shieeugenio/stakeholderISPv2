@@ -122,7 +122,7 @@ class AdvDirectoryController extends Controller {
 
 		
 
-		if (isset($_POST['submit'])) {
+		/**if (isset($_POST['submit'])) {
 			$this->addProfile($data);
 
 			$id = $this->getID();
@@ -137,7 +137,11 @@ class AdvDirectoryController extends Controller {
 			}//if($data->advcateg == 0) {
 		
 
-		}// if
+		}// if**/
+
+		//$data = file_get_contents('php://input');
+
+		print_r($data);
 
 	}//add - WHOLE
 

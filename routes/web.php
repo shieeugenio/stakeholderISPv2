@@ -11,9 +11,6 @@
 |
 */
 
-//LOGIN @author: Ren Buluran
-//Route::get('login', array('uses' => 'HomeController@index'));
-
 //REGISTRATION @author: Ren Buluran
 Route::get('registration', 'RegistrationController@index');
 Route::post('register', 'RegistrationController@register');
@@ -31,8 +28,9 @@ Route::post('register', 'RegistrationController@register');
 Route::get('/', 'AdvDirectoryController@readyPHome'); //public
 
 //LOGIN @author: Ren Buluran
-Route::post('validatelogin', array('uses' => 'HomeController@login'));
-Route::get('logout', array('uses' => 'HomeController@logout'));
+Route::get('login', function () {
+    return view('home.loginpage');
+});
 
 
 Route::get('home', function() {
@@ -78,6 +76,10 @@ Route::get('maintenance/policeposition','PolicePositionController@index_policepo
 
 
 //BACK-END
+
+//LOGIN @author: Ren Buluran
+Route::post('validatelogin', array('uses' => 'HomeController@login'));
+Route::get('logout', array('uses' => 'HomeController@logout'));
 
 //AC CATEGORY @author: Shie Eugenio
 Route::post("accategory/add", 'ACCategoryController@confirm');
@@ -167,11 +169,6 @@ Route::get('transaction/advedt','ProfileController@edit');
 //smart search [ren]
 Route::get('search', 'SearchController@index');
 
-//login [ren]
-Route::get('login', array('uses' => 'HomeController@index'));
-Route::post('login', array('uses' => 'HomeController@login'));
-Route::get('logout', array('uses' => 'HomeController@logout'));
-
 //registration[ren]
 Route::get('registration', 'RegistrationController@index');
 Route::resource('register', 'RegistrationController@register');
@@ -195,3 +192,10 @@ Route::get('testAdviserAdd','TestController@addAdviser');
 Route::get('AuditTrail', 'AuditTrailController@index');
 Route::get('AuditTrailFilter', 'AuditTrailController@filter');
 
+// Blob Testing @author Shie
+
+Route::get('photoupload', function() {
+	return view('photoupload');
+});
+
+Route::post('testupload', 'TestUpController@loadphoto');

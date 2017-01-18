@@ -46,7 +46,7 @@ class HomeController extends Controller
             }else{
                 $message = "Incorrect username or password";
                 
-                return Redirect::to('/')->with('message',$message);
+                return Redirect::to('/login')->with('message',$message);
 
                 //return $message;
             }
