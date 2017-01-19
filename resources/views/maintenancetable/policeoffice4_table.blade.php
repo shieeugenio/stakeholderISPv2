@@ -55,10 +55,7 @@
 				<div class = "field">
 					<select  onchange="populate(2,this.value)" class="modified ui selection dropdown selectstyle2" name="office2" id = "select2">
 						<option class = "disabled" value="disitem">Select One</option>
-						<!--  @foreach ($office2 as $office2)
-							<option value="{{$office2->id}}">{{$office2->UnitOfficeSecondaryName}}</option>
-						@endforeach
-						 -->
+						
 					</select>
 									
 				</div>
@@ -69,10 +66,7 @@
 				<div class = "field">
 					<select class="modified ui selection dropdown selectstyle2" name="office3" id = "select3">
 						<option class = "disabled" value="disitem">Select One</option>			 
-					<!-- 	@foreach ($office3 as $office3)
-							<option value="{{$office3->id}}">{{$office3->UnitOfficeTertiaryName}}</option>
-						@endforeach
-						 -->					
+						
 					</select>
 									
 				</div>
@@ -159,8 +153,6 @@
 
 			if(func == 1){
 
-				// $("select [id='select2'] option").not("[value='disitem']").remove();
-				// $("select [id='select3'] option").not("[value='disitem']").remove();
 				removeOption(document.getElementById('select2'));
 				removeOption(document.getElementById('select3'));
 				$('#select2').dropdown('restore defaults');
@@ -174,7 +166,7 @@
 			}
 
 			if(func == 2){
-//				$("select [id='select3'] option").not("[value='disitem']").remove();
+
 				removeOption(document.getElementById('select3'));
 				$('#select3').dropdown('restore defaults');
 				var data = {
@@ -260,24 +252,15 @@
 			   		document.getElementsByName('ID')[0].value = data[0]['id'];
 			   		document.getElementsByName('name')[0].value = data[0]['UnitOfficeQuaternaryName'];
 
-			   		
-			   		// $('#select2').val(data[2]['id']).change();
-			   		//populate(flag,data[1]['id']);
-			   		
 			   		$('#select1').dropdown("set exactly", data[1]['id']); //office 1
-			   		console.log(document.getElementById('select2').options);
-			   		// $('#select2').dropdown("set selected", data[2]['id']);
-			   		// //populate(flag+1,data[2]['id']);
-			   		// $('#select3').dropdown("set selected", data[3]['id']);
-
+			   		
 			   		setTimeout(function(){
 					    changeValue('#select2',data[2]['id']);
-					},1500);
+					},2000);
 					
 					setTimeout(function(){
 				   		changeValue('#select3',data[3]['id']);
-					},3500);
-					
+					},4000);
 			   		
 			   	}//success : function() {
 			});
