@@ -22,6 +22,20 @@
 	height: 100%;
 }
 
+.round {
+	border: 2px solid #00253a;
+	border-radius: 50%;
+	
+}
+
+.small.add.user.round {
+	width: 5.2%;
+	height: 19%;
+	padding-top: 0.5%;
+	padding-bottom: 0.5%;
+
+}
+
 .acname {
 	width: 80%;
 	height: 97%;
@@ -545,6 +559,7 @@ form, .dcon {
 	border-top: 1px solid #00253a;
 	margin-right: 10%;
 }
+
 
 .hr2 {
 	width: 100%;

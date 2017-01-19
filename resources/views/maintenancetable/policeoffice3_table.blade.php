@@ -254,9 +254,9 @@
 
 
 	function Select_Office(id){
-			//$("select[id='office2'] option").not("[value='disitem']").remove();
+			$("#office2 option").not("[value='disitem']").remove();
 
-			removeOption(document.getElementById('office2'));
+			//removeOption(document.getElementById('office2'));
 			$('#office2').dropdown('restore defaults');
 
 				var data = {

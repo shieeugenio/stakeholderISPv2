@@ -153,8 +153,11 @@
 
 			if(func == 1){
 
-				removeOption(document.getElementById('select2'));
-				removeOption(document.getElementById('select3'));
+				//removeOption(document.getElementById('select2'));
+				//removeOption(document.getElementById('select3'));
+				$("#select2 option").not("[value='disitem']").remove();
+				$("#select3 option").not("[value='disitem']").remove();
+
 				$('#select2').dropdown('restore defaults');
 				$('#select3').dropdown('restore defaults');
 
@@ -326,15 +329,6 @@
 
 
 		}//
-
-	//POPULATE OFFICE 1 DROPDOWN
-	//POPULATE OFFICE 2 DROPDOWN
-	//POPULATE OFFICE 3 DROPDOWN
-	//REVISE $('#select2').dropdown('set selected', data['police_office_id']); LINE CHANGE DATA SOURCE
-	//REVISE $('#select3').dropdown('set selected', data['police_office_id']); LINE CHANGE DATA SOURCE
-	//CONTROLLER
-
-
 	</script>
 
 @stop

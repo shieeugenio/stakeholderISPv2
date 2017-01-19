@@ -27,9 +27,12 @@ Route::post('register', 'RegistrationController@register');
 //MENU @author: Shie Eugenio
 Route::get('/', 'AdvDirectoryController@readyPHome'); //public
 
-//LOGIN @author: Ren Buluran
 Route::get('login', function () {
     return view('home.loginpage');
+});
+
+Route::get('registration', function () {
+    return view('home.registrationpage');
 });
 
 
@@ -80,6 +83,10 @@ Route::get('maintenance/policeposition','PolicePositionController@index_policepo
 //LOGIN @author: Ren Buluran
 Route::post('validatelogin', array('uses' => 'HomeController@login'));
 Route::get('logout', array('uses' => 'HomeController@logout'));
+
+//Registration @author: Ren Buluran
+Route::resource('register', 'RegistrationController@register');
+Route::post('checkusername', 'RegistrationController@checkusername');
 
 //AC CATEGORY @author: Shie Eugenio
 Route::post("accategory/add", 'ACCategoryController@confirm');
@@ -170,8 +177,8 @@ Route::get('transaction/advedt','ProfileController@edit');
 Route::get('search', 'SearchController@index');
 
 //registration[ren]
-Route::get('registration', 'RegistrationController@index');
-Route::resource('register', 'RegistrationController@register');
+//Route::get('registration', 'RegistrationController@index');
+
 Route::get('Accountapproved/{id}', 'RegistrationController@approvalSuccess');
 Route::get('Accountdisapproved/{id}','RegistrationController@approvalCancel');
 

@@ -17,41 +17,47 @@ class RegistrationController extends Controller
     }
 
     public function register(Request $req){
-        $validate = users::where('email', '=', $req->username)->first();
-        if ($validate === null) {
-            $user = new users;
-            $user->name = $req->name;
-            $user->email = $req->username;
-            $user->admintype = $req->type;
-            $user->status = 0;
-            $user->created_at = date('Y-m-d H:i:s');
-            $user->password = bcrypt($req->password);
-            $user->save();
-            $message = "registration complete";
-            return Redirect::to('login')->with('message',$message);
 
-        }else{
-            $message = "username already exist!";
-            return Redirect::to('registration')->with('message',$message);
-        }
-    }
+        $user = new users;
+        $user->name = $req->name;
+        $user->email = $req->username;
+
+        if($req->source == 1) {
+            $user->admintype = $req->type;
+
+        }//if
+
+        $user->status = $req->status;
+        $user->created_at = date('Y-m-d H:i:s');
+        $user->password = bcrypt($req->password);
+        $user->save();
+
+    }//register
+
+    public function checkusername(Request $req) {
+        $validate = users::where('email', '=', $req->username)->first();
+
+        return sizeof($validate);
+
+    }//checkusername
 
     public function approvalSuccess($id){
-            $user = users::find($id);
-            $user->status = 1;
-            $user->save();
-            $message = "Account Approved";
-            return Redirect::to('registration')->with('message',$message);
+        $user = users::find($id);
+        $user->status = 1;
+        $user->save();
+        $message = "Account Approved";
+        return Redirect::to('registration')->with('message',$message);
 
-    }
+    }//approve
 
     public function approvalCancel($id){
-            $user = users::find($id);
-            $user->status = 2;
-            $user->save();
-            $message = "Account denied!";
-            return Redirect::to('registration')->with('message',$message);
-    }
+        $user = users::find($id);
+        $user->status = 2;
+        $user->save();
+        $message = "Account denied!";
+        
+        return Redirect::to('registration')->with('message',$message);
+    }//disapprove
     
 
 }
