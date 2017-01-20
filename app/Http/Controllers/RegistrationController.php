@@ -12,9 +12,15 @@ use Redirect;
 class RegistrationController extends Controller
 {
     public function index(){
-        $users = users::where('status', '=', '0')->get();
-        return View('transaction.registration')->with('users',$users);
-    }
+        $reqlist = users::where('status', '<>', '0')
+                        ->orderBy('created_at','desc')
+                        ->union(users::where('status', '=', '0')
+                                    ->orderBy('created_at','desc'))
+                        ->get();
+       return View('admin.admin_table')->with('users',$reqlist);
+
+        //return $reqlist;
+    }//index
 
     public function register(Request $req){
 
@@ -23,7 +29,7 @@ class RegistrationController extends Controller
         $user->email = $req->username;
 
         if($req->source == 1) {
-            $user->admintype = $req->type;
+            $user->admintype = $req->admintype;
 
         }//if
 

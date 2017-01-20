@@ -37,8 +37,8 @@
 					Save
 				</button>
 		
-				<button type = "reset" onclick = "if(confirm('Cancel?')) { resetflag('Cancelled!')}" class="ui tiny button">
-						Cancel
+				<button type="button" onclick = "$('#cancelmodal').modal('show');" class="ui tiny button">
+					Cancel
 
 				</button></center>
 			</div>

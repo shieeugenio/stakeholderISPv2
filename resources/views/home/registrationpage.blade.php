@@ -15,39 +15,39 @@
 				<hr class = "hr2">
 			</div>
 
-			<form action="javascript:loadModal()" method="POST" class = "ui form">
+			<form id = "form" method="POST" class = "ui form">
 				<input type="hidden" name="_token" id="csrf-token" value="{{Session::token()}}" type="text">
 												
 					<div class = "logcontent">
 
 						<span class ="message" name="message"></span>
-
+						<br>
 						<span class ="message" name="message"></span>
 
 						<div class ="twelve wide column  bspacing8">
-							<div class="ui input logfield2">
-								<input type="text" name = "name" placeholder="Full Name (FN MI LN EXT)">
+							<div id = "fncon" class="ui input field logfield2">
+								<input type="text" onchange = "validatefullname()" name = "fullname" placeholder="Full Name e.g. FN MI LN EXT (Required)">
 							</div>
 												
 						</div>
 
 						<div class ="twelve wide column  bspacing8">
-							<div id = "ucon" class="ui input logfield2">
-								<input onchange = "checkusername()" type="text" name = "username" placeholder="Username">
+							<div id = "ucon" class="ui input field logfield2">
+								<input onchange = "checkusername()" type="text" name = "username" placeholder="Username (Required)">
 							</div>
 												
 						</div>
 
 						<div class ="twelve wide column  bspacing8">
-							<div id = "passcon1" class="ui input logfield2">
-								<input id = "pass1" type="password" onchange = "validatepass()" placeholder="Password">
+							<div id = "passcon1" class="ui input field logfield2">
+								<input id = "pass1" type="password" name = "password" onchange = "validatepass()" placeholder="Password (Required)">
 							</div>
 														
 						</div>
 
 						<div class ="twelve wide column  bspacing8">
-							<div id = "passcon2" class="ui input logfield2">
-								<input id = "pass2" type="password" onchange = "validatepass()" name = "password" placeholder="Retype Password">
+							<div id = "passcon2" class="ui input field logfield2">
+								<input id = "pass2" type="password" onchange = "validatepass()" placeholder="Retype Password (Required)">
 							</div>
 														
 						</div>
@@ -55,7 +55,7 @@
 						<br>
 						<br>
 						<div class ="ten wide column  bspacing8">
-							<center><button type="submit" name="submit" class="ui big button">
+							<center><button type="button" onclick = "checkinput()" name="submit" class="ui big button">
 								Sign up
 							</button></center>
 						</div>
@@ -89,76 +89,27 @@
 			</div>
 
 			<div class = "content">
-				<p>Thanks for joining! Please wait for the confirmation.</p>
+				<p><center>Thanks for joining! Please wait for the confirmation.</center></p>
 			</div>
 			
 			<div class="actions">
-		    	<div onclick = "window.location('{{url('/')}}')" class="ui basic ok inverted button">
+		    	<div onclick = "window.location= '{{url('login')}}'" class="ui basic ok inverted button">
 		      		OK
 		    	</div>
 		  	</div>
 		</div>
 	</div>
 
+	<script type="text/javascript" src = "{{ URL::asset('js/formvalidation.js') }}"></script>
+
 	<script type="text/javascript">
-
-		function validatepass() {
-			var pass1 = $('#pass1').val();
-			var pass2 = $('#pass2').val();
-
-			if(pass2 != "") {
-				if(pass1 !== pass2) {
-					$('#passcon1').attr('class', 'ui input error logfield2');
-					$('#passcon2').attr('class', 'ui input error logfield2');
-					document.getElementsByName('message')[1].innerHTML = "PASSWORDS DO NOT MATCH";
-
-				} else if (pass1 === pass2){
-					$('#passcon1').attr('class', 'ui input logfield2');
-					$('#passcon2').attr('class', 'ui input logfield2');
-					document.getElementsByName('message')[1].innerHTML = "";
-
-
-				}//if(pass1 ==! pass2) {
-			}//if
-
-		}//function validatepass() {
-
-		function checkusername() {
-			var data = { 
-					'username' : $("input[name='username']").val(),
-					'_token' : '{{ Session::token() }}'
-				};
-
-			$.ajax({
-				type: "POST",
-				url: "{{url('checkusername')}}",
-				data: data,
-			   	dataType: "JSON",
-			   	success : function(result) {
-
-			   		if(result == 0) {
-			   			$('#ucon').attr('class', 'ui input logfield2');
-						document.getElementsByName('message')[1].innerHTML = "";
-
-			   		} else {
-			   			$('#ucon').attr('class', 'ui input error logfield2');
-						document.getElementsByName('message')[1].innerHTML = "USERNAME ALREADY EXISTS";
-
-			   		}//if
-
-			   		//console.log(result);
-			   	}//success : function() {
-			});
-
-		}//function checkusername() {
-
-		function loadModal() {
+		function loadCModal() {
 			$('#confirmmodal').modal('show');
 		}//function loadModal() {
 
 		function registeruser() {
 			var data = {
-				'name' : document.getElementsByName('name')[0].value,
+				'name' : document.getElementsByName('fullname')[0].value,
 				'username' : document.getElementsByName('username')[0].value,
 				'status' : 0,
 				'password' : document.getElementsByName('password')[0].value,
@@ -170,7 +121,6 @@
 				type: "POST",
 				url: "{{url('register')}}",
 				data: data,
-			   	dataType: "JSON",
 			   	success : function() {
 					$('#completemodal').modal('show');
 			   		
@@ -182,5 +132,6 @@
 	</script>
 
 
+@include('admin.admin_script')
 
 @stop

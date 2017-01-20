@@ -60,6 +60,10 @@
 								<div class="mlink item" id = "tab3" data-tab = "directory" onclick = "window.location='{{url('directory')}}'">
 								    Directory
 								</div>
+
+								<div class="mlink item" id = "tab4" data-tab = "admin" onclick = "window.location='{{url('admin')}}'">
+								   <i class = "icon inverted circular user"></i>
+								</div>
 							</div>
 								
 						</div>
@@ -76,12 +80,15 @@
 		<div class = "mainbody">
 
 			<div class = "content1">
-				<div class="ui tab" data-tab="home">
+				<!--<div class="ui tab" data-tab="home">
 				</div>
 				<div class="ui tab" data-tab="maintenance">
 				</div>
 				<div class="ui tab" data-tab="directory">
 				</div>
+
+				<div class="ui tab" data-tab="admin">
+				</div>-->
 
 				@yield('maincontent')
 				
