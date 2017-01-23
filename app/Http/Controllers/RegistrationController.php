@@ -13,27 +13,46 @@ class RegistrationController extends Controller
 {
     public function index(){
         $users = users::where('status', '=', '0')->get();
-        return View('transaction.registration')->with('users',$users);
+        $email = "no";
+        if (Auth::check() == true) {
+            $email = Auth::user()->email;
+        }
+        return View('transaction.registration')->with('users',$users)
+                                               ->with('try', Auth::check());
     }
 
     public function register(Request $req){
-        $validate = users::where('email', '=', $req->username)->first();
-        if ($validate === null) {
-            $user = new users;
-            $user->name = $req->name;
-            $user->email = $req->username;
-            $user->admintype = $req->type;
-            $user->status = 0;
-            $user->created_at = date('Y-m-d H:i:s');
-            $user->password = bcrypt($req->password);
-            $user->save();
-            $message = "registration complete";
-            return Redirect::to('login')->with('message',$message);
+        $code = $req->input('CaptchaCode');
+        $isHuman = captcha_validate($code);
+        if ($isHuman == null) {
+
+            $message = "Registration Failed! Verification Code do not match!";
+            return Redirect::to('registration')->with('message',$message)
+                                               ->with('check', 0);
 
         }else{
-            $message = "username already exist!";
-            return Redirect::to('registration')->with('message',$message);
+            $validate = users::where('email', '=', $req->username)->first();
+            if ($validate === null) {
+                $user = new users;
+                $user->name = $req->name;
+                $user->email = $req->username;
+                $user->admintype = $req->type;
+                $user->status = 0;
+                $user->created_at = date('Y-m-d H:i:s');
+                $user->password = bcrypt($req->password);
+                $user->save();
+                $message = "registration complete";
+                return Redirect::to('registration')->with('message',$message)
+                                            ->with('check', 1);
+
+            }else{
+                $message = "username already exist!";
+                return Redirect::to('registration')->with('message',$message)
+                                                   ->with('check', 0);
+            }
+
         }
+        
     }
 
     public function approvalSuccess($id){

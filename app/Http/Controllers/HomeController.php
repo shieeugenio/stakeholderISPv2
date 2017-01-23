@@ -26,7 +26,6 @@ class HomeController extends Controller
     //if you need to check if the session for your login is already started and middleware('auth') for administrative access. =) [ren]
     public function login(Request $req){
 
-
         $protocol = array(
                 'username' => 'required',
                 'password' => 'required|alphaNum|min:3'
@@ -39,7 +38,7 @@ class HomeController extends Controller
 
         }else{
             
-            if (Auth::attempt(['email' => $req->username, 'password' => $req->password])) {
+            if (Auth::attempt(['email' => $req->username, 'password' => $req->password, 'status' => 1])) {
                 return Redirect::to('home');
                 
                 
