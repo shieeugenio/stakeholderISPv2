@@ -166,7 +166,7 @@
 						{
 							if(func == 1) {
 								msg = "Saved!";
-							} else {
+							} else if(func == 3) {
 								msg = "Updated!";
 							}//if(func == 1) {
 
@@ -181,8 +181,8 @@
 							$('#' + data['ID']).attr('class', 'activerow');
 							$('tr').not("[id = '" + data['ID'] + "']").removeAttr('class');
 
-							document.getElementById('ID').value = data['ID'];
-							document.getElementsByName('positionname')[0].value = data['positionname'];
+							document.getElementById('ID').value = data['id'];
+							document.getElementsByName('positionname')[0].value = data['PositionName'];
 							document.getElementsByName('description')[0].value = data['desc'];
 							
 							console.log(data);

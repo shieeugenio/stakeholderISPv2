@@ -40,10 +40,14 @@ class PolicePositionController extends Controller
         if($callId == 3)
         {
             $id = $request->id;
-            $position=Police_Position::find($id);
-            $position->positionname=$request->ppname;
-            $position->desc=$request->ppdesc;
-            $position->save();   
+            // $position = Police_Position::find($id);
+            // $position->positionname=$request->ppname;
+            // $position->desc=$request->ppdesc;
+            // $position->save();
+            DB::table('Police_Position')
+            ->where('id', $id)
+            ->update(['PositionName' => $request->ppname],
+                    ['desc' => $request->ppdesc]);   
         }
 
     }

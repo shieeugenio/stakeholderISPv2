@@ -57,8 +57,6 @@ class PoliceOfficeFourController extends Controller
     	    $policeoffice->UnitOfficeTertiaryID = $request->office3;
     	    $policeoffice->UnitOfficeQuaternaryName = $request->name;
            	$policeoffice->save();
-
-    		var_dump($policeoffice);
     }
 
     public function populate(Request $request){
@@ -66,12 +64,14 @@ class PoliceOfficeFourController extends Controller
     	$id = $request->id;
 
     	if($callid == 1){
-    		$seconddata = DB::table('unit_office_secondaries')->where('UnitOfficeID','=',$id)->get();
+    		$seconddata = DB::table('unit_office_secondaries')->where('UnitOfficeID','=',$id)
+                                                              ->where('UnitOfficeHasTertiary','=', 'true')->get();
     		return $seconddata;
 		}//populate secondary
 
 		if($callid == 2){
-    		$thirddata = DB::table('unit_office_tertiaries')->where('UnitOfficeSecondaryID','=',$id)->get();
+    		$thirddata = DB::table('unit_office_tertiaries')->where('UnitOfficeSecondaryID','=',$id)
+                                                            ->where('UnitOfficeHasQuaternary','=', 'true')->get();
     		return $thirddata;
 
 		}//populate tertiary
