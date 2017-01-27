@@ -11,29 +11,38 @@
 |
 */
 
-//LOGIN @author: Ren Buluran
-//Route::get('login', array('uses' => 'HomeController@index'));
 
-//REGISTRATION @author: Ren Buluran
-Route::get('registration', 'RegistrationController@index');
-Route::post('register', 'RegistrationController@register');
-
-/*
-	Route::resource('register', 'RegistrationController@register');
-
-	URL           METHOD          FUNCTION
-	register      GET             register
-	register/{id} GET             register
-	register      POST            register
-*/
+//FRONT-END
 
 //MENU @author: Shie Eugenio
 Route::get('/', 'AdvDirectoryController@readyPHome'); //public
 
-//LOGIN @author: Ren Buluran
-Route::post('validatelogin', array('uses' => 'HomeController@login'));
-Route::get('logout', array('uses' => 'HomeController@logout'));
+//LOGIN @author: Shie Eugenio
+Route::get('login', function () {
+	if (Auth::check()) {
+    	return redirect('home');
 
+	} else {
+    	return view('home.loginpage');
+
+	}//if (Auth::check()) {
+
+});
+
+//REGISTRATION @author: Shie Eugenio
+Route::get('registration', function () {
+
+	if (Auth::check()) {
+    	return redirect('home');
+
+	} else {
+   		return view('home.registrationpage');
+
+	}//if (Auth::check()) {
+
+});
+
+//--------------------------------------------------------------------------------------------
 
 Route::get('home', function() {
 	return view('home.defaulthome');
@@ -49,6 +58,16 @@ Route::get('maintenance', function () {
 
 Route::get('directory', 'AdvDirectoryController@getList')->middleware('auth');
 
+//MAINTENANCE @author: Shie Eugenio
+Route::get('maintenance/accategory', 'ACCategoryController@index')->middleware('auth');
+Route::get('maintenance/acsubcategory','ACSubcategoryController@index')->middleware('auth');
+Route::get('maintenance/acposition','ACPositionController@index_acposition')->middleware('auth');
+Route::get('maintenance/acsector','acsectorController@index_acsectors')->middleware('auth');
+Route::get('maintenance/primaryoffice', 'PoliceOfficesController@index')->middleware('auth');
+Route::get('maintenance/secondaryoffice', 'PoliceOfficeTwoController@index')->middleware('auth');
+Route::get('maintenance/tertiaryoffice', 'PoliceOfficeThreeController@index_PO3')->middleware('auth');
+Route::get('maintenance/quarternaryoffice', 'PoliceOfficeFourController@index')->middleware('auth');
+Route::get('maintenance/policeposition','PolicePositionController@index_policeposition')->middleware('auth');
 
 //TRANSACTION @author: Shie Eugenio
 Route::get('directory/add', 'AdvDirectoryController@index')->middleware('auth');
@@ -58,26 +77,19 @@ Route::resource('modalView', 'AdvDirectoryController@getRecordData');
 Route::post('dropdown/getsubcateg', 'AdvDirectoryController@getSubCateg');
 Route::post('dropdown/getsecoffice', 'AdvDirectoryController@getSecOffice');
 
+//ADMIN @author: Shie Eugenio
+Route::get('admin', 'RegistrationController@index');
 
-//MAINTENANCE @author: Shie Eugenio
-Route::get('maintenance/accategory', 'ACCategoryController@index')->middleware('auth');
-Route::get('maintenance/acsubcategory','ACSubcategoryController@index')->middleware('auth');
-Route::get('maintenance/acposition','ACPositionController@index_acposition')->middleware('auth');
-Route::get('maintenance/acsector','acsectorController@index_acsectors')->middleware('auth');
-Route::get('maintenance/primaryoffice', 'PoliceOfficesController@index')->middleware('auth');
-Route::get('maintenance/secondaryoffice', 'PoliceOfficeTwoController@index')->middleware('auth');
-
-Route::get('maintenance/tertiaryoffice', 'PoliceOfficeThreeController@index_PO3')->middleware('auth');
-Route::get('maintenance/quarternaryoffice', function() { 
-											return view('maintenancetable.policeoffice4_table');});
-
-Route::get('maintenance/quarternaryoffice', 'PoliceOfficeFourController@index');
-
-
-Route::get('maintenance/policeposition','PolicePositionController@index_policeposition')->middleware('auth');
-
-
+//--------------------------------------------------------------------------------------------
 //BACK-END
+
+//LOGIN @author: Ren Buluran
+Route::post('validatelogin', array('uses' => 'HomeController@login'));
+Route::get('logout', array('uses' => 'HomeController@logout'));
+
+//REGISTRATION @author: Ren Buluran
+Route::resource('register', 'RegistrationController@register');
+Route::resource('checkusername', 'RegistrationController@checkusername');
 
 //AC CATEGORY @author: Shie Eugenio
 Route::post("accategory/add", 'ACCategoryController@confirm');
@@ -95,13 +107,6 @@ Route::post('maintenance/acpositioncrud','ACPositionController@acpositioncrud');
 //AC SECTOR @author: Christine Amper
 Route::post('maintenancetable/acsectorCRUD','acsectorController@acsectorCRUD');
 
-//TERTIARY OFFICE @author: Christine Amper
-Route::post('maintenancetable/PO3CRUD','PoliceOfficeThreeController@PO3CRUD');
-Route::post('maintenance/selectOfficeSec','PoliceOfficeThreeController@selectOfficeSec');
-Route::post('maintenance/selOffice','PoliceOfficeThreeController@selOffice');
-Route::resource('maintenancetable/retrieveData','PoliceOfficeThreeController@retrieveData');
-
-
 //PRIMARY OFFICE @author: Joanne Dasig
 Route::post('/buttonsPoliceOffice', 'PoliceOfficesController@add');
 Route::post('maintenance/editpolice', 'PoliceOfficesController@edit');
@@ -112,14 +117,23 @@ Route::post('/confirmpolice', 'PoliceOfficeTwoController@add');
 Route::post('maintenance/subpoliceview', 'PoliceOfficeTwoController@find');
 Route::post('maintenance/editsubpolice', 'PoliceOfficeTwoController@edit');
 
-//POLICE POSITION @author: Lester Acula
-Route::post('maintenance/policepositioncrud','PolicePositionController@policepositioncrud');
+//TERTIARY OFFICE @author: Christine Amper
+Route::post('maintenancetable/PO3CRUD','PoliceOfficeThreeController@PO3CRUD');
+Route::post('maintenance/selectOfficeSec','PoliceOfficeThreeController@selectOfficeSec');
+Route::post('maintenance/selOffice','PoliceOfficeThreeController@selOffice');
+Route::resource('maintenancetable/retrieveData','PoliceOfficeThreeController@retrieveData');
 
-//QUATERNARY OFFICE OFFICE @author: Lester
+//QUATERNARY OFFICE OFFICE @author: Lester Acula
 Route::post('maintenance/add', 'PoliceOfficeFourController@add');
 Route::post('maintenance/policefourview', 'PoliceOfficeFourController@find');
 Route::post('maintenance/editpolicefour', 'PoliceOfficeFourController@edit');
 Route::post('maintenance/populate', 'PoliceOfficeFourController@populate');
+
+//POLICE POSITION @author: Lester Acula
+Route::post('maintenance/policepositioncrud','PolicePositionController@policepositioncrud');
+
+//--------------------------------------------------------------------------------------------
+//TRANSACTION
 
 //ADD ADVISER @author: Shie Eugenio
 Route::post('adviser/add', 'AdvDirectoryController@addadviser');
@@ -167,14 +181,9 @@ Route::get('transaction/advedt','ProfileController@edit');
 //smart search [ren]
 Route::get('search', 'SearchController@index');
 
-//login [ren]
-Route::get('login', array('uses' => 'HomeController@index'));
-Route::post('login', array('uses' => 'HomeController@login'));
-Route::get('logout', array('uses' => 'HomeController@logout'));
-
 //registration[ren]
-Route::get('registration', 'RegistrationController@index');
-Route::resource('register', 'RegistrationController@register');
+//Route::get('registration', 'RegistrationController@index');
+
 Route::get('Accountapproved/{id}', 'RegistrationController@approvalSuccess');
 Route::get('Accountdisapproved/{id}','RegistrationController@approvalCancel');
 
@@ -196,6 +205,12 @@ Route::get('AuditTrail', 'AuditTrailController@index');
 Route::get('AuditTrailFilter', 'AuditTrailController@filter');
 
 
+Route::get('photoupload', function() {
+	return view('photoupload');
+});
+
+Route::post('testupload', 'TestUpController@loadphoto');
+
 /*
 Filters for the directory. returning json values
 [ren william lucas buluran]
@@ -206,4 +221,5 @@ Route::get('FilterTWG', 'FilterController@FilterTWG');
 Route::get('FilterPSMU', 'FilterController@FilterPSMU');
 
 
-
+// relaoding captcha
+Route::get('reloadImageCaptcha', 'RegistrationController@reloadCaptcha');

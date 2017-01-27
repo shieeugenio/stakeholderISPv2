@@ -30,6 +30,8 @@ use App\Models\Lecturer;
 
 use DB;
 
+use Auth;
+
 
 
 class AdvDirectoryController extends Controller {
@@ -122,7 +124,7 @@ class AdvDirectoryController extends Controller {
 
 		
 
-		if (isset($_POST['submit'])) {
+		/**if (isset($_POST['submit'])) {
 			$this->addProfile($data);
 
 			$id = $this->getID();
@@ -137,7 +139,11 @@ class AdvDirectoryController extends Controller {
 			}//if($data->advcateg == 0) {
 		
 
-		}// if
+		}// if**/
+
+		//$data = file_get_contents('php://input');
+
+		print_r($data);
 
 	}//add - WHOLE
 
@@ -220,12 +226,18 @@ class AdvDirectoryController extends Controller {
 	}//public function getList() {
 
 	public function readyPHome() {
+		if (Auth::check()) {
+	    	return redirect('home');
+
+		}//if (Auth::check()) {
+
 		/*$directory = DB::table('advisers')
 						->select('ID', 'lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline')
 						->orderBy('ID', 'desc')
 						->get();
 
 		return view('home.defaultphome')->with('directory', $directory);*/
+
 
 		return view('home.defaultphome');
 	}//public function getList() {

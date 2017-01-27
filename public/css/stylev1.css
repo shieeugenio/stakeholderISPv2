@@ -22,6 +22,20 @@
 	height: 100%;
 }
 
+.round {
+	border: 2px solid #00253a;
+	border-radius: 50%;
+	
+}
+
+.small.add.user.round {
+	width: 5.2%;
+	height: 19%;
+	padding-top: 0.5%;
+	padding-bottom: 0.5%;
+
+}
+
 .acname {
 	width: 80%;
 	height: 97%;
@@ -48,6 +62,7 @@ span {
 
 .rightrow {
 	height: 48px;
+	margin-left: 21%;
 }
 
 .colcon {
@@ -58,6 +73,8 @@ span {
 	color: #565656;
 	font-weight: bold;
 }
+
+
 .mlink:hover {
 	color: #00253a;
 	text-decoration: underline;
@@ -192,7 +209,7 @@ hr {
 	border-radius: inherit;
 }
 
-.mtitle, .mhead {
+.mtitle, .mhead, .mhead2 {
     font-size: 1em;
     font-weight: bold;
     color: #00253a;
@@ -217,6 +234,14 @@ hr {
 
 .mhead {
 	padding: 0.7em 0em 0.55em 25em;
+}
+
+.mhead2 {
+	padding: 0.7em 0em 0.55em 1em;
+}
+
+.headertext {
+	padding-right: 72%;
 }
 
 .addbtn {
@@ -387,6 +412,11 @@ form, .dcon {
 	color: red;
 }
 
+.message {
+	color: red;
+	margin-left: 8%;
+}
+
 .ui.tiny.button.savebtnstyle,
 .ui.large.button.savebtnstyle {
 	background-color: #00253a;
@@ -518,6 +548,15 @@ form, .dcon {
 	margin-top: 3%;
 }
 
+.loghead2 {
+	color: #00253a;
+	width: 100%;
+	height: 50%;
+	font-family: "Franklin Gothic Book";
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
 .logcontent {
 	margin-top: 2%;
 	width: 100%;
@@ -532,12 +571,26 @@ form, .dcon {
 	margin-right: 10%;
 }
 
+
+.hr2 {
+	width: 100%;
+	border-top: 1px solid #00253a;
+	margin-right: 10%;
+}
+
+
 .logfield {
 	width: 89%;
 	height: 1%;
 	margin-left: -3%;
 	line-height: 4%;
 	margin-bottom: 3%;
+}
+
+.logfield2 {
+	width: 89%;
+	height: 2.5rem;
+	margin-left: 3%;
 }
 
 .centerbtn {

@@ -37,7 +37,7 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select onchange="populate(1,this.value)" class="modified ui selection dropdown selectstyle2" name="office" id = "select1">
-						<option class = "disabled" value="disitem" selected>Select One</option>
+						<option selected disabled value="disitem" selected>Select One</option>
 						@foreach ( $office as $office )
 							<option value="{{$office->id}}">{{$office->UnitOfficeName}}</option>
 						@endforeach
@@ -54,11 +54,8 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select  onchange="populate(2,this.value)" class="modified ui selection dropdown selectstyle2" name="office2" id = "select2">
-						<option class = "disabled" value="disitem">Select One</option>
-						<!--  @foreach ($office2 as $office2)
-							<option value="{{$office2->id}}">{{$office2->UnitOfficeSecondaryName}}</option>
-						@endforeach
-						 -->
+						<option selected disabled value="disitem">Select One</option>
+						
 					</select>
 									
 				</div>
@@ -68,11 +65,8 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select class="modified ui selection dropdown selectstyle2" name="office3" id = "select3">
-						<option class = "disabled" value="disitem">Select One</option>			 
-					<!-- 	@foreach ($office3 as $office3)
-							<option value="{{$office3->id}}">{{$office3->UnitOfficeTertiaryName}}</option>
-						@endforeach
-						 -->					
+						<option selected disabled value="disitem">Select One</option>			 
+						
 					</select>
 									
 				</div>
@@ -159,10 +153,11 @@
 
 			if(func == 1){
 
-				// $("select [id='select2'] option").not("[value='disitem']").remove();
-				// $("select [id='select3'] option").not("[value='disitem']").remove();
-				removeOption(document.getElementById('select2'));
-				removeOption(document.getElementById('select3'));
+				//removeOption(document.getElementById('select2'));
+				//removeOption(document.getElementById('select3'));
+				$("#select2 option").not("[value='disitem']").remove();
+				$("#select3 option").not("[value='disitem']").remove();
+
 				$('#select2').dropdown('restore defaults');
 				$('#select3').dropdown('restore defaults');
 
@@ -174,7 +169,7 @@
 			}
 
 			if(func == 2){
-//				$("select [id='select3'] option").not("[value='disitem']").remove();
+
 				removeOption(document.getElementById('select3'));
 				$('#select3').dropdown('restore defaults');
 				var data = {
@@ -260,24 +255,15 @@
 			   		document.getElementsByName('ID')[0].value = data[0]['id'];
 			   		document.getElementsByName('name')[0].value = data[0]['UnitOfficeQuaternaryName'];
 
-			   		
-			   		// $('#select2').val(data[2]['id']).change();
-			   		//populate(flag,data[1]['id']);
-			   		
 			   		$('#select1').dropdown("set exactly", data[1]['id']); //office 1
-			   		console.log(document.getElementById('select2').options);
-			   		// $('#select2').dropdown("set selected", data[2]['id']);
-			   		// //populate(flag+1,data[2]['id']);
-			   		// $('#select3').dropdown("set selected", data[3]['id']);
-
+			   		
 			   		setTimeout(function(){
 					    changeValue('#select2',data[2]['id']);
-					},1500);
+					},2000);
 					
 					setTimeout(function(){
 				   		changeValue('#select3',data[3]['id']);
-					},3500);
-					
+					},4000);
 			   		
 			   	}//success : function() {
 			});
@@ -343,15 +329,6 @@
 
 
 		}//
-
-	//POPULATE OFFICE 1 DROPDOWN
-	//POPULATE OFFICE 2 DROPDOWN
-	//POPULATE OFFICE 3 DROPDOWN
-	//REVISE $('#select2').dropdown('set selected', data['police_office_id']); LINE CHANGE DATA SOURCE
-	//REVISE $('#select3').dropdown('set selected', data['police_office_id']); LINE CHANGE DATA SOURCE
-	//CONTROLLER
-
-
 	</script>
 
 @stop

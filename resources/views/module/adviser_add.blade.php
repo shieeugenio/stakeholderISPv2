@@ -43,6 +43,11 @@
 												<input type="text" name = "mname" placeholder="Middle Name">
 												
 											</div>
+
+											<div class = "ui input field">
+												<input type="text" name = "qname" placeholder="Qualifier">
+												
+											</div>
 											
 										</div>
 										
@@ -76,7 +81,7 @@
 										</div>			
 									</div>
 
-									<div class = "field">
+									<!--<div class = "field">
 										<label>Home Address <span class="asterisk">*</span></label>
 
 										<div class = "four fields">
@@ -104,7 +109,7 @@
 											
 										</div>
 										
-									</div>
+									</div>-->
 
 									<h4 class="ui dividing header">Contact Information</h4>
 
@@ -445,55 +450,20 @@
 			var etime = new Array();
 			var speaker = new Array();
 			var org = new Array();
-			var photo = new Blob(document.getElementsByName('upphoto')[0].files);
+			var photo = new Blob(document.getElementsByName('upphoto')[0].files,  {type : 'image/*'});
 
-			console.log(photo.type);
+			console.log(photo);
 
-			for(var count = 0 ; count <= rowcount ; count++) {
-				var initspk = new Array();
-
-				if(document.getElementsByName('traintitle')[count].value !== "") {
-					traintitle.push(document.getElementsByName('traintitle')[count].value);
-
-					if(document.getElementsByName('traincateg')[count].value == 7) {
-						traincateg.push(document.getElementsByName('othercat')[count].value);
-
-					} else {
-						traincateg.push(document.getElementsByName('traincateg')[count].value);
-
-					}//if
-
-					location.push(document.getElementsByName('location')[count].value);
-					sdate.push(document.getElementsByName('trainsdate')[count].value);
-					edate.push(document.getElementsByName('trainedate')[count].value);
-					stime.push(document.getElementsByName('trainstime')[count].value);
-					etime.push(document.getElementsByName('trainetime')[count].value);
-					
-					for(var ctrspk = 0 ; ctrspk < lecturers.length ; ctrspk++) {
-						if(lecturers[ctrspk][1] == count) {
-							initspk.push(lecturers[ctrspk][0]);
-						}//if
-					}//for
-
-					speaker.push(initspk);
-
-					org.push(document.getElementsByName('trainorg')[count].value);
-
-				}//if
-			};
-
+			
 			if (slctdtype == 0) {
 				var data = {
 					'ID' : document.getElementsByName('advid')[0].value,
 					'lname' : document.getElementsByName('lname')[0].value,
 					'fname' : document.getElementsByName('fname')[0].value,
 					'mname' : document.getElementsByName('mname')[0].value,
+					'qname' : document.getElementsByName('qname')[0].value,
 					'bdate' : document.getElementsByName('bdate')[0].value,
 					'gender' : $("input[name='gender']:checked").val(),
-					'street' : document.getElementsByName('street')[0].value,
-					'barangay' : document.getElementsByName('barangay')[0].value,
-					'city' : document.getElementsByName('city')[0].value,
-					'province' : document.getElementsByName('province')[0].value,
 					'mobile' : document.getElementsByName('mobile')[0].value,
 					'landline' : document.getElementsByName('landline')[0].value,
 					'email' : document.getElementsByName('email')[0].value,
@@ -507,11 +477,46 @@
 					'officeadd' : document.getElementsByName('officeadd')[0].value,
 					'acsubcateg' : document.getElementsByName('acsubcateg')[0].value,
 					'acsector' : $("select[name='acsector']").val(),
+					'photo' : photo,
 					'submit' : 'save',
 					'_token' : '{{ Session::token() }}'
 				};
 
 			} else if(slctdtype == 1 || slctdtype == 2) {
+				//TRAINING
+				for(var count = 0 ; count <= rowcount ; count++) {
+					var initspk = new Array();
+
+					if(document.getElementsByName('traintitle')[count].value !== "") {
+						traintitle.push(document.getElementsByName('traintitle')[count].value);
+
+						if(document.getElementsByName('traincateg')[count].value == 7) {
+							traincateg.push(document.getElementsByName('othercat')[count].value);
+
+						} else {
+							traincateg.push(document.getElementsByName('traincateg')[count].value);
+
+						}//if
+
+						location.push(document.getElementsByName('location')[count].value);
+						sdate.push(document.getElementsByName('trainsdate')[count].value);
+						edate.push(document.getElementsByName('trainedate')[count].value);
+						stime.push(document.getElementsByName('trainstime')[count].value);
+						etime.push(document.getElementsByName('trainetime')[count].value);
+						
+						for(var ctrspk = 0 ; ctrspk < lecturers.length ; ctrspk++) {
+							if(lecturers[ctrspk][1] == count) {
+								initspk.push(lecturers[ctrspk][0]);
+							}//if
+						}//for
+
+						speaker.push(initspk);
+
+						org.push(document.getElementsByName('trainorg')[count].value);
+
+					}//if
+				}
+
 				var data = {
 					'ID' : document.getElementsByName('advid')[0].value,
 					'lname' : document.getElementsByName('lname')[0].value,
@@ -561,15 +566,15 @@
 			}//if(action == 0) {**/
 
 
-			/**$.ajax({
+			$.ajax({
 				type: "POST",
 				url: "{{url('adviser/add')}}",
 				data: data,
 			   	success : function() {
-			   		window.location = "{{URL('adviser')}}";
+			   		//window.location = "{{URL('adviser')}}";
 			   	
 			   	}//success : function() {
-			});**/
+			});
 
 			
 		}//function controlaction() {
@@ -677,41 +682,6 @@
 
 		}//function getsecoffice() {
 
-
-
-
-
-		/**
-
-			NOTE:
-
-				yung array na lecturers -> 2 dime
-				ang laman is yung lecturer name and yung row index kung san ininput
-				para madistinguish kung saang training item siya nilagay ng user.
-
-				so bale ganto ang itsura
-
-				input:
-
-				training 1
-				lecturers: shie, mae, lemon
-				row index/count: 0
-
-				training 2
-				lecturers: red, blue, yellow
-				row index/count: 1
-
-				lecturer: (array)
-					shie, 0
-					mae, 0
-					lemon, 0
-					red, 1
-					blue, 1
-					yellow, 1
-
-				data order ng array depends sa pagkakainput so pwedeng nakashuffle yan
-
-		**/
 	</script>
 
 
