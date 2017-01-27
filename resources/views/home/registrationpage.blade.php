@@ -5,6 +5,7 @@
 	<br>
 	<br>
 	<br>
+	<link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
 
 	<div class = "ui white raised very padded text container segment">
 		<div class="ui container">
@@ -54,6 +55,15 @@
 
 						<br>
 						<br>
+						<div class ="ten wide column  bspacing8">
+							<center>{!! captcha_image_html('ExampleCaptcha') !!}
+							</center>
+							<center>
+							<div class="ui input field">
+								<input type="text" style="width:15%;" id="CaptchaCode" placeholder="Enter Code" maxlength="4" name="CaptchaCode">
+							</div>
+							</center>
+						</div>
 						<div class ="ten wide column  bspacing8">
 							<center><button type="button" onclick = "checkinput()" name="submit" class="ui big button">
 								Sign up
@@ -107,22 +117,36 @@
 			$('#confirmmodal').modal('show');
 		}//function loadModal() {
 
-		function registeruser() {
-			var data = {
-				'name' : document.getElementsByName('fullname')[0].value,
-				'username' : document.getElementsByName('username')[0].value,
-				'status' : 0,
-				'password' : document.getElementsByName('password')[0].value,
-				'source' : 0,
-				'_token' : '{{ Session::token() }}'
-			};
+		function reloadImageCaptcha(){
+			$.ajax({
+				url: "reloadImageCaptcha",
+				type: 'get',
+				  dataType: 'html',        
+				  success: function(json) {
+				    $('#ExampleCaptcha_CaptchaDiv').html(json);
+				  },
+				  error: function(data) {
+				    document.getElementsByName('message')[0].innerHTML = document.getElementsByName('message')[0].innerHTML + "<br>Try Manual Reloading";
+				  }
+				});
+		}	
 
+		function registeruser() {
+			
 			$.ajax({
 				type: "POST",
 				url: "{{url('register')}}",
-				data: data,
-			   	success : function() {
-					$('#completemodal').modal('show');
+				data: $('form').serialize(),
+			   	success : function(response) {
+					if (response == 0) {
+						document.getElementsByName('message')[0].innerHTML = "Registration Failed! Verification Code do not match!";
+						reloadImageCaptcha();
+					}else if (response == 1) {
+						$('#completemodal').modal('show');
+					}else{
+						document.getElementsByName('message')[0].innerHTML = "Username Already Exist!";
+					}
+					
 			   		
 			   	}//success : function() {
 			});

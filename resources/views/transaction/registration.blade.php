@@ -2,11 +2,20 @@
 <html>
 <head>
 	<title></title>
+	<!-- 
+			Note: need po ung css library na to para kay captcha
+
+	-->
+	<link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
 </head>
 <body>
 <form action="register" method="POST">
 	@if(session('message'))
-		<p>{{session('message')}}</p>
+		@if(session('check') == 1)
+		<p style="color:green;">{{session('message')}}</p>
+		@else
+		<p style="color:red;">{{session('message')}}</p>
+		@endif
 	@endif
 	<input type="hidden" name="_token" id="csrf-token" value="{{Session::token()}}" type="text">
 	<label>Name</label>
@@ -23,6 +32,8 @@
 			Admin
 		</option>
 	</SELECT>
+	{!! captcha_image_html('ExampleCaptcha') !!}
+  	<input type="text" id="CaptchaCode" name="CaptchaCode">
 	<input type="submit">
 
 
@@ -62,6 +73,18 @@
 			</tbody>
 		</table>
 
+
+
+
+
 </form>
+
+
+<br>
+<br>
+
+-----------
+{{session('try')}}
+
 </body>
 </html>

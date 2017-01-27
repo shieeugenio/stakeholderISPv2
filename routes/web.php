@@ -89,6 +89,8 @@ Route::get('logout', array('uses' => 'HomeController@logout'));
 
 //REGISTRATION @author: Ren Buluran
 Route::resource('register', 'RegistrationController@register');
+
+Route::resource('checkusername', 'RegistrationController@checkusername');
 Route::post('checkusername', 'RegistrationController@checkusername');
 Route::post('getuser', 'RegistrationController@getuser');
 Route::post('approval', 'RegistrationController@setstatus');
@@ -203,3 +205,7 @@ Route::get('FilterAC', 'FilterController@FilterAC');
 Route::get('FilterAll', 'FilterController@FilterAll');
 Route::get('FilterTWG', 'FilterController@FilterTWG');
 Route::get('FilterPSMU', 'FilterController@FilterPSMU');
+
+
+// relaoding captcha
+Route::get('reloadImageCaptcha', 'RegistrationController@reloadCaptcha');
