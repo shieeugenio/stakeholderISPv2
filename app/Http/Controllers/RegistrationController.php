@@ -58,14 +58,14 @@ class RegistrationController extends Controller
 
         }
         
-        /*
-        $reqlist = users::where('status', '<>', '0')
-                            ->orderBy('created_at','desc')
-                            ->union(users::where('status', '=', '0')
-                            ->orderBy('created_at','desc')
-                            ->get();
-       return View('admin.admin_table')->with('users',$reqlist);
-       */
+        
+       // $reqlist = users::where('status', '<>', '0')
+       //                     ->orderBy('created_at','desc')
+       //                     ->union(users::where('status', '=', '0')
+       //                     ->orderBy('created_at','desc')
+       //                     ->get();
+       //return View('admin.admin_table')->with('users',$reqlist);
+       
         
     
         

@@ -89,15 +89,13 @@ Route::get('logout', array('uses' => 'HomeController@logout'));
 
 //REGISTRATION @author: Ren Buluran
 Route::resource('register', 'RegistrationController@register');
-<<<<<<< HEAD
+
 Route::resource('checkusername', 'RegistrationController@checkusername');
-=======
 Route::post('checkusername', 'RegistrationController@checkusername');
 Route::post('getuser', 'RegistrationController@getuser');
 Route::post('approval', 'RegistrationController@setstatus');
 
 
->>>>>>> a5de4e21a9c241477dfaf9532eb4bd538f61e96c
 
 //AC CATEGORY @author: Shie Eugenio
 Route::post("accategory/add", 'ACCategoryController@confirm');
