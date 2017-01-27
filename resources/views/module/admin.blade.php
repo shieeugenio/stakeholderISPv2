@@ -66,6 +66,47 @@
 		  	</div>
 		</div>
 
+		
+
+	</div>
+
+	<div class = "popupcon">
+		<div class="ui popup hidden">
+  			<label class="pophead" name="namelabel"></label>
+  			<input type="hidden" name="appid" readonly>
+     		<p><div class="inline fields">
+					<div class = "field">
+						<div class = "ui radio checkbox">
+							<input type="radio" value = '0' name = "appadmintype" checked/>
+							<label>Superadmin</label>
+							
+						</div>
+						
+					</div>
+
+					<div class = "field">
+						<div class = "ui radio checkbox">
+							<input type="radio" value = '1' name = "appadmintype"/>
+							<label>Admin</label>
+							
+						</div>
+						
+					</div>
+				</div>
+			</p>
+    		<center><button type = "button"
+						class="ui tiny button submit savebtnstyle"
+						onclick = "setstatus(1)">
+					Approve
+				</button>
+		
+				<button type="button" 
+						class="ui tiny button"
+						onclick = "setstatus(2)">
+					Disapprove
+
+				</button></center>
+		</div>
 	</div>
 
 	<script type="text/javascript">

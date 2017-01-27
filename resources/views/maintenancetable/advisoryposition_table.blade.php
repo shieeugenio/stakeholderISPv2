@@ -179,7 +179,7 @@ function exec(data, func) {
 				}//if func
 				else {
 					$('#' + data['ID']).attr('class', 'activerow');
-					$('tr').not("[id = '" + data['ID'] + "']").removeAttr('class');
+					$('tr').not("[id = '" + data['ID'] + "']").attr('class', 'trow');
 
 					document.getElementById('ID').value = data['ID'];
 					document.getElementsByName('acpositionname')[0].value = data['acpositionname'];

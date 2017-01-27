@@ -83,23 +83,21 @@ class RegistrationController extends Controller
 
     }//checkusername
 
-    public function approvalSuccess($id){
-        $user = users::find($id);
-        $user->status = 1;
+    public function getuser(Request $req) {
+        $user = users::find($req->id);
+        return $user;
+    }//public function getuser(Request $req) {
+
+    public function setstatus(Request $req){
+        $user = users::find($req->id);
+        $user->status = $req->status;
+
+        if($req->status == 1) {
+            $user->admintype = $req->admintype;
+        }// if($req->status == 1) {
+
         $user->save();
-        $message = "Account Approved";
-        return Redirect::to('registration')->with('message',$message);
 
     }//approve
-
-    public function approvalCancel($id){
-        $user = users::find($id);
-        $user->status = 2;
-        $user->save();
-        $message = "Account denied!";
-        
-        return Redirect::to('registration')->with('message',$message);
-    }//disapprove
     
-
 }

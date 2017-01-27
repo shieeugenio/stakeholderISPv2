@@ -126,7 +126,7 @@
 		        <div class = "tabbody ui bottom attached">
 		        	<div class="ui tab active" data-tab="basicinfo">
 		        		<div class = "ui grid">
-		        			<div class = "thirteen wide column ">
+		        			<div class = "thirteen wide column">
 		        				<fieldset>
 		        					<legend>Basic Information</legend>
 

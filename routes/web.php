@@ -89,7 +89,15 @@ Route::get('logout', array('uses' => 'HomeController@logout'));
 
 //REGISTRATION @author: Ren Buluran
 Route::resource('register', 'RegistrationController@register');
+<<<<<<< HEAD
 Route::resource('checkusername', 'RegistrationController@checkusername');
+=======
+Route::post('checkusername', 'RegistrationController@checkusername');
+Route::post('getuser', 'RegistrationController@getuser');
+Route::post('approval', 'RegistrationController@setstatus');
+
+
+>>>>>>> a5de4e21a9c241477dfaf9532eb4bd538f61e96c
 
 //AC CATEGORY @author: Shie Eugenio
 Route::post("accategory/add", 'ACCategoryController@confirm');
@@ -159,12 +167,6 @@ Route::get('advisorycouncil', 'AdvisoryCouncilController@index');
 Route::post('transac/acCRUD', 'AdvisoryCouncilController@acCRUD');
 Route::post('transac/getsub', 'AdvisoryCouncilController@getsub');
 
-/*Route::post('/add', 'AdvisoryCouncilController@add');
-Route::get('transac/{id}/edit', 'AdvisoryCouncilController@find');
-Route::post('transac/{id}/editAc', 'AdvisoryCouncilController@edit');*/
-
-// Route::get('/subcatOptions', 'AdvisoryCouncilController@cityOptions');
-
 //Police Advisory transac Joanne
 Route::get('policeadvisory', 'PoliceAdvisoryController@index');
 
@@ -181,24 +183,10 @@ Route::get('transaction/advedt','ProfileController@edit');
 //smart search [ren]
 Route::get('search', 'SearchController@index');
 
-//registration[ren]
-//Route::get('registration', 'RegistrationController@index');
-
-Route::get('Accountapproved/{id}', 'RegistrationController@approvalSuccess');
-Route::get('Accountdisapproved/{id}','RegistrationController@approvalCancel');
-
 /* admin type 1-Super Admin, 0-Regular Admin 
 	approval 0 - default value , 1 - approved, 2-disapproved
 
 */
-//testing [ren]
-Route::get('testAdviser','TestController@index');
-
-Route::get('testAdviserAdd','TestController@addAdviser');
-
-
-//Police Office Four : Resutaa
-
 
 // Audit Trail Controller[ren]
 Route::get('AuditTrail', 'AuditTrailController@index');

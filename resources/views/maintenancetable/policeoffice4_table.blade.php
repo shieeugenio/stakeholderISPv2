@@ -100,6 +100,7 @@
 @endsection
 
 @section('mtablesection')
+
 	<div class = "mtitle">Quaternary Unit/Office
 						
 	</div>
@@ -153,10 +154,10 @@
 
 			if(func == 1){
 
-				//removeOption(document.getElementById('select2'));
-				//removeOption(document.getElementById('select3'));
-				$("#select2 option").not("[value='disitem']").remove();
-				$("#select3 option").not("[value='disitem']").remove();
+				removeOption(document.getElementById('select2'));
+				removeOption(document.getElementById('select3'));
+				// $("#select2 option").not("[value='disitem']").remove();
+				// $("#select3 option").not("[value='disitem']").remove();
 
 				$('#select2').dropdown('restore defaults');
 				$('#select3').dropdown('restore defaults');
@@ -185,6 +186,7 @@
 				data: data,
 				dataType: "JSON",
 				success:function(data){
+					console.log(data);
 					if(func == 1){
 						for(var i= 0 ; i < data.length; i++){
 							populatedropdown(data[i]['id'], 'office2', data[i]['UnitOfficeSecondaryName']);
@@ -202,15 +204,6 @@
 			});//ajax
 
 		}//populatetertiary
-
-		function validate(){
-
-			if(document.getElementById('select2').options[0].selected == true){
-
-					alert('Select Office');
-					return;
-				}
-		}
 
 		function controlaction() {
 			
@@ -237,7 +230,7 @@
 
 			flag = 1;
 			$('#' + id).attr('class', 'activerow');
-			$('tr').not("[id = '" + id + "']").removeAttr('class');
+			$('tr').not("[id = '" + id + "']").attr('class', 'trow');
 
 			var data = {
 				'id' : id,
@@ -255,7 +248,7 @@
 			   		document.getElementsByName('ID')[0].value = data[0]['id'];
 			   		document.getElementsByName('name')[0].value = data[0]['UnitOfficeQuaternaryName'];
 
-			   		$('#select1').dropdown("set exactly", data[1]['id']); //office 1
+			   		$('#select1').dropdown("set selected", data[1]['id']); //office 1
 			   		
 			   		setTimeout(function(){
 					    changeValue('#select2',data[2]['id']);
@@ -330,5 +323,4 @@
 
 		}//
 	</script>
-
 @stop

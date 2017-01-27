@@ -15,12 +15,17 @@ class PoliceAdvisory extends Migration
             $table->string('mname', 45)->nullable();
             $table->string('lname', 45);
             $table->string('qualifier', 45);
-            $table->string('assign', 45);
+            $table->tinyInteger('gender');
             $table->string('contactno', 15);
             $table->string('email', 65);
             $table->tinyInteger('policetype');
             $table->string('authorityorder', 20)->unique();
             $table->text('imagepath');
+            $table->date('startdate');
+            $table->date('enddate')->nullable();
+            $table->string('fbuser', 20)->nullable();
+            $table->string('twitteruser', 20)->nullable();
+            $table->string('iguser', 20)->nullable();
             $table->integer('rank_id')->unsigned();
             $table->foreign('rank_id')->references('id')->on('ranks');
             $table->integer('police_position_id')->unsigned();

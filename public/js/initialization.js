@@ -21,5 +21,6 @@ function init() {
 
 	$('.ui.modal')
 	  .modal();
+
 	
 }//function init() {
