@@ -284,7 +284,7 @@
 		function loaddata(id) {
 
 			$('#' + id).attr('class', 'activerow');
-			$('tr').not("[id = '" + id + "']").removeAttr('class');
+			$('tr').not("[id = '" + id + "']").attr('class', 'trow');
 
 			var data = {
 				'id' : id,

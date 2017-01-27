@@ -116,20 +116,28 @@
 		            <th><center>Username</center></th>
 		            <th><center>Type</center></th>
 		            <th><center>Status</center></th>
-		        </tr>	
+		        </tr>
 		    </thead>
 					                   
 		    <tbody>
 		    	@foreach($users as $result)
-		    		<tr class = "trow">
+
+		    		@if($result->status == 0)
+		    			<tr class = "trow" onmouseover = "showpopup(this.rowIndex)" onclick = "activaterow(this.rowIndex, {{$result->id}})">
+					    
+			    	@else
+			    		<tr>
+
+			    	@endif
+
 			    		<td><center>{{$result->name}}</center></td>
 			    		<td><center>{{$result->email}}</center></td>
 			    		<td><center>
-			    			@if($result->status == 0)
+			    			@if($result->status == 0 || $result->status == 2)
 					    		N/A
 
 
-			    			@elseif($result->status == 1 || $result->status == 2)
+			    			@elseif($result->status == 1)
 					    		
 
 			    				@if($result->admintype == 0)
@@ -171,6 +179,8 @@
 		</table>						
 	</div>
 
+	<script type="text/javascript" src="{{ URL::asset('js/formcontrol.js') }}"></script>
+
 	<script type="text/javascript">
 		var src = 0;
 
@@ -204,12 +214,86 @@
 			   	}//success : function() {
 			});
 
-		console.log(data);
-
-			/*setTimeout(function(){
+			setTimeout(function(){
 				location.reload();
-			}, 2600);*/
-		}//function addUser() {
+			}, 2600);
+		}//function addUser() {\
+
+		function showpopup(slctrow) {
+			$("#datatable tr:eq("+slctrow+")").attr('id', 'activate');
+			$("#datatable tr").not(document.getElementById('datatable').getElementsByTagName('tr')[slctrow]).removeAttr('id');
+
+			$('#activate')
+	  		.popup({
+			    on: 'click',
+			    popup : $('.ui.popup'),
+			    position: 'bottom right'
+			  });
+		}//function showpopup(slctrow) {
+
+		function populatepopup(id) {
+			var data = { 
+					'id' : id,
+					'_token' : '{{ Session::token() }}'
+				};
+
+	 		$.ajax({
+				type: "POST",
+				url: "{{url('getuser')}}",
+				data: data,
+			   	dataType: "JSON",
+	  		   	success : function(userdata) {
+	  		   		console.log(userdata);
+	  		   		document.getElementsByName('namelabel')[0].innerHTML = userdata['name'] + " (" + userdata['email'] + ")";
+	  		   		document.getElementsByName('appid')[0].value = id;
+
+	  		   	}
+	  		});
+		}//function populatepopup(id) {
+
+		function activaterow(slctrow, id) {
+			$(".activerow").attr('class', 'trow');
+			$("#datatable tr:eq("+slctrow+")").attr('class', 'activerow');
+
+			populatepopup(id);
+		}//function activaterow(slctrow) {
+
+		function setstatus(stat) {
+			var admintype = "";
+			var message;
+			
+
+			if(stat == 1) {
+				admintype = $("input[name='appadmintype']:checked").val();
+				message = "Account Approved";
+			} else {
+				message = "Account Denied";
+
+			}//if(stat == 1) {
+
+			var data = { 
+				'id' : document.getElementsByName('appid')[0].value,
+				'admintype' : admintype,
+				'status': stat,
+				'_token' : '{{ Session::token() }}'
+			};
+
+			$.ajax({
+				type: "POST",
+				url: "{{url('approval')}}",
+				data: data,
+			   	success : function() {
+					loadtoast(message);
+					
+			   		
+			   	}//success : function() {
+			});
+
+			setTimeout(function(){
+				location.reload();
+			}, 2600);
+		}//function setstatus(stat) {
+
 	</script>
 
 @stop

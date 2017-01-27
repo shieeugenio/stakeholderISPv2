@@ -219,6 +219,13 @@ hr {
     border-top-right-radius: inherit;
 }
 
+.pophead {
+	font-size: 1em;
+    font-weight: bold;
+    color: #00253a;
+
+}
+
 .minvtitle {
 	color: #00253a;
 	background-color: white;
