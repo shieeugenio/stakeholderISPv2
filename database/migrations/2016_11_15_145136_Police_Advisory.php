@@ -38,6 +38,7 @@ class PoliceAdvisory extends Migration
             $table->foreign('second_id')->references('id')->on('unit_office_secondaries');
             $table->foreign('tertiary_id')->references('id')->on('unit_office_tertiaries');
             $table->foreign('quaternary_id')->references('id')->on('unit_office_quaternaries');
+            $table->timestamps();
 
         });
     }
