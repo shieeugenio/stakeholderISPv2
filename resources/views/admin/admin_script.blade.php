@@ -4,8 +4,8 @@
 	var checkfullname = 1;
 
 	function checkinput() {
-
 		if(checkuname == 0  && checkpass == 0 && checkfullname == 0) {
+
 			//submit form
 			loadCModal();
 		}//if
@@ -15,7 +15,6 @@
 	function validatefullname() {
 		var regex = new RegExp("^(?=.*(\\d|\\w))[A-Za-z0-9 -'.,]{3,50}$");
 		var fullname = document.getElementsByName('fullname')[0].value;
-
 		console.log(regex.test(fullname));
 
 		if(fullname !== "" && regex.test(fullname)) {
@@ -70,18 +69,18 @@
 		var username = $("input[name='username']").val();
 
 		if(username !== "" && regex.test(username)) {
+
 			var data = { 
 					'username' : username,
 					'_token' : '{{ Session::token() }}'
 				};
-
 	 		$.ajax({
-				type: "POST",
+				type: "GET",
 				url: "{{url('checkusername')}}",
 				data: data,
 			   	dataType: "JSON",
 	  		   	success : function(result) {
-
+	  		   		
 			   		if(result == 0) {
 			   			//$('#ucon').attr('class', 'ui input field field logfield2');
 			   			document.getElementById('ucon').classList.remove('error');

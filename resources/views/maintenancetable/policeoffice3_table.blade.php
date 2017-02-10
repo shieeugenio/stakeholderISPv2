@@ -233,7 +233,7 @@
 				}//if func
 				else {
 					$('#' + data['id']).attr('class', 'activerow');
-					$('tr').not("[id = '" + data['id'] + "']").removeAttr('class');
+					$('tr').not("[id = '" + data['id'] + "']").attr('class', 'trow');
 
 					document.getElementById('ID').value = data['id'];
 					document.getElementsByName('terName')[0].value = data['UnitOfficeTertiaryName'];
@@ -284,7 +284,7 @@
 		function loaddata(id) {
 
 			$('#' + id).attr('class', 'activerow');
-			$('tr').not("[id = '" + id + "']").removeAttr('class');
+			$('tr').not("[id = '" + id + "']").attr('class', 'trow');
 
 			var data = {
 				'id' : id,

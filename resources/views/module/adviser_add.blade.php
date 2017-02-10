@@ -81,35 +81,7 @@
 										</div>			
 									</div>
 
-									<!--<div class = "field">
-										<label>Home Address <span class="asterisk">*</span></label>
-
-										<div class = "four fields">
-											<div class = "ui input field">
-												<input type="text" name = "street" placeholder="Street Address">
-												
-											</div>
-
-											<div class = "ui input field">
-												<input type="text" name = "barangay" placeholder="Barangay">
-
-											</div>
-
-											<div class = "ui input field">
-												<input type="text" name = "city" placeholder="City">
-												
-											</div>
-
-											<div class = "ui input field">
-												<input type="text" name = "province" placeholder="Province">
-												
-											</div>
-
-
-											
-										</div>
-										
-									</div>-->
+								
 
 									<h4 class="ui dividing header">Contact Information</h4>
 
@@ -127,7 +99,7 @@
 										</div>
 
 										<div class = "field">
-											<label>Landline <span class="asterisk">*</span></label>
+											<label>Landline </label>
 
 										
 											<div class = "ui input field">

@@ -11,10 +11,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call(DefaultAccountSeeder::class);
         $this->call(ACCategoryTableSeeder::class);
         $this->call(ACSubcategoryTableSeeder::class);
         $this->call(ACPositionTableSeeder::class);
         $this->call(ACSectorTableSeeder::class);
+        
+    }
+}
+
+class DefaultAccountSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'status' => 1,
+            'email' => 'admin',
+            'password' => bcrypt('admin')
+        ]);
     }
 }

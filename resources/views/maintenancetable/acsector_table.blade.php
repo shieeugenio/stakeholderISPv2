@@ -179,7 +179,7 @@
 				}//if func
 				else {
 					$('#' + data['ID']).attr('class', 'activerow');
-					$('tr').not("[id = '" + data['ID'] + "']").removeAttr('class');
+					$('tr').not("[id = '" + data['ID'] + "']").attr('class', 'trow');
 
 					document.getElementById('acsectorID').value = data['ID'];
 					document.getElementsByName('acsectorName')[0].value = data['sectorname'];
