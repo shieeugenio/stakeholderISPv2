@@ -64,12 +64,9 @@ class AdvDirectoryController extends Controller {
 					'lname' =>'lname',
 					'fname' =>'fname',
 					'mname' => 'mname',
+					'qname' => 'qname',
 					'bdate' => '1996-11-21',
 					'gender' => '1',
-					'street' => 'street',
-					'barangay' => 'barangay',
-					'city' => 'city',
-					'province' => 'province',
 					'mobile' => '890209129012',
 					'landline' => '2345234',
 					'email' => 'shie@yahoo.com',
@@ -84,6 +81,7 @@ class AdvDirectoryController extends Controller {
 					'officeadd' => 'QC',
 					'acsubcateg' => '1',
 					'acsector' => array('1'),
+					'uphoto' => '',
 					'submit' => 'save'
 				);
 
@@ -127,11 +125,11 @@ class AdvDirectoryController extends Controller {
 		if (isset($_POST['submit'])) {
 
 			if($data['advcateg'] == 0) {
-				$this->addAC($data, $id);
+				$this->addAC($data);
 
 			} else {
-				$this->addTP($data, $id);
-				$this->addTraining($data, $id);
+				$this->addTP($data);
+				$this->addTraining($data);
 
 			}//if($data->advcateg == 0) {
 		
@@ -325,7 +323,7 @@ class AdvDirectoryController extends Controller {
         $advisory->fname = $data['fname'];
 	 	$advisory->lname = $data['lname'];
 	 	$advisory->mname = $data['mname'];
-	 	$advisory->qualifier = $data['qualifier'];
+	 	$advisory->qualifier = $data['qname'];
 	 	$advisory->gender =  $data['gender'];
 	 	$advisory->contactno = $data['mobile'];
 	 	$advisory->landline = $data['landline'];
@@ -337,7 +335,12 @@ class AdvDirectoryController extends Controller {
 	 	$advisory->twitteruser = $data['twitter'];
 	 	$advisory->iguser = $data['instagram'];
 	 	$advisory->birthdate = $data['bdate'];
-	 	$advisory->imagepath = $this->loadphoto($data['upphoto']);
+
+	 	if($data['upphoto'] != "") {
+	 		$advisory->imagepath = $this->loadphoto($data['upphoto']);
+
+	 	}//if
+
         $advisory->advisory_position_id = $data['acposition'];
         $advisory->subcategoryId = $data['acsubcateg'];
         $advisory->save();
@@ -370,7 +373,7 @@ class AdvDirectoryController extends Controller {
         $advisory->fname = $data['fname'];
 	 	$advisory->lname = $data['lname'];
 	 	$advisory->mname = $data['mname'];
-	 	$advisory->qualifier = $data['qualifier'];
+	 	$advisory->qualifier = $data['qname'];
 	 	$advisory->gender =  $data['gender'];
 	 	$advisory->contactno = $data['mobile'];
 	 	$advisory->landline = $data['landline'];
@@ -382,7 +385,12 @@ class AdvDirectoryController extends Controller {
 	 	$advisory->twitteruser = $data['twitter'];
 	 	$advisory->iguser = $data['instagram'];
 	 	$advisory->birthdate = $data['bdate'];
-	 	$advisory->imagepath = $this->loadphoto($data['upphoto']);
+
+	 	if($data['upphoto'] != "") {
+	 		$advisory->imagepath = $this->loadphoto($data['upphoto']);
+
+	 	}//if
+
         $advisory->advisory_position_id = $data['acposition'];
         $advisory->subcategoryId = $data['acsubcateg'];
         $advisory->save();
