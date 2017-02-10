@@ -22,6 +22,8 @@ use App\Models\AC_Category;
 
 use App\Models\AC_Subcategory;
 
+use App\Models\Personnel_Sector;
+
 use App\Models\AC_Sector;
 
 use App\Models\Training;
@@ -267,7 +269,7 @@ class AdvDirectoryController extends Controller {
 
 	}//public function getRecent() {
 
-	public function getID() {
+	public function getACID() {
 		$getid = Advisory_Council::orderBy('ID', 'desc')->take(1)->get();
 
 		foreach ($getid as $key => $id) {
@@ -340,18 +342,21 @@ class AdvDirectoryController extends Controller {
 	 		$advisory->imagepath = $this->loadphoto($data['upphoto']);
 
 	 	}//if
+	 	print_r($data['acsector']);
 
         $advisory->advisory_position_id = $data['acposition'];
         $advisory->subcategoryId = $data['acsubcateg'];
         $advisory->save();
 
-        $this->addSector($data['sector'], $id);
+        $id = $this->getACID();
+
+        $this->addSector($data['acsector'], $id);
     } // add AC
 
     public function addSector($sector, $acid) {
 
     	for($ctr = 0 ; $ctr < sizeof($sector) ; $ctr++) {
-    		$acsector = new AC_Sector;
+    		$acsector = new Personnel_Sector;
     		$acsector->advisory_council_id = $acid;
     		$acsector->ac_sector_id = $sector[$ctr];
     		$acsector->save();
@@ -504,7 +509,7 @@ class AdvDirectoryController extends Controller {
 
 		file_put_contents($filename, $decodephoto);
 
-		return asset($filename);
+		return $filename;
 		//Storage::disk('public')->put($filename, $decodephoto);
 
 		
