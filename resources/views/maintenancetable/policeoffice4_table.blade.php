@@ -37,7 +37,7 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select onchange="populate(1,this.value)" class="modified ui selection dropdown selectstyle2" name="office" id = "select1">
-						<option selected disabled value="disitem" >Select One</option>
+						<option selected class="disabled" value="" >Select One</option>
 						@foreach ( $office as $office )
 							<option value="{{$office->id}}">{{$office->UnitOfficeName}}</option>
 						@endforeach
@@ -55,7 +55,8 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select  onchange="populate(2,this.value)" class="modified ui selection dropdown selectstyle2" name="office2" id = "select2">
-						<option selected disabled value="disitem">Select One</option>
+						<option selected class="
+						disabled" value="">Select One</option>
 						
 					</select>
 									
@@ -66,7 +67,7 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select class="modified ui selection dropdown selectstyle2" name="office3" id = "select3">
-						<option selected disabled value="disitem">Select One</option>			 
+						<option selected class="disabled" value="">Select One</option>			 
 						
 					</select>
 									
@@ -160,8 +161,8 @@
 				// $("#select2 option").not("[value='disitem']").remove();
 				// $("#select3 option").not("[value='disitem']").remove();
 
-				 // $('#select2').dropdown('restore defaults');
-				 // $('#select3').dropdown('restore defaults');
+				$('#select2').dropdown('restore defaults');
+				$('#select3').dropdown('restore defaults');
 
 				var data = {
 					'id' : id,
@@ -173,7 +174,7 @@
 			if(func == 2){
 
 				removeOption(document.getElementById('select3'));
-				 // $('#select3').dropdown('restore defaults');
+				$('#select3').dropdown('restore defaults');
 				var data = {
 					'id' : id,
 					'callid' : 2,
