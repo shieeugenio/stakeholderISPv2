@@ -124,10 +124,7 @@ class AdvDirectoryController extends Controller {
 
 		
 
-		/**if (isset($_POST['submit'])) {
-			$this->addProfile($data);
-
-			$id = $this->getID();
+		if (isset($_POST['submit'])) {
 
 			if($data['advcateg'] == 0) {
 				$this->addAC($data, $id);
@@ -139,11 +136,7 @@ class AdvDirectoryController extends Controller {
 			}//if($data->advcateg == 0) {
 		
 
-		}// if**/
-
-		//$data = file_get_contents('php://input');
-
-		print_r($data);
+		}// if
 
 	}//add - WHOLE
 
@@ -151,8 +144,6 @@ class AdvDirectoryController extends Controller {
 		$data = $req->all();
 
 		if (isset($_POST['submit'])) {
-			$this->editProfile($data);
-
 
 			if($data->advcateg == 0) {
 				$this->editAC($data);
@@ -327,92 +318,26 @@ class AdvDirectoryController extends Controller {
 
 	 } // retrieve for edit
 
-
-	//Profile
-	public function addProfile($data){
-		
-	 	$adv = new Advisory_Council;
-	 	$adv->fname = $data['fname'];
-	 	$adv->lname = $data['lname'];
-	 	$adv->mname = $data['mname'];
-	 	$adv->street = $data['street'];
-	 	$adv->barangay = $data['barangay'];
-	 	$adv->city = $data['city'];
-	 	$adv->province = $data['province'];
-	 	$adv->email = $data['email'];
-	 	$adv->fbuser = $data['facebook'];
-	 	$adv->twitteruser = $data['twitter'];
-	 	$adv->iguser = $data['instagram'];
-	 	$adv->contactno = $data['mobile'];
-	 	$adv->landline = $data['landline'];
-	 	$adv->birthdate = $data['bdate'];
-	 	$adv->gender =  $data['gender'];
-	 	$adv->category = $data['advcateg'];
-	 	$adv->startdate = $data['durstart'];
-        $adv->occupationstat = 0;
-	 	//$adv->imagepath = $req->img;
-	 	/*$image = $req->img;
-	 	$filename = time() . '.' . $image->getClientOriginalExtension();
-	 	$local = public_path();
-	 		
-	 	//die();
-	 	$path = public_path('images\advisers\\' . $filename);
-	    //Image::make($image->getRealPath())->resize(200, 200)->save($path);
-	    $image->move($local . '\images\advisers\\', $filename);*/
-	    $adv->imagepath = 'objects/Logo/InitProfile.png';        	
-	 	$adv-> save();
-
-	    	
-	 	//return redirect('directory');
-
-	} // add profile
-
-	public function editProfile($data) {
-	 	
-	    $adv = Advisory_Council::find($data['ID']);
-	    $adv->fname = $data['fname'];
-		$adv->lname = $data['lname'];
-		$adv->mname = $data['mname'];
-		$adv->street = $data['street'];
-		$adv->barangay = $data['barangay'];
-		$adv->city = $data['city'];
-		$adv->province = $data['province'];
-		$adv->email = $data['email'];
-		$adv->fbuser = $data['facebook'];
-		$adv->twitteruser = $data['twitter'];
-		$adv->iguser = $data['instagram'];
-		$adv->contactno = $data['mobile'];
-		$adv->landline = $data['landline'];
-		$adv->birthdate = $data['bdate'];
-		$adv->gender =  $data['gender'];
-		$adv->category = $data['advcateg'];
-		$adv->startdate = $data['durstart'];
-        $adv->enddate = $data['durend'];
-		/*if ($req->hasFile('img')) {
-			if (file_exists($adv->imagepath)) {
-				unlink($adv->imagepath);
-				$image = $req->img;
-		 		$filename = time() . '.' . $image->getClientOriginalExtension();
-		 		$local = public_path();
-		 		$path = public_path('images\advisers\\' . $filename);
-		        $image->move($local . '\images\advisers\\', $filename);
-		        $adv->imagepath = $path;
-
-			}
-		}*/
-		$adv->imagepath = "objects/Logo/InitProfile.png";
-	    $adv->save();
-	    
-	} // update profile
-
-
 	//AC
 
-	public function addAC($data, $id){
+	public function addAC($data){
         $advisory = new Advisory_Council;
-        $advisory->ID = $id;
-       	$advisory->officename = $data['officename'];
+        $advisory->fname = $data['fname'];
+	 	$advisory->lname = $data['lname'];
+	 	$advisory->mname = $data['mname'];
+	 	$advisory->qualifier = $data['qualifier'];
+	 	$advisory->gender =  $data['gender'];
+	 	$advisory->contactno = $data['mobile'];
+	 	$advisory->landline = $data['landline'];
+	 	$advisory->officename = $data['officename'];
         $advisory->officeaddress = $data['officeadd'];
+	 	$advisory->email = $data['email'];
+	 	$advisory->startdate = $data['durstart'];
+	 	$advisory->fbuser = $data['facebook'];
+	 	$advisory->twitteruser = $data['twitter'];
+	 	$advisory->iguser = $data['instagram'];
+	 	$advisory->birthdate = $data['bdate'];
+	 	$advisory->imagepath = $this->loadphoto($data['upphoto']);
         $advisory->advisory_position_id = $data['acposition'];
         $advisory->subcategoryId = $data['acsubcateg'];
         $advisory->save();
@@ -442,13 +367,25 @@ class AdvDirectoryController extends Controller {
     public function editAC($data){
 
     	$advisory = Advisory_Council::find($data['ID']);
-        $advisory->officename = $data['officename'];
+        $advisory->fname = $data['fname'];
+	 	$advisory->lname = $data['lname'];
+	 	$advisory->mname = $data['mname'];
+	 	$advisory->qualifier = $data['qualifier'];
+	 	$advisory->gender =  $data['gender'];
+	 	$advisory->contactno = $data['mobile'];
+	 	$advisory->landline = $data['landline'];
+	 	$advisory->officename = $data['officename'];
         $advisory->officeaddress = $data['officeadd'];
-        $advisory->startdate = $data['durstart'];
-        $advisory->enddate = $data['durend'];
+	 	$advisory->email = $data['email'];
+	 	$advisory->startdate = $data['durstart'];
+	 	$advisory->fbuser = $data['facebook'];
+	 	$advisory->twitteruser = $data['twitter'];
+	 	$advisory->iguser = $data['instagram'];
+	 	$advisory->birthdate = $data['bdate'];
+	 	$advisory->imagepath = $this->loadphoto($data['upphoto']);
         $advisory->advisory_position_id = $data['acposition'];
-        $advisory->subcategoryId = $data['acsubcat'];
-	    $adv->save();
+        $advisory->subcategoryId = $data['acsubcateg'];
+        $advisory->save();
 
 	    $this->editSector($data);
 
@@ -547,5 +484,23 @@ class AdvDirectoryController extends Controller {
 
    	}//public function editLecturer($data, $trainID) {
 
+   	public function loadphoto($photo) {
+
+		$trimfilestring = explode(';', $photo);
+		$ext = substr($trimfilestring[0], strpos($trimfilestring[0], "/") + 1);
+		$base64string = substr($trimfilestring[1], strpos($trimfilestring[1], ",") + 1);
+
+		$decodephoto = base64_decode($base64string);
+
+		$filename =  "objects/displayphoto/" . str_random() . "." . $ext;
+
+		file_put_contents($filename, $decodephoto);
+
+		return asset($filename);
+		//Storage::disk('public')->put($filename, $decodephoto);
+
+		
+		//return asset(Storage::disk('public')->url($filename));
+	}//loadphoto
 
 }//class

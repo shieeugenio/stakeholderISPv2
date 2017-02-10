@@ -37,14 +37,11 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select onchange="populate(1,this.value)" class="modified ui selection dropdown selectstyle2" name="office" id = "select1">
-						<option selected disabled value="disitem" selected>Select One</option>
+						<option disabled value="disitem" selected>Select One</option>
 						@foreach ( $office as $office )
 							<option value="{{$office->id}}">{{$office->UnitOfficeName}}</option>
 						@endforeach
 									  
-									  <!-- POPULATE DROPDOWN OFFICE 1-->
-									  	
-
 					</select>
 									
 				</div>
@@ -54,7 +51,7 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select  onchange="populate(2,this.value)" class="modified ui selection dropdown selectstyle2" name="office2" id = "select2">
-						<option selected disabled value="disitem">Select One</option>
+						<option disabled value="disitem">Select One</option>
 						
 					</select>
 									
@@ -65,7 +62,7 @@
 			<div class = "twelve wide column bspacing2">
 				<div class = "field">
 					<select class="modified ui selection dropdown selectstyle2" name="office3" id = "select3">
-						<option selected disabled value="disitem">Select One</option>			 
+						<option disabled value="disitem">Select One</option>			 
 						
 					</select>
 									
@@ -117,7 +114,7 @@
 				</tr>	
 		    </thead>
 		    @foreach ($office4 as $offices)
-		    	<tr onclick="loaddata({{$offices->id}})" id="{{$offices->id}}">
+		    	<tr class = "trow" onclick="loaddata({{$offices->id}})" id="{{$offices->id}}">
 		    		
 		    		<td><center>{{$offices->UnitOfficeName}}</center></td>
 		    		<td><center>{{$offices->UnitOfficeSecondaryName}}</center></td>
@@ -141,26 +138,13 @@
 
 		var flag = 0;
 
-		function removeOption(selectbox){
-
-			for(i=selectbox.options.length;i>0;i--){
-				selectbox.remove(i);
-			}
-
-		}
-
-
 		function populate(func,id){
 
 			if(func == 1){
 
-				removeOption(document.getElementById('select2'));
-				removeOption(document.getElementById('select3'));
-				// $("#select2 option").not("[value='disitem']").remove();
-				// $("#select3 option").not("[value='disitem']").remove();
-
+				//removeOption(document.getElementById('select2'));
+				$("#select2 option").not("[value='disitem']").remove();
 				$('#select2').dropdown('restore defaults');
-				$('#select3').dropdown('restore defaults');
 
 				var data = {
 					'id' : id,
@@ -171,22 +155,27 @@
 
 			if(func == 2){
 
-				removeOption(document.getElementById('select3'));
+				//removeOption(document.getElementById('select3'));
+				$("#select3 option").not("[value='disitem']").remove();
 				$('#select3').dropdown('restore defaults');
+
 				var data = {
 					'id' : id,
 					'callid' : 2,
 					'_token' : '{{ Session::token() }}' 
 				};
-			}
 
+				console.log(id);
+			}// if func
+
+			
 			$.ajax({
 				type: "POST",
 				url: "{{url('maintenance/populate')}}",
 				data: data,
 				dataType: "JSON",
 				success:function(data){
-					console.log(data);
+					
 					if(func == 1){
 						for(var i= 0 ; i < data.length; i++){
 							populatedropdown(data[i]['id'], 'office2', data[i]['UnitOfficeSecondaryName']);
@@ -236,7 +225,6 @@
 				'id' : id,
 				'_token' : '{{ Session::token() }}'
 			};
-			console.log(data);
 
 			$.ajax({
 				type: "POST",
@@ -279,7 +267,6 @@
 				type: "POST",
 				url: "{{url('maintenance/add')}}",
 				data: data,
-				dataType: "JSON",
 			   	success : function() {
 			   		resetflag('Saved!');
 
@@ -294,8 +281,6 @@
 		}//function addData(){
 
 		function editData() {
-
-			//console.log($('#select3').val());
 			var data = {
 				'subID' : document.getElementsByName('ID')[0].value,
 				'office3' : $('#select3').val(),
@@ -321,6 +306,6 @@
 			}, 2600);
 
 
-		}//
+		}// edit
 	</script>
 @stop

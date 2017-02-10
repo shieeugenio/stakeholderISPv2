@@ -68,6 +68,9 @@ Route::get('maintenance/secondaryoffice', 'PoliceOfficeTwoController@index')->mi
 Route::get('maintenance/tertiaryoffice', 'PoliceOfficeThreeController@index_PO3')->middleware('auth');
 Route::get('maintenance/quarternaryoffice', 'PoliceOfficeFourController@index')->middleware('auth');
 Route::get('maintenance/policeposition','PolicePositionController@index_policeposition')->middleware('auth');
+/**Route::get('maintenance/rank', function() {
+	 return View('maintenancetable.rank_table');
+})->middleware('auth');**/
 
 //TRANSACTION @author: Shie Eugenio
 Route::get('directory/add', 'AdvDirectoryController@index')->middleware('auth');
@@ -78,7 +81,7 @@ Route::post('dropdown/getsubcateg', 'AdvDirectoryController@getSubCateg');
 Route::post('dropdown/getsecoffice', 'AdvDirectoryController@getSecOffice');
 
 //ADMIN @author: Shie Eugenio
-Route::get('admin', 'RegistrationController@index');
+Route::get('admin', 'RegistrationController@index')->middleware('auth');
 
 //--------------------------------------------------------------------------------------------
 //BACK-END
@@ -89,13 +92,12 @@ Route::get('logout', array('uses' => 'HomeController@logout'));
 
 //REGISTRATION @author: Ren Buluran
 Route::resource('register', 'RegistrationController@register');
-
-Route::resource('checkusername', 'RegistrationController@checkusername');
 Route::post('checkusername', 'RegistrationController@checkusername');
 Route::post('getuser', 'RegistrationController@getuser');
 Route::post('approval', 'RegistrationController@setstatus');
 
-
+//CAPTCHA RELOADER @author: Ren Buluran
+Route::get('reloadImageCaptcha', 'RegistrationController@reloadCaptcha');
 
 //AC CATEGORY @author: Shie Eugenio
 Route::post("accategory/add", 'ACCategoryController@confirm');
@@ -208,4 +210,4 @@ Route::get('FilterPSMU', 'FilterController@FilterPSMU');
 
 
 // relaoding captcha
-Route::get('reloadImageCaptcha', 'RegistrationController@reloadCaptcha');
+

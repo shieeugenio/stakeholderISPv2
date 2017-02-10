@@ -12,10 +12,10 @@ class DefaultAccountSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'admin',
+            'name' => 'superadmin',
             'status' => 1,
-            'email' => 'admin',
-            'password' => bcrypt('admin')
+            'email' => 'superadmin',
+            'password' => bcrypt('superadmin')
         ]);
     }
 }
