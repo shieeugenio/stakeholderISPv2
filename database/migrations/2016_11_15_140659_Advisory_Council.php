@@ -27,7 +27,7 @@ class AdvisoryCouncil extends Migration
             $table->string('twitteruser', 20)->nullable();
             $table->string('iguser', 20)->nullable();
             $table->date('birthdate');
-            $table->text('imagepath');
+            $table->text('imagepath')->nullable();
             $table->integer('advisory_position_id')->unsigned();
             $table->integer('subcategoryId')->unsigned();
             $table->foreign('advisory_position_id')->references('ID')->on('Advisory_Position');

@@ -20,7 +20,7 @@ class PoliceAdvisory extends Migration
             $table->string('email', 65);
             $table->tinyInteger('policetype');
             $table->string('authorityorder', 20)->unique();
-            $table->text('imagepath');
+            $table->text('imagepath')->nullable();
             $table->date('startdate');
             $table->date('enddate')->nullable();
             $table->string('fbuser', 20)->nullable();
