@@ -14,10 +14,14 @@ class PoliceAdvisory extends Migration
             $table->string('fname', 45);
             $table->string('mname', 45)->nullable();
             $table->string('lname', 45);
-            $table->string('qualifier', 45);
+            $table->string('qualifier', 45)->nullable();
             $table->tinyInteger('gender');
             $table->string('contactno', 15);
-            $table->string('email', 65);
+            $table->string('email', 30);
+            $table->string('street', 50)->nullable();
+            $table->string('city', 45)->nullable();
+            $table->string('barangay', 45)->nullable();
+            $table->string('province', 45)->nullable();
             $table->tinyInteger('policetype');
             $table->string('authorityorder', 20)->unique();
             $table->text('imagepath')->nullable();

@@ -248,23 +248,23 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 
 	//----------------------------------------------------------------------------------
 
+	var div12 = document.createElement('div');
+	div12.setAttribute('class', 'five fields');
+	tempcon.appendChild(div12);
+
 	var div1 = document.createElement('div');
 	div1.setAttribute('class', 'field');
-	tempcon.appendChild(div1);
+	tempcon.lastChild.appendChild(div1);
 
-	tempcon.lastChild.appendChild(document.createElement('label'));
+	tempcon.lastChild.lastChild.appendChild(document.createElement('label'));
 
-	tempcon.lastChild.lastChild.appendChild(document.createTextNode('PNP Position '));
+	tempcon.lastChild.lastChild.lastChild.appendChild(document.createTextNode('PNP Position '));
 
 	var span1 = document.createElement('span');
 	span1.setAttribute('class', 'asterisk');
-	tempcon.lastChild.lastChild.appendChild(span1);
+	tempcon.lastChild.lastChild.lastChild.appendChild(span1);
 
-	tempcon.lastChild.lastChild.lastChild.appendChild(document.createTextNode('*'));
-
-	var div2 = document.createElement('div');
-	div2.setAttribute('class', 'five fields');
-	tempcon.lastChild.appendChild(div2);
+	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('*'));
 
 	var div3 = document.createElement('div');
 	div3.setAttribute('class', 'field');
@@ -282,6 +282,39 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One'));
 
+	//----------------------------------------------------------------------------------
+	
+	var div13 = document.createElement('div');
+	div13.setAttribute('class', 'field');
+	tempcon.lastChild.appendChild(div13);
+
+	tempcon.lastChild.lastChild.appendChild(document.createElement('label'));
+
+	tempcon.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Rank '));
+
+	var span3 = document.createElement('span');
+	span3.setAttribute('class', 'asterisk');
+	tempcon.lastChild.lastChild.lastChild.appendChild(span3);
+
+	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('*'));
+
+	var div14 = document.createElement('div');
+	div14.setAttribute('class', 'field');
+	tempcon.lastChild.lastChild.appendChild(div14);
+
+	var select6 = document.createElement('select');
+	select6.setAttribute('class', 'ui selection dropdown');
+	select6.setAttribute('name', 'rank');
+	tempcon.lastChild.lastChild.lastChild.appendChild(select6);
+
+	var opt6 = document.createElement('option');
+	opt6.setAttribute('disabled', 'disabled');
+	opt6.setAttribute('selected', 'selected');
+	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt6);
+
+	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One'));
+
+	
 	//----------------------------------------------------------------------------------
 
 	var div4 = document.createElement('div');
@@ -321,9 +354,9 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 
 	//----------------------------------------------------------------------------------
 
-	var div7 = document.createElement('div');
-	div7.setAttribute('class', 'field');
-	tempcon.lastChild.lastChild.appendChild(div7);
+	var div15 = document.createElement('div');
+	div15.setAttribute('class', 'field');
+	tempcon.lastChild.lastChild.appendChild(div15);
 
 	var select3 = document.createElement('select');
 	select3.setAttribute('class', 'ui selection dropdown');
@@ -337,6 +370,44 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt3);
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Secondary Office'));
+
+	//----------------------------------------------------------------------------------
+
+	var div10 = document.createElement('div');
+	div10.setAttribute('class', 'field');
+	tempcon.lastChild.lastChild.appendChild(div10);
+
+	var select4 = document.createElement('select');
+	select4.setAttribute('class', 'ui selection dropdown');
+	select4.setAttribute('name', 'tertiary');
+	tempcon.lastChild.lastChild.lastChild.appendChild(select4);
+
+	var opt4 = document.createElement('option');
+	opt4.setAttribute('disabled', 'disabled');
+	opt4.setAttribute('selected', 'selected');
+	opt4.setAttribute('value', 'disitem');
+	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt4);
+
+	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Tertiary Office'));
+
+	//----------------------------------------------------------------------------------
+
+	var div11 = document.createElement('div');
+	div11.setAttribute('class', 'field');
+	tempcon.lastChild.lastChild.appendChild(div11);
+
+	var select5 = document.createElement('select');
+	select5.setAttribute('class', 'ui selection dropdown');
+	select5.setAttribute('name', 'quaternary');
+	tempcon.lastChild.lastChild.lastChild.appendChild(select5);
+
+	var opt5 = document.createElement('option');
+	opt5.setAttribute('disabled', 'disabled');
+	opt5.setAttribute('selected', 'selected');
+	opt5.setAttribute('value', 'disitem');
+	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt5);
+
+	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Quaternary Office'));
 
 	$("select").dropdown(); //refresh dropdown
 }//function addT2Elements() {

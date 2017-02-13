@@ -39,9 +39,6 @@ use Auth;
 class AdvDirectoryController extends Controller {
 
 	public function index(){
- 		/*$profile = Advisers::all();
- 		return View ('module/adviser_add')->with('profile', $profile);*/
-
  		$acposition = Advisory_Position::all();
  		$accateg = AC_Category::all();
  		$acsector = AC_Sector::all();
@@ -59,108 +56,49 @@ class AdvDirectoryController extends Controller {
 	public function addadviser(Request $req) {
 		$data = $req->all();
 
+		DB::transaction(function($data) use ($data) {
 
+			if (isset($_POST['submit'])) {
 
-		/*$data = array(
-					'ID' => '',
-					'lname' =>'lname',
-					'fname' =>'fname',
-					'mname' => 'mname',
-					'qname' => 'qname',
-					'bdate' => '1996-11-21',
-					'gender' => '1',
-					'mobile' => '890209129012',
-					'landline' => '2345234',
-					'email' => 'shie@yahoo.com',
-					'facebook' => 'shieeugenio',
-					'twitter' => 'shieeugenio',
-					'instagram' => 'shieeugenio',
-					'advcateg'  => '0',
-					'durstart' => '2016-12-01',
-					'durend' => '2016-12-01',
-					'acposition' => '1',
-					'officename' => 'CC',
-					'officeadd' => 'QC',
-					'acsubcateg' => '1',
-					'acsector' => array('1'),
-					'uphoto' => '',
-					'submit' => 'save'
-				);
+				if($data['advcateg'] == 0) {
+					$this->addAC($data);
 
-				$data = array(
-					'ID' => '',
-					'lname' =>'lname',
-					'fname' =>'fname',
-					'mname' => 'mname',
-					'bdate' => '1996-11-21',
-					'gender' => '1',
-					'street' => 'street',
-					'barangay' => 'barangay',
-					'city' => 'city',
-					'province' => 'province',
-					'mobile' => '890209129012',
-					'landline' => '2345234',
-					'email' => 'shie@yahoo.com',
-					'facebook' => 'shieeugenio',
-					'twitter' => 'shieeugenio',
-					'instagram' => 'shieeugenio',
-					'advcateg'  => '1',
-					'durstart' => '2016-12-01',
-					'durend' => '2016-12-01',
-					'authorder' => 'saudjiqskkpq9',
-					'pnppost' => '1',
-					'suboffice' => '1',
-					'traintitle' => array('T30sjdas','T7sajdk'),
-					'traincateg' => array('Tjdhks1','Tsajdkl2'),
-					'location' => array('T1','T2'),
-					'sdate' => array('2015-11-21','2015-11-21'),
-					'stime' => array('08:00:00', '08:00:00'),
-					'etime' => array('08:00:00', '08:00:00'),
-					'edate' => array('2015-11-21','2015-11-21'),
-					'speaker' => array(array('Shie', 'Mae'), array('Shie', 'Mae')),
-					'org' => array('ORG', 'ORG3'),
-					'submit' => 'save'
-				);*/
+				} else {
+					$this->addTP($data);
 
-		
+				}//if($data->advcateg == 0) {
+			
 
-		if (isset($_POST['submit'])) {
-
-			if($data['advcateg'] == 0) {
-				$this->addAC($data);
-
-			} else {
-				$this->addTP($data);
-				$this->addTraining($data);
-
-			}//if($data->advcateg == 0) {
-		
-
-		}// if
+			}// if
+		});
 
 	}//add - WHOLE
 
 	public function editadviser(Request $req) {
 		$data = $req->all();
 
-		if (isset($_POST['submit'])) {
+		DB::transaction(function($data) use ($data) {
 
-			if($data->advcateg == 0) {
-				$this->editAC($data);
+		
+			if (isset($_POST['submit'])) {
 
-			} else {
-				$this->editTP($data);
+				if($data->advcateg == 0) {
+					$this->editAC($data);
+
+				} else {
+					$this->editTP($data);
+					
+					$trainID = $this->getTrainIDList($data->ID);
+
+					$this->editLecturer($data, $trainID);
+
+
+				}//if($data->advcateg == 0) {
+
 				
-				$trainID = $this->getTrainIDList($data->ID);
 
-				$this->editLecturer($data, $trainID);
-
-
-			}//if($data->advcateg == 0) {
-
-			
-
-		}// if
+			}// if
+		});
 
 
 	}//edit - WHOLE
@@ -279,6 +217,16 @@ class AdvDirectoryController extends Controller {
 
 	}//public function getID() {
 
+	public function getTPID() {
+		$getid = Police_Advisory::orderBy('ID', 'desc')->take(1)->get();
+
+		foreach ($getid as $key => $id) {
+            return $id->ID;
+        }//foreach ($getid as $key => $id) {
+
+
+	}//public function getID() {
+
 	public function getTrainIDList($id) {
 		$getid = Training::where('training_id', $id)->pluck('ID');
 
@@ -337,6 +285,11 @@ class AdvDirectoryController extends Controller {
 	 	$advisory->twitteruser = $data['twitter'];
 	 	$advisory->iguser = $data['instagram'];
 	 	$advisory->birthdate = $data['bdate'];
+	 	$advisory->street = $data['street'];
+	 	$advisory->city = $data['city'];
+	 	$advisory->province = $data['province'];
+	 	$advisory->barangay = $data['barangay'];
+
 
 	 	if($data['upphoto'] != "") {
 	 		$advisory->imagepath = $this->loadphoto($data['upphoto']);
@@ -390,6 +343,10 @@ class AdvDirectoryController extends Controller {
 	 	$advisory->twitteruser = $data['twitter'];
 	 	$advisory->iguser = $data['instagram'];
 	 	$advisory->birthdate = $data['bdate'];
+	 	$advisory->street = $data['street'];
+	 	$advisory->city = $data['city'];
+	 	$advisory->province = $data['province'];
+	 	$advisory->barangay = $data['barangay'];
 
 	 	if($data['upphoto'] != "") {
 	 		$advisory->imagepath = $this->loadphoto($data['upphoto']);
@@ -409,12 +366,41 @@ class AdvDirectoryController extends Controller {
    	public function addTP($data, $id){
     
     	$advisory = new Police_Advisory;
-    	$advisory->ID = $id;
+    	$advisory->fname = $data['fname'];
+	 	$advisory->lname = $data['lname'];
+	 	$advisory->mname = $data['mname'];
+	 	$advisory->qualifier = $data['qname'];
+	 	$advisory->gender =  $data['gender'];
+	 	$advisory->contactno = $data['mobile'];
+	 	$advisory->landline = $data['landline'];
+	 	$advisory->email = $data['email'];
+	 	$advisory->startdate = $data['durstart'];
+	 	$advisory->fbuser = $data['facebook'];
+	 	$advisory->twitteruser = $data['twitter'];
+	 	$advisory->iguser = $data['instagram'];
+	 	$advisory->birthdate = $data['bdate'];
+	 	$advisory->street = $data['street'];
+	 	$advisory->city = $data['city'];
+	 	$advisory->province = $data['province'];
+	 	$advisory->barangay = $data['barangay'];
+
+	 	if($data['upphoto'] != "") {
+	 		$advisory->imagepath = $this->loadphoto($data['upphoto']);
+
+	 	}//if
     	$advisory->police_position_id = $data['pnppost'];
-    	$advisory->policeoffice_id = $data['suboffice'];
+    	$advisory->rank_id = $data['rank'];
+    	$advisory->unit_id = $data['primary'];
+    	$advisory->second_id = $data['secondary'];
+    	$advisory->tertiary_id = $data['tertiary'];
+    	$advisory->quaternary_id = $data['quaternary'];
     	$advisory->authorityorder = $data['authorder'];
 
     	$advisory->save();
+
+    	$id = $this->getTPID();
+
+    	$this->addTraining($data, $id);
 
     	//return redirect('policeadvisory');
 	    
@@ -422,8 +408,34 @@ class AdvDirectoryController extends Controller {
 
 	 public function editTP($data){
     	$advisory = Police_Advisory::find($data['ID']);
+    	$advisory->fname = $data['fname'];
+	 	$advisory->lname = $data['lname'];
+	 	$advisory->mname = $data['mname'];
+	 	$advisory->qualifier = $data['qname'];
+	 	$advisory->gender =  $data['gender'];
+	 	$advisory->contactno = $data['mobile'];
+	 	$advisory->landline = $data['landline'];
+	 	$advisory->email = $data['email'];
+	 	$advisory->startdate = $data['durstart'];
+	 	$advisory->fbuser = $data['facebook'];
+	 	$advisory->twitteruser = $data['twitter'];
+	 	$advisory->iguser = $data['instagram'];
+	 	$advisory->birthdate = $data['bdate'];
+	 	$advisory->street = $data['street'];
+	 	$advisory->city = $data['city'];
+	 	$advisory->province = $data['province'];
+	 	$advisory->barangay = $data['barangay'];
+
+	 	if($data['upphoto'] != "") {
+	 		$advisory->imagepath = $this->loadphoto($data['upphoto']);
+
+	 	}//if
     	$advisory->police_position_id = $data['pnppost'];
-    	$advisory->policeoffice_id = $data['suboffice'];
+    	$advisory->rank_id = $data['rank'];
+    	$advisory->unit_id = $data['primary'];
+    	$advisory->second_id = $data['secondary'];
+    	$advisory->tertiary_id = $data['tertiary'];
+    	$advisory->quaternary_id = $data['quaternary'];
     	$advisory->authorityorder = $data['authorder'];
     	$advisory->save();
         

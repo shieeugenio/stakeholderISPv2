@@ -81,6 +81,35 @@
 										</div>			
 									</div>
 
+									<div class = "field">
+ 										<label>Home Address</label>
+ 
+ 										<div class = "four fields">
+ 											<div class = "ui input field">
+ 												<input type="text" name = "street" placeholder="Street Address">
+ 												
+ 											</div>
+ 
+ 											<div class = "ui input field">
+ 												<input type="text" name = "barangay" placeholder="Barangay">
+ 
+ 											</div>
+ 
+ 											<div class = "ui input field">
+ 												<input type="text" name = "city" placeholder="City">
+ 												
+ 											</div>
+ 
+ 											<div class = "ui input field">
+ 												<input type="text" name = "province" placeholder="Province">
+ 												
+ 											</div>
+ 
+ 
+ 											
+ 										</div>
+ 										
+ 									</div>
 								
 
 									<h4 class="ui dividing header">Contact Information</h4>
@@ -452,6 +481,10 @@
 						'mname' : document.getElementsByName('mname')[0].value,
 						'qname' : document.getElementsByName('qname')[0].value,
 						'bdate' : document.getElementsByName('bdate')[0].value,
+						'street' : document.getElementsByName('street')[0].value,
+						'barangay' : document.getElementsByName('barangay')[0].value,
+						'city' : document.getElementsByName('city')[0].value,
+						'province' : document.getElementsByName('province')[0].value,
 						'gender' : $("input[name='gender']:checked").val(),
 						'mobile' : document.getElementsByName('mobile')[0].value,
 						'landline' : document.getElementsByName('landline')[0].value,
@@ -527,7 +560,11 @@
 						'durstart' : document.getElementsByName('durationsdate')[0].value,
 						'authorder' : document.getElementsByName('authorder')[0].value,
 						'pnppost' : document.getElementsByName('position')[0].value,
-						'suboffice' : document.getElementsByName('secondary')[0].value,
+						'rank' : document.getElementsByName('rank')[0].value,
+						'primary' : document.getElementsByName('primary')[0].value,
+						'secondary' : document.getElementsByName('secondary')[0].value,
+						'tertiary' : document.getElementsByName('tertiary')[0].value,
+						'quaternary' : document.getElementsByName('quaternary')[0].value,
 						'traintitle' : traintitle,
 						'traincateg' : traincateg,
 						'location' : location,
