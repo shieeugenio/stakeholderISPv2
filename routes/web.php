@@ -73,12 +73,18 @@ Route::get('maintenance/policeposition','PolicePositionController@index_policepo
 })->middleware('auth');**/
 
 //TRANSACTION @author: Shie Eugenio
-Route::get('directory/add', 'AdvDirectoryController@index')->middleware('auth');
+Route::get('directory/add', 'AdvDirectoryController@readyadd')->middleware('auth');
 Route::resource('modalView', 'AdvDirectoryController@getRecordData');
 
 //DROPDOWN @author: Shie Eugenio
 Route::post('dropdown/getsubcateg', 'AdvDirectoryController@getSubCateg');
 Route::post('dropdown/getsecoffice', 'AdvDirectoryController@getSecOffice');
+Route::post('dropdown/getteroffice', 'AdvDirectoryController@getTerOffice');
+Route::post('dropdown/getquaroffice', 'AdvDirectoryController@getQuarOffice');
+Route::get('dropdown/getinitacd', 'AdvDirectoryController@getInitACD');
+Route::get('dropdown/getinittpd', 'AdvDirectoryController@getInitTPD');
+
+
 
 //ADMIN @author: Shie Eugenio
 Route::get('admin', 'RegistrationController@index')->middleware('auth');

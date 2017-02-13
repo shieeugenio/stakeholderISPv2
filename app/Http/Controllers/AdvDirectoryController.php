@@ -16,9 +16,15 @@ use App\Models\unit_offices;
 
 use App\Models\unit_office_secondaries;
 
+use App\Models\unit_office_tertiaries;
+
+use App\Models\unit_office_quaternaries;
+
 use App\Models\Advisory_Position;
 
 use App\Models\AC_Category;
+
+use App\Models\ranks;
 
 use App\Models\AC_Subcategory;
 
@@ -38,20 +44,15 @@ use Auth;
 
 class AdvDirectoryController extends Controller {
 
-	public function index(){
- 		$acposition = Advisory_Position::all();
- 		$accateg = AC_Category::all();
- 		$acsector = AC_Sector::all();
- 		$pnpposition = Police_Position::all();
- 		$primaryoffice = unit_offices::all();
+	public function readyadd(){
 
- 		return view('module.adviser_add')->with('acposition', $acposition)
- 										 ->with('accateg', $accateg)
- 										 ->with('acsector', $acsector)
- 										 ->with('pnppost', $pnpposition)
- 										 ->with('primaryoffice', $primaryoffice);
+ 		return view('module.adviser_add')->with('action', 0);
 
- 	} //select dropdowns
+ 	}//select dropdowns
+
+ 	public function readyedit() {
+ 		return view('module.adviser_add')->with('action', 1);
+ 	}//ready edit
 
 	public function addadviser(Request $req) {
 		$data = $req->all();
@@ -241,6 +242,23 @@ class AdvDirectoryController extends Controller {
 
 	//DROPDOWN
 
+	public function getInitACD() {
+		$acposition = Advisory_Position::all();
+ 		$accateg = AC_Category::all();
+ 		$acsector = AC_Sector::all();
+
+ 		return array($acposition, $accateg, $acsector);
+	}//public function getInitACD() {
+
+	public function getInitTPD() {
+		$pnpposition = Police_Position::all();
+		$rank = ranks::all();
+ 		$primaryoffice = unit_offices::all();
+
+ 		return array($pnpposition, $rank, $primaryoffice);
+
+	}//public function getInitTPD() {
+
 	public function getSubCateg(Request $req) {
 		$categID = $req->categID;
 
@@ -253,11 +271,26 @@ class AdvDirectoryController extends Controller {
 	public function getSecOffice(Request $req) {
 		$primary = $req->poID;
 
-		$secoffice = unit_office_secondaries::where('police_office_id', $primary)->get();
+		$secoffice = unit_office_secondaries::where('UnitOfficeID', $primary)->get();
 
 		return $secoffice;
 	}//public function getSecOffice(Request $req) {
 
+	public function getTerOffice(Request $req) {
+		$secondary = $req->soID;
+
+		$teroffice = unit_office_tertiaries::where('UnitOfficeSecondaryID', $secondary)->get();
+
+		return $teroffice;
+	}//public function getSecOffice(Request $req) {
+
+	public function getQuarOffice(Request $req) {
+		$tertiary = $req->toID;
+
+		$quaroffice = unit_office_quaternaries::where('UnitOfficeTertiaryID', $tertiary)->get();
+
+		return $quaroffice;
+	}//public function getSecOffice(Request $req) {
 
  	public function edit(Request $req){
 	 	$id = $req->ID;

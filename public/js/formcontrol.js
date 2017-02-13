@@ -44,6 +44,8 @@ function addT1Elements() { //AC ELEMENTS
 	var opt = document.createElement('option');
 	opt.setAttribute('disabled', 'disabled');
 	opt.setAttribute('selected', 'selected');
+	opt.setAttribute('value', 'disitem');
+
 	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt);
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One'));
@@ -137,6 +139,8 @@ function addT1Elements() { //AC ELEMENTS
 	var opt2 = document.createElement('option');
 	opt2.setAttribute('disabled', 'disabled');
 	opt2.setAttribute('selected', 'selected');
+	opt2.setAttribute('value', 'disitem');
+
 	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt2);
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One'));
@@ -207,6 +211,8 @@ function addT1Elements() { //AC ELEMENTS
 	var opt1 = document.createElement('option');
 	opt1.setAttribute('disabled', 'disabled');
 	opt1.setAttribute('selected', 'selected');
+	opt1.setAttribute('value', 'disitem');
+
 	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt1);
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One or More'));
@@ -278,6 +284,8 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 	var opt1 = document.createElement('option');
 	opt1.setAttribute('disabled', 'disabled');
 	opt1.setAttribute('selected', 'selected');
+	opt1.setAttribute('value', 'disitem');
+
 	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt1);
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One'));
@@ -310,6 +318,8 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 	var opt6 = document.createElement('option');
 	opt6.setAttribute('disabled', 'disabled');
 	opt6.setAttribute('selected', 'selected');
+	opt6.setAttribute('value', 'disitem');
+
 	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt6);
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Select One'));
@@ -348,6 +358,8 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 	var opt2 = document.createElement('option');
 	opt2.setAttribute('disabled', 'disabled');
 	opt2.setAttribute('selected', 'selected');
+	opt2.setAttribute('value', 'disitem');
+
 	tempcon.lastChild.lastChild.lastChild.lastChild.appendChild(opt2);
 
 	tempcon.lastChild.lastChild.lastChild.lastChild.lastChild.appendChild(document.createTextNode('Primary Office'));
@@ -361,6 +373,7 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 	var select3 = document.createElement('select');
 	select3.setAttribute('class', 'ui selection dropdown');
 	select3.setAttribute('name', 'secondary');
+	select3.setAttribute('onchange', 'getteroffice()');
 	tempcon.lastChild.lastChild.lastChild.appendChild(select3);
 
 	var opt3 = document.createElement('option');
@@ -380,6 +393,7 @@ function addT2Elements() { //PSMU and TWG ELEMENTS
 	var select4 = document.createElement('select');
 	select4.setAttribute('class', 'ui selection dropdown');
 	select4.setAttribute('name', 'tertiary');
+	select4.setAttribute('onchange', 'getquaroffice()');
 	tempcon.lastChild.lastChild.lastChild.appendChild(select4);
 
 	var opt4 = document.createElement('option');
@@ -710,8 +724,6 @@ function addrow() {
 	input7.setAttribute('placeholder','e.g. CPSM');
 	table.lastChild.lastChild.lastChild.lastChild.appendChild(input7);
 
-	console.log(rowcount);
-
 }//function addrow() {
 
 
@@ -722,6 +734,4 @@ function populatedropdown(id, selname, desc) {
 	item.setAttribute('value',  id);
 	document.getElementsByName(selname)[0].appendChild(item);
 	document.getElementsByName(selname)[0].lastChild.appendChild(document.createTextNode(desc));
-
-
 }//function populatedropdown() {

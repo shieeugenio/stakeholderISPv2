@@ -5,11 +5,11 @@
 		<div class = "formattp tablepane">
 			<div class = "mtitle">
 				Add Adviser
-								
+				<div id="myToast" class="toast-popup"></div>			
 			</div>
 
 			<div class = "tablecon">
-				<form action = "javascript:controlaction()" class = "ui form" id = "form">
+				<form action = "javascript:loadCModal()" class = "ui form" id = "form">
 
 					<input type="hidden" value="" name="advid"/>
 
@@ -316,8 +316,7 @@
 
 							Save
 						</button>
-						<button type = "reset" 
-								onclick = "if(confirm('Cancel?')) { window.location='{{url('directory')}}'}" 
+						<button type="button" onclick = "$('#cancelmodal').modal('show');" 
 								class="ui large button">
 							Cancel
 
@@ -338,19 +337,23 @@
 	<script type="text/javascript">
 		$('#tab3').attr('class', 'mlink item active');
 		var lecturers = new Array();
+		var link;
 
-		addT1Elements();
-		populateacp();
-		populateacc();
-		populateacs();
+		if('{{$action}}' === '0') {
+			addT1Elements();
+			getInitialACDropdown();
+			link = "{{url('adviser/add')}}";
+
+		} else if('{{$action}}' === '1') {
+			link = "{{url('adviser/edit')}}";
+
+		}//if('{{$action}}' == '0') {
 
 		function changeform(selcat) {
 			if(selcat == 0) {
 				removeElements();
 				addT1Elements();
-				populateacp();
-				populateacc();
-				populateacs();
+				getInitialACDropdown();
 
 				$("#traintable tbody").empty();
 
@@ -360,8 +363,8 @@
 			} else {
 				removeElements();
 				addT2Elements();
-				populatepp();
-				populatepo();
+				getInitialTPDropdown();
+
 
 				rowcount = 0;
 				document.getElementById('trainingcon').style.display = "block";
@@ -580,28 +583,21 @@
 
 
 				}//if (slctdtype == 0) {
-
-				/**if(action == 0) {
-
-					var url = {{url('adviser/add')}};
-
-				} else if(edit == 1) {
-					var url = {{url('adviser/edit')}};
-
-
-				}//if(action == 0) {**/
-
-				console.log(data);
 				
 				$.ajax({
 					type: "POST",
-					url: "{{url('adviser/add')}}",
+					url: link,
 					data: data,
 				   	success : function() {
-				   		//window.location = "{{URL('adviser')}}";
+
+				   		loadtoast("Saved");
 				   	
 				   	}//success : function() {
 				});
+
+				setTimeout(function(){
+					//window.location = "{{URL('adviser')}}";
+				}, 2600);
 
 					
        			
@@ -611,58 +607,76 @@
 				
 			
 		}//function controlaction() {
+		
+		function loadtoast(msg) {
+
+			$("#myToast").showToast({
+				message: msg,
+				timeout: 2500
+			});
+
+		}//function resetflag() {
 
 
+		//DROPDOWN
 
+		function getInitialACDropdown() {
+			$.ajax({
+				type: "GET",
+				url: "{{url('dropdown/getinitacd')}}",
+				dataType: 'json',
+			   	success : function(data) {
 
+			   		$("select[name='acposition'] option").not("[value='disitem']").remove();
+			   		$("select[name='accateg'] option").not("[value='disitem']").remove();
+			   		$("select[name='acsector'] option").not("[value='disitem']").remove();
 
+			   		for (var ctr = 0 ; ctr < data[0].length ; ctr++) {
+			   			populatedropdown(data[0][ctr]['ID'], 'acposition', data[0][ctr]['ID']['acpositionname']);
+			   			
+			   		};
 
+			   		for (var ctr = 0 ; ctr < data[1].length ; ctr++) {
+			   			populatedropdown(data[1][ctr]['ID'], 'accateg', data[1][ctr]['categoryname']);
+			   			
+			   		};
 
-		//DROPDOWNS
+			   		for (var ctr = 0 ; ctr < data[2].length ; ctr++) {
+			   			populatedropdown(data[2][ctr]['ID'], 'acsector', data[2][ctr]['sectorname']);
+			   			
+			   		};
+			   	}//success : function() {
+			});
+		}//function getInitialACDropdown() {
 
-		function populateacp() {
-			@foreach($acposition as $acpitem)
-				populatedropdown('{{$acpitem->ID}}', 'acposition' , '{{$acpitem->acpositionname}}');
-			
-			@endforeach
+		function getInitialTPDropdown() {
+			$.ajax({
+				type: "GET",
+				url: "{{url('dropdown/getinittpd')}}",
+				dataType: 'json',
+			   	success : function(data) {
 
+			   		$("select[name='position'] option").not("[value='disitem']").remove();
+			   		$("select[name='rank'] option").not("[value='disitem']").remove();
+			   		$("select[name='primary'] option").not("[value='disitem']").remove();
 
-		}//function populateacp() {
+			   		for (var ctr = 0 ; ctr < data[0].length ; ctr++) {
+			   			populatedropdown(data[0][ctr]['ID'], 'position', data[0][ctr]['PositionName']);
+			   			
+			   		};
 
-		function populateacc() {
-			@foreach($accateg as $catitem)
-				populatedropdown('{{$catitem->ID}}', 'accateg' , '{{$catitem->categoryname}}');
+			   		for (var ctr = 0 ; ctr < data[1].length ; ctr++) {
+			   			populatedropdown(data[1][ctr]['id'], 'rank', data[1][ctr]['RankName']);
+			   			
+			   		};
 
-			@endforeach
-
-		}//function populateacc() {
-
-		function populateacs() {
-			@foreach($acsector as $secitem)
-				populatedropdown('{{$secitem->ID}}', 'acsector' , '{{$secitem->sectorname}}');
-
-				
-			@endforeach
-
-		}//function populateacs() {
-
-		function populatepp() {
-			@foreach($pnppost as $ppitem)
-				populatedropdown('{{$ppitem->ID}}', 'position', '{{$ppitem->positionname}}');
-
-				
-			@endforeach
-
-		}//function populateacs() {
-
-		function populatepo() {
-			@foreach($primaryoffice as $poitem)
-				populatedropdown('{{$poitem->ID}}', 'primary' , '{{$poitem->officename}}');
-
-				
-			@endforeach
-
-		}//function populateacs() {
+			   		for (var ctr = 0 ; ctr < data[2].length ; ctr++) {
+			   			populatedropdown(data[2][ctr]['id'], 'primary', data[2][ctr]['UnitOfficeName']);
+			   			
+			   		};
+			   	}//success : function() {
+			});
+		}//function getInitialTPDropdown() {
 
 		function getsubcateg() {
 			var data = {
@@ -699,6 +713,7 @@
 
 			};
 
+			console.log(data);
 			$.ajax({
 				type: "POST",
 				url: "{{url('dropdown/getsecoffice')}}",
@@ -709,9 +724,10 @@
 			   		$("select[name='secondary'] option").not("[value='disitem']").remove();
 
 			   		for (var ctr = 0 ; ctr < secoffice.length ; ctr++) {
-			   			populatedropdown(secoffice[ctr]['ID'], 'secondary', secoffice[ctr]['officename']);
+			   			populatedropdown(secoffice[ctr]['id'], 'secondary', secoffice[ctr]['UnitOfficeSecondaryName']);
 			   			
 			   		};
+
 
 			   		
 			   	}//success : function() {
@@ -719,7 +735,57 @@
 
 		}//function getsecoffice() {
 
+		function getteroffice() {
+			var data = {
+				'soID' : document.getElementsByName('secondary')[0].value,
+				'_token' : '{{ Session::token() }}'
 
+			};
+
+			$.ajax({
+				type: "POST",
+				url: "{{url('dropdown/getteroffice')}}",
+				data: data,
+				dataType: 'json',
+			   	success : function(teroffice) {
+
+			   		$("select[name='tertiary'] option").not("[value='disitem']").remove();
+
+			   		for (var ctr = 0 ; ctr < teroffice.length ; ctr++) {
+			   			populatedropdown(teroffice[ctr]['id'], 'tertiary', teroffice[ctr]['UnitOfficeTertiaryName']);
+			   			
+			   		};
+
+			   		
+			   	}//success : function() {
+			});
+		}//function getteroffice() {
+
+		function getquaroffice() {
+			var data = {
+				'toID' : document.getElementsByName('tertiary')[0].value,
+				'_token' : '{{ Session::token() }}'
+
+			};
+
+			$.ajax({
+				type: "POST",
+				url: "{{url('dropdown/getquaroffice')}}",
+				data: data,
+				dataType: 'json',
+			   	success : function(quaroffice) {
+
+			   		$("select[name='quaternary'] option").not("[value='disitem']").remove();
+
+			   		for (var ctr = 0 ; ctr < quaroffice.length ; ctr++) {
+			   			populatedropdown(quaroffice[ctr]['id'], 'quaternary', quaroffice[ctr]['UnitOfficeQuaternaryName']);
+			   			
+			   		};
+
+			   		
+			   	}//success : function() {
+			});
+		}//function getteroffice() {
 
 
 
@@ -787,5 +853,7 @@
 
 
 
+
+@include('module.adviser_modal')
 
 @stop
