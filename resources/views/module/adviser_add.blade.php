@@ -541,7 +541,7 @@
 
 						}//if
 					}
-					alert(document.getElementsByName('position')[0].value);
+					
 					var data = {
 						'ID' : document.getElementsByName('advid')[0].value,
 						'lname' : document.getElementsByName('lname')[0].value,
