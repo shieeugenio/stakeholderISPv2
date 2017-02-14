@@ -396,7 +396,7 @@ class AdvDirectoryController extends Controller {
 
    	//TWG/PSMU
 
-   	public function addTP($data, $id){
+   	public function addTP($data){
     
     	$advisory = new Police_Advisory;
     	$advisory->fname = $data['fname'];
@@ -416,6 +416,7 @@ class AdvDirectoryController extends Controller {
 	 	$advisory->city = $data['city'];
 	 	$advisory->province = $data['province'];
 	 	$advisory->barangay = $data['barangay'];
+	 	$advisory->policetype = $data['advcateg'];
 
 	 	if($data['upphoto'] != "") {
 	 		$advisory->imagepath = $this->loadphoto($data['upphoto']);
@@ -458,6 +459,7 @@ class AdvDirectoryController extends Controller {
 	 	$advisory->city = $data['city'];
 	 	$advisory->province = $data['province'];
 	 	$advisory->barangay = $data['barangay'];
+
 
 	 	if($data['upphoto'] != "") {
 	 		$advisory->imagepath = $this->loadphoto($data['upphoto']);

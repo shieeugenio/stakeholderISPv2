@@ -541,12 +541,13 @@
 
 						}//if
 					}
-
+					alert(document.getElementsByName('position')[0].value);
 					var data = {
 						'ID' : document.getElementsByName('advid')[0].value,
 						'lname' : document.getElementsByName('lname')[0].value,
 						'fname' : document.getElementsByName('fname')[0].value,
 						'mname' : document.getElementsByName('mname')[0].value,
+						'qname' : document.getElementsByName('qname')[0].value,
 						'bdate' : document.getElementsByName('bdate')[0].value,
 						'gender' : $("input[name='gender']:checked").val(),
 						'street' : document.getElementsByName('street')[0].value,
@@ -568,6 +569,7 @@
 						'secondary' : document.getElementsByName('secondary')[0].value,
 						'tertiary' : document.getElementsByName('tertiary')[0].value,
 						'quaternary' : document.getElementsByName('quaternary')[0].value,
+						'upphoto' : photo,
 						'traintitle' : traintitle,
 						'traincateg' : traincateg,
 						'location' : location,
@@ -661,7 +663,7 @@
 			   		$("select[name='primary'] option").not("[value='disitem']").remove();
 
 			   		for (var ctr = 0 ; ctr < data[0].length ; ctr++) {
-			   			populatedropdown(data[0][ctr]['ID'], 'position', data[0][ctr]['PositionName']);
+			   			populatedropdown(data[0][ctr]['id'], 'position', data[0][ctr]['PositionName']);
 			   			
 			   		};
 
