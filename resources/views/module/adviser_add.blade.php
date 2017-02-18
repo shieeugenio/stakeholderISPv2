@@ -661,7 +661,7 @@
 			   		$("select[name='primary'] option").not("[value='disitem']").remove();
 
 			   		for (var ctr = 0 ; ctr < data[0].length ; ctr++) {
-			   			populatedropdown(data[0][ctr]['ID'], 'position', data[0][ctr]['PositionName']);
+			   			populatedropdown(data[0][ctr]['id'], 'position', data[0][ctr]['PositionName']);
 			   			
 			   		};
 
