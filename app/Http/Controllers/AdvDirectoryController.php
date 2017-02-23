@@ -178,6 +178,24 @@ class AdvDirectoryController extends Controller {
 	}//public function getList() {
 
 	public function getRecent() {
+		//SUMMARY PANE INSERT CODE HERE
+		$ac = Advisory_Council::count();
+		$pa = Police_Advisory::count();
+	    $twg = Police_Advisory::where('policetype', '=', 1)->count();
+	    $psmu = Police_Advisory::where('policetype', '=', 2)->count();
+	    $pac = 0;
+	    $ptwg = 0;
+	    $ppsmu = 0;
+	    $all = $ac + $pa;
+
+
+	    if ($all > 0) {
+	    	$pac = round(($ac/$all) * 100, 2);
+		    $ptwg = round(($twg/$all) * 100,2);
+		    $ppsmu = round(($psmu/$all) * 100,2);
+	    }
+	    
+
 		
 		$adv = DB::table('advisory_council')
 						->select('lname', 'fname', 'mname', 'imagepath', 'email', 'contactno', 'landline','created_at')
@@ -190,9 +208,17 @@ class AdvDirectoryController extends Controller {
 						->orderBy('created_at', 'desc')
 						->get();
 
-			return json_encode($directory);
+			
 		/*INSERT CODE FOR HOME LIST VIEW*/
-		return view('home.defaulthome');
+		return view('home.defaulthome')->with('pa', $pa)
+										->with('all', $all)
+									   ->with('ac', $ac)
+									   ->with('twg', $twg)
+									   ->with('psmu', $psmu)
+									   ->with('pac', $pac)
+									   ->with('ptwg', $ptwg)
+									   ->with('ppsmu', $ppsmu)
+									   ->with('directory', $directory);
 
 	}//public function getRecent() {
 
