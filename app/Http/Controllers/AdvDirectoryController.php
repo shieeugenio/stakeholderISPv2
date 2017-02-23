@@ -190,7 +190,7 @@ class AdvDirectoryController extends Controller {
 						->orderBy('created_at', 'desc')
 						->get();
 
-			return json_encode($directory);
+			//return json_encode($directory);
 		/*INSERT CODE FOR HOME LIST VIEW*/
 		return view('home.defaulthome');
 
