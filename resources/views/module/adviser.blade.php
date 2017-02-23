@@ -97,5 +97,6 @@
 
 	</script>
 
+@include('home.directory_modal')
 
 @stop

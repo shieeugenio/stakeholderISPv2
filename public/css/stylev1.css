@@ -160,6 +160,7 @@ hr {
 	float:left;
 	border-top-left-radius: inherit;
 	border-bottom-left-radius: inherit;
+	object-fit: cover;
 }
 
 .advdata {
@@ -622,6 +623,7 @@ form, .dcon {
 	width: 100%;
 	border-top-left-radius: inherit;
 	border-top-right-radius: inherit;
+	object-fit: cover;
 }
 
 .advdata1 {

@@ -24,6 +24,8 @@ Route::get('login', function () {
 
 	} else {
     	return view('home.loginpage');
+    	//return view('transaction.login');
+
 
 	}//if (Auth::check()) {
 
@@ -53,6 +55,10 @@ Route::get('home', 'AdvDirectoryController@getRecent')->middleware('auth'); //ad
 
 
 Route::get('maintenance', function () {
+	if(Auth::user()->admintype == 1) {
+		return redirect('home');
+	}//if
+
     return redirect('maintenance/accategory');
 })->middleware('auth');
 
@@ -68,6 +74,7 @@ Route::get('maintenance/secondaryoffice', 'PoliceOfficeTwoController@index')->mi
 Route::get('maintenance/tertiaryoffice', 'PoliceOfficeThreeController@index_PO3')->middleware('auth');
 Route::get('maintenance/quarternaryoffice', 'PoliceOfficeFourController@index')->middleware('auth');
 Route::get('maintenance/policeposition','PolicePositionController@index_policeposition')->middleware('auth');
+
 /**Route::get('maintenance/rank', function() {
 	 return View('maintenancetable.rank_table');
 })->middleware('auth');**/
@@ -92,18 +99,7 @@ Route::get('admin', 'RegistrationController@index')->middleware('auth');
 //--------------------------------------------------------------------------------------------
 //BACK-END
 
-//LOGIN @author: Ren Buluran
-Route::post('validatelogin', array('uses' => 'HomeController@login'));
-Route::get('logout', array('uses' => 'HomeController@logout'));
-
-//REGISTRATION @author: Ren Buluran
-Route::resource('register', 'RegistrationController@register');
-Route::post('checkusername', 'RegistrationController@checkusername');
-Route::post('getuser', 'RegistrationController@getuser');
-Route::post('approval', 'RegistrationController@setstatus');
-
-//CAPTCHA RELOADER @author: Ren Buluran
-Route::get('reloadImageCaptcha', 'RegistrationController@reloadCaptcha');
+//MAINTENANCE
 
 //AC CATEGORY @author: Shie Eugenio
 Route::post("accategory/add", 'ACCategoryController@confirm');
@@ -147,13 +143,33 @@ Route::post('maintenance/populate', 'PoliceOfficeFourController@populate');
 Route::post('maintenance/policepositioncrud','PolicePositionController@policepositioncrud');
 
 //--------------------------------------------------------------------------------------------
+
 //TRANSACTION
 
 //ADD ADVISER @author: Shie Eugenio
 Route::post('adviser/add', 'AdvDirectoryController@addadviser');
 Route::post('adviser/edit', 'AdvDirectoryController@editadviser');
 
+//--------------------------------------------------------------------------------------------
 
+//MISC
+
+//AUDIT TRAIL @autho: Ren Buluran
+Route::get('AuditTrail', 'AuditTrailController@index');
+Route::get('AuditTrailFilter', 'AuditTrailController@filter');
+
+//LOGIN @author: Ren Buluran
+Route::post('validatelogin', array('uses' => 'HomeController@login'));
+Route::get('logout', array('uses' => 'HomeController@logout'));
+
+//REGISTRATION @author: Ren Buluran
+Route::resource('register', 'RegistrationController@register');
+Route::post('checkusername', 'RegistrationController@checkusername');
+Route::post('getuser', 'RegistrationController@getuser');
+Route::post('approval', 'RegistrationController@setstatus');
+
+//CAPTCHA RELOADER @author: Ren Buluran
+Route::get('reloadImageCaptcha', 'RegistrationController@reloadCaptcha');
 
 
 
@@ -168,17 +184,6 @@ Route::post('adviser/edit', 'AdvDirectoryController@editadviser');
 
 
 ///-------------------------------------------------------------------------------------------------------------------------------
-//advisory council transac Joanne
-Route::get('advisorycouncil', 'AdvisoryCouncilController@index');
-Route::post('transac/acCRUD', 'AdvisoryCouncilController@acCRUD');
-Route::post('transac/getsub', 'AdvisoryCouncilController@getsub');
-
-//Police Advisory transac Joanne
-Route::get('policeadvisory', 'PoliceAdvisoryController@index');
-
-Route::post('/addpolice', 'PoliceAdvisoryController@add');
-Route::get('policeadv/{id}/edit', 'PoliceAdvisoryController@find');
-Route::post('policeadv/{id}/editpolice', 'PoliceAdvisoryController@edit');
 
 //profile [ren]
 Route::get('transaction/adviser','ProfileController@index');
@@ -189,21 +194,7 @@ Route::get('transaction/advedt','ProfileController@edit');
 //smart search [ren]
 Route::get('search', 'SearchController@index');
 
-/* admin type 1-Super Admin, 0-Regular Admin 
-	approval 0 - default value , 1 - approved, 2-disapproved
 
-*/
-
-// Audit Trail Controller[ren]
-Route::get('AuditTrail', 'AuditTrailController@index');
-Route::get('AuditTrailFilter', 'AuditTrailController@filter');
-
-
-Route::get('photoupload', function() {
-	return view('photoupload');
-});
-
-Route::post('testupload', 'TestUpController@loadphoto');
 
 /*
 Filters for the directory. returning json values
@@ -212,6 +203,7 @@ Filters for the directory. returning json values
 Route::get('FilterAC', 'FilterController@FilterAC');
 Route::get('FilterAll', 'FilterController@FilterAll');
 Route::get('FilterTWG', 'FilterController@FilterTWG');
+
 Route::get('FilterPSMU', 'FilterController@FilterPSMU');
 
 
