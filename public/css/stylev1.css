@@ -69,16 +69,41 @@ span {
 	float:right;
 }
 
-.mlink {
+.mlink, .mlink2 {
 	color: #565656;
 	font-weight: bold;
 }
 
+.ui.tabular.menu > .disabled.item {
+ opacity: 0.45 !important;  
+}
+
+.disabled {
+   cursor: not-allowed !important;
+}
+
+.ui.tabular.menu > .disabled.item:hover {
+	background-color: transparent;
+	color: #565656;
+	text-decoration: none;
+}
 
 .mlink:hover {
 	color: #00253a;
 	text-decoration: underline;
 	cursor: pointer;
+}
+
+.mlink2:hover i.inverted.circular.icon.user{
+	background-color: #00253a;
+	text-decoration: none !important;
+	cursor: pointer;
+
+}
+
+.mlink2.active.item i.inverted.circular.icon.user{
+	background-color: #00253a;
+	text-decoration: none !important;
 
 }
 

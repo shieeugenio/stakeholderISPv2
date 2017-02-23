@@ -7203,7 +7203,7 @@ i.bordered.inverted.icon {
 
 i.inverted.bordered.icon,
 i.inverted.circular.icon {
-  background-color: #1B1C1D !important;
+  background-color: #1B1C1D ;
   color: #FFFFFF !important;
 }
 

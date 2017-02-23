@@ -60,7 +60,7 @@
 									<div class="mlink item" id = "tab2"  data-tab="maintenance" onclick = "window.location='{{url('maintenance')}}'">
 								    
 								@else
-									<div class="mlink item" id = "tab2"  data-tab="maintenance" onclick = "window.location='{{url('maintenance')}}'">
+									<div class="mlink disabled item" id = "tab2"  data-tab="maintenance">
 									<!--DISABLED-->
 								@endif
 
@@ -72,14 +72,14 @@
 								</div>
 
 								@if(Auth::user()->admintype == 0)
-									<div class="mlink item" id = "tab4" data-tab = "admin" onclick = "window.location='{{url('admin')}}'">
+									<div class="mlink2 item" id = "tab4" data-tab = "admin" onclick = "window.location='{{url('admin')}}'">
 								   
 								@else
-									<div class="mlink item" id = "tab4" data-tab = "admin" onclick = "window.location='{{url('admin')}}'">
+									<div class="mlink2 disabled item" id = "tab4" data-tab = "admin">
 									<!--DISABLED-->
 								@endif
 
-									<i class = "icon inverted circular user"></i>
+									<i class = "inverted circular icon user"></i>
 								</div>
 							</div>
 								

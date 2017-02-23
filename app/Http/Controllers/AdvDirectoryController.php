@@ -208,8 +208,6 @@ class AdvDirectoryController extends Controller {
 						->orderBy('created_at', 'desc')
 						->get();
 
-			
-		/*INSERT CODE FOR HOME LIST VIEW*/
 		return view('home.defaulthome')->with('pa', $pa)
 										->with('all', $all)
 									   ->with('ac', $ac)
