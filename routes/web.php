@@ -203,4 +203,11 @@ Filters for the directory. returning json values
 Route::get('FilterAC', 'FilterController@FilterAC');
 Route::get('FilterAll', 'FilterController@FilterAll');
 Route::get('FilterTWG', 'FilterController@FilterTWG');
+
 Route::get('FilterPSMU', 'FilterController@FilterPSMU');
+
+
+// relaoding captcha
+
+//TESTING
+Route::get('testmy', 'AdvDirectoryController@getAdv');
