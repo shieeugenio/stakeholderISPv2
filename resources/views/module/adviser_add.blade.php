@@ -336,7 +336,7 @@
 
 	<script type="text/javascript">
 		$('#tab3').attr('class', 'mlink item active');
-		var lecturers = new Array();
+		var lecturers;
 		var link;
 
 		if('{{$action}}' === '0') {
@@ -361,6 +361,7 @@
 
 
 			} else {
+				lecturers = new Array();
 				removeElements();
 				addT2Elements();
 				getInitialTPDropdown();
@@ -372,7 +373,7 @@
 				
 
 				for (var ctr = rowcount ; ctr < 3 ; ctr++) {
-					rowcount = ctr;
+					//rowcount = ctr;
 					addrow();
 
 				};
@@ -419,6 +420,8 @@
 				}//if(flag == 0) {]
 				//alert(lecturers);
 			//}//pattern
+
+			console.log(lecturers);
 
 		}//add item to array
 
@@ -509,7 +512,7 @@
 					
 				} else if(slctdtype == 1 || slctdtype == 2) {
 					//TRAINING
-					for(var count = 0 ; count <= rowcount ; count++) {
+					for(var count = 0 ; count < rowcount ; count++) {
 						var initspk = new Array();
 
 						if(document.getElementsByName('traintitle')[count].value !== "") {
@@ -598,7 +601,7 @@
 				});
 
 				setTimeout(function(){
-					//window.location = "{{URL('adviser')}}";
+					window.location = "{{URL('directory')}}";
 				}, 2600);
 
 					
@@ -634,7 +637,7 @@
 			   		$("select[name='acsector'] option").not("[value='disitem']").remove();
 
 			   		for (var ctr = 0 ; ctr < data[0].length ; ctr++) {
-			   			populatedropdown(data[0][ctr]['ID'], 'acposition', data[0][ctr]['ID']['acpositionname']);
+			   			populatedropdown(data[0][ctr]['ID'], 'acposition', data[0][ctr]['acpositionname']);
 			   			
 			   		};
 
@@ -647,6 +650,7 @@
 			   			populatedropdown(data[2][ctr]['ID'], 'acsector', data[2][ctr]['sectorname']);
 			   			
 			   		};
+
 			   	}//success : function() {
 			});
 		}//function getInitialACDropdown() {
@@ -715,7 +719,6 @@
 
 			};
 
-			console.log(data);
 			$.ajax({
 				type: "POST",
 				url: "{{url('dropdown/getsecoffice')}}",

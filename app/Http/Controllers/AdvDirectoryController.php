@@ -143,14 +143,7 @@ class AdvDirectoryController extends Controller {
 	}//get record / modal view
 
 	public function getList() {
-		/**$directory = DB::table('advisers')
-						->select('ID', 'lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline')
-						->orderBy('ID', 'desc')
-						->get();
-
-		//return $directory;
-
-		return view('module.adviser')->with('directory', $directory);**/
+		/*INSERT CODE FOR DIRECTORY LIST VIEW*/
 
 		return view('module.adviser');
 	}//public function getList() {
@@ -161,49 +154,14 @@ class AdvDirectoryController extends Controller {
 
 		}//if (Auth::check()) {
 
-		/*$directory = DB::table('advisers')
-						->select('ID', 'lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline')
-						->orderBy('ID', 'desc')
-						->get();
-
-		return view('home.defaultphome')->with('directory', $directory);*/
+		/*INSERT CODE FOR PUBLIC HOME LIST VIEW*/
 
 
 		return view('home.defaultphome');
 	}//public function getList() {
 
 	public function getRecent() {
-		/*$recent = DB::table('advisers')
-						->select('ID', 'lname', 'fname', 'mname', 'imagepath', 'category', 'email', 'contactno', 'landline')
-						->orderBy('ID', 'desc')
-						->limit(50)
-						->get();
-
-		//SUMMARY PANE INSERT CODE HERE
-		$all = Advisory_Council::count();
-		$ac = Advisory_Council::where('category', '=', 0)->count();
-	    $twg = Advisory_Council::where('category', '=', 1)->count();
-	    $psmu = Advisory_Council::where('category', '=', 2)->count();
-	    $pac = 0;
-	    $ptwg = 0;
-	    $ppsmu = 0;
-
-	    if ($all > 0) {
-	    	$pac = round(($ac/$all) * 100, 2);
-		    $ptwg = round(($twg/$all) * 100,2);
-		    $ppsmu = round(($psmu/$all) * 100,2);
-	    }//if
-	    
-
-		return view('home.defaulthome')->with('recent', $recent)
-									   ->with('all', $all)
-									   ->with('ac', $ac)
-									   ->with('twg', $twg)
-									   ->with('psmu', $psmu)
-									   ->with('pac', $pac)
-									   ->with('ptwg', $ptwg)
-									   ->with('ppsmu', $ppsmu);*/
-
+		/*INSERT CODE FOR HOME LIST VIEW*/
 		return view('home.defaulthome');
 
 	}//public function getRecent() {

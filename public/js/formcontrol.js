@@ -724,6 +724,7 @@ function addrow() {
 	input7.setAttribute('placeholder','e.g. CPSM');
 	table.lastChild.lastChild.lastChild.lastChild.appendChild(input7);
 
+	rowcount = rowcount + 1;
 }//function addrow() {
 
 
