@@ -217,3 +217,5 @@ Route::get('FilterPSMU', 'FilterController@FilterPSMU');
 
 // relaoding captcha
 
+//TESTING
+Route::get('testmy', 'AdvDirectoryController@getAdv');

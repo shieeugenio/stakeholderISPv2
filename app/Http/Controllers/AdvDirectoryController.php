@@ -142,25 +142,55 @@ class AdvDirectoryController extends Controller {
 		
 	}//get record / modal view
 
+	public function getAdv(){
+		$adv = DB::table('advisory_council')
+						->select('lname', 'fname', 'mname', 'imagepath', 'email', 'contactno', 'landline');
+
+		$directory = DB::table('police_advisory')
+						->select('lname', 'fname', 'mname', 'imagepath', 'email', 'contactno', 'landline')
+						->union($adv)
+						->orderBy('lname', 'desc')
+						->get();
+		return $directory;
+	}
+
 	public function getList() {
+		$adv = $this->getAdv();
 		/*INSERT CODE FOR DIRECTORY LIST VIEW*/
 
-		return view('module.adviser');
+		return view('module.adviser')->with("directory", $adv);
 	}//public function getList() {
 
 	public function readyPHome() {
 		if (Auth::check()) {
+			
+
 	    	return redirect('home');
 
 		}//if (Auth::check()) {
 
+		$adv = $this->getAdv();
+
 		/*INSERT CODE FOR PUBLIC HOME LIST VIEW*/
 
 
-		return view('home.defaultphome');
+		return view('home.defaultphome')->with('directory', $adv);
 	}//public function getList() {
 
 	public function getRecent() {
+		
+		$adv = DB::table('advisory_council')
+						->select('lname', 'fname', 'mname', 'imagepath', 'email', 'contactno', 'landline','created_at')
+						->whereDate("created_at" , ">=", "DATE_ADD(NOW(),INTERVAL -15 DAY)");
+
+		$directory = DB::table('police_advisory')
+						->select('lname', 'fname', 'mname', 'imagepath', 'email', 'contactno', 'landline', 'created_at')
+						->whereDate("created_at" , ">=", "DATE_ADD(NOW(),INTERVAL -15 DAY)")
+						->union($adv)
+						->orderBy('created_at', 'desc')
+						->get();
+
+			return json_encode($directory);
 		/*INSERT CODE FOR HOME LIST VIEW*/
 		return view('home.defaulthome');
 
