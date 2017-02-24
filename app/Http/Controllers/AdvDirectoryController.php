@@ -220,6 +220,7 @@ class AdvDirectoryController extends Controller {
 
 	}//public function getRecent() {
 
+
 	public function getACID() {
 		$getid = Advisory_Council::orderBy('ID', 'desc')->take(1)->get();
 
@@ -574,5 +575,49 @@ class AdvDirectoryController extends Controller {
 		
 		//return asset(Storage::disk('public')->url($filename));
 	}//loadphoto
+	
+
+	public function getModal(Request $req){
+		
+		
+		if ($req->type == 0) {
+
+				$ac = Advisory_Council::join("ac_subcategory", "ac_subcategory.ID", "=", "advisory_council.subcategoryId")
+										->join("ac_category", "ac_category.ID", "=", "ac_subcategory.categoryId")
+										->where("advisory_council.ID" , "=", $req->id)
+										->get();
+				$sector = Advisory_Council::join("personnel_sector", "personnel_sector.advisory_council_id", "=", "advisory_council.ID")
+										->join("ac_sector", "ac_sector.ID", "=", "personnel_sector.ac_sector_id")
+										->select("sectorname","desc")
+										->where("advisory_council.ID" , "=", $req->id)
+										->get();
+				return json_encode(array("ac"=>$ac,"sector"=>$sector));
+
+		}else{
+
+			$pa = Police_Advisory::join("ranks", "ranks.id", "=", "police_advisory.rank_id")
+									->join("police_position", "police_position.ID", "=", "police_advisory.police_position_id")
+									->join("unit_offices", "unit_offices.id", "=", "police_advisory.unit_id")
+									->join("unit_office_secondaries", "unit_office_secondaries.id", "=", "police_advisory.second_id")
+									->join("unit_office_tertiaries", "unit_office_tertiaries.id", "=", "police_advisory.tertiary_id")
+									->join("unit_office_quaternaries", "unit_office_quaternaries.id", "=", "police_advisory.quaternary_id")
+									->where("police_advisory.ID", "=", $req->id)
+									->get();
+
+			$trainings= Training::join("lecturer", "lecturer.training_id", "=", "training.ID")
+									->where("training.police_id", "=", $req->id)
+									->get();
+
+			return json_encode(array("pa"=>$pa,"training"=>$trainings));
+
+			
+		}
+
+
+	}
+
+	
 
 }//class
+
+
