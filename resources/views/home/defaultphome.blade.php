@@ -25,17 +25,7 @@
 										<p class = "p1">
 											{{$acrec->acpositionname}} <br>
 											{{$acrec->officename}} <br>
-											{{$acrec->email}} <br>
-
-											@if($acrec->contactno != "" && $acrec->landline != "")
-												{{$acrec->contactno/ $acrec->landline}}
-											@else
-												@if($acrec->contactno != "")
-													{{$acrec->contactno}}
-												@elseif($acrec->landline != "")
-													{{$acrec->landline}}
-												@endif
-											@endif
+											
 											
 											
 										</p>
@@ -90,20 +80,6 @@
 
 											@endif
 
-											<br>
-
-											{{$tprec->email}} <br>
-
-											@if($tprec->contactno != "" && $tprec->landline != "")
-												{{$tprec->contactno/ $tprec->landline}}
-											@else
-												@if($tprec->contactno != "")
-													{{$tprec->contactno}}
-												@elseif($tprec->landline != "")
-													{{$tprec->landline}}
-												@endif
-											@endif
-											
 											
 										</p>
 
