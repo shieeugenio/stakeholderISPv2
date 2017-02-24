@@ -143,15 +143,27 @@ class AdvDirectoryController extends Controller {
 	}//get record / modal view
 
 	public function getAdv(){
-		$adv = DB::table('advisory_council')
-						->select('lname', 'fname', 'mname', 'imagepath', 'email', 'contactno', 'landline');
+		$civilian = DB::table('advisory_council')
+					->join('advisory_position', 'advisory_position.ID', '=', 'advisory_council.advisory_position_id')
+					->select('advisory_council.ID','lname', 'fname', 'mname', 'imagepath', 'email', 
+						     'contactno', 'landline','startdate', 'acpositionname', 'officename')
+					->orderBy('advisory_council.created_at', 'desc')
+					->get();
+	
+		$police = DB::table('police_advisory')
+					->join('police_position', 'police_position.id', '=', 'police_advisory.police_position_id')
+					->join('unit_offices', 'unit_offices.id', '=', 'police_advisory.unit_id')
+					->join('unit_office_secondaries', 'unit_office_secondaries.id', '=', 'police_advisory.second_id')
+					->join('unit_office_tertiaries', 'unit_office_tertiaries.id', '=', 'police_advisory.tertiary_id')
+					->join('unit_office_quaternaries', 'unit_office_quaternaries.id', '=', 'police_advisory.quaternary_id')
+					->select('police_advisory.ID', 'lname', 'fname', 'mname', 'imagepath', 'email', 
+						     'contactno', 'landline', 'startdate', 'policetype',
+						     'UnitOfficeName', 'UnitOfficeSecondaryName', 'UnitOfficeTertiaryName',
+						     'UnitOfficeQuaternaryName', 'PositionName')
+					->orderBy('police_advisory.created_at', 'desc')
+					->get();
 
-		$directory = DB::table('police_advisory')
-						->select('lname', 'fname', 'mname', 'imagepath', 'email', 'contactno', 'landline')
-						->union($adv)
-						->orderBy('lname', 'desc')
-						->get();
-		return $directory;
+		return array($civilian, $police);
 	}
 
 	public function getList() {
@@ -180,43 +192,53 @@ class AdvDirectoryController extends Controller {
 	public function getRecent() {
 		//SUMMARY PANE INSERT CODE HERE
 		$ac = Advisory_Council::count();
-		$pa = Police_Advisory::count();
 	    $twg = Police_Advisory::where('policetype', '=', 1)->count();
 	    $psmu = Police_Advisory::where('policetype', '=', 2)->count();
 	    $pac = 0;
 	    $ptwg = 0;
 	    $ppsmu = 0;
-	    $all = $ac + $pa;
+	    $all = $ac + $twg + $psmu;
 
 
 	    if ($all > 0) {
 	    	$pac = round(($ac/$all) * 100, 2);
 		    $ptwg = round(($twg/$all) * 100,2);
 		    $ppsmu = round(($psmu/$all) * 100,2);
-	    }
+	    }//if
 	    
 
-		
-		$adv = DB::table('advisory_council')
-						->select('lname', 'fname', 'mname', 'imagepath', 'email', 'contactno', 'landline','created_at')
-						->whereDate("created_at" , ">=", "DATE_ADD(NOW(),INTERVAL -15 DAY)");
+		$civilian = DB::table('advisory_council')
+					->join('advisory_position', 'advisory_position.ID', '=', 'advisory_council.advisory_position_id')
+					->select('advisory_council.ID','lname', 'fname', 'mname', 'imagepath', 'email', 
+						     'contactno', 'landline','startdate', 'acpositionname', 'officename')
+					->whereDate("advisory_council.created_at" , ">=", "DATE_ADD(NOW(),INTERVAL -15 DAY)")
+					->orderBy('advisory_council.created_at', 'desc')
+					->get();
+	
+		$police = DB::table('police_advisory')
+					->join('police_position', 'police_position.id', '=', 'police_advisory.police_position_id')
+					->join('unit_offices', 'unit_offices.id', '=', 'police_advisory.unit_id')
+					->join('unit_office_secondaries', 'unit_office_secondaries.id', '=', 'police_advisory.second_id')
+					->join('unit_office_tertiaries', 'unit_office_tertiaries.id', '=', 'police_advisory.tertiary_id')
+					->join('unit_office_quaternaries', 'unit_office_quaternaries.id', '=', 'police_advisory.quaternary_id')
+					->select('police_advisory.ID', 'lname', 'fname', 'mname', 'imagepath', 'email', 
+						     'contactno', 'landline', 'startdate', 'policetype',
+						     'UnitOfficeName', 'UnitOfficeSecondaryName', 'UnitOfficeTertiaryName',
+						     'UnitOfficeQuaternaryName', 'PositionName')
+					->whereDate("police_advisory.created_at" , ">=", "DATE_ADD(NOW(),INTERVAL -15 DAY)")
+					->orderBy('police_advisory.created_at', 'desc')
+					->get();
 
-		$directory = DB::table('police_advisory')
-						->select('lname', 'fname', 'mname', 'imagepath', 'email', 'contactno', 'landline', 'created_at')
-						->whereDate("created_at" , ">=", "DATE_ADD(NOW(),INTERVAL -15 DAY)")
-						->union($adv)
-						->orderBy('created_at', 'desc')
-						->get();
 
-		return view('home.defaulthome')->with('pa', $pa)
-										->with('all', $all)
+		return view('home.defaulthome')->with('all', $all)
 									   ->with('ac', $ac)
 									   ->with('twg', $twg)
 									   ->with('psmu', $psmu)
 									   ->with('pac', $pac)
 									   ->with('ptwg', $ptwg)
 									   ->with('ppsmu', $ppsmu)
-									   ->with('directory', $directory);
+									   ->with('acmember', $civilian)
+									   ->with('tpmember', $police);
 
 	}//public function getRecent() {
 
