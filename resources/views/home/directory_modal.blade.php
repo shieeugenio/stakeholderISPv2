@@ -3,10 +3,10 @@
 	        <div class = "header mtitle">
 
 	        	<h3 class = "h3name" name = "name"></h3>
-	            <div class = "ui icon editbtn button tiny" name="edit" title = "edit">
+	            <button class = "ui icon editbtn button tiny" name="edit" title = "edit">
 					<i class="edit icon topmargin"></i>
 							
-				</div>
+				</button>
 	        </div>
 
 	        <div class = "modelcontent">
@@ -17,7 +17,7 @@
 					<div class="item" id = "tab2"  data-tab="work">
 					    Advisory Council
 					</div>
-					<div class="item" id = "tab3" style="display:none" data-tab = "train">
+					<div class="item hidden" id = "tab3" name="traintab3" data-tab = "train">
 					    Training
 					</div>
 				</div>
@@ -62,7 +62,7 @@
 											</div>
 
 											<div class = "twelve wide column bspacing9">
-												<p name = "address"></p>
+												<p name = "homeaddress"></p>
 														
 											</div>
 															
@@ -156,7 +156,7 @@
 		        			</div>
 		        			<div class  = "three wide column">
 		        				<div class = "ui small image">
-									<img src="{{URL::asset('objects/Logo/InitProfile.png')}}">
+									<img name="photo" class = "objfit" src="">
 								</div>
 		        				
 		        			</div>
@@ -216,44 +216,46 @@
 								<div class ="eleven wide column fieldpane">
 
 									<div class = "twelve wide column bspacing11">
-										<p></p>
+										<p name="acadvcateg"></p>
 														
 									</div>
 
 									<div class = "twelve wide column bspacing11">
-										<p>Date1 to date2</p>
+										<p name="acduration"></p>
 														
 									</div>
 
 									<div class = "twelve wide column bspacing11">
-										<p>AC Position</p>
+										<p name="acposition"></p>
 														
 									</div>
 
 									<div class = "twelve wide column bspacing11">
-										<p>OfName</p>
+										<p name="acofficename"></p>
 															
 									</div>
 
 									<div class = "twelve wide column bspacing11">
-										<p>OfAdd</p>
-															
-									</div>
-
-
-									<div class = "twelve wide column bspacing11">
-										<p>AC Categ</p>
+										<p name="acofficeaddress"></p>
 															
 									</div>
 
 
 									<div class = "twelve wide column bspacing11">
-										<p>AC Sub-categ</p>
+										<p name="accateg"></p>
+															
+									</div>
+
+
+									<div class = "twelve wide column bspacing11">
+										<p name="acsubcateg"></p>
 															
 									</div>
 
 									<div class = "twelve wide column bspacing11">
-										<p>AC Sector</p>
+										<ul name = 'acsector'>
+
+										</ul>
 															
 									</div>
 
@@ -264,7 +266,7 @@
 				        	</div>
 			        	</div>
 
-			        	<div name = "tpview" style = "display:block" >
+			        	<div name = "tpview" style = "display:none" >
 			        		<div class = "ui grid row">
 				        		<div class ="three wide column fbc labelpane">
 
@@ -289,6 +291,11 @@
 									</div>
 
 									<div class = "twelve wide column bspacing">
+										<label class = "formlabel">Rank</label>
+													
+									</div>
+
+									<div class = "twelve wide column bspacing">
 										<label class = "formlabel">Unit/Office</label>
 													
 									</div>
@@ -298,27 +305,32 @@
 								<div class ="eleven wide column fieldpane">
 
 									<div class = "twelve wide column bspacing11">
-										<p>Adviser Categ</p>
+										<p name="tpadvcateg"></p>
 														
 									</div>
 
 									<div class = "twelve wide column bspacing11">
-										<p>Date1 to date2</p>
+										<p name="tpduration"></p>
 														
 									</div>
 
 									<div class = "twelve wide column bspacing11">
-										<a class = "dlink">Insert Letter Order link for downloading purposes</a>
+										<p name="tpauthorder"></p>
+
+									</div>
+
+									<div class = "twelve wide column bspacing11">
+										<p name="tpposition"></p>
 														
 									</div>
 
 									<div class = "twelve wide column bspacing11">
-										<p>Position</p>
+										<p name="tprank"></p>
 														
 									</div>
 
 									<div class = "twelve wide column bspacing11">
-										<p>Unit/Of</p>
+										<p name="tpoffice"></p>
 															
 									</div>
 																
@@ -331,7 +343,10 @@
 		        			
 
 					</div>
-					<div class="ui tab" id = "trainingview" style="display:none" data-tab="train">
+
+
+					<div class="ui tab" data-tab="train">
+						<div id = "trainingview" style="display:none" >
 						<table class = "viewtable ui celled padding table">
 							<thead>
 								<tr>
@@ -345,26 +360,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								<td><center>Data</center></td>
-								<td><center>Data</center></td>
-								<td><center>Data</center></td>
-								<td><center>Data</center></td>
-								<td><center>Data</center></td>
-								<td><center>
-									<ul class = "unorderedlist">
-										<li>Speaker 1</li>
-										<li>Speaker 2</li>
-										<li>Speaker 3</li>
-										<li>Speaker 4</li>
-
-									</ul>
-
-								</center></td>
-								<td><center>Data</center></td>
 
 							</tbody>
 							
-						</table>
+						</table></div>
 
 					</div>
 		        	
@@ -375,3 +374,163 @@
 	    </div>
 		
 	</div>
+
+	<script type="text/javascript" src="{{ URL::asset('js/formcontrol.js') }}"></script>
+	<script type="text/javascript">
+
+		function showacview() {
+			document.getElementsByName('acview')[0].style.display = "block";
+			document.getElementsByName('tpview')[0].style.display = "none";
+			document.getElementsByName('traintab3')[0].setAttribute('class', 'item hidden');
+			document.getElementById('trainingview').style.display = "none";
+		}//function showacview() {
+
+		function showtpview() {
+			document.getElementsByName('acview')[0].style.display = "none";
+			document.getElementsByName('tpview')[0].style.display = "block";
+			document.getElementsByName('traintab3')[0].setAttribute('class', 'item shown');
+			document.getElementById('trainingview').style.display = "block";
+		}//function showacview() {
+
+		function fillprofile(recorddata) {
+			document.getElementsByName('photo')[0].src = recorddata[2][0];
+
+			document.getElementsByName('name')[0].innerHTML = recorddata[0][0]['fname'] + " " + 
+															recorddata[0][0]['mname'] + " " + 
+															recorddata[0][0]['lname'] + " " +
+															recorddata[0][0]['qualifier'];
+			document.getElementsByName('bdate')[0].innerHTML = recorddata[2][1];
+
+			if(recorddata[0][0]["street"] !== "") {
+				document.getElementsByName('homeaddress')[0].innerHTML = recorddata[0][0]['street'] + " " +
+																	  recorddata[0][0]['barangay'] + " " +
+																	  recorddata[0][0]['city'] + " " +
+																	  recorddata[0][0]['province'];
+			} else {
+				document.getElementsByName('homeaddress')[0].innerHTML = "N/A";
+			
+			}//if
+
+			var gender;
+
+			if(recorddata[0][0]['gender'] == 0) {
+				gender = "Male";
+
+			} else {
+				gender = "Female";
+
+		   	}//if
+
+		   	document.getElementsByName('gender')[0].innerHTML = gender;
+
+		   	if(recorddata[0][0]['contactno'] !== "") {
+		   		document.getElementsByName('contactno')[0].innerHTML = recorddata[0][0]['contactno'];
+
+		   	} else {
+		   		document.getElementsByName('contactno')[0].innerHTML = "N/A";	
+
+		   	}//if
+
+		   	if(recorddata[0][0]['landline'] !== "") {
+		   		document.getElementsByName('landline')[0].innerHTML = recorddata[0][0]['landline'];
+
+		   	} else {
+		   		document.getElementsByName('landline')[0].innerHTML = "N/A";	
+
+		   	}//if
+
+		   	document.getElementsByName('email')[0].innerHTML = recorddata[0][0]['email'];
+
+		   	if(recorddata[0][0]['fbuser'] !== "") {
+		   		document.getElementsByName('fb')[0].innerHTML = recorddata[0][0]['fbuser'];
+
+		   	} else {
+		   		document.getElementsByName('fb')[0].innerHTML = "N/A";	
+
+		   	}//if
+
+		   	if(recorddata[0][0]['twitteruser'] !== "") {
+		   		document.getElementsByName('twitter')[0].innerHTML = recorddata[0][0]['twitteruser'];
+
+		   	} else {
+		   		document.getElementsByName('twitter')[0].innerHTML = "N/A";	
+
+		   	}//if
+
+		   	if(recorddata[0][0]['iguser'] !== "") {
+		   		document.getElementsByName('ig')[0].innerHTML = recorddata[0][0]['iguser'];
+
+		   	} else {
+		   		document.getElementsByName('ig')[0].innerHTML = "N/A";	
+
+		   	}//if
+		}//fillprofile
+
+		function fillacdata(recorddata) {
+			document.getElementsByName('acadvcateg')[0].innerHTML = "Advisory Council";
+			document.getElementsByName('acduration')[0].innerHTML = recorddata[2][2] + " - " + recorddata[2][3];
+			document.getElementsByName('acposition')[0].innerHTML = recorddata[0][0]['acpositionname'];
+			document.getElementsByName('acofficename')[0].innerHTML = recorddata[0][0]['officename'];
+
+			if(recorddata[0]['officeaddress'] !== "") {
+				document.getElementsByName('acofficeaddress')[0].innerHTML = recorddata[0][0]['officeaddress'];
+			} else {
+				document.getElementsByName('acofficeaddress')[0].innerHTML = "N/A";
+			}//if
+
+			document.getElementsByName('accateg')[0].innerHTML = recorddata[0][0]['categoryname'];
+
+			document.getElementsByName('acsubcateg')[0].innerHTML = recorddata[0][0]['subcategoryname'];
+
+			fillsect(recorddata[1]);
+
+		}//fillacdata
+
+		function filltpdata(recorddata) {
+
+		}//filltpdata
+
+		function loadModal(tid) {
+
+			var tiditems = tid.split("-");
+
+			if(tiditems.length == 2) {
+				var data = {
+					'id' : parseInt(tiditems[1]),
+					'type': parseInt(tiditems[0]),
+					'_token' : '{{ Session::token() }}'
+				};
+
+				$.ajax({
+					type: "POST",
+					url: "{{url('getdata')}}",
+					data: data,
+					dataType: "JSON",
+				   	success : function(recorddata) {
+
+				   		document.getElementsByName('edit')[0].setAttribute("onclick","window.location='{!!url('geteditdata?i="+parseInt(tiditems[1])+"&t="+parseInt(tiditems[0])+"')!!}'");
+
+				   		fillprofile(recorddata);
+
+				   		if(parseInt(tiditems[0]) == 0) {
+				   			showacview();
+				   			fillacdata(recorddata);
+
+				   		}else if(parseInt(tiditems[0]) == 1 || parseInt(tiditems[0]) == 2){
+				   			showtpview();
+				   			filltpdata(recorddata);
+
+				   		}//if
+
+				   		$("#viewadv").modal("show");
+
+				   		console.log(recorddata);
+				   	}//success : function() {
+				});
+
+				
+			}//if
+
+		}//function loadModal() {
+
+	</script>

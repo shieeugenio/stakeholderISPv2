@@ -598,24 +598,34 @@ class AdvDirectoryController extends Controller {
 		//return asset(Storage::disk('public')->url($filename));
 	}//loadphoto
 	
+	public function readyModal(Request $req) {
+		$type = $req->type;
+		$id = $req->id;
 
-	public function getModal(Request $req){
-		
-		
-		if ($req->type == 0) {
+		return $this->getData($id, $type);
+
+	}//readyModal
+
+	public function getData($id, $type){
+
+		if($type == 0) {
 
 				$ac = Advisory_Council::join("ac_subcategory", "ac_subcategory.ID", "=", "advisory_council.subcategoryId")
 										->join("ac_category", "ac_category.ID", "=", "ac_subcategory.categoryId")
-										->where("advisory_council.ID" , "=", $req->id)
+										->join("advisory_position", "advisory_position.ID", "=", "advisory_council.advisory_position_id")
+										->where("advisory_council.ID" , "=", $id)
 										->get();
 				$sector = Advisory_Council::join("personnel_sector", "personnel_sector.advisory_council_id", "=", "advisory_council.ID")
 										->join("ac_sector", "ac_sector.ID", "=", "personnel_sector.ac_sector_id")
-										->select("sectorname","desc")
-										->where("advisory_council.ID" , "=", $req->id)
+										->select("sectorname")
+										->where("advisory_council.ID" , "=", $id)
 										->get();
-				return json_encode(array("ac"=>$ac,"sector"=>$sector));
 
-		}else{
+				
+
+				return array($ac, $sector, $this->formatOutput($ac));
+
+		}else if($type == 1 || $type == 2) {
 
 			$pa = Police_Advisory::join("ranks", "ranks.id", "=", "police_advisory.rank_id")
 									->join("police_position", "police_position.ID", "=", "police_advisory.police_position_id")
@@ -623,20 +633,45 @@ class AdvDirectoryController extends Controller {
 									->join("unit_office_secondaries", "unit_office_secondaries.id", "=", "police_advisory.second_id")
 									->join("unit_office_tertiaries", "unit_office_tertiaries.id", "=", "police_advisory.tertiary_id")
 									->join("unit_office_quaternaries", "unit_office_quaternaries.id", "=", "police_advisory.quaternary_id")
-									->where("police_advisory.ID", "=", $req->id)
+									->where("police_advisory.ID", "=", $id)
 									->get();
 
 			$trainings= Training::join("lecturer", "lecturer.training_id", "=", "training.ID")
-									->where("training.police_id", "=", $req->id)
+									->where("training.police_id", "=", $id)
 									->get();
 
-			return json_encode(array("pa"=>$pa,"training"=>$trainings));
+			return array($pa, $trainings, $this->formatOutput($pa));
 
 			
-		}
+		}//if
 
 
-	}
+	 }//public function getModal(Request $req){
+
+	 public function formatOutput($data) {
+	 	foreach ($data as $key => $val) {
+
+	 		if($val->imagepath != "") {
+	 			$img = asset($val->imagepath);
+
+	 		} else {
+	 			$img = asset('objects/Logo/InitProfile.png');
+
+	 		}//if
+			
+			$bdate = date('d M Y', strtotime($val->birthdate));
+			$startdate = date('d M Y', strtotime($val->startdate));
+
+			if($val->enddate != ""){
+				$enddate = date('d M Y', strtotime($val->enddate));
+			} else {
+				$enddate = "Present";
+			}//if
+
+			return array($img, $bdate, $startdate, $enddate);
+		}//foreach
+
+	 }//format output
 
 	
 

@@ -81,6 +81,7 @@ Route::get('maintenance/policeposition','PolicePositionController@index_policepo
 
 //TRANSACTION @author: Shie Eugenio
 Route::get('directory/add', 'AdvDirectoryController@readyadd')->middleware('auth');
+Route::get('directory/edit', 'AdvDirectoryController@readyedit')->middleware('auth');
 Route::resource('modalView', 'AdvDirectoryController@getRecordData');
 
 //DROPDOWN @author: Shie Eugenio
@@ -171,11 +172,9 @@ Route::post('approval', 'RegistrationController@setstatus');
 //CAPTCHA RELOADER @author: Ren Buluran
 Route::get('reloadImageCaptcha', 'RegistrationController@reloadCaptcha');
 
-
-
-
-
-
+//RETRIEVE DATA
+Route::post('getdata', 'AdvDirectoryController@readyModal');
+Route::get('geteditdata', 'AdvDirectoryController@readyEditForm');
 
 
 

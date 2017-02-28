@@ -8,6 +8,20 @@ function removeElements() {
 
 }//function removeElements() {
 
+function fillsect(sectlist) {
+	var ul = document.getElementsByName('acsector')[0];
+
+	$("ul[name='acsector']").empty();
+
+	for (var ctr=0 ; ctr < sectlist.length ; ctr++) {
+		var li = document.createElement('li');
+		ul.appendChild(li);
+		ul.lastChild.appendChild(document.createTextNode(sectlist[ctr]['sectorname']));
+	};
+
+
+
+}//function fillsect() {
 
 function addT1Elements() { //AC ELEMENTS
 	var tempcon = document.getElementById('tempfields');
