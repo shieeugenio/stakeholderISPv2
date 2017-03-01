@@ -10328,7 +10328,7 @@ img.ui.image {
 .ui.image img {
   display: block;
   max-width: 100%;
-  height: 100%;
+  
 }
 
 /*******************************
@@ -29690,6 +29690,7 @@ select.ui.dropdown {
 @media only screen and (min-width: 1200px) {
   .ui.modal {
     width: 900px;
+    height: 535px;
     margin: 0em 0em 0em -450px;
   }
 }

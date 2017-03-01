@@ -345,7 +345,31 @@
 			link = "{{url('adviser/add')}}";
 
 		} else if('{{$action}}' === '1') {
+
+			document.getElementById('enddate').style.display = "block";
 			link = "{{url('adviser/edit')}}";
+
+			@if(isset($type))
+
+				fillProfile()
+				if('{{$type}}' === '0') {
+					addT1Elements();
+					getInitialACDropdown();
+					fillAC();
+
+				} else {
+					addT2Elements();
+					getInitialTPDropdown();
+					controlelements("block");
+					fillTP();
+
+				}//if
+
+			@endif
+
+
+
+
 
 		}//if('{{$action}}' == '0') {
 
@@ -355,9 +379,13 @@
 				addT1Elements();
 				getInitialACDropdown();
 
-				$("#traintable tbody").empty();
+				controlelements("none");
 
-				document.getElementById('trainingcon').style.display = "none";
+				@if($action == 1 && isset($type))
+
+					fillAC();
+
+				@endif
 
 
 			} else {
@@ -368,8 +396,7 @@
 
 
 				rowcount = 0;
-				document.getElementById('trainingcon').style.display = "block";
-				$("#traintable tbody").empty();
+				controlelements("block");
 				
 
 				for (var ctr = rowcount ; ctr < 3 ; ctr++) {
@@ -381,6 +408,71 @@
 			}//if(selcat == 0) {
 
 		}//function changeform() {
+
+		function controlelements(displayvalue) {
+			$("#traintable tbody").empty();
+			document.getElementById('trainingcon').style.display = displayvalue;
+				
+		}//function controlelements() {
+
+		@if(isset($type) && isset($recorddata))
+
+			function fillProfile() {
+				
+				$("input[name='advcateg'][value='{{$type}}']").prop('checked', true);
+				document.getElementsByName('advid')[0].value = "{{$type}}-{{$id}}";
+				document.getElementsByName('lname')[0].value = "{{$recorddata[0][0]->lname}}";
+				document.getElementsByName('fname')[0].value = "{{$recorddata[0][0]->fname}}";
+				document.getElementsByName('mname')[0].value = "{{$recorddata[0][0]->mname}}";
+				document.getElementsByName('qname')[0].value = "{{$recorddata[0][0]->qualifier}}";
+				document.getElementsByName('bdate')[0].value = "{{date('Y-m-d', strtotime($recorddata[0][0]->birthdate))}}";
+				$("input[name='gender'][value='{{$recorddata[0][0]->gender}}']").prop('checked', true);
+				document.getElementsByName('mobile')[0].value = "{{$recorddata[0][0]->contactno}}";
+				document.getElementsByName('landline')[0].value = "{{$recorddata[0][0]->landline}}";
+				document.getElementsByName('email')[0].value = "{{$recorddata[0][0]->email}}";
+				document.getElementsByName('facebook')[0].value = "{{$recorddata[0][0]->fbuser}}";
+				document.getElementsByName('twitter')[0].value = "{{$recorddata[0][0]->twitteruser}}";
+				document.getElementsByName('instagram')[0].value = "{{$recorddata[0][0]->iguser}}";
+				document.getElementsByName('durationsdate')[0].value = "{{date('Y-m-d', strtotime($recorddata[0][0]->startdate))}}";
+
+				if("{{$recorddata[0][0]->enddate}}" !== "") {
+					document.getElementsByName('durationedate')[0].value = "{{date('Y-m-d', strtotime($recorddata[0][0]->enddate))}}";
+				}//if
+
+
+
+			}//function fillProfile() {
+
+			function fillAC() {
+				//NOT WORKING
+				$("select[name='acposition'] option[value='{{$recorddata[0][0]->advisory_position_id}}']").prop('selected', true);
+				$("#accateg").dropdown("set exactly", "{{$recorddata[0][0]->categoryId}}"); 
+				getsubcateg();
+
+				$("#acsubcateg").dropdown("set exactly", "{{$recorddata[0][0]->subcategoryId}}"); 
+
+				@foreach($recorddata[1] as $sect)
+					$("#acsector").val(["{{$sect->ac_sector_id}}"]);
+				@endforeach
+
+				//---------
+
+				document.getElementsByName('officename')[0].value = "{{$recorddata[0][0]->officename}}";
+				document.getElementsByName('officeadd')[0].value = "{{$recorddata[0][0]->officeaddress}}";
+				
+
+				
+
+			}//function fillAC() {
+
+			function fillTP() {
+				document.getElementsByName('authorder')[0].value = '{{$recorddata[0][0]->authorityorder}}';
+				$("select[name='position']").dropdown('set selected', '{{$recorddata[0][0]->authorityorder}}')
+
+				
+			}//function fillTP() {
+
+		@endif
 
 		function showfield() {
 

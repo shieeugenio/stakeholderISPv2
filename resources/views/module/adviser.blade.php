@@ -16,7 +16,7 @@
 						<div class="ui icon addbtn dropdown button  tiny topmargin" title = "filter list">
 							<i class="filter icon"></i>
 							<div class="menu">
-							    <div class="item">
+							    <div class="item" onclick ="window.location='{{url('directory/filter?f=0')}}'">
 							    	Name
 							    </div>
 							    <div class = "divider"></div>
@@ -24,10 +24,10 @@
 						      		Date Created
 						    	</div>
 						    	<div class = "divider"></div>
-						    	<div class="item">
+						    	<div class="item"  onclick ="window.location='{{url('directory/filter?f=1')}}'">
 							     	Ascending
 							    </div>
-							    <div class="item">
+							    <div class="item"  onclick ="window.location='{{url('directory/filter?f=2')}}'">
 							    	Descending
 							    </div>
 
@@ -48,10 +48,9 @@
 		</div>
 
 		<div class = "advcardcon">
-			<hr>
+			<hr class="hr4">
 
 			<div class = "itemlist">
-					<br>
 					<h6 class="ui horizontal divider divtitle">
 						Advisory Council
 					</h6>

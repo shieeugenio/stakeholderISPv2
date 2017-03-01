@@ -3,13 +3,13 @@
 	        <div class = "header mtitle">
 
 	        	<h3 class = "h3name" name = "name"></h3>
-	            <button class = "ui icon editbtn button tiny" name="edit" title = "edit">
+	            <button class = "ui icon editbtn button tiny" name="editbtn" title = "edit">
 					<i class="edit icon topmargin"></i>
 							
 				</button>
 	        </div>
 
-	        <div class = "modelcontent">
+	        <div class = "modalcontent">
 		        <div class="ui top attached tabular menu rightrow">
 					<div class="item active" id = "tab1" data-tab="basicinfo">
 						Profile
@@ -253,7 +253,7 @@
 									</div>
 
 									<div class = "twelve wide column bspacing11">
-										<ul name = 'acsector'>
+										<ul name = 'acsector' class="orderedlist">
 
 										</ul>
 															
@@ -281,7 +281,7 @@
 									</div>
 
 									<div class = "twelve wide column bspacing">
-										<label class = "formlabel">Authority</label>
+										<label class = "formlabel">Authority Order</label>
 													
 									</div>
 
@@ -347,7 +347,7 @@
 
 					<div class="ui tab" data-tab="train">
 						<div id = "trainingview" style="display:none" >
-						<table class = "viewtable ui celled padding table">
+						<table id="trainviewtable" class = "viewtable ui celled padding table">
 							<thead>
 								<tr>
 									<th><center>Title</center></th>
@@ -467,7 +467,7 @@
 		}//fillprofile
 
 		function fillacdata(recorddata) {
-			document.getElementsByName('acadvcateg')[0].innerHTML = "Advisory Council";
+			document.getElementsByName('acadvcateg')[0].innerHTML = "Advisory Council (AC)";
 			document.getElementsByName('acduration')[0].innerHTML = recorddata[2][2] + " - " + recorddata[2][3];
 			document.getElementsByName('acposition')[0].innerHTML = recorddata[0][0]['acpositionname'];
 			document.getElementsByName('acofficename')[0].innerHTML = recorddata[0][0]['officename'];
@@ -482,12 +482,58 @@
 
 			document.getElementsByName('acsubcateg')[0].innerHTML = recorddata[0][0]['subcategoryname'];
 
-			fillsect(recorddata[1]);
+			$("ul[name='acsector']").empty();
 
+			for (var ctr = 0 ; ctr < recorddata[1].length ; ctr++) {
+				fillul('acsector', 0, recorddata[1][ctr]['sectorname']);
+			};
 		}//fillacdata
 
 		function filltpdata(recorddata) {
+			var type;
 
+			if(recorddata[0][0]['policetype'] == 1) {
+				type = "Technical Working Group (TWG)";
+
+			} else if(recorddata[0][0]['policetype'] == 2) {
+				type = "Police Strategy Management Unit (PSMU)";
+
+			}//if
+
+			document.getElementsByName('tpadvcateg')[0].innerHTML = type;
+
+			document.getElementsByName('tpduration')[0].innerHTML = recorddata[2][2] + " - " + recorddata[2][3];
+
+			document.getElementsByName('tpauthorder')[0].innerHTML = recorddata[0][0]["authorityorder"];
+
+			document.getElementsByName('tpposition')[0].innerHTML = recorddata[0][0]["PositionName"];
+
+			document.getElementsByName('tprank')[0].innerHTML = recorddata[0][0]['RankName'];
+
+			var unitoffice = recorddata[0][0]['UnitOfficeName'];
+
+			if(recorddata[0][0]['second_id'] >= 0) {
+				unitoffice = unitoffice + " - " + recorddata[0][0]['UnitOfficeSecondaryName'];
+
+			}//if
+
+			if(recorddata[0][0]['tertiary_id'] >= 0) {
+				unitoffice = unitoffice + " - " + recorddata[0][0]['UnitOfficeTertiaryName'];
+
+			}//if
+
+			if(recorddata[0][0]['quaternary_id'] >= 0) {
+				unitoffice = unitoffice + " - " + recorddata[0][0]['UnitOfficeQuaternaryName'];
+
+			}//if
+
+			document.getElementsByName('tpoffice')[0].innerHTML = unitoffice;
+
+			$("#trainviewtable tbody").empty();
+
+			for (var ctr = 0 ; ctr < recorddata[1][0].length ; ctr++) {
+				filltable("trainviewtable", recorddata[1][0][ctr], recorddata[1][1][ctr], recorddata[1][2][ctr]);
+			};
 		}//filltpdata
 
 		function loadModal(tid) {
@@ -508,7 +554,7 @@
 					dataType: "JSON",
 				   	success : function(recorddata) {
 
-				   		document.getElementsByName('edit')[0].setAttribute("onclick","window.location='{!!url('geteditdata?i="+parseInt(tiditems[1])+"&t="+parseInt(tiditems[0])+"')!!}'");
+				   		document.getElementsByName('editbtn')[0].setAttribute("onclick","window.location='{!!url('directory/edit?c=" + tid + "')!!}'");
 
 				   		fillprofile(recorddata);
 

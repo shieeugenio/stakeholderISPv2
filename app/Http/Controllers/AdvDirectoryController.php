@@ -40,6 +40,7 @@ use DB;
 
 use Auth;
 
+use Redirect;
 
 
 class AdvDirectoryController extends Controller {
@@ -50,9 +51,26 @@ class AdvDirectoryController extends Controller {
 
  	}//select dropdowns
 
- 	public function readyedit() {
- 		return view('module.adviser_add')->with('action', 1);
- 	}//ready edit
+ 	public function readyedit(Request $req) {
+
+ 		if(!isset($req->c)) {
+ 			return redirect("directory");
+ 		}//if
+
+		$tid = $req->c;
+
+		$tidelements = explode("-", $tid);
+
+		$result = $this->getData((int) $tidelements[1], (int) $tidelements[0]);
+
+		//return $result;
+
+		return view('module.adviser_add')->with('action', 1)
+										 ->with('recorddata', $result)
+										 ->with('type', (int) $tidelements[0])
+										 ->with('id', (int) $tidelements[1]);
+		
+	}//readyedit
 
 	public function addadviser(Request $req) {
 		$data = $req->all();
@@ -104,7 +122,7 @@ class AdvDirectoryController extends Controller {
 
 	}//edit - WHOLE
 
-	public function getView() {
+	/*public function getView() {
 
 		$recorddata = $this->getRecordData();
 
@@ -140,14 +158,14 @@ class AdvDirectoryController extends Controller {
 
 		return array($recorddata, date('d M Y', strtotime($recorddata[0]->birthdate)), $training);
 		
-	}//get record / modal view
+	}//get record / modal view*/
 
-	public function getAdv(){
+	public function getAdv($filter, $sorter){
 		$civilian = DB::table('advisory_council')
 					->join('advisory_position', 'advisory_position.ID', '=', 'advisory_council.advisory_position_id')
 					->select('advisory_council.ID','lname', 'fname', 'mname', 'imagepath', 'email', 
 						     'contactno', 'landline','startdate', 'acpositionname', 'officename')
-					->orderBy('advisory_council.created_at', 'desc')
+					->orderBy('advisory_council.'. $filter, $sorter)
 					->get();
 	
 		$police = DB::table('police_advisory')
@@ -160,18 +178,40 @@ class AdvDirectoryController extends Controller {
 						     'contactno', 'landline', 'startdate', 'policetype',
 						     'UnitOfficeName', 'UnitOfficeSecondaryName', 'UnitOfficeTertiaryName',
 						     'UnitOfficeQuaternaryName', 'PositionName')
-					->orderBy('police_advisory.created_at', 'desc')
+					->orderBy('police_advisory.' . $filter, $sorter)
 					->get();
 
 		return array($civilian, $police);
 	}
 
 	public function getList() {
-		$adv = $this->getAdv();
+		$adv = $this->getAdv('created_at', 'desc');
 		/*INSERT CODE FOR DIRECTORY LIST VIEW*/
 
 		return view('module.adviser')->with("directory", $adv);
 	}//public function getList() {
+
+	public function filterList(Request $req) {
+		if(!isset($req->f)) {
+			return redirect('directory');
+		}//if
+
+		$filter = $req->f;
+
+
+		if((int)$filter == 0) {
+			$adv = $this->getAdv('lname', 'asc');
+
+		} else if((int)$filter == 1) {
+			$adv = $this->getAdv('created_at', 'asc');
+
+		} else {
+			$adv = $this->getAdv('created_at', 'desc');
+
+		}//if
+
+		return view('module.adviser')->with("directory", $adv);
+	}//public function filterList(Request $req) {
 
 	public function readyPHome() {
 		if (Auth::check()) {
@@ -181,7 +221,7 @@ class AdvDirectoryController extends Controller {
 
 		}//if (Auth::check()) {
 
-		$adv = $this->getAdv();
+		$adv = $this->getAdv('created_at', 'desc');
 
 		/*INSERT CODE FOR PUBLIC HOME LIST VIEW*/
 
@@ -615,10 +655,8 @@ class AdvDirectoryController extends Controller {
 										->join("advisory_position", "advisory_position.ID", "=", "advisory_council.advisory_position_id")
 										->where("advisory_council.ID" , "=", $id)
 										->get();
-				$sector = Advisory_Council::join("personnel_sector", "personnel_sector.advisory_council_id", "=", "advisory_council.ID")
-										->join("ac_sector", "ac_sector.ID", "=", "personnel_sector.ac_sector_id")
-										->select("sectorname")
-										->where("advisory_council.ID" , "=", $id)
+				$sector = Personnel_Sector::join("ac_sector", "ac_sector.ID", "=", "personnel_sector.ac_sector_id")
+										->where("advisory_council_id" , "=", $id)
 										->get();
 
 				
@@ -636,11 +674,27 @@ class AdvDirectoryController extends Controller {
 									->where("police_advisory.ID", "=", $id)
 									->get();
 
-			$trainings= Training::join("lecturer", "lecturer.training_id", "=", "training.ID")
-									->where("training.police_id", "=", $id)
+			$trainings= Training::where("training.police_id", "=", $id)
 									->get();
 
-			return array($pa, $trainings, $this->formatOutput($pa));
+			$lecturelist = array();
+
+			$datelist = array();
+
+			foreach ($trainings as $key => $val) {
+				$lecturer = Lecturer::where("training_id", "=", $val->ID)
+									->get();
+				$startdate = date('d M Y', strtotime($val->startdate));
+				$starttime = date('G:i A', strtotime($val->starttime));
+				$enddate = date('d M Y', strtotime($val->enddate));
+				$endtime = date('G:i A', strtotime($val->endtime));
+
+				array_push($lecturelist, $lecturer);
+				array_push($datelist, array($startdate, $starttime, $enddate, $endtime));
+				
+			}//foreach
+
+			return array($pa, array($trainings, $lecturelist, $datelist), $this->formatOutput($pa));
 
 			
 		}//if

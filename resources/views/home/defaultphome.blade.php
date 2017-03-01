@@ -2,9 +2,9 @@
 
 @section('phomesection')
 
-	<div class =  "dcon">
-
-					<br>
+		<div class =  "dcon">
+					<hr class="hr3">
+					
 					<h6 class="ui horizontal divider divtitle">
 						Advisory Council
 					</h6>
