@@ -4,8 +4,149 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "77bf7f7f701a585678e650a2c3a582f9",
+=======
+    "hash": "efb7512a3cfec09ed47eb91840a7e051",
+    "content-hash": "722d07e8cdb6cde36456e37e99cf7fd2",
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
     "packages": [
+        {
+            "name": "aws/aws-sdk-php",
+            "version": "3.22.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aws/aws-sdk-php.git",
+                "reference": "057fef15b8b5fe3661c290cac8bc5da49b39a60b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/057fef15b8b5fe3661c290cac8bc5da49b39a60b",
+                "reference": "057fef15b8b5fe3661c290cac8bc5da49b39a60b",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^5.3.1|^6.2.1",
+                "guzzlehttp/promises": "~1.0",
+                "guzzlehttp/psr7": "~1.3.1",
+                "mtdowling/jmespath.php": "~2.2",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "andrewsville/php-token-reflection": "^1.4",
+                "aws/aws-php-sns-message-validator": "~1.0",
+                "behat/behat": "~3.0",
+                "doctrine/cache": "~1.4",
+                "ext-dom": "*",
+                "ext-json": "*",
+                "ext-openssl": "*",
+                "ext-pcre": "*",
+                "ext-simplexml": "*",
+                "ext-spl": "*",
+                "nette/neon": "^2.3",
+                "phpunit/phpunit": "~4.0|~5.0",
+                "psr/cache": "^1.0"
+            },
+            "suggest": {
+                "aws/aws-php-sns-message-validator": "To validate incoming SNS notifications",
+                "doctrine/cache": "To use the DoctrineCacheAdapter",
+                "ext-curl": "To send requests using cURL",
+                "ext-openssl": "Allows working with CloudFront private distributions and verifying received SNS messages"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Aws\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Amazon Web Services",
+                    "homepage": "http://aws.amazon.com"
+                }
+            ],
+            "description": "AWS SDK for PHP - Use Amazon Web Services in your PHP project",
+            "homepage": "http://aws.amazon.com/sdkforphp",
+            "keywords": [
+                "amazon",
+                "aws",
+                "cloud",
+                "dynamodb",
+                "ec2",
+                "glacier",
+                "s3",
+                "sdk"
+            ],
+            "time": "2017-02-22 21:58:12"
+        },
+        {
+            "name": "aws/aws-sdk-php-laravel",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aws/aws-sdk-php-laravel.git",
+                "reference": "3b946892d493b91b4920ec4facc4a0ad7195fb86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php-laravel/zipball/3b946892d493b91b4920ec4facc4a0ad7195fb86",
+                "reference": "3b946892d493b91b4920ec4facc4a0ad7195fb86",
+                "shasum": ""
+            },
+            "require": {
+                "aws/aws-sdk-php": "~3.0",
+                "illuminate/support": "~5.1",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0|~5.0"
+            },
+            "suggest": {
+                "laravel/framework": "To test the Laravel bindings",
+                "laravel/lumen-framework": "To test the Lumen bindings"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Aws\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Amazon Web Services",
+                    "homepage": "http://aws.amazon.com"
+                }
+            ],
+            "description": "A simple Laravel 5 service provider for including the AWS SDK for PHP.",
+            "homepage": "http://aws.amazon.com/sdkforphp2",
+            "keywords": [
+                "amazon",
+                "aws",
+                "dynamodb",
+                "ec2",
+                "laravel",
+                "laravel 5",
+                "s3",
+                "sdk"
+            ],
+            "time": "2016-01-18 06:57:07"
+        },
         {
             "name": "captcha-com/captcha",
             "version": "4.1.0",
@@ -146,7 +287,11 @@
                 "class",
                 "preload"
             ],
+<<<<<<< HEAD
             "time": "2016-09-16T12:50:15+00:00"
+=======
+            "time": "2016-09-16 12:50:15"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -247,6 +392,177 @@
                 "string"
             ],
             "time": "2015-11-06T14:35:42+00:00"
+        },
+        {
+            "name": "guzzlehttp/guzzle",
+            "version": "6.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "ebf29dee597f02f09f4d5bbecc68230ea9b08f60"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/ebf29dee597f02f09f4d5bbecc68230ea9b08f60",
+                "reference": "ebf29dee597f02f09f4d5bbecc68230ea9b08f60",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/promises": "^1.0",
+                "guzzlehttp/psr7": "^1.3.1",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "phpunit/phpunit": "^4.0",
+                "psr/log": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.2-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions_include.php"
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Guzzle is a PHP HTTP client library",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
+            ],
+            "time": "2016-10-08 15:01:37"
+        },
+        {
+            "name": "guzzlehttp/promises",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/promises.git",
+                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/a59da6cf61d80060647ff4d3eb2c03a2bc694646",
+                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Promise\\": "src/"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Guzzle promises library",
+            "keywords": [
+                "promise"
+            ],
+            "time": "2016-12-20 10:07:11"
+        },
+        {
+            "name": "guzzlehttp/psr7",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/psr7.git",
+                "reference": "5c6447c9df362e8f8093bda8f5d8873fe5c7f65b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/5c6447c9df362e8f8093bda8f5d8873fe5c7f65b",
+                "reference": "5c6447c9df362e8f8093bda8f5d8873fe5c7f65b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "psr/http-message": "~1.0"
+            },
+            "provide": {
+                "psr/http-message-implementation": "1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Psr7\\": "src/"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "PSR-7 message implementation",
+            "keywords": [
+                "http",
+                "message",
+                "stream",
+                "uri"
+            ],
+            "time": "2016-06-24 23:00:38"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -391,7 +707,11 @@
                 "serialize",
                 "tokenizer"
             ],
+<<<<<<< HEAD
             "time": "2016-12-07T09:37:55+00:00"
+=======
+            "time": "2016-12-07 09:37:55"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "laravel/framework",
@@ -519,7 +839,11 @@
                 "framework",
                 "laravel"
             ],
+<<<<<<< HEAD
             "time": "2017-01-26T14:29:55+00:00"
+=======
+            "time": "2017-01-26 14:29:55"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "league/flysystem",
@@ -602,7 +926,11 @@
                 "sftp",
                 "storage"
             ],
+<<<<<<< HEAD
             "time": "2017-02-09T11:33:58+00:00"
+=======
+            "time": "2017-02-09 11:33:58"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "monolog/monolog",
@@ -724,7 +1052,66 @@
                 "cron",
                 "schedule"
             ],
+<<<<<<< HEAD
             "time": "2017-01-23T04:29:33+00:00"
+=======
+            "time": "2017-01-23 04:29:33"
+        },
+        {
+            "name": "mtdowling/jmespath.php",
+            "version": "2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jmespath/jmespath.php.git",
+                "reference": "adcc9531682cf87dfda21e1fd5d0e7a41d292fac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jmespath/jmespath.php/zipball/adcc9531682cf87dfda21e1fd5d0e7a41d292fac",
+                "reference": "adcc9531682cf87dfda21e1fd5d0e7a41d292fac",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "bin": [
+                "bin/jp.php"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JmesPath\\": "src/"
+                },
+                "files": [
+                    "src/JmesPath.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Declaratively specify how to extract elements from a JSON document",
+            "keywords": [
+                "json",
+                "jsonpath"
+            ],
+            "time": "2016-12-03 22:08:25"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "nesbot/carbon",
@@ -777,7 +1164,11 @@
                 "datetime",
                 "time"
             ],
+<<<<<<< HEAD
             "time": "2017-01-16T07:55:07+00:00"
+=======
+            "time": "2017-01-16 07:55:07"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "nikic/php-parser",
@@ -828,7 +1219,11 @@
                 "parser",
                 "php"
             ],
+<<<<<<< HEAD
             "time": "2017-02-10T20:20:03+00:00"
+=======
+            "time": "2017-02-10 20:20:03"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "paragonie/random_compat",
@@ -879,6 +1274,56 @@
             "time": "2017-02-27T17:11:23+00:00"
         },
         {
+            "name": "psr/http-message",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "homepage": "https://github.com/php-fig/http-message",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "time": "2016-08-06 14:39:51"
+        },
+        {
             "name": "psr/log",
             "version": "1.0.2",
             "source": {
@@ -927,6 +1372,7 @@
         },
         {
             "name": "psy/psysh",
+<<<<<<< HEAD
             "version": "v0.8.2",
             "source": {
                 "type": "git",
@@ -937,6 +1383,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/bobthecow/psysh/zipball/97113db4107a4126bef933b60fea6dbc9f615d41",
                 "reference": "97113db4107a4126bef933b60fea6dbc9f615d41",
+=======
+            "version": "v0.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bobthecow/psysh.git",
+                "reference": "701e8a1cc426ee170f1296f5d9f6b8a26ad25c4a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/701e8a1cc426ee170f1296f5d9f6b8a26ad25c4a",
+                "reference": "701e8a1cc426ee170f1296f5d9f6b8a26ad25c4a",
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
                 "shasum": ""
             },
             "require": {
@@ -996,7 +1454,11 @@
                 "interactive",
                 "shell"
             ],
+<<<<<<< HEAD
             "time": "2017-03-01T00:13:29+00:00"
+=======
+            "time": "2017-01-15 17:54:13"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "ramsey/uuid",
@@ -1132,7 +1594,11 @@
                 "mail",
                 "mailer"
             ],
+<<<<<<< HEAD
             "time": "2017-02-13T07:52:53+00:00"
+=======
+            "time": "2017-02-13 07:52:53"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "symfony/console",
@@ -1193,7 +1659,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-01-08T20:43:43+00:00"
+=======
+            "time": "2017-01-08 20:43:43"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "symfony/debug",
@@ -1250,7 +1720,11 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-01-28T00:04:57+00:00"
+=======
+            "time": "2017-01-28 00:04:57"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1310,7 +1784,11 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-01-02T20:32:22+00:00"
+=======
+            "time": "2017-01-02 20:32:22"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "symfony/finder",
@@ -1359,7 +1837,11 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-01-02T20:31:54+00:00"
+=======
+            "time": "2017-01-02 20:31:54"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "symfony/http-foundation",
@@ -1412,7 +1894,11 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-01-08T20:43:43+00:00"
+=======
+            "time": "2017-01-08 20:43:43"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "symfony/http-kernel",
@@ -1494,7 +1980,11 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-01-28T02:53:17+00:00"
+=======
+            "time": "2017-01-28 02:53:17"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1710,7 +2200,11 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-01-21T17:13:55+00:00"
+=======
+            "time": "2017-01-21 17:13:55"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "symfony/routing",
@@ -1785,7 +2279,11 @@
                 "uri",
                 "url"
             ],
+<<<<<<< HEAD
             "time": "2017-01-28T00:04:57+00:00"
+=======
+            "time": "2017-01-28 00:04:57"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "symfony/translation",
@@ -1849,7 +2347,11 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-01-21T17:01:39+00:00"
+=======
+            "time": "2017-01-21 17:01:39"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "symfony/var-dumper",
@@ -1912,7 +2414,11 @@
                 "debug",
                 "dump"
             ],
+<<<<<<< HEAD
             "time": "2017-01-24T13:02:38+00:00"
+=======
+            "time": "2017-01-24 13:02:38"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "vlucas/phpdotenv",
@@ -2115,6 +2621,7 @@
         },
         {
             "name": "mockery/mockery",
+<<<<<<< HEAD
             "version": "0.9.9",
             "source": {
                 "type": "git",
@@ -2125,6 +2632,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/padraic/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856",
+=======
+            "version": "0.9.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/padraic/mockery.git",
+                "reference": "1e5e2ffdc4d71d7358ed58a6fdd30a4a0c506855"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/1e5e2ffdc4d71d7358ed58a6fdd30a4a0c506855",
+                "reference": "1e5e2ffdc4d71d7358ed58a6fdd30a4a0c506855",
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
                 "shasum": ""
             },
             "require": {
@@ -2176,7 +2695,11 @@
                 "test double",
                 "testing"
             ],
+<<<<<<< HEAD
             "time": "2017-02-28T12:52:32+00:00"
+=======
+            "time": "2017-02-09 13:29:38"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "myclabs/deep-copy",
@@ -2218,7 +2741,11 @@
                 "object",
                 "object graph"
             ],
+<<<<<<< HEAD
             "time": "2017-01-26T22:05:40+00:00"
+=======
+            "time": "2017-01-26 22:05:40"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -2490,7 +3017,11 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
             "time": "2017-02-23T07:38:02+00:00"
+=======
+            "time": "2017-02-23 07:38:02"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2631,6 +3162,7 @@
         },
         {
             "name": "phpunit/php-token-stream",
+<<<<<<< HEAD
             "version": "1.4.11",
             "source": {
                 "type": "git",
@@ -2641,6 +3173,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/e03f8f67534427a787e21a385a67ec3ca6978ea7",
                 "reference": "e03f8f67534427a787e21a385a67ec3ca6978ea7",
+=======
+            "version": "1.4.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-token-stream.git",
+                "reference": "284fb0679dd25fb5ffb56dad92c72860c0a22f1b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/284fb0679dd25fb5ffb56dad92c72860c0a22f1b",
+                "reference": "284fb0679dd25fb5ffb56dad92c72860c0a22f1b",
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
                 "shasum": ""
             },
             "require": {
@@ -2676,7 +3220,11 @@
             "keywords": [
                 "tokenizer"
             ],
+<<<<<<< HEAD
             "time": "2017-02-27T10:12:30+00:00"
+=======
+            "time": "2017-02-23 06:14:45"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "phpunit/phpunit",
@@ -2758,7 +3306,11 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
             "time": "2017-02-19T07:22:16+00:00"
+=======
+            "time": "2017-02-19 07:22:16"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2817,7 +3369,11 @@
                 "mock",
                 "xunit"
             ],
+<<<<<<< HEAD
             "time": "2016-12-08T20:27:08+00:00"
+=======
+            "time": "2016-12-08 20:27:08"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -2926,7 +3482,11 @@
                 "compare",
                 "equality"
             ],
+<<<<<<< HEAD
             "time": "2017-01-29T09:50:25+00:00"
+=======
+            "time": "2017-01-29 09:50:25"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "sebastian/diff",
@@ -3192,7 +3752,11 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
+<<<<<<< HEAD
             "time": "2017-02-18T15:18:39+00:00"
+=======
+            "time": "2017-02-18 15:18:39"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "sebastian/recursion-context",
@@ -3383,7 +3947,11 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-01-02T20:31:54+00:00"
+=======
+            "time": "2017-01-02 20:31:54"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "symfony/dom-crawler",
@@ -3439,7 +4007,11 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-01-21T17:13:55+00:00"
+=======
+            "time": "2017-01-21 17:13:55"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "symfony/yaml",
@@ -3494,7 +4066,11 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-02-16T22:46:52+00:00"
+=======
+            "time": "2017-02-16 22:46:52"
+>>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
             "name": "webmozart/assert",

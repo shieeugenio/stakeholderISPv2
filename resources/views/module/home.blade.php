@@ -30,17 +30,5 @@
 	<script type="text/javascript">
 		$('#tab1').attr('class', 'mlink item active');
 
-		function showacview() {
-			document.getElementsByName('acview')[0].style.display = "block";
-			document.getElementsByName('tpview')[0].style.display = "none";
-
-		}//function showacview() {
-
-		function showtpview() {
-			document.getElementsByName('acview')[0].style.display = "none";
-			document.getElementsByName('tpview')[0].style.display = "block";
-
-		}//function showacview() {
-
 	</script>
 @stop
