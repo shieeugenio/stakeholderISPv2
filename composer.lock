@@ -5,24 +5,29 @@
         "This file is @generated automatically"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "content-hash": "77bf7f7f701a585678e650a2c3a582f9",
 =======
     "hash": "efb7512a3cfec09ed47eb91840a7e051",
     "content-hash": "722d07e8cdb6cde36456e37e99cf7fd2",
 >>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
+=======
+    "hash": "5df76e39bc258e2f32abb60c9942b4e4",
+    "content-hash": "c708669eb8fd66446d79a7f706821489",
+>>>>>>> a6f11cb7c2bb3d16478f2d1d6949a96fed1da69f
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.22.9",
+            "version": "3.23.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "057fef15b8b5fe3661c290cac8bc5da49b39a60b"
+                "reference": "7d319413995f9326e7aa41e02bcc799490038deb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/057fef15b8b5fe3661c290cac8bc5da49b39a60b",
-                "reference": "057fef15b8b5fe3661c290cac8bc5da49b39a60b",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/7d319413995f9326e7aa41e02bcc799490038deb",
+                "reference": "7d319413995f9326e7aa41e02bcc799490038deb",
                 "shasum": ""
             },
             "require": {
@@ -89,7 +94,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-02-22 21:58:12"
+            "time": "2017-02-28 03:16:27"
         },
         {
             "name": "aws/aws-sdk-php-laravel",
@@ -933,6 +938,73 @@
 >>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
+            "name": "maatwebsite/excel",
+            "version": "2.1.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Maatwebsite/Laravel-Excel.git",
+                "reference": "a544a9b45b971499fb3b0fb7499ba0ac3b430233"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/a544a9b45b971499fb3b0fb7499ba0ac3b430233",
+                "reference": "a544a9b45b971499fb3b0fb7499ba0ac3b430233",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/cache": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*",
+                "illuminate/config": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*",
+                "illuminate/filesystem": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*",
+                "illuminate/support": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*",
+                "nesbot/carbon": "~1.0",
+                "php": ">=5.5",
+                "phpoffice/phpexcel": "1.8.*",
+                "tijsverkoyen/css-to-inline-styles": "~2.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "orchestra/testbench": "3.1.*",
+                "phpseclib/phpseclib": "~1.0",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "illuminate/http": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*",
+                "illuminate/queue": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*",
+                "illuminate/routing": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*",
+                "illuminate/view": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/Maatwebsite/Excel"
+                ],
+                "psr-0": {
+                    "Maatwebsite\\Excel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Maatwebsite.nl",
+                    "email": "patrick@maatwebsite.nl"
+                }
+            ],
+            "description": "An eloquent way of importing and exporting Excel and CSV in Laravel 4 with the power of PHPExcel",
+            "keywords": [
+                "PHPExcel",
+                "batch",
+                "csv",
+                "excel",
+                "export",
+                "import",
+                "laravel"
+            ],
+            "time": "2017-01-20 16:16:51"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.22.0",
             "source": {
@@ -1271,7 +1343,68 @@
                 "pseudorandom",
                 "random"
             ],
+<<<<<<< HEAD
             "time": "2017-02-27T17:11:23+00:00"
+=======
+            "time": "2017-02-27 17:11:23"
+        },
+        {
+            "name": "phpoffice/phpexcel",
+            "version": "1.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPOffice/PHPExcel.git",
+                "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+                "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+                "shasum": ""
+            },
+            "require": {
+                "ext-xml": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPExcel": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Maarten Balliauw",
+                    "homepage": "http://blog.maartenballiauw.be"
+                },
+                {
+                    "name": "Mark Baker"
+                },
+                {
+                    "name": "Franck Lefevre",
+                    "homepage": "http://blog.rootslabs.net"
+                },
+                {
+                    "name": "Erik Tilt"
+                }
+            ],
+            "description": "PHPExcel - OpenXML - Read, Create and Write Spreadsheet documents in PHP - Spreadsheet engine",
+            "homepage": "http://phpexcel.codeplex.com",
+            "keywords": [
+                "OpenXML",
+                "excel",
+                "php",
+                "spreadsheet",
+                "xls",
+                "xlsx"
+            ],
+            "time": "2015-05-01 07:00:55"
+>>>>>>> a6f11cb7c2bb3d16478f2d1d6949a96fed1da69f
         },
         {
             "name": "psr/http-message",
@@ -1373,6 +1506,7 @@
         {
             "name": "psy/psysh",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v0.8.2",
             "source": {
                 "type": "git",
@@ -1385,16 +1519,24 @@
                 "reference": "97113db4107a4126bef933b60fea6dbc9f615d41",
 =======
             "version": "v0.8.1",
+=======
+            "version": "v0.8.2",
+>>>>>>> a6f11cb7c2bb3d16478f2d1d6949a96fed1da69f
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "701e8a1cc426ee170f1296f5d9f6b8a26ad25c4a"
+                "reference": "97113db4107a4126bef933b60fea6dbc9f615d41"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/bobthecow/psysh/zipball/701e8a1cc426ee170f1296f5d9f6b8a26ad25c4a",
                 "reference": "701e8a1cc426ee170f1296f5d9f6b8a26ad25c4a",
 >>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
+=======
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/97113db4107a4126bef933b60fea6dbc9f615d41",
+                "reference": "97113db4107a4126bef933b60fea6dbc9f615d41",
+>>>>>>> a6f11cb7c2bb3d16478f2d1d6949a96fed1da69f
                 "shasum": ""
             },
             "require": {
@@ -1455,10 +1597,14 @@
                 "shell"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2017-03-01T00:13:29+00:00"
 =======
             "time": "2017-01-15 17:54:13"
 >>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
+=======
+            "time": "2017-03-01 00:13:29"
+>>>>>>> a6f11cb7c2bb3d16478f2d1d6949a96fed1da69f
         },
         {
             "name": "ramsey/uuid",
@@ -1664,6 +1810,59 @@
 =======
             "time": "2017-01-08 20:43:43"
 >>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
+        },
+        {
+            "name": "symfony/css-selector",
+            "version": "v3.1.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/css-selector.git",
+                "reference": "722a87478a72d95dc2a3bcf41dc9c2d13fd4cb2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/722a87478a72d95dc2a3bcf41dc9c2d13fd4cb2d",
+                "reference": "722a87478a72d95dc2a3bcf41dc9c2d13fd4cb2d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\CssSelector\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jean-François Simon",
+                    "email": "jeanfrancois.simon@sensiolabs.com"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony CssSelector Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-01-02 20:31:54"
         },
         {
             "name": "symfony/debug",
@@ -2421,6 +2620,53 @@
 >>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
+            "name": "tijsverkoyen/css-to-inline-styles",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tijsverkoyen/CssToInlineStyles.git",
+                "reference": "ab03919dfd85a74ae0372f8baf9f3c7d5c03b04b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tijsverkoyen/CssToInlineStyles/zipball/ab03919dfd85a74ae0372f8baf9f3c7d5c03b04b",
+                "reference": "ab03919dfd85a74ae0372f8baf9f3c7d5c03b04b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5 || ^7",
+                "symfony/css-selector": "^2.7|~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8|5.1.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TijsVerkoyen\\CssToInlineStyles\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Tijs Verkoyen",
+                    "email": "css_to_inline_styles@verkoyen.eu",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
+            "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
+            "time": "2016-09-20 12:50:39"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v2.4.0",
             "source": {
@@ -2622,6 +2868,7 @@
         {
             "name": "mockery/mockery",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "0.9.9",
             "source": {
                 "type": "git",
@@ -2634,16 +2881,24 @@
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856",
 =======
             "version": "0.9.8",
+=======
+            "version": "0.9.9",
+>>>>>>> a6f11cb7c2bb3d16478f2d1d6949a96fed1da69f
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "1e5e2ffdc4d71d7358ed58a6fdd30a4a0c506855"
+                "reference": "6fdb61243844dc924071d3404bb23994ea0b6856"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/padraic/mockery/zipball/1e5e2ffdc4d71d7358ed58a6fdd30a4a0c506855",
                 "reference": "1e5e2ffdc4d71d7358ed58a6fdd30a4a0c506855",
 >>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
+=======
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
+                "reference": "6fdb61243844dc924071d3404bb23994ea0b6856",
+>>>>>>> a6f11cb7c2bb3d16478f2d1d6949a96fed1da69f
                 "shasum": ""
             },
             "require": {
@@ -2696,10 +2951,14 @@
                 "testing"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2017-02-28T12:52:32+00:00"
 =======
             "time": "2017-02-09 13:29:38"
 >>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
+=======
+            "time": "2017-02-28 12:52:32"
+>>>>>>> a6f11cb7c2bb3d16478f2d1d6949a96fed1da69f
         },
         {
             "name": "myclabs/deep-copy",
@@ -2958,35 +3217,35 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "4.0.6",
+            "version": "4.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "ca060f645beeddebedb1885c97bf163e93264c35"
+                "reference": "09e2277d14ea467e5a984010f501343ef29ffc69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ca060f645beeddebedb1885c97bf163e93264c35",
-                "reference": "ca060f645beeddebedb1885c97bf163e93264c35",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/09e2277d14ea467e5a984010f501343ef29ffc69",
+                "reference": "09e2277d14ea467e5a984010f501343ef29ffc69",
                 "shasum": ""
             },
             "require": {
+                "ext-dom": "*",
+                "ext-xmlwriter": "*",
                 "php": "^5.6 || ^7.0",
-                "phpunit/php-file-iterator": "~1.3",
-                "phpunit/php-text-template": "~1.2",
+                "phpunit/php-file-iterator": "^1.3",
+                "phpunit/php-text-template": "^1.2",
                 "phpunit/php-token-stream": "^1.4.2 || ^2.0",
-                "sebastian/code-unit-reverse-lookup": "~1.0",
+                "sebastian/code-unit-reverse-lookup": "^1.0",
                 "sebastian/environment": "^1.3.2 || ^2.0",
-                "sebastian/version": "~1.0|~2.0"
+                "sebastian/version": "^1.0 || ^2.0"
             },
             "require-dev": {
-                "ext-xdebug": ">=2.1.4",
-                "phpunit/phpunit": "^5.4"
+                "ext-xdebug": "^2.1.4",
+                "phpunit/phpunit": "^5.7"
             },
             "suggest": {
-                "ext-dom": "*",
-                "ext-xdebug": ">=2.4.0",
-                "ext-xmlwriter": "*"
+                "ext-xdebug": "^2.5.1"
             },
             "type": "library",
             "extra": {
@@ -3018,10 +3277,14 @@
                 "xunit"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2017-02-23T07:38:02+00:00"
 =======
             "time": "2017-02-23 07:38:02"
 >>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
+=======
+            "time": "2017-03-01 09:12:17"
+>>>>>>> a6f11cb7c2bb3d16478f2d1d6949a96fed1da69f
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3158,6 +3421,7 @@
             "keywords": [
                 "timer"
             ],
+<<<<<<< HEAD
             "time": "2017-02-26T11:10:40+00:00"
         },
         {
@@ -3175,16 +3439,28 @@
                 "reference": "e03f8f67534427a787e21a385a67ec3ca6978ea7",
 =======
             "version": "1.4.10",
+=======
+            "time": "2017-02-26 11:10:40"
+        },
+        {
+            "name": "phpunit/php-token-stream",
+            "version": "1.4.11",
+>>>>>>> a6f11cb7c2bb3d16478f2d1d6949a96fed1da69f
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "284fb0679dd25fb5ffb56dad92c72860c0a22f1b"
+                "reference": "e03f8f67534427a787e21a385a67ec3ca6978ea7"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/284fb0679dd25fb5ffb56dad92c72860c0a22f1b",
                 "reference": "284fb0679dd25fb5ffb56dad92c72860c0a22f1b",
 >>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
+=======
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/e03f8f67534427a787e21a385a67ec3ca6978ea7",
+                "reference": "e03f8f67534427a787e21a385a67ec3ca6978ea7",
+>>>>>>> a6f11cb7c2bb3d16478f2d1d6949a96fed1da69f
                 "shasum": ""
             },
             "require": {
@@ -3221,10 +3497,14 @@
                 "tokenizer"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2017-02-27T10:12:30+00:00"
 =======
             "time": "2017-02-23 06:14:45"
 >>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
+=======
+            "time": "2017-02-27 10:12:30"
+>>>>>>> a6f11cb7c2bb3d16478f2d1d6949a96fed1da69f
         },
         {
             "name": "phpunit/phpunit",
@@ -3897,6 +4177,7 @@
             "time": "2016-10-03T07:35:21+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "symfony/css-selector",
             "version": "v3.1.10",
             "source": {
@@ -3954,6 +4235,8 @@
 >>>>>>> fdbeedfef24794b9ee67e7303a296c5326d06835
         },
         {
+=======
+>>>>>>> a6f11cb7c2bb3d16478f2d1d6949a96fed1da69f
             "name": "symfony/dom-crawler",
             "version": "v3.1.10",
             "source": {
