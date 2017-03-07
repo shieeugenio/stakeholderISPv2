@@ -318,10 +318,11 @@ class AdvDirectoryController extends Controller {
 
 	public function getInitACD() {
 		$acposition = Advisory_Position::all();
- 		$accateg = AC_Category::all();
+ 		//$accateg = AC_Category::all();
+ 		$primaryoffice = unit_offices::all();
  		$acsector = AC_Sector::all();
 
- 		return array($acposition, $accateg, $acsector);
+ 		return array($acposition, $acsector, $primaryoffice,);
 	}//public function getInitACD() {
 
 	public function getInitTPD() {
@@ -405,15 +406,15 @@ class AdvDirectoryController extends Controller {
 	 	print_r($data['acsector']);
 
         $advisory->advisory_position_id = $data['acposition'];
-        $advisory->subcategoryId = $data['acsubcateg'];
+        $advisory->ac_sector_id = $data['acsector'];
+        $advisory->unit_id = $data['primary'];
+    	$advisory->second_id = $data['secondary'];
+    	$advisory->tertiary_id = $data['tertiary'];
+    	$advisory->quaternary_id = $data['quaternary'];
         $advisory->save();
-
-        $id = $this->getACID();
-
-        $this->addSector($data['acsector'], $id);
     } // add AC
 
-    public function addSector($sector, $acid) {
+    /*public function addSector($sector, $acid) {
 
     	for($ctr = 0 ; $ctr < sizeof($sector) ; $ctr++) {
     		$acsector = new Personnel_Sector;
@@ -430,7 +431,7 @@ class AdvDirectoryController extends Controller {
     	AC_Sector::where('advisory_council_id', $data['ID'])->delete();
     	$this->addSector($data, $data['ID']);
 
-    }//public function editSector($id) {
+    }//public function editSector($id) {*/
 
     public function editAC($data){
 
@@ -461,10 +462,12 @@ class AdvDirectoryController extends Controller {
 	 	}//if
 
         $advisory->advisory_position_id = $data['acposition'];
-        $advisory->subcategoryId = $data['acsubcateg'];
+        $advisory->ac_sector_id = $data['acsector'];
+        $advisory->unit_id = $data['primary'];
+    	$advisory->second_id = $data['secondary'];
+    	$advisory->tertiary_id = $data['tertiary'];
+    	$advisory->quaternary_id = $data['quaternary'];
         $advisory->save();
-
-	    $this->editSector($data);
 
     } // update AC
 

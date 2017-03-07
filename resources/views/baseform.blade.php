@@ -37,7 +37,7 @@
 		<header class = "banner">
 			<div class = "ui relaxed grid">
 				<div class = "six wide column">
-					<image class = "acname" src="{{URL::asset('objects/Logo/ACName2.png')}}"/>
+					<image class = "acname" src="{{URL::asset('objects/Logo/ACName.png')}}"/>
 				</div>
 
 				<div class = "ten wide column">
