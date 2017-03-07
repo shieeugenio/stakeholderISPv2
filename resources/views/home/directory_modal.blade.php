@@ -169,10 +169,10 @@
 							<div class = "ui grid row">
 				        		<div class ="three wide column fbc labelpane">
 
-				        			<div class = "twelve wide column bspacing">
+				        			<!--<div class = "twelve wide column bspacing">
 										<label class = "formlabel">Stakeholder Category</label>
 													
-									</div>
+									</div>-->
 
 									<div class = "twelve wide column bspacing">
 										<label class = "formlabel">Duration</label>
@@ -210,10 +210,10 @@
 
 								<div class ="eleven wide column fieldpane">
 
-									<div class = "twelve wide column bspacing11">
+									<!--<div class = "twelve wide column bspacing11">
 										<p name="acadvcateg"></p>
 														
-									</div>
+									</div>-->
 
 									<div class = "twelve wide column bspacing11">
 										<p name="acduration"></p>
@@ -242,9 +242,7 @@
 									</div>
 
 									<div class = "twelve wide column bspacing11">
-										<ul name = 'acsector' class="orderedlist">
-
-										</ul>
+										<p name="acsector"></p>
 															
 									</div>
 
@@ -462,7 +460,7 @@
 		}//fillprofile
 
 		function fillacdata(recorddata) {
-			document.getElementsByName('acadvcateg')[0].innerHTML = "Advisory Council (AC)";
+			//document.getElementsByName('acadvcateg')[0].innerHTML = "Advisory Council (AC)";
 			document.getElementsByName('acduration')[0].innerHTML = recorddata[2][2] + " - " + recorddata[2][3];
 			document.getElementsByName('acposition')[0].innerHTML = recorddata[0][0]['acpositionname'];
 
@@ -501,7 +499,7 @@
 		}//fillacdata
 
 		function filltpdata(recorddata) {
-			var type;
+			/*var type;
 
 			if(recorddata[0][0]['policetype'] == 1) {
 				type = "Technical Working Group (TWG)";
@@ -509,7 +507,7 @@
 			} else if(recorddata[0][0]['policetype'] == 2) {
 				type = "Police Strategy Management Unit (PSMU)";
 
-			}//if
+			}//if*/
 
 			document.getElementsByName('tpadvcateg')[0].innerHTML = type;
 
