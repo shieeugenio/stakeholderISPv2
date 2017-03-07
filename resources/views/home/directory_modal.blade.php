@@ -386,7 +386,7 @@
 															recorddata[0][0]['mname'] + " " + 
 															recorddata[0][0]['lname'] + " " +
 															recorddata[0][0]['qualifier'];
-			document.getElementsByName('bdate')[0].innerHTML = recorddata[2][1];
+			document.getElementsByName('bdate')[0].innerHTML = recorddata[1][1];
 
 			if(recorddata[0][0]["street"] !== "") {
 				document.getElementsByName('homeaddress')[0].innerHTML = recorddata[0][0]['street'] + " " +
@@ -461,7 +461,7 @@
 
 		function fillacdata(recorddata) {
 			//document.getElementsByName('acadvcateg')[0].innerHTML = "Advisory Council (AC)";
-			document.getElementsByName('acduration')[0].innerHTML = recorddata[2][2] + " - " + recorddata[2][3];
+			document.getElementsByName('acduration')[0].innerHTML = recorddata[1][2] + " - " + recorddata[1][3];
 			document.getElementsByName('acposition')[0].innerHTML = recorddata[0][0]['acpositionname'];
 
 			if(recorddata[0]['officename'] !== "") {

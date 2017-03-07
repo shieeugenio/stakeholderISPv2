@@ -79,7 +79,7 @@
 									<!--DISABLED-->
 								@endif
 
-									<i class = "inverted circular icon user"></i>
+									<i class = "inverted circular icon user format"></i>
 								</div>
 							</div>
 								
