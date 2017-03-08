@@ -425,18 +425,6 @@ class AdvDirectoryController extends Controller {
 
         $advisory->unit_id = $data['primary'];
 
-        if($data['secondary'] != 'disitem') {
-	    	$advisory->second_id = $data['secondary'];
-	    }//if
-
-	    if($data['tertiary'] != 'disitem') {
-	    	$advisory->tertiary_id = $data['tertiary'];
-	    }//if
-
-	    if($data['quaternary'] != 'disitem') {
-	    	$advisory->quaternary_id = $data['quaternary'];
-	    }//if
-
         $advisory->save();
     } // add AC
 
