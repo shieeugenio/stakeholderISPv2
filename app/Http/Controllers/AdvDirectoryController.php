@@ -528,10 +528,20 @@ class AdvDirectoryController extends Controller {
     	$advisory->police_position_id = $data['pnppost'];
     	$advisory->rank_id = $data['rank'];
     	$advisory->unit_id = $data['primary'];
-    	$advisory->second_id = $data['secondary'];
-    	$advisory->tertiary_id = $data['tertiary'];
-    	$advisory->quaternary_id = $data['quaternary'];
-    	$advisory->authorityorder = $data['authorder'];
+    	
+    	if($data['secondary'] != 'disitem') {
+	    	$advisory->second_id = $data['secondary'];
+	    }//if
+
+	    if($data['tertiary'] != 'disitem') {
+	    	$advisory->tertiary_id = $data['tertiary'];
+	    }//if
+
+	    if($data['quaternary'] != 'disitem') {
+	    	$advisory->quaternary_id = $data['quaternary'];
+	    }//if
+
+	    $advisory->authorityorder =$data['authorder'];
 
     	$advisory->save();
 
