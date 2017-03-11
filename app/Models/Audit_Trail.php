@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class audittrail extends Model {
+class audit_trail extends Model {
     protected $table = "audit_trail";
     protected $primaryKey = "id";
     protected $timestamps = true;
@@ -12,4 +12,5 @@ class audittrail extends Model {
     public function users(){
     	return $this->belongsTo('App\Models\users', 'UserId', 'id');
     }
+
 }
