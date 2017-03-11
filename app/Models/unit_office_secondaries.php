@@ -10,18 +10,16 @@ class unit_office_secondaries extends Model
     protected $primaryKey = "id";
     public $timestamps = true;
 
-    public function unitoffice()
-    {
+    public function unitoffice() {
     	return $this->belongsTo('App\Models\unit_offices', 'UnitOfficeID', 'id');
     }
 
-    public function tertiary()
-    {
+    public function secondarysuboffice() {
         return $this->hasMany('App\Models\unit_office_tertiaries', 'UnitOfficeSecondaryID');
     }
 
-    public function policeadv()
+    public function stakeholdersecondary()
     {
-        return $this->hasMany('App\Models\Police_Advisory', 'second_id');
+        return $this->hasMany('App\Models\stakeholder_history', 'SecondaryOfficeId');
     }
 }

@@ -10,7 +10,7 @@ class users extends Model
     protected $primaryKey = "id";
     public $timestamps = true;
 
-    public function audittrail(){
-    	return $this->hasMany('App\Models\Audit_Trail', 'user_id');
+    public function usertrail(){
+    	return $this->hasMany('App\Models\audit_trail', 'UserId');
     }
 }

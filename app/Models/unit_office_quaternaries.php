@@ -10,13 +10,11 @@ class unit_office_quaternaries extends Model
     protected $primaryKey = "id";
     public $timestamps = true;
 
-    public function tertiaries()
-    {
+    public function unitofficetertiary() {
     	return $this->belongsTo('App\Models\unit_office_tertiaries', 'UnitOfficeTertiaryID', 'id');
     }
 
-    public function policeadv()
-    {
-    	$this->hasMany('App\Models\Police_Advisory', 'quaternary_id');
+    public function stakeholderquaternary() {
+    	$this->hasMany('App\Models\stakeholder_history', 'QuaternaryOfficeId');
     }
 }

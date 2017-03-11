@@ -10,13 +10,7 @@ class unit_offices extends Model
     protected $primaryKey = "id";
     public $timestamps = true;
 
-    public function policeadvisory()
-    {
-    	return $this->hasMany('App\Models\Police_Advisory', 'unit_id');
-    }
-
-    public function secondary()
-    {
-    	return $this->hasMany('App\Models\unit_offices', 'UnitOfficeID');
+    public function primarysuboffice() {
+    	return $this->hasMany('App\Models\unit_office_secondaries', 'UnitOfficeID');
     }
 }

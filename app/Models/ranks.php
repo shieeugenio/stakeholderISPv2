@@ -10,8 +10,7 @@ class ranks extends Model
     protected $primaryKey = "id";
     public $timestamps = true;
 
-    public function rankpolice()
-    {
-    	return $this->hasMany('App\Models\Police_Advisory', 'rank_id');
+    public function policerank() {
+    	return $this->hasMany('App\Models\policeinfo', 'RankId');
     }
 }
