@@ -16,11 +16,7 @@ class police_info extends Model {
     public function rank() {
     	return $this->belongsto('App\Models\ranks', 'RankId', 'id');
     }//rank
-    public function policetraining() {
-    	return $this->hasMany('App\Models\trainings', 'PoliceInfoId');
-
-
-    }//training
+    
 
 
 }

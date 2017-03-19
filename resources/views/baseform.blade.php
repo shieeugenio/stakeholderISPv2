@@ -34,6 +34,7 @@
 
 	</head>
 	<body onload = "init()">
+	
 		<header class = "banner">
 			<div class = "ui relaxed grid">
 				<div class = "six wide column">
@@ -97,15 +98,35 @@
 		<div class = "mainbody">
 
 			<div class = "content1">
-				<!--<div class="ui tab" data-tab="home">
-				</div>
-				<div class="ui tab" data-tab="maintenance">
-				</div>
-				<div class="ui tab" data-tab="directory">
-				</div>
+				<div class = "ui grid">
+					<div class = "row">
+						<div class = "nine wide column colheight">
+							<div class="ui icon input big search">
+								<i class="search icon"></i>
+								<input type="text" placeholder="Search...">
+							</div>
 
-				<div class="ui tab" data-tab="admin">
-				</div>-->
+							@if(isset($showcontrol))
+								<div class = "ui icon addbtn button medium" 
+									onclick = "window.location='{{url('directory/add')}}'" 
+									title = "Add AC Member">
+									<i class="plus icon topmargin"></i>
+									
+								</div>
+							@endif
+						</div>
+
+						
+					
+						
+					</div>
+
+					<div class = "row">
+						<hr>
+						
+					</div>
+					
+				</div>
 
 				@yield('maincontent')
 				

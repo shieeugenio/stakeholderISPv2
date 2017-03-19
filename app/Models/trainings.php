@@ -9,8 +9,8 @@ class training extends Model {
     protected $primaryKey = "id";
     public $timestamps = true;
 
-    public function policeinfo() {
-    	return $this->belongsto('App\Models\police_info', 'PoliceInfoId', 'id');
+    public function stakeholderprofile() {
+    	return $this->belongsto('App\Models\stakeholder_profile', 'SProfileId', 'id');
     }//policeinfo
 
     public function lecturer() {

@@ -19,11 +19,11 @@ class CreateTrainingTable extends Migration
             $table->date('EndDate');
             $table->text('Location');
             $table->string('Organizer', 45);
-            $table->time('StartTime');
-            $table->time('EndTime');
+            $table->time('StartTime')->nullable();
+            $table->time('EndTime')->nullable();
             $table->text('Type');
-            $table->integer('PoliceInfoId')->unsigned();
-            $table->foreign('PoliceInfoId')->references('id')->on('police_info');
+            $table->integer('SProfileId')->unsigned();
+            $table->foreign('SProfileId')->references('id')->on('stakeholder_profile');
             $table->timestamps();
         });
         

@@ -29,21 +29,30 @@
 											{{$acrec->acpositionname}} <br>
 
 											@if($acrec->UnitOfficeQuaternaryName != "")
-												{{$acrec->UnitOfficeQuaternaryName}} 
+												{{$acrec->UnitOfficeQuaternaryName}}
 
-											@elseif($acrec->UnitOfficeTertiaryName != "")
-												{{$acrec->UnitOfficeTertiaryName}} 
-
-											@elseif($acrec->UnitOfficeSecondaryName != "")
-												{{$acrec->UnitOfficeSecondaryName}} 
+												@if($acrec->UnitOfficeTertiaryName != "")
+													,&nbsp;
+												@endif
 
 											@endif
+
+											@if($acrec->UnitOfficeTertiaryName != "")
+												{{$acrec->UnitOfficeTertiaryName}},&nbsp;
+
+												@if($acrec->UnitOfficeQuaternaryName != "")
+													<br>
+												@endif
+
+											@endif
+
+											{{$acrec->UnitOfficeSecondaryName}} <br>
 											
 											
 											
 										</p>
 
-										<p class = "p2"> Member since {{date('M Y',strtotime($acrec->startdate))}} &nbsp;&nbsp;</p>
+										<p class = "p3"> Member since {{date('M Y',strtotime($acrec->startdate))}} &nbsp;&nbsp;</p>
 										
 									</div>
 								</div>
@@ -84,20 +93,28 @@
 											{{$tprec->PositionName}} <br>
 
 											@if($tprec->UnitOfficeQuaternaryName != "")
-												{{$tprec->UnitOfficeQuaternaryName}} 
+												{{$tprec->UnitOfficeQuaternaryName}}
 
-											@elseif($tprec->UnitOfficeTertiaryName != "")
-												{{$tprec->UnitOfficeTertiaryName}} 
-
-											@elseif($tprec->UnitOfficeSecondaryName != "")
-												{{$tprec->UnitOfficeSecondaryName}} 
+												@if($tprec->UnitOfficeTertiaryName != "")
+													,&nbsp;
+												@endif
 
 											@endif
+
+											@if($tprec->UnitOfficeTertiaryName != "")
+												{{$tprec->UnitOfficeTertiaryName}},&nbsp;
+
+												@if($tprec->UnitOfficeQuaternaryName != "")
+													<br>
+												@endif
+											@endif
+
+											{{$tprec->UnitOfficeSecondaryName}} <br>
 
 											
 										</p>
 
-										<p class = "p2"> Member since {{date('M Y',strtotime($tprec->startdate))}} &nbsp;&nbsp;</p>
+										<p class = "p3"> Member since {{date('M Y',strtotime($tprec->startdate))}} &nbsp;&nbsp;</p>
 										
 									</div>
 								</div>

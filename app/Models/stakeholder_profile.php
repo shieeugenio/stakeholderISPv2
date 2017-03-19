@@ -12,4 +12,10 @@ class stakeholder_profile extends Model {
     public function stakeholderhistory() {
     	return $this->hasMany('App\Models\stakeholder_history', 'SProfileId');
     }//stakeholderhistory
+
+    public function stakeholdertraining() {
+    	return $this->hasMany('App\Models\trainings', 'SProfileId');
+
+
+    }//training
 }
