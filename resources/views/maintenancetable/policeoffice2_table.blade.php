@@ -100,7 +100,7 @@
 		    		<tr class = "trow" onclick = "loaddata({{$key->id}})" id = "{{$key->ID}}">
 		    			<td><center>{{$key->unitoffice->UnitOfficeName}}</center></td>
 			    		<td><center>{{$key->UnitOfficeSecondaryName}}</center></td>
-			    		<td><center>{{$key->desc}}</center></td>
+			    		<td><center>{{$key->Description}}</center></td>
 			    		<td><center>
 			    			@if(strtolower($key->UnitOfficeHasTertiary) == "true")
 
@@ -172,7 +172,7 @@
 			   		document.getElementsByName('subid')[0].value = data['id'];
 			   		$('#select').dropdown('set selected', data['UnitOfficeID']);
 			   		document.getElementsByName('name')[0].value = data['UnitOfficeSecondaryName'];
-			   		document.getElementsByName('desc')[0].value = data['desc'];
+			   		document.getElementsByName('desc')[0].value = data['Description'];
 
 			   		// document.getElementsByName('haster')[0].value = data['UnitOfficeHasTertiary'];
 			   		if(data['UnitOfficeHasTertiary'] == "True"){

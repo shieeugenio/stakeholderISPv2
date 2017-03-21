@@ -72,9 +72,9 @@
 				                   
 		    <tbody>
 			    @foreach ($sector as $sec) 
-			       	<tr class = "trow" onclick = "CRUD({{$sec->ID}},2)" id = "{{$sec->ID}}">
-			    		<td><center>{{$sec->sectorname}}</center></td>
-			    		<td><center>{{$sec->desc}}</center></td>
+			       	<tr class = "trow" onclick = "CRUD({{$sec->id}},2)" id = "{{$sec->id}}">
+			    		<td><center>{{$sec->ACSectorName}}</center></td>
+			    		<td><center>{{$sec->Description}}</center></td>
 			    	</tr>  
 					                               
 			   @endforeach 
@@ -178,12 +178,12 @@
 
 				}//if func
 				else {
-					$('#' + data['ID']).attr('class', 'activerow');
-					$('tr').not("[id = '" + data['ID'] + "']").attr('class', 'trow');
+					$('#' + data['id']).attr('class', 'activerow');
+					$('tr').not("[id = '" + data['id'] + "']").attr('class', 'trow');
 
-					document.getElementById('acsectorID').value = data['ID'];
-					document.getElementsByName('acsectorName')[0].value = data['sectorname'];
-					document.getElementsByName('Desc')[0].value = data['desc'];
+					document.getElementById('acsectorID').value = data['id'];
+					document.getElementsByName('acsectorName')[0].value = data['ACSectorName'];
+					document.getElementsByName('Desc')[0].value = data['Description'];
 				}
 			} 
 

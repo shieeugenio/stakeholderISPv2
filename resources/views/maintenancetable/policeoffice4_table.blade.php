@@ -136,7 +136,7 @@
 		    		<td><center>{{$offices->UnitOfficeSecondaryName}}</center></td>
 		    		<td><center>{{$offices->UnitOfficeTertiaryName}}</center></td>
 		    		<td><center>{{$offices->UnitOfficeQuaternaryName}}</center></td>
-		    		<td><center>{{$offices->desc}}</center></td>
+		    		<td><center>{{$offices->Description}}</center></td>
 
 		    		
 		    		
@@ -252,7 +252,7 @@
 
 			   		document.getElementsByName('ID')[0].value = data[0]['id'];
 			   		document.getElementsByName('name')[0].value = data[0]['UnitOfficeQuaternaryName'];
-			   		document.getElementsByName('desc')[0].value = data[0]['desc'];
+			   		document.getElementsByName('desc')[0].value = data[0]['Description'];
 
 			   		$('#select1').dropdown("set selected", data[1]['id']); //office 1
 			   		

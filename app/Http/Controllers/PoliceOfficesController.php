@@ -14,7 +14,7 @@ class PoliceOfficesController extends Controller
 		return view('maintenancetable/policeoffice_table')->with('offices', $office);
 
         //return $staffdesc;
-	}
+	} 
     
     public function confirmOffice(Request $request){
     	if(isset($_POST['addbtn'])){
@@ -28,7 +28,7 @@ class PoliceOfficesController extends Controller
             $office = new App\Models\unit_offices;
             $office->UnitOfficeName = $request->input('name');
             $office->UnitOfficeHasField = $request->input('hassec');
-            $office->desc = $request->input('desc');
+            $office->Description = $request->input('desc');
 
     	    $office->save();
         }
@@ -45,7 +45,7 @@ class PoliceOfficesController extends Controller
     		$id = App\Models\unit_offices::find($request->policeID);
     		$id->UnitOfficeName = $request->name;
             $id->UnitOfficeHasField = $request->hassec;
-            $id->desc = $request->desc;
+            $id->Description = $request->desc;
 
     		$id->save();
     	}

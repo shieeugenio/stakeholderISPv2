@@ -184,3 +184,9 @@ Route::get('searchView', 'SearchController@view');
 Route::get('/welcome', 'PDFController@index');
 Route::post('createPDF', 'PDFController@createPDF');
 Route::post('load-pdf-data', 'PDFController@loaddata');
+
+
+
+//testting route
+
+Route::get('test','ACPositionController@index_acposition');

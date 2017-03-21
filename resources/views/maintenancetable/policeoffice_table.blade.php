@@ -76,7 +76,7 @@
 		    	@for($ctr = 0 ; $ctr < sizeof($offices) ; $ctr++)
 		    		<tr class = "trow" onclick = "loaddata({{$offices[$ctr]->id}})" id = "{{$offices[$ctr]->id}}">
 			    		<td><center>{{$offices[$ctr]->UnitOfficeName}}</center></td>
-			    		<td><center>{{$offices[$ctr]->desc}}</center></td>
+			    		<td><center>{{$offices[$ctr]->Description}}</center></td>
 			    		<td><center>
 
 			    		@if(strtolower($offices[$ctr]->UnitOfficeHasField) == "true")
@@ -147,7 +147,7 @@
 
 			   		document.getElementsByName('officeid')[0].value = data['id'];
 			   		document.getElementsByName('name')[0].value = data['UnitOfficeName'];
-			   		document.getElementsByName('desc')[0].value = data['desc'];
+			   		document.getElementsByName('desc')[0].value = data['Description'];
 			   		if(data['UnitOfficeHasField'] == 'True'){
 			   			document.getElementById('hasfield').checked = true;
 			   		}

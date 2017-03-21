@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ac_position extends Model {
+class ac_positions extends Model {
     protected $table = "ac_positions";
     protected $primaryKey = "id";
     public $timestamps = true;

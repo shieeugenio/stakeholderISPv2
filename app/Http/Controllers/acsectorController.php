@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Models\AC_Sector;
+use App\Models\ac_sectors;
 use DB;
 use App\Http\Controllers\Controller;
 
@@ -12,8 +12,8 @@ class acsectorController extends Controller
 {
    
     public function index_acsectors(){
-      $sector = DB::table('AC_Sector')
-      ->orderBy('AC_Sector.ID','DESC')
+      $sector = DB::table('ac_sectors')
+      ->orderBy('ac_sectors.id','DESC')
       ->get();
       return view('maintenancetable.acsector_table')
       ->with('sector', $sector);
@@ -28,9 +28,9 @@ class acsectorController extends Controller
 
         if($callId==1)
         {
-            $acsec = new AC_Sector;
-              $acsec->sectorname = $request->secname;
-              $acsec->desc = $request->secdesc;
+            $acsec = new ac_sectors;
+              $acsec->ACSectorName = $request->secname;
+              $acsec->Description = $request->secdesc;
             $acsec->save();
 
         }
@@ -38,7 +38,7 @@ class acsectorController extends Controller
         if($callId==2)
         {
             $id = $request->id;
-            $acsec = AC_Sector::find($id);
+            $acsec = ac_sectors::find($id);
 
             return $acsec;
 
@@ -47,9 +47,9 @@ class acsectorController extends Controller
         if($callId==3)
         {
             $id = $request->id;
-            $acsec= AC_Sector::find($id);
-            $acsec->sectorname = $request->secname;
-            $acsec->desc = $request->secdesc;
+            $acsec= ac_sectors::find($id);
+            $acsec->ACSectorName = $request->secname;
+            $acsec->Description = $request->secdesc;
             $acsec->save();
         }
     }

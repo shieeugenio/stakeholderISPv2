@@ -124,11 +124,13 @@ class AdvDirectoryController extends Controller {
 	}//edit - WHOLE
 
 	public function getAdv($filter, $sorter){
-		$civilian = DB::table('advisory_council')
-					->join('advisory_position', 'advisory_position.ID', '=', 'advisory_council.advisory_position_id')
-					->join("ac_sector", "ac_sector.ID", "=", "advisory_council.ac_sector_id")
-					->join('unit_office_secondaries', 'unit_office_secondaries.id', '=', 'advisory_council.second_id')
-					->join('unit_offices', 'unit_offices.id', '=', 'unit_office_secondaries.UnitOfficeID')
+		
+/*
+		$civilian = DB::table('stakeholder_profile')
+					->join('stakeholder_history', 'stakeholder_profile.id', '=', 'SProfileID')
+					->join('civilian_info', 'civilian_info.SHistoryId', '=', 'stakeholder_history.id')
+					->join('ac_sectors', 'ac_sector.id', '=' , 'civilian_info.ACSectorId')
+					->join('ac_positions', 'ac_positions.id', '=', 'civilian_info.ACPositionId')
 					->leftJoin('unit_office_tertiaries', 'unit_office_tertiaries.id', '=', 'advisory_council.tertiary_id')
 					->leftJoin('unit_office_quaternaries', 'unit_office_quaternaries.id', '=', 'advisory_council.quaternary_id')
 					->select('advisory_council.ID','lname', 'fname', 'mname', 'imagepath', 'email', 
@@ -138,7 +140,7 @@ class AdvDirectoryController extends Controller {
 					->orderBy('advisory_council.'. $filter, $sorter)
 					->get();
 	
-		$police = DB::table('police_advisory')
+		$police = DB::table('stakeholder_profile')
 					->join('police_position', 'police_position.id', '=', 'police_advisory.police_position_id')
 					->join('unit_office_secondaries', 'unit_office_secondaries.id', '=', 'police_advisory.second_id')
 					->join('unit_offices', 'unit_offices.id', '=', 'unit_office_secondaries.UnitOfficeID')
@@ -150,8 +152,11 @@ class AdvDirectoryController extends Controller {
 						     'UnitOfficeQuaternaryName', 'PositionName')
 					->orderBy('police_advisory.' . $filter, $sorter)
 					->get();
+*/
+		
 
-		return array($civilian, $police);
+
+		//return array($civilian, $police);
 	}
 
 	public function getList() {
@@ -171,11 +176,11 @@ class AdvDirectoryController extends Controller {
 
 		}//if (Auth::check()) {
 
-		$adv = $this->getAdv('created_at', 'desc');
+		//$adv = $this->getAdv('created_at', 'desc');
 
 		/*INSERT CODE FOR PUBLIC HOME LIST VIEW*/
 
-
+		return view('home.defaultphome');
 		return view('home.defaultphome')->with('directory', $adv);
 	}//public function getList() {
 

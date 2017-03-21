@@ -23,7 +23,7 @@ class PoliceOfficeFourController extends Controller
             ->select('unit_office_quaternaries.id','unit_office_quaternaries.UnitOfficeQuaternaryName',
                     'unit_office_tertiaries.UnitOfficeTertiaryName',
                     'unit_office_secondaries.UnitOfficeSecondaryName',
-                    'unit_offices.UnitOfficeName', 'unit_office_quaternaries.desc')
+                    'unit_offices.UnitOfficeName', 'unit_office_quaternaries.Description')
     		->join('unit_office_tertiaries','unit_office_quaternaries.UnitOfficeTertiaryID','=','unit_office_tertiaries.id')
     		->join('unit_office_secondaries','unit_office_tertiaries.UnitOfficeSecondaryID','=','unit_office_secondaries.id')
     		->join('unit_offices','unit_office_secondaries.UnitOfficeID','=','unit_offices.id')
@@ -38,7 +38,7 @@ class PoliceOfficeFourController extends Controller
 
             $policeoffice = new unit_office_quaternaries;
     	    $policeoffice->UnitOfficeQuaternaryName = $request->name;
-            $policeoffice->desc = $request->desc;
+            $policeoffice->Description = $request->desc;
     	    $policeoffice->UnitOfficeTertiaryID = $request->office3;
            	$policeoffice->save();
     }
@@ -61,7 +61,7 @@ class PoliceOfficeFourController extends Controller
     		$policeoffice = unit_office_quaternaries::find($request->subID);
     	    $policeoffice->UnitOfficeTertiaryID = $request->office3;
     	    $policeoffice->UnitOfficeQuaternaryName = $request->name;
-            $policeoffice->desc = $request->desc;
+            $policeoffice->Description = $request->desc;
            	$policeoffice->save();
     }
 

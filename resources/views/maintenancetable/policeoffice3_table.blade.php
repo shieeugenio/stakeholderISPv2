@@ -129,7 +129,7 @@
 			       	<td><center>{{$tri->UnitOfficeName}}</center></td>
 			       	<td><center>{{$tri->UnitOfficeSecondaryName}}</center></td>
 			    	<td><center>{{$tri->UnitOfficeTertiaryName}}</center></td>
-			    	<td><center>{{$tri->desc}}</center></td>
+			    	<td><center>{{$tri->Description}}</center></td>
 			    	<td><center>
 			    		@if(strtolower($tri->UnitOfficeHasQuaternary) == "true")
 
@@ -252,7 +252,7 @@
 					document.getElementById('ID').value = data['id'];
 					document.getElementsByName('terName')[0].value = data['UnitOfficeTertiaryName'];
 					document.getElementsByName('hasQuart')[0].value = data['UnitOfficeHasQuaternary'];
-					document.getElementsByName('desc')[0].value = data['desc'];
+					document.getElementsByName('desc')[0].value = data['Description'];
 
 					document.getElementById('office2').value = data['UnitOfficeSecondaryID'];
 				}

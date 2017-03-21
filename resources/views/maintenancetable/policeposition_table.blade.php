@@ -69,8 +69,8 @@
 		    <tbody>
 		    	@foreach ($positions as $position)
 			    	<tr class = "trow" onclick="CRUD({{$position->id}},2)" id = "{{$position->id}}">
-			    		<td><center>{{$position->PositionName}}</center></td>
-			    		<td><center>{{$position->desc}}</center></td>
+			    		<td><center>{{$position->PNPPositionName}}</center></td>
+			    		<td><center>{{$position->Description}}</center></td>
 			    	</tr>
 		    	@endforeach
 		    </tbody>
@@ -178,12 +178,12 @@
 
 						else
 						{
-							$('#' + data['ID']).attr('class', 'activerow');
-							$('tr').not("[id = '" + data['ID'] + "']").attr('class', 'trow');;
+							$('#' + data['id']).attr('class', 'activerow');
+							$('tr').not("[id = '" + data['id'] + "']").attr('class', 'trow');;
 
 							document.getElementById('ID').value = data['id'];
-							document.getElementsByName('positionname')[0].value = data['PositionName'];
-							document.getElementsByName('description')[0].value = data['desc'];
+							document.getElementsByName('positionname')[0].value = data['PNPPositionName'];
+							document.getElementsByName('description')[0].value = data['Description'];
 							
 							console.log(data);
 						}

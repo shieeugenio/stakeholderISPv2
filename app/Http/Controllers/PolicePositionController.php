@@ -6,13 +6,13 @@ use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Police_Position;
+use App\Models\pnp_positions;
 
 class PolicePositionController extends Controller
 {
     public function index_policeposition()
 	{
-        $positions = DB::table('Police_Position')->get();
+        $positions = DB::table('pnp_positions')->get();
 		return view('maintenancetable/policeposition_table', compact('positions'));
         //->with('sql', $sql);
 	}
@@ -23,16 +23,16 @@ class PolicePositionController extends Controller
 
         if($callId == 1)
         {
-            $position = new Police_Position;
-            $position->positionname=$request->ppname;
-            $position->desc=$request->ppdesc;
+            $position = new pnp_positions;
+            $position->PNPPositionName=$request->ppname;
+            $position->Description=$request->ppdesc;
             $position->save();
         }
 
         if($callId == 2)
         {
             $id = $request->id;
-            $position = Police_Position::find($id);
+            $position = pnp_positions::find($id);
 
             return $position;
         }
@@ -44,10 +44,10 @@ class PolicePositionController extends Controller
             // $position->positionname=$request->ppname;
             // $position->desc=$request->ppdesc;
             // $position->save();
-            DB::table('Police_Position')
+            DB::table('pnp_positions')
             ->where('id', $id)
-            ->update(['PositionName' => $request->ppname],
-                    ['desc' => $request->ppdesc]);   
+            ->update(['PNPPositionName' => $request->ppname],
+                    ['Description' => $request->ppdesc]);   
         }
 
     }
